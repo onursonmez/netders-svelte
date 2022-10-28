@@ -53,85 +53,85 @@
 				pagination: false,
 			  } } aria-label="Kategoriler">
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{bilgisayar}" alt="Bilgisayar"/>
 						<span>Bilgisayar</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{dans}" alt="Dans"/>
 						<span>Dans</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{direksiyon}" alt="Direksiyon"/>
 						<span>Direksiyon</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{ilkogretim}" alt="İlköğretim Takviye"/>
 						<span>İlköğretim Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{kisiselgelisim}" alt="Kişisel Gelişim"/>
 						<span>Kişisel Gelişim</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{lise}" alt="Lise Takviye"/>
 						<span>Lise Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{muzik}" alt="Müzik"/>
 						<span>Müzik</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{oyunhobi}" alt="Oyun & Hobi"/>
 						<span>Oyun & Hobi</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{ozelegitim}" alt="Özel Eğitim"/>
 						<span>Özel Eğitim</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{sanat}" alt="Sanat"/>
 						<span>Sanat</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{sinavhazirlik}" alt="Sınav Hazırlık"/>
 						<span>Sınav Hazırlık</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{spor}" alt="Spor"/>
 						<span>Spor</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{universite}" alt="Üniversite Takviye"/>
 						<span>Üniversite Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
-					<a href="#" class="text-blue-700 hover:text-blue-900">
+					<a href="/" class="text-blue-700 hover:text-blue-900">
 						<img src="{yabancidil}" alt="Yabancı Dil"/>
 						<span>Yabancı Dil</span>
 					</a>

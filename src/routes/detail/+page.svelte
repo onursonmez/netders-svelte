@@ -15,46 +15,6 @@
 	<meta name="description" content="Detail in this app" />
 </svelte:head>
 
-<Modal bind:open={formModal} size="md" class="!h-screen">
-	<form class="flex flex-col space-y-6" action="/">
-		<h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Gelişmiş Arama</h3>
-		<div class="grid gap-6 mb-6 md:grid-cols-2">
-			<Label class="space-y-2">
-				<span>Şehir</span>
-				<Select id="select-sm" size="sm" items={cities} class="mb-6" placeholder="Lütfen seçiniz" />
-			</Label>
-			<Label class="space-y-2">
-				<span>İlçe</span>
-				<Select id="select-sm" size="sm" items={counties} class="mb-6" placeholder="Lütfen seçiniz" disabled />
-			</Label>
-			<Label class="space-y-2">
-				<span>Ders Alanı</span>
-				<Select id="select-sm" size="sm" items={subjects} class="mb-6" placeholder="Lütfen seçiniz" />
-			</Label>
-			<Label class="space-y-2 ">
-				<span>Konu</span>
-				<Select id="select-sm" size="sm" items={levels} class="mb-6" placeholder="Lütfen seçiniz" disabled />
-			</Label>
-			<Label class="space-y-2">
-				<span>Minimum Bütçe (₺)</span>
-				<Input type="text" name="maximumBudget" placeholder="20" />
-			</Label>
-			<Label class="space-y-2">
-				<span>Maksimum Bütçe (₺)</span>
-				<Input type="text" name="maximumBudget" placeholder="500" />
-			</Label>
-			<Label class="space-y-2">
-				<span>Ders Verme Şekli</span>
-				<Select id="select-sm" size="sm" items={courseTypes} class="mb-6" placeholder="Lütfen seçiniz" />
-			</Label>
-			<Label class="space-y-2">
-				<span>Öğretmen</span>
-				<Select id="select-sm" size="sm" items={teacherGender} class="mb-6" placeholder="Lütfen seçiniz" />
-			</Label>
-		</div>
-		<Button type="submit" class="w-full1">Ara</Button>
-	</form>
-</Modal>
 
 <div class="lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md">
 	<div class="lg:basis-2/12 mb-4 lg:mb-0">
@@ -109,7 +69,7 @@
 		<p class="text-sm text-justify leading-relaxed">Dokuz Eylül Üniversitesi Şehir ve Bölge Planlama bölümünü okumakta idim. 3. sınıfın ikinci döneminde özel sebeplerden ötürü bırakmak zorunda kaldım. Bambaşka bir bölüm olan yine Dokuz Eylül Üniversitesi'ndeki Radyoterapi bölümünün 2021 mezunuyum :) Aynı zamanda Webhelp bünyesinde N11.com lojistik biriminde çalışmaktayım. Öğrencilerim ile ilk dersimde tanışarak nasıl bir yol izleyeceğime karar vermek, öğrencilerime hangi öğrenme tarzının daha iyi ve verimli olacağını keşfetmek en hoşuma giden aynı zamanda da en önemli bulduğum kısımdır.</p>
 	</div>
 	<div class="lg:basis-2/12">
-		<a href="" class="bg-blue-700 p-2 rounded-full text-center text-sm flex text-white">
+		<a href="/" class="bg-blue-700 p-2 rounded-full text-center text-sm flex text-white">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
 			</svg>

@@ -16,7 +16,7 @@
 		<div class="hidden lg:col-span-1 lg:flex">
 		</div>
 		<div class="hidden lg:col-span-3 lg:flex">
-			<img src="{student}">
+			<img src="{student}" alt="">
 		</div>
 	</div>
 </section>

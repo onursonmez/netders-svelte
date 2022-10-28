@@ -8,13 +8,14 @@ export const csr = dev;
 // it so that it gets served as a static asset in production
 export const prerender = true;
 
+/*
 export async function load({ url })
 {
     let page = 1
     let pageSize = 3
     let keyword = 'matematik'
 
-    const teachers = await fetch('/api/public/user/teachers',
+    const teachers = await fetch('https://api.netders.com/public/user/teachers',
     {
             headers:{
                 'Content-Type': 'application/json'
@@ -32,3 +33,4 @@ export async function load({ url })
         return await teachers.json()
     }
 }
+*/

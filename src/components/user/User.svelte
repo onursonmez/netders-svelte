@@ -3,7 +3,7 @@
 </script>
 
 <div class="text-center rounded-lg shadow-md pb-6 bg-white">
-	<a href="#" class="text-blue-700 hover:text-blue-900">
+	<a href="/" class="text-blue-700 hover:text-blue-900">
 		<img src="https://netders.com/users/17426-1647602290.jpg" alt="user1" class="rounded-[50%] pt-[50px] pl-[50px] pr-[50px] mx-auto" />
 		<h3 class="mt-8 font-semibold">Yeşim Öğretmen</h3>
 	</a>

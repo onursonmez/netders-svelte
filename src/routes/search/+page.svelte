@@ -34,9 +34,6 @@
 		{value: 2, name: "Erkek"},
 		{value: 3, name: "Kadın"},
 	]
-	export let data;
-
-	console.log(data)
 </script>
 
 <svelte:head>
@@ -93,7 +90,7 @@
 			<Search class="border-0 shadow-md" placeholder="Ne arıyorsunuz?">
 				<Button class="bg-netders">Ara</Button>
 			</Search>
-			<p class="mt-4 text-sm text-gray-800">veya daha <a href="#" class="text-blue-700 hover:text-blue-900 font-bold" on:click|preventDefault={() => formModal = true}>Detaylı Arama</a> yapabilirsiniz.</p>
+			<p class="mt-4 text-sm text-gray-800">veya daha <a href="/" class="text-blue-700 hover:text-blue-900 font-bold" on:click|preventDefault={() => formModal = true}>Detaylı Arama</a> yapabilirsiniz.</p>
 			<div class="flex flex-wrap gap-2 mt-4">
 				<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">

@@ -10,6 +10,7 @@
 			<img
 					src="{logo}"
 					class="mr-3 h-6 sm:h-9"
+					alt=""
 			/>
 		</NavBrand>
 		<div class="flex md:order-2">
@@ -24,7 +25,7 @@
 		</div>
 		<NavUl {hidden} class="order-1">
 			<NavLi href="/" active={true}>Ana Sayfa</NavLi>
-			<NavLi href="/search?a=1&b=2">
+			<NavLi href="/search">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 inline-block">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
 				</svg>
@@ -36,9 +37,9 @@
 				</svg>
 				Ders talepleri
 			</NavLi>
-			<NavLi href="/services">Nasıl çalışır?</NavLi>
-			<NavLi href="/pricing">Yardım</NavLi>
-			<NavLi href="/contact">İletişim</NavLi>
+			<NavLi href="/">Nasıl çalışır?</NavLi>
+			<NavLi href="/">Yardım</NavLi>
+			<NavLi href="/">İletişim</NavLi>
 		</NavUl>
 	</Navbar>
 </header>
