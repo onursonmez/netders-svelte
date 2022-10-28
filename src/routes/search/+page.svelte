@@ -54,7 +54,7 @@
 				<Input type="text" name="burget" placeholder="500" />
 			</Label>
 			<Label class="space-y-1">
-				<span>Şehir</span>
+				<span>İl</span>
 				<Select id="select-sm" size="md" items={cities} placeholder="Lütfen seçiniz" />
 			</Label>
 			<Label class="space-y-1">
