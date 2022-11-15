@@ -1,29 +1,15 @@
-import { c as create_ssr_component, v as validate_component, d as add_attribute, b as compute_rest_props, l as createEventDispatcher, e as spread, f as escape_attribute_value, g as escape_object } from "../../chunks/index.js";
-import "classnames";
-import { B as Button } from "../../chunks/Button.js";
-/* empty css                                                    */import { S as Search, U as User } from "../../chunks/User.js";
+import { c as create_ssr_component, b as add_attribute, h as compute_rest_props, i as createEventDispatcher, j as spread, k as escape_attribute_value, l as escape_object, v as validate_component } from "../../chunks/index.js";
+import { U as UserHorizontal } from "../../chunks/UserHorizontal.js";
 const student = "http://localhost:5173/_app/immutable/assets/student-51aa6cee.png";
 const Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<section class="${"dark:bg-gray-900"}"><div class="${"grid lg:grid-cols-12 py-6"}"><div class="${"mr-auto place-self-center lg:col-span-8"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">\xD6zel ders almak hi\xE7 bu kadar kolay olmam\u0131\u015Ft\u0131!</h1>
 			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">Do\u011Frulanm\u0131\u015F profile sahip, alan\u0131nda <strong class="${"font-semibold"}">uzman \xF6\u011Fretmenlerden</strong> online veya y\xFCz y\xFCze \xF6zel ders al\u0131n. Hem de Netders.com g\xFCvencesiyle!</p>
-			${validate_component(Search, "Search").$$render(
-    $$result,
-    {
-      class: "border-0 shadow-md",
-      placeholder: "Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"
-    },
-    {},
-    {
-      default: () => {
-        return `${validate_component(Button, "Button").$$render($$result, { class: "bg-netders" }, {}, {
-          default: () => {
-            return `\xD6\u011Fretmen ara`;
-          }
-        })}`;
-      }
-    }
-  )}
-			<p class="${"text-xs text-gray-400 pt-2"}">\xD6rne\u011Fin; matematik, ingilizce, fizik gibi, almak istedi\u011Finiz \xF6zel dersin ad\u0131n\u0131 yukar\u0131daki arama alan\u0131na girip, \xF6\u011Fretmen ara tu\u015Funa bas\u0131n\u0131z.</p></div>
+
+			<form method="${"get"}" action="${"/ozel-ders-ilanlari-verenler"}" autocomplete="${"off"}"><div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
+					<input type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0"}" placeholder="${"Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"}">
+					<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button></div></form>
+
+			<p class="${"text-xs text-gray-400 pt-2"}">\xD6rne\u011Fin; matematik, ingilizce, fizik gibi, almak istedi\u011Finiz \xF6zel dersin ad\u0131n\u0131 yukar\u0131daki arama alan\u0131na girip, ara tu\u015Funa bas\u0131n\u0131z.</p></div>
 		<div class="${"hidden lg:col-span-1 lg:flex"}"></div>
 		<div class="${"hidden lg:col-span-3 lg:flex"}"><img${add_attribute("src", student, 0)} alt="${""}"></div></div>
 </section>`;
@@ -344,7 +330,7 @@ const Slider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       default: () => {
         return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
           default: () => {
-            return `${validate_component(User, "User").$$render($$result, {}, {}, {})}`;
+            return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, {}, {}, {})}`;
           }
         })}`;
       }

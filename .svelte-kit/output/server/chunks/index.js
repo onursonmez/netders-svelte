@@ -19,6 +19,11 @@ function subscribe(store, ...callbacks) {
   const unsub = store.subscribe(...callbacks);
   return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
+function get_store_value(store) {
+  let value;
+  subscribe(store, (_) => value = _)();
+  return value;
+}
 function compute_rest_props(props, keys) {
   const rest = {};
   keys = new Set(keys);
@@ -26,13 +31,6 @@ function compute_rest_props(props, keys) {
     if (!keys.has(k) && k[0] !== "$")
       rest[k] = props[k];
   return rest;
-}
-function compute_slots(slots) {
-  const result = {};
-  for (const key in slots) {
-    result[key] = true;
-  }
-  return result;
 }
 function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
   const e = document.createEvent("CustomEvent");
@@ -246,28 +244,32 @@ function add_attribute(name, value, boolean) {
   const assignment = boolean && value === true ? "" : `="${escape(value, true)}"`;
   return ` ${name}${assignment}`;
 }
+function add_classes(classes) {
+  return classes ? ` class="${classes}"` : "";
+}
 function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key) => style_object[key]).map((key) => `${key}: ${style_object[key]};`).join(" ");
 }
 export {
   safe_not_equal as a,
-  compute_rest_props as b,
+  add_attribute as b,
   create_ssr_component as c,
-  add_attribute as d,
-  spread as e,
-  escape_attribute_value as f,
-  escape_object as g,
-  getContext as h,
-  escape as i,
-  is_void as j,
-  subscribe as k,
-  createEventDispatcher as l,
+  add_classes as d,
+  subscribe as e,
+  escape as f,
+  getContext as g,
+  compute_rest_props as h,
+  createEventDispatcher as i,
+  spread as j,
+  escape_attribute_value as k,
+  escape_object as l,
   missing_component as m,
   noop as n,
-  compute_slots as o,
-  each as p,
-  get_current_component as q,
-  globals as r,
+  is_void as o,
+  get_current_component as p,
+  globals as q,
+  each as r,
   setContext as s,
+  get_store_value as t,
   validate_component as v
 };

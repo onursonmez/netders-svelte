@@ -72,6 +72,11 @@ function subscribe(store, ...callbacks) {
   const unsub = store.subscribe(...callbacks);
   return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
+function get_store_value(store) {
+  let value;
+  subscribe(store, (_) => value = _)();
+  return value;
+}
 function compute_rest_props(props, keys) {
   const rest = {};
   keys = new Set(keys);
@@ -80,20 +85,13 @@ function compute_rest_props(props, keys) {
       rest[k] = props[k];
   return rest;
 }
-function compute_slots(slots) {
-  const result = {};
-  for (const key2 in slots) {
-    result[key2] = true;
-  }
-  return result;
-}
 function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
   const e3 = document.createEvent("CustomEvent");
   e3.initCustomEvent(type, bubbles, cancelable, detail);
   return e3;
 }
-function set_current_component(component7) {
-  current_component = component7;
+function set_current_component(component8) {
+  current_component = component8;
 }
 function get_current_component() {
   if (!current_component)
@@ -101,13 +99,13 @@ function get_current_component() {
   return current_component;
 }
 function createEventDispatcher() {
-  const component7 = get_current_component();
+  const component8 = get_current_component();
   return (type, detail, { cancelable = false } = {}) => {
-    const callbacks = component7.$$.callbacks[type];
+    const callbacks = component8.$$.callbacks[type];
     if (callbacks) {
       const event = custom_event(type, detail, { cancelable });
       callbacks.slice().forEach((fn2) => {
-        fn2.call(component7, event);
+        fn2.call(component8, event);
       });
       return !event.defaultPrevented;
     }
@@ -212,13 +210,13 @@ function each(items, fn2) {
   }
   return str;
 }
-function validate_component(component7, name) {
-  if (!component7 || !component7.$$render) {
+function validate_component(component8, name) {
+  if (!component8 || !component8.$$render) {
     if (name === "svelte:component")
       name += " this={...}";
     throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules. Otherwise you may need to fix a <${name}>.`);
   }
-  return component7;
+  return component8;
 }
 function create_ssr_component(fn2) {
   function $$render(result, props, bindings, slots, context) {
@@ -259,6 +257,9 @@ function add_attribute(name, value, boolean) {
     return "";
   const assignment = boolean && value === true ? "" : `="${escape(value, true)}"`;
   return ` ${name}${assignment}`;
+}
+function add_classes(classes) {
+  return classes ? ` class="${classes}"` : "";
 }
 function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key2) => style_object[key2]).map((key2) => `${key2}: ${style_object[key2]};`).join(" ");
@@ -306,6 +307,61 @@ var init_chunks = __esm({
   }
 });
 
+// .svelte-kit/output/server/chunks/index2.js
+function readable(value, start2) {
+  return {
+    subscribe: writable(value, start2).subscribe
+  };
+}
+function writable(value, start2 = noop) {
+  let stop;
+  const subscribers = /* @__PURE__ */ new Set();
+  function set(new_value) {
+    if (safe_not_equal(value, new_value)) {
+      value = new_value;
+      if (stop) {
+        const run_queue = !subscriber_queue.length;
+        for (const subscriber of subscribers) {
+          subscriber[1]();
+          subscriber_queue.push(subscriber, value);
+        }
+        if (run_queue) {
+          for (let i = 0; i < subscriber_queue.length; i += 2) {
+            subscriber_queue[i][0](subscriber_queue[i + 1]);
+          }
+          subscriber_queue.length = 0;
+        }
+      }
+    }
+  }
+  function update(fn2) {
+    set(fn2(value));
+  }
+  function subscribe2(run2, invalidate = noop) {
+    const subscriber = [run2, invalidate];
+    subscribers.add(subscriber);
+    if (subscribers.size === 1) {
+      stop = start2(set) || noop;
+    }
+    run2(value);
+    return () => {
+      subscribers.delete(subscriber);
+      if (subscribers.size === 0) {
+        stop();
+        stop = null;
+      }
+    };
+  }
+  return { set, update, subscribe: subscribe2 };
+}
+var subscriber_queue;
+var init_index2 = __esm({
+  ".svelte-kit/output/server/chunks/index2.js"() {
+    init_chunks();
+    subscriber_queue = [];
+  }
+});
+
 // node_modules/cookie/index.js
 var require_cookie = __commonJS({
   "node_modules/cookie/index.js"(exports) {
@@ -321,20 +377,20 @@ var require_cookie = __commonJS({
       var obj = {};
       var opt = options || {};
       var dec = opt.decode || decode;
-      var index7 = 0;
-      while (index7 < str.length) {
-        var eqIdx = str.indexOf("=", index7);
+      var index8 = 0;
+      while (index8 < str.length) {
+        var eqIdx = str.indexOf("=", index8);
         if (eqIdx === -1) {
           break;
         }
-        var endIdx = str.indexOf(";", index7);
+        var endIdx = str.indexOf(";", index8);
         if (endIdx === -1) {
           endIdx = str.length;
         } else if (endIdx < eqIdx) {
-          index7 = str.lastIndexOf(";", eqIdx - 1) + 1;
+          index8 = str.lastIndexOf(";", eqIdx - 1) + 1;
           continue;
         }
-        var key2 = str.slice(index7, eqIdx).trim();
+        var key2 = str.slice(index8, eqIdx).trim();
         if (void 0 === obj[key2]) {
           var val = str.slice(eqIdx + 1, endIdx).trim();
           if (val.charCodeAt(0) === 34) {
@@ -342,7 +398,7 @@ var require_cookie = __commonJS({
           }
           obj[key2] = tryDecode(val, dec);
         }
-        index7 = endIdx + 1;
+        index8 = endIdx + 1;
       }
       return obj;
     }
@@ -612,316 +668,21 @@ var require_set_cookie = __commonJS({
   }
 });
 
+// .svelte-kit/output/server/chunks/env-public.js
+function set_public_env(environment) {
+  env = environment;
+}
+var env;
+var init_env_public = __esm({
+  ".svelte-kit/output/server/chunks/env-public.js"() {
+    env = {};
+  }
+});
+
 // .svelte-kit/output/server/chunks/hooks.js
 var hooks_exports = {};
 var init_hooks = __esm({
   ".svelte-kit/output/server/chunks/hooks.js"() {
-  }
-});
-
-// node_modules/classnames/index.js
-var require_classnames = __commonJS({
-  "node_modules/classnames/index.js"(exports, module) {
-    (function() {
-      "use strict";
-      var hasOwn = {}.hasOwnProperty;
-      var nativeCodeString = "[native code]";
-      function classNames8() {
-        var classes = [];
-        for (var i = 0; i < arguments.length; i++) {
-          var arg = arguments[i];
-          if (!arg)
-            continue;
-          var argType = typeof arg;
-          if (argType === "string" || argType === "number") {
-            classes.push(arg);
-          } else if (Array.isArray(arg)) {
-            if (arg.length) {
-              var inner = classNames8.apply(null, arg);
-              if (inner) {
-                classes.push(inner);
-              }
-            }
-          } else if (argType === "object") {
-            if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes("[native code]")) {
-              classes.push(arg.toString());
-              continue;
-            }
-            for (var key2 in arg) {
-              if (hasOwn.call(arg, key2) && arg[key2]) {
-                classes.push(key2);
-              }
-            }
-          }
-        }
-        return classes.join(" ");
-      }
-      if (typeof module !== "undefined" && module.exports) {
-        classNames8.default = classNames8;
-        module.exports = classNames8;
-      } else if (typeof define === "function" && typeof define.amd === "object" && define.amd) {
-        define("classnames", [], function() {
-          return classNames8;
-        });
-      } else {
-        window.classNames = classNames8;
-      }
-    })();
-  }
-});
-
-// .svelte-kit/output/server/chunks/Button.js
-var import_classnames, Button;
-var init_Button = __esm({
-  ".svelte-kit/output/server/chunks/Button.js"() {
-    init_chunks();
-    import_classnames = __toESM(require_classnames(), 1);
-    Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["pill", "outline", "gradient", "size", "href", "btnClass", "type", "color", "shadow"]);
-      const group = getContext("group");
-      let { pill = false } = $$props;
-      let { outline = false } = $$props;
-      let { gradient = false } = $$props;
-      let { size = group ? "sm" : "md" } = $$props;
-      let { href = void 0 } = $$props;
-      let { btnClass = void 0 } = $$props;
-      let { type = "button" } = $$props;
-      let { color = group ? outline ? "dark" : "alternative" : "blue" } = $$props;
-      let { shadow = null } = $$props;
-      const colorClasses = {
-        blue: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-        dark: "text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700",
-        alternative: "text-gray-900 bg-white border border-gray-200 dark:border-gray-600 hover:bg-gray-100 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 hover:text-blue-700 focus:text-blue-700 dark:focus:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700",
-        light: "text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700",
-        green: "text-white bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800",
-        red: "text-white bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
-        yellow: "text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300 dark:focus:ring-yellow-900",
-        primary: "text-white bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
-        purple: "text-white bg-purple-700 hover:bg-purple-800 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-      };
-      const gradientClasses = {
-        blue: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-blue-300 dark:focus:ring-blue-800 ",
-        green: "text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-green-300 dark:focus:ring-green-800",
-        cyan: "text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-cyan-300 dark:focus:ring-cyan-800",
-        teal: "text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-teal-300 dark:focus:ring-teal-800",
-        lime: "text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-lime-300 dark:focus:ring-lime-800",
-        red: "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-red-300 dark:focus:ring-red-800",
-        pink: "text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-pink-300 dark:focus:ring-pink-800",
-        purple: "text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-purple-300 dark:focus:ring-purple-800",
-        purpleToBlue: "text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800",
-        cyanToBlue: "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-cyan-300 dark:focus:ring-cyan-800",
-        greenToBlue: "text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-green-200 dark:focus:ring-green-800",
-        purpleToPink: "text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800",
-        pinkToOrange: "text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-pink-200 dark:focus:ring-pink-800",
-        tealToLime: "text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l focus:ring-lime-200 dark:focus:ring-teal-700",
-        redToYellow: "text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-red-100 dark:focus:ring-red-400"
-      };
-      const coloredShadowClasses = {
-        blue: "shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80",
-        green: "shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80",
-        cyan: "shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80",
-        teal: "shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 ",
-        lime: "shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80",
-        red: "shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 ",
-        pink: "shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80",
-        purple: "shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80"
-      };
-      const outlineClasses = {
-        blue: "text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800",
-        dark: "text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:bg-gray-900 focus:text-white focus:ring-gray-300 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800",
-        green: "text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800",
-        red: "text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900",
-        yellow: "text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900",
-        purple: "text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-purple-300 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900"
-      };
-      const sizeClasses = {
-        xs: "px-3 py-2 text-xs",
-        sm: "px-4 py-2 text-sm",
-        md: "px-5 py-2.5 text-sm",
-        lg: "px-5 py-3 text-base",
-        xl: "px-6 py-3.5 text-base"
-      };
-      function rounded(gradientOutline = false) {
-        if (group) {
-          return pill ? "first:rounded-l-full last:rounded-r-full" : gradientOutline ? "first:rounded-l-md last:rounded-r-md" : "first:rounded-l-lg last:rounded-r-lg";
-        }
-        return pill ? "rounded-full" : gradientOutline ? "rounded-md" : "rounded-lg";
-      }
-      const hasBorder = () => outline || color === "alternative" || color === "light";
-      let buttonClass;
-      let gradientOutlineClass;
-      if ($$props.pill === void 0 && $$bindings.pill && pill !== void 0)
-        $$bindings.pill(pill);
-      if ($$props.outline === void 0 && $$bindings.outline && outline !== void 0)
-        $$bindings.outline(outline);
-      if ($$props.gradient === void 0 && $$bindings.gradient && gradient !== void 0)
-        $$bindings.gradient(gradient);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.href === void 0 && $$bindings.href && href !== void 0)
-        $$bindings.href(href);
-      if ($$props.btnClass === void 0 && $$bindings.btnClass && btnClass !== void 0)
-        $$bindings.btnClass(btnClass);
-      if ($$props.type === void 0 && $$bindings.type && type !== void 0)
-        $$bindings.type(type);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.shadow === void 0 && $$bindings.shadow && shadow !== void 0)
-        $$bindings.shadow(shadow);
-      buttonClass = btnClass ? btnClass : (0, import_classnames.default)(
-        "text-center font-medium",
-        group ? "focus:ring-2" : "focus:ring-4",
-        group && "focus:z-10",
-        !group || color === "alternative" || outline && color === "dark" || "focus:outline-none",
-        outline && gradient ? "p-0.5" : "inline-flex items-center justify-center " + sizeClasses[size],
-        gradient ? gradientClasses[color] : outline ? outlineClasses[color] : colorClasses[color],
-        color === "alternative" && (group ? "dark:bg-gray-700 dark:text-white dark:border-gray-700 dark:hover:border-gray-600 dark:hover:bg-gray-600" : "dark:bg-transparent dark:border-gray-800 dark:hover:border-gray-700"),
-        outline && color === "dark" && (group ? "dark:text-white dark:border-white" : "dark:text-gray-400 dark:border-gray-700"),
-        hasBorder() && group && "border-l-0 first:border-l",
-        rounded(false),
-        shadow && coloredShadowClasses[shadow],
-        $$props.disabled && "cursor-not-allowed opacity-50",
-        $$props.class
-      );
-      gradientOutlineClass = (0, import_classnames.default)("inline-flex items-center justify-center", sizeClasses[size], rounded(true), "bg-white text-gray-900 dark:bg-gray-900 dark:text-white", "transition-all duration-75 ease-in group-hover:bg-opacity-0 group-hover:text-inherit");
-      return `${((tag) => {
-        return tag ? `<${href ? "a" : "button"}${spread(
-          [
-            {
-              type: escape_attribute_value(href ? void 0 : type)
-            },
-            { href: escape_attribute_value(href) },
-            escape_object($$restProps),
-            {
-              class: escape_attribute_value(buttonClass)
-            }
-          ],
-          {}
-        )}>${is_void(tag) ? "" : `${outline && gradient ? `
-    <span${add_attribute("class", gradientOutlineClass, 0)}>${slots.default ? slots.default({}) : ``}</span>` : `${slots.default ? slots.default({}) : ``}`}`}${is_void(tag) ? "" : `</${tag}>`}` : "";
-      })(href ? "a" : "button")}`;
-    });
-  }
-});
-
-// .svelte-kit/output/server/chunks/Frame.js
-var import_classnames2, Frame;
-var init_Frame = __esm({
-  ".svelte-kit/output/server/chunks/Frame.js"() {
-    init_chunks();
-    import_classnames2 = __toESM(require_classnames(), 1);
-    Frame = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, [
-        "tag",
-        "color",
-        "rounded",
-        "border",
-        "shadow",
-        "transition",
-        "params",
-        "node",
-        "use",
-        "options"
-      ]);
-      setContext("background", true);
-      let { tag = "div" } = $$props;
-      let { color = "default" } = $$props;
-      let { rounded = false } = $$props;
-      let { border = false } = $$props;
-      let { shadow = false } = $$props;
-      let { transition = void 0 } = $$props;
-      let { params = {} } = $$props;
-      let { node = void 0 } = $$props;
-      let { use = noop } = $$props;
-      let { options = {} } = $$props;
-      const bgColors = {
-        gray: "bg-gray-100 dark:bg-gray-200 ",
-        red: "bg-red-100 dark:bg-red-200",
-        yellow: "bg-yellow-100 dark:bg-yellow-200 ",
-        green: "bg-green-100 dark:bg-green-200 ",
-        indigo: "bg-indigo-100 dark:bg-indigo-200 ",
-        purple: "bg-purple-100 dark:bg-purple-200 ",
-        pink: "bg-pink-100 dark:bg-pink-200 ",
-        blue: "bg-blue-100 dark:bg-blue-200 ",
-        light: "bg-gray-50 dark:bg-gray-700",
-        dark: "bg-gray-100 dark:bg-gray-700",
-        default: "bg-white dark:bg-gray-800",
-        dropdown: "bg-white dark:bg-gray-700",
-        navbar: "bg-white dark:bg-gray-900",
-        navbarUl: "bg-gray-50 dark:bg-gray-800",
-        form: "bg-gray-50 dark:bg-gray-700",
-        primary: "bg-primary-100 dark:bg-primary-200 ",
-        none: ""
-      };
-      const textColors = {
-        gray: "text-gray-700 dark:text-gray-800",
-        red: "text-red-700 dark:text-red-800",
-        yellow: "text-yellow-700 dark:text-yellow-800",
-        green: "text-green-700 dark:text-green-800",
-        indigo: "text-indigo-700 dark:text-indigo-800",
-        purple: "text-purple-700 dark:text-purple-800",
-        pink: "text-pink-700 dark:text-pink-800",
-        blue: "text-blue-700 dark:text-blue-800",
-        light: "text-gray-700 dark:text-gray-300",
-        dark: "text-gray-700 dark:text-gray-300",
-        default: "text-gray-500 dark:text-gray-400",
-        dropdown: "text-gray-700 dark:text-gray-200",
-        navbar: "text-gray-700 dark:text-gray-200",
-        navbarUl: "text-gray-700 dark:text-gray-400",
-        form: "text-gray-900 dark:text-white",
-        primary: "text-primary-700 dark:text-primary-800",
-        none: ""
-      };
-      const borderColors = {
-        gray: "border-gray-500 dark:bg-gray-200 ",
-        red: "border-red-500 dark:bg-red-200 ",
-        yellow: "border-yellow-500 dark:bg-tellow-200 ",
-        green: "border-green-500 dark:bg-green-200 ",
-        indigo: "border-indigo-500 dark:bg-indigo-200 ",
-        purple: "border-purple-500 dark:bg-purple-200 ",
-        pink: "border-pink-500 dark:bg-pink-200 ",
-        blue: "border-blue-500 dark:bg-blue-200 ",
-        light: "border-gray-500",
-        dark: "border-gray-500",
-        default: "border-gray-200 dark:border-gray-700",
-        dropdown: "border-gray-100 dark:border-gray-700",
-        navbar: "border-gray-100 dark:border-gray-700",
-        navbarUl: "border-gray-100 dark:border-gray-700",
-        form: "border-gray-300 dark:border-gray-700",
-        primary: "border-primary-500 dark:bg-primary-200 ",
-        none: ""
-      };
-      let divClass;
-      if ($$props.tag === void 0 && $$bindings.tag && tag !== void 0)
-        $$bindings.tag(tag);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.rounded === void 0 && $$bindings.rounded && rounded !== void 0)
-        $$bindings.rounded(rounded);
-      if ($$props.border === void 0 && $$bindings.border && border !== void 0)
-        $$bindings.border(border);
-      if ($$props.shadow === void 0 && $$bindings.shadow && shadow !== void 0)
-        $$bindings.shadow(shadow);
-      if ($$props.transition === void 0 && $$bindings.transition && transition !== void 0)
-        $$bindings.transition(transition);
-      if ($$props.params === void 0 && $$bindings.params && params !== void 0)
-        $$bindings.params(params);
-      if ($$props.node === void 0 && $$bindings.node && node !== void 0)
-        $$bindings.node(node);
-      if ($$props.use === void 0 && $$bindings.use && use !== void 0)
-        $$bindings.use(use);
-      if ($$props.options === void 0 && $$bindings.options && options !== void 0)
-        $$bindings.options(options);
-      {
-        setContext("color", color);
-      }
-      divClass = (0, import_classnames2.default)(bgColors[color], textColors[color], rounded && (color === "dropdown" ? "rounded" : "rounded-lg"), border && "border", borderColors[color], shadow && "shadow-md", $$props.class);
-      return `${transition ? `${((tag$1) => {
-        return tag$1 ? `<${tag}${spread([escape_object($$restProps), { class: escape_attribute_value(divClass) }], {})}${add_attribute("this", node, 0)}>${is_void(tag$1) ? "" : `${slots.default ? slots.default({}) : ``}`}${is_void(tag$1) ? "" : `</${tag$1}>`}` : "";
-      })(tag)}` : `${((tag$1) => {
-        return tag$1 ? `<${tag}${spread([escape_object($$restProps), { class: escape_attribute_value(divClass) }], {})}${add_attribute("this", node, 0)}>${is_void(tag$1) ? "" : `${slots.default ? slots.default({}) : ``}`}${is_void(tag$1) ? "" : `</${tag$1}>`}` : "";
-      })(tag)}`}`;
-    });
   }
 });
 
@@ -930,331 +691,71 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => Layout
 });
-var import_classnames3, Navbar, NavBrand, ToolbarButton, Menu, NavHamburger, NavLi, NavUl, logo, Header, css, Layout;
+var logo, Header, css, Layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_layout.svelte.js"() {
     init_chunks();
-    import_classnames3 = __toESM(require_classnames(), 1);
-    init_Button();
-    init_Frame();
-    Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["navClass", "navDivClass", "fluid", "color"]);
-      let { navClass = "px-2 sm:px-4 py-2.5 w-full" } = $$props;
-      let { navDivClass = "mx-auto flex flex-wrap justify-between items-center " } = $$props;
-      let { fluid = true } = $$props;
-      let { color = "navbar" } = $$props;
-      let hidden = true;
-      let toggle = () => {
-        hidden = !hidden;
-      };
-      if ($$props.navClass === void 0 && $$bindings.navClass && navClass !== void 0)
-        $$bindings.navClass(navClass);
-      if ($$props.navDivClass === void 0 && $$bindings.navDivClass && navDivClass !== void 0)
-        $$bindings.navDivClass(navDivClass);
-      if ($$props.fluid === void 0 && $$bindings.fluid && fluid !== void 0)
-        $$bindings.fluid(fluid);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      return `${validate_component(Frame, "Frame").$$render(
-        $$result,
-        Object.assign({ tag: "nav" }, { color }, $$restProps, {
-          class: (0, import_classnames3.default)(navClass, $$props.class)
-        }),
-        {},
-        {
-          default: () => {
-            return `<div${add_attribute("class", (0, import_classnames3.default)(navDivClass, fluid && "container"), 0)}>${slots.default ? slots.default({ hidden, toggle }) : ``}</div>`;
-          }
-        }
-      )}`;
-    });
-    NavBrand = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["href"]);
-      let { href = "" } = $$props;
-      if ($$props.href === void 0 && $$bindings.href && href !== void 0)
-        $$bindings.href(href);
-      return `<a${spread(
-        [
-          { href: escape_attribute_value(href) },
-          escape_object($$restProps),
-          {
-            class: escape_attribute_value((0, import_classnames3.default)("flex items-center", $$props.class))
-          }
-        ],
-        {}
-      )}>${slots.default ? slots.default({}) : ``}</a>`;
-    });
-    ToolbarButton = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["color", "name", "ariaLabel", "size"]);
-      const background = getContext("background");
-      let { color = "default" } = $$props;
-      let { name = void 0 } = $$props;
-      let { ariaLabel = void 0 } = $$props;
-      let { size = "md" } = $$props;
-      const colors = {
-        default: "hover:text-gray-900 hover:bg-gray-100 text-gray-500 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600",
-        gray: "focus:ring-gray-400 hover:bg-gray-200 dark:hover:bg-gray-300",
-        red: "focus:ring-red-400 hover:bg-red-200 dark:hover:bg-red-300",
-        yellow: "focus:ring-yellow-400 hover:bg-yellow-200 dark:hover:bg-yellow-300",
-        green: "focus:ring-green-400 hover:bg-green-200 dark:hover:bg-green-300",
-        indigo: "focus:ring-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-300",
-        purple: "focus:ring-purple-400 hover:bg-purple-200 dark:hover:bg-purple-300",
-        pink: "focus:ring-pink-400 hover:bg-pink-200 dark:hover:bg-pink-300",
-        blue: "focus:ring-blue-400 hover:bg-blue-200 dark:hover:bg-blue-300"
-      };
-      const sizing = {
-        xs: "m-0.5 rounded focus:ring-1 p-0.5",
-        sm: "m-0.5 rounded focus:ring-1 p-0.5",
-        md: "rounded-lg focus:ring-2 p-1.5"
-      };
-      let buttonClass;
-      const svgSizes = {
-        xs: "w-3 h-3",
-        sm: "w-3.5 h-3.5",
-        md: "w-5 h-5"
-      };
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.name === void 0 && $$bindings.name && name !== void 0)
-        $$bindings.name(name);
-      if ($$props.ariaLabel === void 0 && $$bindings.ariaLabel && ariaLabel !== void 0)
-        $$bindings.ariaLabel(ariaLabel);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      buttonClass = (0, import_classnames3.default)(
-        "focus:outline-none whitespace-normal",
-        sizing[size],
-        colors[color],
-        color === "default" && (background ? "hover:bg-gray-100 dark:hover:bg-gray-600" : "hover:bg-gray-100 dark:hover:bg-gray-700"),
-        $$props.class
-      );
-      return `<button${spread(
-        [
-          { type: "button" },
-          escape_object($$restProps),
-          {
-            class: escape_attribute_value(buttonClass)
-          },
-          {
-            "aria-label": escape_attribute_value(ariaLabel ?? name)
-          }
-        ],
-        {}
-      )}>${name ? `<span class="${"sr-only"}">${escape(name)}</span>` : ``}
-	${slots.default ? slots.default({}) : `
-		<svg${add_attribute("class", svgSizes[size], 0)} fill="${"currentColor"}" viewBox="${"0 0 20 20"}" xmlns="${"http://www.w3.org/2000/svg"}"><path fill-rule="${"evenodd"}" d="${"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"}" clip-rule="${"evenodd"}"></path></svg>
-	`}</button>`;
-    });
-    Menu = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["size", "color", "variation", "ariaLabel"]);
-      let { size = "24" } = $$props;
-      let { color = "currentColor" } = $$props;
-      let { variation = "outline" } = $$props;
-      let viewBox;
-      let svgpath;
-      let svgoutline = `<path d="M3.75 6.75H20.25M3.75 12H20.25M3.75 17.25H20.25" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> `;
-      let svgsolid = `<path fill-rule="evenodd" clip-rule="evenodd" d="M3 6.75C3 6.33579 3.33579 6 3.75 6H20.25C20.6642 6 21 6.33579 21 6.75C21 7.16421 20.6642 7.5 20.25 7.5H3.75C3.33579 7.5 3 7.16421 3 6.75ZM3 12C3 11.5858 3.33579 11.25 3.75 11.25H20.25C20.6642 11.25 21 11.5858 21 12C21 12.4142 20.6642 12.75 20.25 12.75H3.75C3.33579 12.75 3 12.4142 3 12ZM3 17.25C3 16.8358 3.33579 16.5 3.75 16.5H20.25C20.6642 16.5 21 16.8358 21 17.25C21 17.6642 20.6642 18 20.25 18H3.75C3.33579 18 3 17.6642 3 17.25Z" fill="${color}"/> `;
-      let { ariaLabel = "bars 3" } = $$props;
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.variation === void 0 && $$bindings.variation && variation !== void 0)
-        $$bindings.variation(variation);
-      if ($$props.ariaLabel === void 0 && $$bindings.ariaLabel && ariaLabel !== void 0)
-        $$bindings.ariaLabel(ariaLabel);
-      {
-        switch (variation) {
-          case "outline":
-            svgpath = svgoutline;
-            viewBox = "0 0 24 24";
-            break;
-          case "solid":
-            svgpath = svgsolid;
-            viewBox = "0 0 24 24";
-            break;
-          default:
-            svgpath = svgoutline;
-            viewBox = "0 0 24 24";
-        }
-      }
-      return `<svg${spread(
-        [
-          { xmlns: "http://www.w3.org/2000/svg" },
-          { width: escape_attribute_value(size) },
-          { height: escape_attribute_value(size) },
-          {
-            class: escape_attribute_value($$props.class)
-          },
-          escape_object($$restProps),
-          {
-            "aria-label": escape_attribute_value(ariaLabel)
-          },
-          { fill: "none" },
-          { viewBox: escape_attribute_value(viewBox) },
-          { "stroke-width": "2" }
-        ],
-        {}
-      )}><!-- HTML_TAG_START -->${svgpath}<!-- HTML_TAG_END --></svg>`;
-    });
-    NavHamburger = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["btnClass"]);
-      let { btnClass = "ml-3 md:hidden" } = $$props;
-      if ($$props.btnClass === void 0 && $$bindings.btnClass && btnClass !== void 0)
-        $$bindings.btnClass(btnClass);
-      return `${validate_component(ToolbarButton, "ToolbarButton").$$render(
-        $$result,
-        Object.assign({ name: "Open main menu" }, $$restProps, {
-          class: (0, import_classnames3.default)(btnClass, $$props.class)
-        }),
-        {},
-        {
-          default: () => {
-            return `${validate_component(Menu, "Menu").$$render($$result, { class: "h-6 w-6 shrink-0" }, {}, {})}`;
-          }
-        }
-      )}`;
-    });
-    NavLi = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["href", "active", "activeClass", "nonActiveClass"]);
-      let { href = "" } = $$props;
-      let { active = false } = $$props;
-      let { activeClass = "text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent" } = $$props;
-      let { nonActiveClass = "text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" } = $$props;
-      let liClass;
-      if ($$props.href === void 0 && $$bindings.href && href !== void 0)
-        $$bindings.href(href);
-      if ($$props.active === void 0 && $$bindings.active && active !== void 0)
-        $$bindings.active(active);
-      if ($$props.activeClass === void 0 && $$bindings.activeClass && activeClass !== void 0)
-        $$bindings.activeClass(activeClass);
-      if ($$props.nonActiveClass === void 0 && $$bindings.nonActiveClass && nonActiveClass !== void 0)
-        $$bindings.nonActiveClass(nonActiveClass);
-      liClass = (0, import_classnames3.default)("block py-2 pr-4 pl-3 md:p-0 rounded md:border-0", active ? activeClass : nonActiveClass, $$props.class);
-      return `<li>${((tag) => {
-        return tag ? `<${href ? "a" : "div"}${spread(
-          [
-            { href: escape_attribute_value(href) },
-            escape_object($$restProps),
-            { class: escape_attribute_value(liClass) }
-          ],
-          {}
-        )}>${is_void(tag) ? "" : `${slots.default ? slots.default({}) : ``}`}${is_void(tag) ? "" : `</${tag}>`}` : "";
-      })(href ? "a" : "div")}</li>`;
-    });
-    NavUl = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["divClass", "ulClass", "hidden"]);
-      let { divClass = "w-full md:block md:w-auto" } = $$props;
-      let { ulClass = "flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium" } = $$props;
-      let { hidden = true } = $$props;
-      let _divClass;
-      let _ulClass;
-      if ($$props.divClass === void 0 && $$bindings.divClass && divClass !== void 0)
-        $$bindings.divClass(divClass);
-      if ($$props.ulClass === void 0 && $$bindings.ulClass && ulClass !== void 0)
-        $$bindings.ulClass(ulClass);
-      if ($$props.hidden === void 0 && $$bindings.hidden && hidden !== void 0)
-        $$bindings.hidden(hidden);
-      _divClass = (0, import_classnames3.default)(divClass, $$props.class);
-      _ulClass = (0, import_classnames3.default)(
-        ulClass,
-        $$props.class
-      );
-      return `${!hidden ? `<div${spread([escape_object($$restProps), { class: escape_attribute_value(_divClass) }], {})}>${validate_component(Frame, "Frame").$$render(
-        $$result,
-        {
-          tag: "ul",
-          border: true,
-          rounded: true,
-          color: "navbarUl",
-          class: _ulClass
-        },
-        {},
-        {
-          default: () => {
-            return `${slots.default ? slots.default({}) : ``}`;
-          }
-        }
-      )}</div>` : `<div${spread(
-        [
-          escape_object($$restProps),
-          { class: escape_attribute_value(_divClass) },
-          { hidden: hidden || null }
-        ],
-        {}
-      )}><ul${add_attribute("class", _ulClass, 0)}>${slots.default ? slots.default({}) : ``}</ul></div>`}`;
-    });
     logo = "http://localhost:5173/_app/immutable/assets/netders-logo-blue-a79eee8d.svg";
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `<header>${validate_component(Navbar, "Navbar").$$render($$result, { class: "shadow-md" }, {}, {
-        default: ({ hidden, toggle }) => {
-          return `${validate_component(NavBrand, "NavBrand").$$render($$result, { href: "/" }, {}, {
-            default: () => {
-              return `<img${add_attribute("src", logo, 0)} class="${"mr-3 h-6 sm:h-9"}" alt="${""}">`;
-            }
-          })}
-		<div class="${"flex md:order-2"}">${validate_component(Button, "Button").$$render($$result, { size: "sm" }, {}, {
-            default: () => {
-              return `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
+      return `<header><nav class="${"shadow-md bg-white"}"><div class="${"mx-auto max-w-[90%]"}"><div class="${"relative flex h-16 items-center justify-between"}"><div class="${"absolute inset-y-0 left-0 flex items-center lg:hidden"}">
+					<button type="${"button"}" class="${"inline-flex items-center justify-center rounded-md text-gray-400 hover:text-blue-700 ring-0"}" aria-controls="${"mobile-menu"}" aria-expanded="${"false"}"><span class="${"sr-only"}">Open main menu</span>
 
-				Hemen ba\u015Fla
-			`;
-            }
-          })}
-			${validate_component(NavHamburger, "NavHamburger").$$render($$result, {}, {}, {})}</div>
-		${validate_component(NavUl, "NavUl").$$render($$result, { hidden, class: "order-1" }, {}, {
-            default: () => {
-              return `${validate_component(NavLi, "NavLi").$$render($$result, { href: "/", active: true }, {}, {
-                default: () => {
-                  return `Ana Sayfa`;
-                }
-              })}
-			${validate_component(NavLi, "NavLi").$$render($$result, { href: "/search" }, {}, {
-                default: () => {
-                  return `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
-				\xD6\u011Fretmen ara
-			`;
-                }
-              })}
-			${validate_component(NavLi, "NavLi").$$render($$result, { href: "/detail" }, {}, {
-                default: () => {
-                  return `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-				Ders talepleri
-			`;
-                }
-              })}
-			${validate_component(NavLi, "NavLi").$$render($$result, { href: "/" }, {}, {
-                default: () => {
-                  return `Nas\u0131l \xE7al\u0131\u015F\u0131r?`;
-                }
-              })}
-			${validate_component(NavLi, "NavLi").$$render($$result, { href: "/" }, {}, {
-                default: () => {
-                  return `Yard\u0131m`;
-                }
-              })}
-			${validate_component(NavLi, "NavLi").$$render($$result, { href: "/" }, {}, {
-                default: () => {
-                  return `\u0130leti\u015Fim`;
-                }
-              })}`;
-            }
-          })}`;
-        }
-      })}
+						<svg class="${["h-6 w-6", ""].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}"></path></svg>
+
+						<svg class="${["h-6 w-6", "hidden"].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M6 18L18 6M6 6l12 12"}"></path></svg></button></div>
+				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", logo, 0)} alt="${"Netders.com"}"></a></div>
+					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders-ilanlari-verenler"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
+							\xD6\u011Fretmen Ara
+						</a>
+
+						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+							Ders Talepleri
+						</a>
+
+						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a>
+
+						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
+
+						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">\u0130leti\u015Fim</a></div></div>
+				<div class="${"absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0"}"><button type="${"button"}" class="${"hidden rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"}"><span class="${"sr-only"}">View notifications</span>
+						
+						<svg class="${"h-6 w-6"}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"}"></path></svg></button>
+
+					
+					<div class="${"relative ml-3"}"><div><button type="${"button"}" class="${"flex rounded-full bg-gray-800 text-sm"}" id="${"user-menu-button"}" aria-expanded="${"false"}" aria-haspopup="${"true"}"><span class="${"sr-only"}">Open user menu</span>
+								<img class="${"h-8 w-8 rounded-full"}" src="${"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}" alt="${""}"></button></div>
+
+						
+						<div class="${[
+        "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
+        "hidden"
+      ].join(" ").trim()}" role="${"menu"}" aria-orientation="${"vertical"}" aria-labelledby="${"user-menu-button"}" tabindex="${"-1"}">
+							<a href="${"#"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Your Profile</a>
+							<a href="${"#"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-1"}">Settings</a>
+							<a href="${"#"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-2"}">Sign out</a></div></div></div></div></div>
+
+		
+		<div id="${"mobile-menu"}"${add_classes("hidden".trim())}><div class="${"space-y-1 px-2 pt-2 pb-3"}">
+				<a href="${"#"}" class="${"bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"}" aria-current="${"page"}">Dashboard</a>
+
+				<a href="${"#"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Team</a>
+
+				<a href="${"#"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Projects</a>
+
+				<a href="${"#"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Calendar</a></div></div></nav>
 </header>`;
     });
     css = {
-      code: ".app.svelte-udkeas{display:flex;flex-direction:column;min-height:100vh}main.svelte-udkeas{flex:1;display:flex;flex-direction:column;padding:1rem;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}footer.svelte-udkeas{flex:1;display:flex;flex-direction:column;padding:0 1rem 1rem 1rem;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}",
+      code: ".app.svelte-r97aqy{display:flex;flex-direction:column;min-height:100vh}main.svelte-r97aqy{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}footer.svelte-r97aqy{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}",
       map: null
     };
     Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css);
-      return `<div class="${"app svelte-udkeas"}">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
+      return `<div class="${"app svelte-r97aqy"}">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
 
-	<main class="${"svelte-udkeas"}">${slots.default ? slots.default({}) : ``}</main>
+	<main class="${"svelte-r97aqy"}">${slots.default ? slots.default({}) : ``}</main>
 
-	<footer class="${"svelte-udkeas"}"><section class="${"shadow-md rounded-t-lg bg-white text-center text-base"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
+	<footer class="${"svelte-r97aqy"}"><section class="${"shadow-md rounded-t-lg bg-white text-center text-base mt-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
 			</div>
 			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('/src/lib/images/colored-bar.jpeg')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\xD6\u011Fretmen Ara</a></li>
@@ -1285,9 +786,9 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-c476a7ea.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-c476a7ea.js", "_app/immutable/chunks/index-a4e868a2.js", "_app/immutable/chunks/Indicator.svelte_svelte_type_style_lang-75445948.js", "_app/immutable/chunks/Button-30636bce.js", "_app/immutable/chunks/Frame-fdc4c42c.js"];
-    stylesheets = ["_app/immutable/assets/_layout-9fb16259.css", "_app/immutable/assets/Indicator-1d121e74.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-7a24cbd2.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-7a24cbd2.js", "_app/immutable/chunks/index-fd37714b.js"];
+    stylesheets = ["_app/immutable/assets/_layout-addfd86e.css"];
   }
 });
 
@@ -1372,8 +873,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-f6e017a6.js";
-    imports2 = ["_app/immutable/components/error.svelte-f6e017a6.js", "_app/immutable/chunks/index-a4e868a2.js", "_app/immutable/chunks/singletons-a0a837ea.js"];
+    file2 = "_app/immutable/components/error.svelte-adab7c9a.js";
+    imports2 = ["_app/immutable/components/error.svelte-adab7c9a.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-3bd5cfbf.js", "_app/immutable/chunks/index-571ab9cb.js"];
     stylesheets2 = [];
   }
 });
@@ -1390,288 +891,103 @@ var init_page = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/User.js
-function clampSize(s3) {
-  return s3 && s3 === "xs" ? "sm" : s3 === "xl" ? "lg" : s3;
-}
-var import_classnames4, Wrapper, floatClass, Input, Search, Star, Rating, User;
-var init_User = __esm({
-  ".svelte-kit/output/server/chunks/User.js"() {
+// .svelte-kit/output/server/chunks/UserHorizontal.js
+var UserHorizontal;
+var init_UserHorizontal = __esm({
+  ".svelte-kit/output/server/chunks/UserHorizontal.js"() {
     init_chunks();
-    import_classnames4 = __toESM(require_classnames(), 1);
-    init_Button();
-    Wrapper = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["tag", "show", "use"]);
-      let { tag = "div" } = $$props;
-      let { show } = $$props;
-      let { use = () => {
-      } } = $$props;
-      if ($$props.tag === void 0 && $$bindings.tag && tag !== void 0)
-        $$bindings.tag(tag);
-      if ($$props.show === void 0 && $$bindings.show && show !== void 0)
-        $$bindings.show(show);
-      if ($$props.use === void 0 && $$bindings.use && use !== void 0)
-        $$bindings.use(use);
-      return `${show ? `${((tag$1) => {
-        return tag$1 ? `<${tag}${spread([escape_object($$restProps)], {})}>${is_void(tag$1) ? "" : `${slots.default ? slots.default({}) : ``}`}${is_void(tag$1) ? "" : `</${tag$1}>`}` : "";
-      })(tag)}` : `${slots.default ? slots.default({}) : ``}`}`;
-    });
-    floatClass = "flex absolute inset-y-0 items-center pointer-events-none text-gray-500 dark:text-gray-400";
-    Input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let _size;
-      let $$restProps = compute_rest_props($$props, ["type", "value", "size", "defaultClass", "color"]);
-      let $$slots = compute_slots(slots);
-      let { type = "text" } = $$props;
-      let { value = "" } = $$props;
-      let { size = void 0 } = $$props;
-      let { defaultClass = "block w-full disabled:cursor-not-allowed disabled:opacity-50" } = $$props;
-      let { color = "base" } = $$props;
-      const borderClasses = {
-        base: "border-gray-300 dark:border-gray-600",
-        tinted: "border-gray-300 dark:border-gray-500",
-        green: "border-green-500 dark:border-green-400",
-        red: "border-red-500 dark:border-red-400"
+    init_env_public();
+    UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { id } = $$props;
+      let { loginAt } = $$props;
+      let { firstName } = $$props;
+      let { genderId } = $$props;
+      let { genderName } = $$props;
+      let { lastName } = $$props;
+      let { about } = $$props;
+      let { cityId } = $$props;
+      let { cityName } = $$props;
+      let { countyId } = $$props;
+      let { countyName } = $$props;
+      let { minimumPrice } = $$props;
+      let { isOnline } = $$props;
+      let { title } = $$props;
+      let { countryId } = $$props;
+      let { countryName } = $$props;
+      let { username } = $$props;
+      let { isTeachRemotely } = $$props;
+      let { isTeachPhysically } = $$props;
+      let { searchPoint } = $$props;
+      const getPhotoEmptyUserAvatar = (genderName2) => {
+        if (genderName2 == "Erkek")
+          return "img/icon-male.png";
+        if (genderName2 == "Kad\u0131n")
+          return "img/icon-female.png";
+        return "img/icon-male.png";
       };
-      const ringClasses = {
-        base: "focus:border-blue-500 focus:ring-blue-500 dark:focus:border-blue-500 dark:focus:ring-blue-500",
-        green: "focus:ring-green-500 focus:border-green-500 dark:focus:border-green-500 dark:focus:ring-green-500",
-        red: "focus:ring-red-500 focus:border-red-500 dark:focus:ring-red-500 dark:focus:border-red-500"
-      };
-      const colorClasses = {
-        base: "bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400",
-        tinted: "bg-gray-50 text-gray-900 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400",
-        green: "bg-green-50 text-green-900 placeholder-green-700 dark:bg-gray-700",
-        red: "bg-red-50 text-red-900 placeholder-red-700 dark:bg-gray-700"
-      };
-      let background = getContext("background");
-      let group = getContext("group");
-      const textSizes = {
-        sm: "sm:text-xs",
-        md: "text-sm",
-        lg: "sm:text-base"
-      };
-      const leftPadding = { sm: "pl-9", md: "pl-10", lg: "pl-11" };
-      const rightPadding = { sm: "pr-9", md: "pr-10", lg: "pr-11" };
-      const inputPadding = { sm: "p-2", md: "p-2.5", lg: "p-4" };
-      let inputClass;
-      if ($$props.type === void 0 && $$bindings.type && type !== void 0)
-        $$bindings.type(type);
-      if ($$props.value === void 0 && $$bindings.value && value !== void 0)
-        $$bindings.value(value);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.defaultClass === void 0 && $$bindings.defaultClass && defaultClass !== void 0)
-        $$bindings.defaultClass(defaultClass);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      _size = size || clampSize(group == null ? void 0 : group.size) || "md";
-      {
-        {
-          const _color = color === "base" && background ? "tinted" : color;
-          inputClass = (0, import_classnames4.default)(defaultClass, $$slots.left && leftPadding[_size], $$slots.right && rightPadding[_size], ringClasses[color], colorClasses[_color], borderClasses[_color], inputPadding[_size], textSizes[_size], group || "rounded-lg", group && "first:rounded-l-lg last:rounded-r-lg", group && "border-l-0 first:border-l last:border-r", $$props.class);
+      const truncateString = (str, num) => {
+        if (str == null)
+          return "";
+        if (str.length > num) {
+          return str.slice(0, num) + "...";
+        } else {
+          return str;
         }
-      }
-      return `${validate_component(Wrapper, "Wrapper").$$render(
-        $$result,
-        {
-          class: "relative w-full",
-          show: $$slots.left || $$slots.right
-        },
-        {},
-        {
-          default: () => {
-            return `${$$slots.left ? `<div class="${escape(floatClass, true) + " left-0 pl-2.5"}">${slots.left ? slots.left({
-              props: { ...$$restProps, class: inputClass }
-            }) : ``}</div>` : ``}
-  ${slots.default ? slots.default({
-              props: { ...$$restProps, class: inputClass }
-            }) : `
-    <input${spread(
-              [
-                escape_object($$restProps),
-                {
-                  class: escape_attribute_value(inputClass)
-                }
-              ],
-              {}
-            )}${add_attribute("value", value, 0)}>
-  `}
-  ${$$slots.right ? `<div class="${escape(floatClass, true) + " right-0 pr-2.5"}">${slots.right ? slots.right({
-              props: { ...$$restProps, class: inputClass }
-            }) : ``}</div>` : ``}`;
-          }
-        }
-      )}`;
-    });
-    Search = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["size", "placeholder"]);
-      let $$slots = compute_slots(slots);
-      let { size = "lg" } = $$props;
-      let { placeholder = "Search" } = $$props;
-      const sizes = {
-        sm: "w-3.5 h-3.5",
-        md: "w-5 h-5",
-        lg: "w-6 h-6"
       };
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.placeholder === void 0 && $$bindings.placeholder && placeholder !== void 0)
-        $$bindings.placeholder(placeholder);
-      return `${validate_component(Wrapper, "Wrapper").$$render(
-        $$result,
-        {
-          class: "relative w-full",
-          show: $$slots.default
-        },
-        {},
-        {
-          default: () => {
-            return `${validate_component(Input, "Input").$$render($$result, Object.assign({ type: "search" }, { placeholder }, { size }, $$restProps, { class: $$props.class }), {}, {
-              left: () => {
-                return `<svg slot="${"left"}"${add_attribute("class", sizes[size], 0)} fill="${"currentColor"}" viewBox="${"0 0 20 20"}" xmlns="${"http://www.w3.org/2000/svg"}"><path fill-rule="${"evenodd"}" d="${"M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"}" clip-rule="${"evenodd"}"></path></svg>`;
-              }
-            })}
-  
-  ${$$slots.default ? `<div class="${"flex absolute inset-y-0 right-0 items-center pr-3 text-gray-500 dark:text-gray-400"}">${slots.default ? slots.default({}) : ``}</div>` : ``}`;
-          }
-        }
-      )}`;
-    });
-    Star = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["size", "color", "variation", "ariaLabel"]);
-      let { size = "24" } = $$props;
-      let { color = "currentColor" } = $$props;
-      let { variation = "outline" } = $$props;
-      let viewBox;
-      let svgpath;
-      let svgoutline = `<path d="M11.4806 3.49883C11.6728 3.03685 12.3272 3.03685 12.5193 3.49883L14.6453 8.61028C14.7263 8.80504 14.9095 8.93811 15.1197 8.95497L20.638 9.39736C21.1367 9.43735 21.339 10.0598 20.959 10.3853L16.7546 13.9867C16.5945 14.1239 16.5245 14.3392 16.5734 14.5444L17.8579 19.9293C17.974 20.416 17.4446 20.8007 17.0176 20.5398L12.2932 17.6542C12.1132 17.5443 11.8868 17.5443 11.7068 17.6542L6.98238 20.5398C6.55539 20.8007 6.02594 20.416 6.14203 19.9293L7.42652 14.5444C7.47546 14.3392 7.4055 14.1239 7.24531 13.9867L3.04099 10.3853C2.661 10.0598 2.86323 9.43735 3.36197 9.39736L8.88022 8.95497C9.09048 8.93811 9.27363 8.80504 9.35464 8.61028L11.4806 3.49883Z" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> `;
-      let svgsolid = `<path fill-rule="evenodd" clip-rule="evenodd" d="M10.7881 3.2108C11.2364 2.13286 12.7635 2.13286 13.2118 3.2108L15.2938 8.21652L20.6979 8.64976C21.8616 8.74306 22.3335 10.1953 21.4469 10.9549L17.3295 14.4818L18.5874 19.7553C18.8583 20.8909 17.6229 21.7884 16.6266 21.1799L11.9999 18.354L7.37329 21.1799C6.37697 21.7884 5.14158 20.8909 5.41246 19.7553L6.67038 14.4818L2.55303 10.9549C1.66639 10.1953 2.13826 8.74306 3.302 8.64976L8.70609 8.21652L10.7881 3.2108Z" fill="${color}"/> `;
-      let { ariaLabel = "star" } = $$props;
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.variation === void 0 && $$bindings.variation && variation !== void 0)
-        $$bindings.variation(variation);
-      if ($$props.ariaLabel === void 0 && $$bindings.ariaLabel && ariaLabel !== void 0)
-        $$bindings.ariaLabel(ariaLabel);
-      {
-        switch (variation) {
-          case "outline":
-            svgpath = svgoutline;
-            viewBox = "0 0 24 24";
-            break;
-          case "solid":
-            svgpath = svgsolid;
-            viewBox = "0 0 24 24";
-            break;
-          default:
-            svgpath = svgoutline;
-            viewBox = "0 0 24 24";
-        }
-      }
-      return `<svg${spread(
-        [
-          { xmlns: "http://www.w3.org/2000/svg" },
-          { width: escape_attribute_value(size) },
-          { height: escape_attribute_value(size) },
-          {
-            class: escape_attribute_value($$props.class)
-          },
-          escape_object($$restProps),
-          {
-            "aria-label": escape_attribute_value(ariaLabel)
-          },
-          { fill: "none" },
-          { viewBox: escape_attribute_value(viewBox) },
-          { "stroke-width": "2" }
-        ],
-        {}
-      )}><!-- HTML_TAG_START -->${svgpath}<!-- HTML_TAG_END --></svg>`;
-    });
-    Rating = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$slots = compute_slots(slots);
-      let { divClass = "flex items-center" } = $$props;
-      let { size = "24" } = $$props;
-      let { total = 5 } = $$props;
-      let { rating = 4 } = $$props;
-      let { ceil = false } = $$props;
-      let { count = false } = $$props;
-      let roundedRating = ceil ? Math.ceil(rating) : Math.floor(rating);
-      let grayStars = total - roundedRating;
-      if ($$props.divClass === void 0 && $$bindings.divClass && divClass !== void 0)
-        $$bindings.divClass(divClass);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.total === void 0 && $$bindings.total && total !== void 0)
-        $$bindings.total(total);
-      if ($$props.rating === void 0 && $$bindings.rating && rating !== void 0)
-        $$bindings.rating(rating);
-      if ($$props.ceil === void 0 && $$bindings.ceil && ceil !== void 0)
-        $$bindings.ceil(ceil);
-      if ($$props.count === void 0 && $$bindings.count && count !== void 0)
-        $$bindings.count(count);
-      return `<div${add_attribute("class", (0, import_classnames4.default)(divClass, $$props.class), 0)}>${count ? `${validate_component(Star, "Star").$$render(
-        $$result,
-        {
-          variation: "solid",
-          size,
-          class: "text-yellow-300 dark:text-yellow-200"
-        },
-        {},
-        {}
-      )}
-    <p class="${"ml-2 text-sm font-bold text-gray-900 dark:text-white"}">${escape(rating)}</p>
-    ${slots.default ? slots.default({}) : ``}` : `${each(Array(roundedRating), (_, star) => {
-        return `${slots.ratingUp ? slots.ratingUp({}) : `
-        ${validate_component(Star, "Star").$$render(
-          $$result,
-          {
-            variation: "solid",
-            size,
-            class: "text-yellow-300 dark:text-yellow-200"
-          },
-          {},
-          {}
-        )}
-      `}`;
-      })}
-    ${each(Array(grayStars), (_, star) => {
-        return `${slots.ratingDown ? slots.ratingDown({}) : `
-        ${validate_component(Star, "Star").$$render(
-          $$result,
-          {
-            size,
-            class: "text-gray-300 dark:text-gray-500"
-          },
-          {},
-          {}
-        )}
-      `}`;
-      })}
-    ${$$slots.text ? `${slots.text ? slots.text({}) : ``}` : ``}`}</div>`;
-    });
-    User = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `<div class="${"text-center rounded-lg shadow-md pb-6 bg-white"}"><a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img src="${"https://netders.com/users/17426-1647602290.jpg"}" alt="${"user1"}" class="${"rounded-[50%] pt-[50px] pl-[50px] pr-[50px] mx-auto"}">
-		<h3 class="${"mt-8 font-semibold"}">Ye\u015Fim \xD6\u011Fretmen</h3></a>
-	<p class="${"text-sm mt-2 flex justify-center"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-		70 \u20BA / Saat
-	</p>
-	<p class="${"text-sm mt-2 flex justify-center"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-		Ankara, \xC7ankaya
-	</p>
+      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
+        $$bindings.id(id);
+      if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
+        $$bindings.loginAt(loginAt);
+      if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
+        $$bindings.firstName(firstName);
+      if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
+        $$bindings.genderId(genderId);
+      if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
+        $$bindings.genderName(genderName);
+      if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
+        $$bindings.lastName(lastName);
+      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
+        $$bindings.about(about);
+      if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
+        $$bindings.cityId(cityId);
+      if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
+        $$bindings.cityName(cityName);
+      if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
+        $$bindings.countyId(countyId);
+      if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
+        $$bindings.countyName(countyName);
+      if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
+        $$bindings.minimumPrice(minimumPrice);
+      if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
+        $$bindings.isOnline(isOnline);
+      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+        $$bindings.title(title);
+      if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
+        $$bindings.countryId(countryId);
+      if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
+        $$bindings.countryName(countryName);
+      if ($$props.username === void 0 && $$bindings.username && username !== void 0)
+        $$bindings.username(username);
+      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
+        $$bindings.isTeachRemotely(isTeachRemotely);
+      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
+        $$bindings.isTeachPhysically(isTeachPhysically);
+      if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
+        $$bindings.searchPoint(searchPoint);
+      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape(env.PUBLIC_BASE_URL, true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
+		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
 
-	<p class="${"text-sm mt-2 flex justify-center"}">${validate_component(Rating, "Rating").$$render($$result, { total: 5, rating: 4 }, {}, {})}</p>
-	<p class="${"text-xs mt-2 text-gray-500"}">0 yorum</p>
-	${validate_component(Button, "Button").$$render($$result, { size: "xs", class: "mt-2" }, {}, {
-        default: () => {
-          return `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 4.5v15m7.5-7.5h-15"}"></path></svg>
+		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
+				${escape(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
 
-		Ders Talebi Olu\u015Ftur
-	`;
-        }
-      })}
-</div>`;
+			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+				${escape(cityName)}, ${escape(countyName)}</div>
+
+			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M5.636 5.636a9 9 0 1012.728 0M12 3v9"}"></path></svg>
+				${escape(isOnline ? "\xC7evrimi\xE7i" : "\xC7evrimd\u0131\u015F\u0131")}</div></div>
+
+		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
     });
   }
 });
@@ -1681,7 +997,7 @@ var page_svelte_exports = {};
 __export(page_svelte_exports, {
   default: () => Page
 });
-function classNames5(...classes) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 function forOwn(object, iteratee) {
@@ -1703,7 +1019,7 @@ function isObject(subject) {
 }
 function isEqualDeep(subject1, subject2) {
   if (Array.isArray(subject1) && Array.isArray(subject2)) {
-    return subject1.length === subject2.length && !subject1.some((elm, index7) => !isEqualDeep(elm, subject2[index7]));
+    return subject1.length === subject2.length && !subject1.some((elm, index8) => !isEqualDeep(elm, subject2[index8]));
   }
   if (isObject(subject1) && isObject(subject2)) {
     const keys1 = Object.keys(subject1);
@@ -1736,35 +1052,21 @@ function apply(func) {
 function typeOf(type, subject) {
   return typeof subject === type;
 }
-var import_classnames5, student, Greeting, Splide_1, SplideTrack, SplideSlide, bilgisayar, dans, direksiyon, ilkogretim, kisiselgelisim, lise, muzik, oyunhobi, ozelegitim, sanat, sinavhazirlik, spor, universite, yabancidil, css$1, Categories, css2, Slider, Page;
+var student, Greeting, Splide_1, SplideTrack, SplideSlide, bilgisayar, dans, direksiyon, ilkogretim, kisiselgelisim, lise, muzik, oyunhobi, ozelegitim, sanat, sinavhazirlik, spor, universite, yabancidil, css$1, Categories, css2, Slider, Page;
 var init_page_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_page.svelte.js"() {
     init_chunks();
-    import_classnames5 = __toESM(require_classnames(), 1);
-    init_Button();
-    init_User();
+    init_UserHorizontal();
     student = "http://localhost:5173/_app/immutable/assets/student-51aa6cee.png";
     Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `<section class="${"dark:bg-gray-900"}"><div class="${"grid lg:grid-cols-12 py-6"}"><div class="${"mr-auto place-self-center lg:col-span-8"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">\xD6zel ders almak hi\xE7 bu kadar kolay olmam\u0131\u015Ft\u0131!</h1>
 			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">Do\u011Frulanm\u0131\u015F profile sahip, alan\u0131nda <strong class="${"font-semibold"}">uzman \xF6\u011Fretmenlerden</strong> online veya y\xFCz y\xFCze \xF6zel ders al\u0131n. Hem de Netders.com g\xFCvencesiyle!</p>
-			${validate_component(Search, "Search").$$render(
-        $$result,
-        {
-          class: "border-0 shadow-md",
-          placeholder: "Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"
-        },
-        {},
-        {
-          default: () => {
-            return `${validate_component(Button, "Button").$$render($$result, { class: "bg-netders" }, {}, {
-              default: () => {
-                return `\xD6\u011Fretmen ara`;
-              }
-            })}`;
-          }
-        }
-      )}
-			<p class="${"text-xs text-gray-400 pt-2"}">\xD6rne\u011Fin; matematik, ingilizce, fizik gibi, almak istedi\u011Finiz \xF6zel dersin ad\u0131n\u0131 yukar\u0131daki arama alan\u0131na girip, \xF6\u011Fretmen ara tu\u015Funa bas\u0131n\u0131z.</p></div>
+
+			<form method="${"get"}" action="${"/ozel-ders-ilanlari-verenler"}" autocomplete="${"off"}"><div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
+					<input type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0"}" placeholder="${"Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"}">
+					<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button></div></form>
+
+			<p class="${"text-xs text-gray-400 pt-2"}">\xD6rne\u011Fin; matematik, ingilizce, fizik gibi, almak istedi\u011Finiz \xF6zel dersin ad\u0131n\u0131 yukar\u0131daki arama alan\u0131na girip, ara tu\u015Funa bas\u0131n\u0131z.</p></div>
 		<div class="${"hidden lg:col-span-1 lg:flex"}"></div>
 		<div class="${"hidden lg:col-span-3 lg:flex"}"><img${add_attribute("src", student, 0)} alt="${""}"></div></div>
 </section>`;
@@ -1816,7 +1118,7 @@ var init_page_svelte = __esm({
 <div${spread(
         [
           {
-            class: escape_attribute_value(classNames5("splide", className))
+            class: escape_attribute_value(classNames("splide", className))
           },
           escape_object($$restProps)
         ],
@@ -1835,7 +1137,7 @@ var init_page_svelte = __esm({
       return `<div${spread(
         [
           {
-            class: escape_attribute_value(classNames5("splide__track", className))
+            class: escape_attribute_value(classNames("splide__track", className))
           },
           escape_object($$restProps)
         ],
@@ -1850,7 +1152,7 @@ var init_page_svelte = __esm({
       return `<li${spread(
         [
           {
-            class: escape_attribute_value(classNames5("splide__slide", className))
+            class: escape_attribute_value(classNames("splide__slide", className))
           },
           escape_object($$restProps)
         ],
@@ -2028,7 +1330,7 @@ var init_page_svelte = __esm({
           default: () => {
             return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
               default: () => {
-                return `${validate_component(User, "User").$$render($$result, {}, {}, {})}`;
+                return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, {}, {}, {})}`;
               }
             })}`;
           }
@@ -2064,9 +1366,9 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-7aeeb21c.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-7aeeb21c.js", "_app/immutable/chunks/index-a4e868a2.js", "_app/immutable/chunks/Indicator.svelte_svelte_type_style_lang-75445948.js", "_app/immutable/chunks/Button-30636bce.js", "_app/immutable/chunks/User-a92f00bc.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
-    stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css", "_app/immutable/assets/Indicator-1d121e74.css"];
+    file3 = "_app/immutable/components/pages/_page.svelte-8d28ddaf.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-8d28ddaf.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-6195c151.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-9a15f397.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
 
@@ -2078,31 +1380,93 @@ var init_environment = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/pages/about/_page.js
+// .svelte-kit/output/server/entries/pages/_...catchall_/_page.js
 var page_exports2 = {};
 __export(page_exports2, {
   csr: () => csr,
+  data: () => data,
+  load: () => load,
   prerender: () => prerender2
 });
-var csr, prerender2;
+async function load({ params }) {
+  const urlParams = params.catchall.split("/");
+  if (urlParams) {
+    if (urlParams[0] == "ozel-ders-ilanlari-verenler")
+      ;
+  }
+}
+var csr, prerender2, data;
 var init_page2 = __esm({
-  ".svelte-kit/output/server/entries/pages/about/_page.js"() {
+  ".svelte-kit/output/server/entries/pages/_...catchall_/_page.js"() {
     init_environment();
+    init_chunks();
     csr = dev;
     prerender2 = true;
   }
 });
 
-// .svelte-kit/output/server/entries/pages/about/_page.svelte.js
+// .svelte-kit/output/server/entries/pages/_...catchall_/_page.svelte.js
 var page_svelte_exports2 = {};
 __export(page_svelte_exports2, {
   default: () => Page2
 });
 var Page2;
 var init_page_svelte2 = __esm({
-  ".svelte-kit/output/server/entries/pages/about/_page.svelte.js"() {
+  ".svelte-kit/output/server/entries/pages/_...catchall_/_page.svelte.js"() {
     init_chunks();
     Page2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `se`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/3.js
+var __exports4 = {};
+__export(__exports4, {
+  component: () => component4,
+  file: () => file4,
+  imports: () => imports4,
+  index: () => index4,
+  shared: () => page_exports2,
+  stylesheets: () => stylesheets4
+});
+var index4, component4, file4, imports4, stylesheets4;
+var init__4 = __esm({
+  ".svelte-kit/output/server/nodes/3.js"() {
+    init_page2();
+    index4 = 3;
+    component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
+    file4 = "_app/immutable/components/pages/_...catchall_/_page.svelte-b6672c73.js";
+    imports4 = ["_app/immutable/components/pages/_...catchall_/_page.svelte-b6672c73.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/modules/pages/_...catchall_/_page.js-9728c416.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/_page-1182c353.js"];
+    stylesheets4 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/about/_page.js
+var page_exports3 = {};
+__export(page_exports3, {
+  csr: () => csr2,
+  prerender: () => prerender3
+});
+var csr2, prerender3;
+var init_page3 = __esm({
+  ".svelte-kit/output/server/entries/pages/about/_page.js"() {
+    init_environment();
+    csr2 = dev;
+    prerender3 = true;
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/about/_page.svelte.js
+var page_svelte_exports3 = {};
+__export(page_svelte_exports3, {
+  default: () => Page3
+});
+var Page3;
+var init_page_svelte3 = __esm({
+  ".svelte-kit/output/server/entries/pages/about/_page.svelte.js"() {
+    init_chunks();
+    Page3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `${$$result.head += `<!-- HEAD_svelte-1ds1qyu_START -->${$$result.title = `<title>About</title>`, ""}<meta name="${"description"}" content="${"About this app"}"><!-- HEAD_svelte-1ds1qyu_END -->`, ""}
 
 <div class="${"text-column"}"><h1 class="${"mb-4"}">About this app</h1>
@@ -2125,40 +1489,91 @@ var init_page_svelte2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/3.js
-var __exports4 = {};
-__export(__exports4, {
-  component: () => component4,
-  file: () => file4,
-  imports: () => imports4,
-  index: () => index4,
-  shared: () => page_exports2,
-  stylesheets: () => stylesheets4
+// .svelte-kit/output/server/nodes/4.js
+var __exports5 = {};
+__export(__exports5, {
+  component: () => component5,
+  file: () => file5,
+  imports: () => imports5,
+  index: () => index5,
+  shared: () => page_exports3,
+  stylesheets: () => stylesheets5
 });
-var index4, component4, file4, imports4, stylesheets4;
-var init__4 = __esm({
-  ".svelte-kit/output/server/nodes/3.js"() {
-    init_page2();
-    index4 = 3;
-    component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
-    file4 = "_app/immutable/components/pages/about/_page.svelte-6ac1b4b7.js";
-    imports4 = ["_app/immutable/components/pages/about/_page.svelte-6ac1b4b7.js", "_app/immutable/chunks/index-a4e868a2.js", "_app/immutable/modules/pages/about/_page.js-300e0020.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-2a465e02.js"];
-    stylesheets4 = [];
+var index5, component5, file5, imports5, stylesheets5;
+var init__5 = __esm({
+  ".svelte-kit/output/server/nodes/4.js"() {
+    init_page3();
+    index5 = 4;
+    component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
+    file5 = "_app/immutable/components/pages/about/_page.svelte-423ecefe.js";
+    imports5 = ["_app/immutable/components/pages/about/_page.svelte-423ecefe.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/modules/pages/about/_page.js-300e0020.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-2a465e02.js"];
+    stylesheets5 = [];
   }
 });
 
 // .svelte-kit/output/server/entries/pages/detail/_page.js
-var page_exports3 = {};
-__export(page_exports3, {
-  csr: () => csr2,
-  prerender: () => prerender3
+var page_exports4 = {};
+__export(page_exports4, {
+  csr: () => csr3,
+  prerender: () => prerender4
 });
-var csr2, prerender3;
-var init_page3 = __esm({
+var csr3, prerender4;
+var init_page4 = __esm({
   ".svelte-kit/output/server/entries/pages/detail/_page.js"() {
     init_environment();
-    csr2 = dev;
-    prerender3 = true;
+    csr3 = dev;
+    prerender4 = true;
+  }
+});
+
+// node_modules/classnames/index.js
+var require_classnames = __commonJS({
+  "node_modules/classnames/index.js"(exports, module) {
+    (function() {
+      "use strict";
+      var hasOwn = {}.hasOwnProperty;
+      var nativeCodeString = "[native code]";
+      function classNames3() {
+        var classes = [];
+        for (var i = 0; i < arguments.length; i++) {
+          var arg = arguments[i];
+          if (!arg)
+            continue;
+          var argType = typeof arg;
+          if (argType === "string" || argType === "number") {
+            classes.push(arg);
+          } else if (Array.isArray(arg)) {
+            if (arg.length) {
+              var inner = classNames3.apply(null, arg);
+              if (inner) {
+                classes.push(inner);
+              }
+            }
+          } else if (argType === "object") {
+            if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes("[native code]")) {
+              classes.push(arg.toString());
+              continue;
+            }
+            for (var key2 in arg) {
+              if (hasOwn.call(arg, key2) && arg[key2]) {
+                classes.push(key2);
+              }
+            }
+          }
+        }
+        return classes.join(" ");
+      }
+      if (typeof module !== "undefined" && module.exports) {
+        classNames3.default = classNames3;
+        module.exports = classNames3;
+      } else if (typeof define === "function" && typeof define.amd === "object" && define.amd) {
+        define("classnames", [], function() {
+          return classNames3;
+        });
+      } else {
+        window.classNames = classNames3;
+      }
+    })();
   }
 });
 
@@ -3492,16 +2907,16 @@ function distanceAndSkiddingToXY(placement, rects, offset2) {
 function offset(_ref2) {
   var state = _ref2.state, options = _ref2.options, name = _ref2.name;
   var _options$offset = options.offset, offset2 = _options$offset === void 0 ? [0, 0] : _options$offset;
-  var data = placements.reduce(function(acc, placement) {
+  var data2 = placements.reduce(function(acc, placement) {
     acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset2);
     return acc;
   }, {});
-  var _data$state$placement = data[state.placement], x = _data$state$placement.x, y = _data$state$placement.y;
+  var _data$state$placement = data2[state.placement], x = _data$state$placement.x, y = _data$state$placement.y;
   if (state.modifiersData.popperOffsets != null) {
     state.modifiersData.popperOffsets.x += x;
     state.modifiersData.popperOffsets.y += y;
   }
-  state.modifiersData[name] = data;
+  state.modifiersData[name] = data2;
 }
 var offset_default;
 var init_offset = __esm({
@@ -3580,7 +2995,7 @@ function preventOverflow(_ref) {
     altAxis: 0
   }, tetherOffsetValue);
   var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null;
-  var data = {
+  var data2 = {
     x: 0,
     y: 0
   };
@@ -3616,7 +3031,7 @@ function preventOverflow(_ref) {
     var tetherMax = offset2 + maxOffset - offsetModifierValue;
     var preventedOffset = within(tether ? min(min2, tetherMin) : min2, offset2, tether ? max(max2, tetherMax) : max2);
     popperOffsets2[mainAxis] = preventedOffset;
-    data[mainAxis] = preventedOffset - offset2;
+    data2[mainAxis] = preventedOffset - offset2;
   }
   if (checkAltAxis) {
     var _offsetModifierState$2;
@@ -3632,9 +3047,9 @@ function preventOverflow(_ref) {
     var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
     var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
     popperOffsets2[altAxis] = _preventedOffset;
-    data[altAxis] = _preventedOffset - _offset;
+    data2[altAxis] = _preventedOffset - _offset;
   }
-  state.modifiersData[name] = data;
+  state.modifiersData[name] = data2;
 }
 var preventOverflow_default;
 var init_preventOverflow = __esm({
@@ -3829,8 +3244,8 @@ var init_format = __esm({
 // node_modules/@popperjs/core/lib/utils/validateModifiers.js
 function validateModifiers(modifiers) {
   modifiers.forEach(function(modifier) {
-    [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index7, self) {
-      return self.indexOf(value) === index7;
+    [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index8, self) {
+      return self.indexOf(value) === index8;
     }).forEach(function(key2) {
       switch (key2) {
         case "name":
@@ -4024,7 +3439,7 @@ function popperGenerator(generatorOptions) {
           return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
         });
         var __debug_loops__ = 0;
-        for (var index7 = 0; index7 < state.orderedModifiers.length; index7++) {
+        for (var index8 = 0; index8 < state.orderedModifiers.length; index8++) {
           if (true) {
             __debug_loops__ += 1;
             if (__debug_loops__ > 100) {
@@ -4034,10 +3449,10 @@ function popperGenerator(generatorOptions) {
           }
           if (state.reset === true) {
             state.reset = false;
-            index7 = -1;
+            index8 = -1;
             continue;
           }
-          var _state$orderedModifie = state.orderedModifiers[index7], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
+          var _state$orderedModifie = state.orderedModifiers[index8], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
           if (typeof fn2 === "function") {
             state = fn2({
               state,
@@ -4153,30 +3568,141 @@ var init_lib = __esm({
 });
 
 // .svelte-kit/output/server/entries/pages/detail/_page.svelte.js
-var page_svelte_exports3 = {};
-__export(page_svelte_exports3, {
-  default: () => Page3
+var page_svelte_exports4 = {};
+__export(page_svelte_exports4, {
+  default: () => Page4
 });
 function createEventDispatcher2() {
-  const component7 = get_current_component();
+  const component8 = get_current_component();
   return (type, target, detail) => {
-    const callbacks = component7.$$.callbacks[type];
+    const callbacks = component8.$$.callbacks[type];
     if (callbacks) {
       const event = new CustomEvent(type, { detail });
       target.dispatchEvent(event);
       callbacks.slice().forEach((fn2) => {
-        fn2.call(component7, event);
+        fn2.call(component8, event);
       });
     }
   };
 }
-var import_classnames6, Object_1, Popper, Tooltip, Page3;
-var init_page_svelte3 = __esm({
+var import_classnames, Frame, Object_1, Popper, Tooltip, Page4;
+var init_page_svelte4 = __esm({
   ".svelte-kit/output/server/entries/pages/detail/_page.svelte.js"() {
     init_chunks();
-    import_classnames6 = __toESM(require_classnames(), 1);
+    import_classnames = __toESM(require_classnames(), 1);
     init_lib();
-    init_Frame();
+    Frame = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $$restProps = compute_rest_props($$props, [
+        "tag",
+        "color",
+        "rounded",
+        "border",
+        "shadow",
+        "transition",
+        "params",
+        "node",
+        "use",
+        "options"
+      ]);
+      setContext("background", true);
+      let { tag = "div" } = $$props;
+      let { color = "default" } = $$props;
+      let { rounded = false } = $$props;
+      let { border = false } = $$props;
+      let { shadow = false } = $$props;
+      let { transition = void 0 } = $$props;
+      let { params = {} } = $$props;
+      let { node = void 0 } = $$props;
+      let { use = noop } = $$props;
+      let { options = {} } = $$props;
+      const bgColors = {
+        gray: "bg-gray-100 dark:bg-gray-200 ",
+        red: "bg-red-100 dark:bg-red-200",
+        yellow: "bg-yellow-100 dark:bg-yellow-200 ",
+        green: "bg-green-100 dark:bg-green-200 ",
+        indigo: "bg-indigo-100 dark:bg-indigo-200 ",
+        purple: "bg-purple-100 dark:bg-purple-200 ",
+        pink: "bg-pink-100 dark:bg-pink-200 ",
+        blue: "bg-blue-100 dark:bg-blue-200 ",
+        light: "bg-gray-50 dark:bg-gray-700",
+        dark: "bg-gray-100 dark:bg-gray-700",
+        default: "bg-white dark:bg-gray-800",
+        dropdown: "bg-white dark:bg-gray-700",
+        navbar: "bg-white dark:bg-gray-900",
+        navbarUl: "bg-gray-50 dark:bg-gray-800",
+        form: "bg-gray-50 dark:bg-gray-700",
+        primary: "bg-primary-100 dark:bg-primary-200 ",
+        none: ""
+      };
+      const textColors = {
+        gray: "text-gray-700 dark:text-gray-800",
+        red: "text-red-700 dark:text-red-800",
+        yellow: "text-yellow-700 dark:text-yellow-800",
+        green: "text-green-700 dark:text-green-800",
+        indigo: "text-indigo-700 dark:text-indigo-800",
+        purple: "text-purple-700 dark:text-purple-800",
+        pink: "text-pink-700 dark:text-pink-800",
+        blue: "text-blue-700 dark:text-blue-800",
+        light: "text-gray-700 dark:text-gray-300",
+        dark: "text-gray-700 dark:text-gray-300",
+        default: "text-gray-500 dark:text-gray-400",
+        dropdown: "text-gray-700 dark:text-gray-200",
+        navbar: "text-gray-700 dark:text-gray-200",
+        navbarUl: "text-gray-700 dark:text-gray-400",
+        form: "text-gray-900 dark:text-white",
+        primary: "text-primary-700 dark:text-primary-800",
+        none: ""
+      };
+      const borderColors = {
+        gray: "border-gray-500 dark:bg-gray-200 ",
+        red: "border-red-500 dark:bg-red-200 ",
+        yellow: "border-yellow-500 dark:bg-tellow-200 ",
+        green: "border-green-500 dark:bg-green-200 ",
+        indigo: "border-indigo-500 dark:bg-indigo-200 ",
+        purple: "border-purple-500 dark:bg-purple-200 ",
+        pink: "border-pink-500 dark:bg-pink-200 ",
+        blue: "border-blue-500 dark:bg-blue-200 ",
+        light: "border-gray-500",
+        dark: "border-gray-500",
+        default: "border-gray-200 dark:border-gray-700",
+        dropdown: "border-gray-100 dark:border-gray-700",
+        navbar: "border-gray-100 dark:border-gray-700",
+        navbarUl: "border-gray-100 dark:border-gray-700",
+        form: "border-gray-300 dark:border-gray-700",
+        primary: "border-primary-500 dark:bg-primary-200 ",
+        none: ""
+      };
+      let divClass;
+      if ($$props.tag === void 0 && $$bindings.tag && tag !== void 0)
+        $$bindings.tag(tag);
+      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
+        $$bindings.color(color);
+      if ($$props.rounded === void 0 && $$bindings.rounded && rounded !== void 0)
+        $$bindings.rounded(rounded);
+      if ($$props.border === void 0 && $$bindings.border && border !== void 0)
+        $$bindings.border(border);
+      if ($$props.shadow === void 0 && $$bindings.shadow && shadow !== void 0)
+        $$bindings.shadow(shadow);
+      if ($$props.transition === void 0 && $$bindings.transition && transition !== void 0)
+        $$bindings.transition(transition);
+      if ($$props.params === void 0 && $$bindings.params && params !== void 0)
+        $$bindings.params(params);
+      if ($$props.node === void 0 && $$bindings.node && node !== void 0)
+        $$bindings.node(node);
+      if ($$props.use === void 0 && $$bindings.use && use !== void 0)
+        $$bindings.use(use);
+      if ($$props.options === void 0 && $$bindings.options && options !== void 0)
+        $$bindings.options(options);
+      {
+        setContext("color", color);
+      }
+      divClass = (0, import_classnames.default)(bgColors[color], textColors[color], rounded && (color === "dropdown" ? "rounded" : "rounded-lg"), border && "border", borderColors[color], shadow && "shadow-md", $$props.class);
+      return `${transition ? `${((tag$1) => {
+        return tag$1 ? `<${tag}${spread([escape_object($$restProps), { class: escape_attribute_value(divClass) }], {})}${add_attribute("this", node, 0)}>${is_void(tag$1) ? "" : `${slots.default ? slots.default({}) : ``}`}${is_void(tag$1) ? "" : `</${tag$1}>`}` : "";
+      })(tag)}` : `${((tag$1) => {
+        return tag$1 ? `<${tag}${spread([escape_object($$restProps), { class: escape_attribute_value(divClass) }], {})}${add_attribute("this", node, 0)}>${is_void(tag$1) ? "" : `${slots.default ? slots.default({}) : ``}`}${is_void(tag$1) ? "" : `</${tag$1}>`}` : "";
+      })(tag)}`}`;
+    });
     ({ Object: Object_1 } = globals);
     Popper = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $$restProps = compute_rest_props($$props, [
@@ -4260,7 +3786,7 @@ var init_page_svelte3 = __esm({
 ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
         $$result,
         Object_1.assign({ use: init2 }, { options: triggerEl }, { role: "tooltip" }, { tabIndex: activeContent ? -1 : void 0 }, $$restProps, {
-          class: (0, import_classnames6.default)("z-10 outline-none", $$props.class)
+          class: (0, import_classnames.default)("z-10 outline-none", $$props.class)
         }),
         {},
         {
@@ -4292,7 +3818,7 @@ ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
             style = "custom";
           else
             $$restProps.color = "none";
-          toolTipClass = (0, import_classnames6.default)("tooltip", defaultClass, styles[style], $$props.class);
+          toolTipClass = (0, import_classnames.default)("tooltip", defaultClass, styles[style], $$props.class);
         }
       }
       return `${validate_component(Popper, "Popper").$$render($$result, Object.assign({ "data-tooltip": true }, { rounded: true }, { border: true }, { shadow: true }, $$restProps, { class: toolTipClass }), {}, {
@@ -4301,7 +3827,7 @@ ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
         }
       })}`;
     });
-    Page3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Page4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `${$$result.head += `<!-- HEAD_svelte-13mnxwt_START -->${$$result.title = `<title>Detail</title>`, ""}<meta name="${"description"}" content="${"Detail in this app"}"><!-- HEAD_svelte-13mnxwt_END -->`, ""}
 
 
@@ -4483,535 +4009,6 @@ ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
   }
 });
 
-// .svelte-kit/output/server/nodes/4.js
-var __exports5 = {};
-__export(__exports5, {
-  component: () => component5,
-  file: () => file5,
-  imports: () => imports5,
-  index: () => index5,
-  shared: () => page_exports3,
-  stylesheets: () => stylesheets5
-});
-var index5, component5, file5, imports5, stylesheets5;
-var init__5 = __esm({
-  ".svelte-kit/output/server/nodes/4.js"() {
-    init_page3();
-    index5 = 4;
-    component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/detail/_page.svelte-7cda5628.js";
-    imports5 = ["_app/immutable/components/pages/detail/_page.svelte-7cda5628.js", "_app/immutable/chunks/index-a4e868a2.js", "_app/immutable/chunks/Indicator.svelte_svelte_type_style_lang-75445948.js", "_app/immutable/chunks/Frame-fdc4c42c.js", "_app/immutable/modules/pages/detail/_page.js-8f29c873.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-88b7be61.js"];
-    stylesheets5 = ["_app/immutable/assets/Indicator-1d121e74.css"];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/search/_page.js
-var page_exports4 = {};
-__export(page_exports4, {
-  csr: () => csr3,
-  prerender: () => prerender4
-});
-var csr3, prerender4;
-var init_page4 = __esm({
-  ".svelte-kit/output/server/entries/pages/search/_page.js"() {
-    init_environment();
-    csr3 = dev;
-    prerender4 = true;
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/search/_page.svelte.js
-var page_svelte_exports4 = {};
-__export(page_svelte_exports4, {
-  default: () => Page4
-});
-var import_classnames7, CloseButton, Label, common, Select, Modal, Page4;
-var init_page_svelte4 = __esm({
-  ".svelte-kit/output/server/entries/pages/search/_page.svelte.js"() {
-    init_chunks();
-    import_classnames7 = __toESM(require_classnames(), 1);
-    init_Button();
-    init_User();
-    init_Frame();
-    CloseButton = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      const background = getContext("background");
-      let { color = "default" } = $$props;
-      let { name = "Close" } = $$props;
-      let { size = "md" } = $$props;
-      const colors = {
-        dark: "hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600",
-        gray: "focus:ring-gray-400 hover:bg-gray-200 dark:hover:bg-gray-300",
-        red: "focus:ring-red-400 hover:bg-red-200 dark:hover:bg-red-300",
-        yellow: "focus:ring-yellow-400 hover:bg-yellow-200 dark:hover:bg-yellow-300",
-        green: "focus:ring-green-400 hover:bg-green-200 dark:hover:bg-green-300",
-        indigo: "focus:ring-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-300",
-        purple: "focus:ring-purple-400 hover:bg-purple-200 dark:hover:bg-purple-300",
-        pink: "focus:ring-pink-400 hover:bg-pink-200 dark:hover:bg-pink-300",
-        blue: "focus:ring-blue-400 hover:bg-blue-200 dark:hover:bg-blue-300",
-        default: "focus:ring-gray-300 "
-      };
-      const sizing = {
-        xs: "m-0.5 rounded focus:ring-1 p-0.5",
-        sm: "m-0.5 rounded focus:ring-1 p-0.5",
-        md: "rounded-lg focus:ring-2 p-1.5"
-      };
-      let buttonClass = "";
-      const svgSizes = {
-        xs: "w-3 h-3",
-        sm: "w-3.5 h-3.5",
-        md: "w-5 h-5"
-      };
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.name === void 0 && $$bindings.name && name !== void 0)
-        $$bindings.name(name);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      buttonClass = (0, import_classnames7.default)(
-        "ml-auto focus:outline-none whitespace-normal",
-        sizing[size],
-        colors[color],
-        color === "default" && (background ? "hover:bg-gray-100 dark:hover:bg-gray-600" : "hover:bg-gray-100 dark:hover:bg-gray-700"),
-        $$props.class
-      );
-      return `<button type="${"button"}"${add_attribute("class", buttonClass, 0)} aria-label="${"Close"}">${slots.default ? slots.default({}) : `
-		<span class="${"sr-only"}">${escape(name)}</span>
-		<svg${add_attribute("class", svgSizes[size], 0)} fill="${"currentColor"}" viewBox="${"0 0 20 20"}" xmlns="${"http://www.w3.org/2000/svg"}"><path fill-rule="${"evenodd"}" d="${"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"}" clip-rule="${"evenodd"}"></path></svg>
-	`}</button>`;
-    });
-    Label = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, ["color", "defaultClass", "show"]);
-      let { color = "gray" } = $$props;
-      let { defaultClass = "text-sm font-medium block" } = $$props;
-      let { show = true } = $$props;
-      let node;
-      const colorClasses = {
-        gray: "text-gray-900 dark:text-gray-300",
-        green: "text-green-700 dark:text-green-500",
-        red: "text-red-700 dark:text-red-500",
-        disabled: "text-gray-400 dark:text-gray-500"
-      };
-      let labelClass;
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.defaultClass === void 0 && $$bindings.defaultClass && defaultClass !== void 0)
-        $$bindings.defaultClass(defaultClass);
-      if ($$props.show === void 0 && $$bindings.show && show !== void 0)
-        $$bindings.show(show);
-      {
-        {
-          const control = node == null ? void 0 : node.control;
-          color = (control == null ? void 0 : control.disabled) ? "disabled" : color;
-        }
-      }
-      labelClass = (0, import_classnames7.default)(defaultClass, colorClasses[color], $$props.class);
-      return `${show ? `
-	<label${spread(
-        [
-          escape_object($$restProps),
-          {
-            class: escape_attribute_value(labelClass)
-          }
-        ],
-        {}
-      )}${add_attribute("this", node, 0)}>${slots.default ? slots.default({}) : ``}</label>` : `${slots.default ? slots.default({}) : ``}`}`;
-    });
-    common = "block w-full";
-    Select = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$restProps = compute_rest_props($$props, [
-        "items",
-        "value",
-        "placeholder",
-        "underline",
-        "size",
-        "defaultClass",
-        "underlineClass"
-      ]);
-      let { items = [] } = $$props;
-      let { value } = $$props;
-      let { placeholder = "Choose option ..." } = $$props;
-      let { underline = false } = $$props;
-      let { size = "md" } = $$props;
-      let { defaultClass = "text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" } = $$props;
-      let { underlineClass = "text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer" } = $$props;
-      const sizes = {
-        sm: "text-sm p-2",
-        md: "text-sm p-2.5",
-        lg: "text-base py-3 px-4"
-      };
-      let selectClass;
-      if ($$props.items === void 0 && $$bindings.items && items !== void 0)
-        $$bindings.items(items);
-      if ($$props.value === void 0 && $$bindings.value && value !== void 0)
-        $$bindings.value(value);
-      if ($$props.placeholder === void 0 && $$bindings.placeholder && placeholder !== void 0)
-        $$bindings.placeholder(placeholder);
-      if ($$props.underline === void 0 && $$bindings.underline && underline !== void 0)
-        $$bindings.underline(underline);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.defaultClass === void 0 && $$bindings.defaultClass && defaultClass !== void 0)
-        $$bindings.defaultClass(defaultClass);
-      if ($$props.underlineClass === void 0 && $$bindings.underlineClass && underlineClass !== void 0)
-        $$bindings.underlineClass(underlineClass);
-      selectClass = (0, import_classnames7.default)(common, underline ? underlineClass : defaultClass, sizes[size], underline && "!px-0", $$restProps.class);
-      return `<select${spread(
-        [
-          escape_object($$restProps),
-          {
-            class: escape_attribute_value(selectClass)
-          }
-        ],
-        {}
-      )}><option disabled selected value="${""}">${escape(placeholder)}</option>${each(items, ({ value: value2, name }) => {
-        return `<option${add_attribute("value", value2, 0)}>${escape(name)}</option>`;
-      })}</select>`;
-    });
-    Modal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$slots = compute_slots(slots);
-      let { open = false } = $$props;
-      let { title = "" } = $$props;
-      let { size = "md" } = $$props;
-      let { placement = "center" } = $$props;
-      let { autoclose = true } = $$props;
-      let { permanent = false } = $$props;
-      let { backdropClasses = "bg-gray-900 bg-opacity-50 dark:bg-opacity-80" } = $$props;
-      const dispatch = createEventDispatcher();
-      const getPlacementClasses = () => {
-        switch (placement) {
-          case "top-left":
-            return ["justify-start", "items-start"];
-          case "top-center":
-            return ["justify-center", "items-start"];
-          case "top-right":
-            return ["justify-end", "items-start"];
-          case "center-left":
-            return ["justify-start", "items-center"];
-          case "center":
-            return ["justify-center", "items-center"];
-          case "center-right":
-            return ["justify-end", "items-center"];
-          case "bottom-left":
-            return ["justify-start", "items-end"];
-          case "bottom-center":
-            return ["justify-center", "items-end"];
-          case "bottom-right":
-            return ["justify-end", "items-end"];
-          default:
-            return ["justify-center", "items-center"];
-        }
-      };
-      const sizes = {
-        xs: "max-w-md",
-        sm: "max-w-lg",
-        md: "max-w-2xl",
-        lg: "max-w-4xl",
-        xl: "max-w-7xl"
-      };
-      let mainClass;
-      if ($$props.open === void 0 && $$bindings.open && open !== void 0)
-        $$bindings.open(open);
-      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-        $$bindings.title(title);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.placement === void 0 && $$bindings.placement && placement !== void 0)
-        $$bindings.placement(placement);
-      if ($$props.autoclose === void 0 && $$bindings.autoclose && autoclose !== void 0)
-        $$bindings.autoclose(autoclose);
-      if ($$props.permanent === void 0 && $$bindings.permanent && permanent !== void 0)
-        $$bindings.permanent(permanent);
-      if ($$props.backdropClasses === void 0 && $$bindings.backdropClasses && backdropClasses !== void 0)
-        $$bindings.backdropClasses(backdropClasses);
-      {
-        dispatch(open ? "open" : "hide");
-      }
-      mainClass = (0, import_classnames7.default)("flex overflow-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full", backdropClasses, ...getPlacementClasses(), $$props.class);
-      return `${open ? `<div tabindex="${"-1"}"${add_attribute("class", mainClass, 0)} aria-modal="${"true"}" role="${"dialog"}"><div class="${"flex p-4 w-full " + escape(sizes[size], true) + " h-full md:h-auto max-h-screen"}">
-      ${validate_component(Frame, "Frame").$$render(
-        $$result,
-        {
-          rounded: true,
-          shadow: true,
-          class: "relative flex flex-col w-full h-full md:h-auto"
-        },
-        {},
-        {
-          default: () => {
-            return `
-        ${$$slots.header || title ? `<div class="${"flex justify-between items-center p-4 rounded-t border-b dark:border-gray-600"}">${slots.header ? slots.header({}) : `
-              <h3 class="${"text-xl font-semibold text-gray-900 dark:text-white p-0"}">${escape(title)}</h3>
-            `}
-            ${!permanent ? `${validate_component(CloseButton, "CloseButton").$$render($$result, { name: "Close modal" }, {}, {})}` : ``}</div>` : `${!permanent ? `${validate_component(CloseButton, "CloseButton").$$render(
-              $$result,
-              {
-                name: "Close modal",
-                class: "absolute top-3 right-2.5"
-              },
-              {},
-              {}
-            )}` : ``}`}
-        
-        <div id="${"modal"}" class="${"p-6 space-y-6 flex-1 overflow-y-auto overscroll-contain"}">${slots.default ? slots.default({}) : ``}</div>
-        
-        ${$$slots.footer ? `<div class="${"flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600"}">${slots.footer ? slots.footer({}) : ``}</div>` : ``}`;
-          }
-        }
-      )}</div></div>` : ``}`;
-    });
-    Page4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let formModal = false;
-      let cities = [
-        { value: 1, name: "Hepsi" },
-        { value: 2, name: "\u0130stanbul" },
-        { value: 3, name: "Ankara" }
-      ];
-      let counties = [
-        { value: 1, name: "Hepsi" },
-        { value: 2, name: "Adalar" },
-        { value: 3, name: "Maltepe" }
-      ];
-      let courseTypes = [
-        { value: 1, name: "Hepsi" },
-        { value: 2, name: "Y\xFCz Y\xFCze" },
-        { value: 3, name: "Online" }
-      ];
-      let subjects = [
-        { value: 1, name: "Hepsi" },
-        { value: 2, name: "\u0130lk\xF6\u011Fretim Takviye" },
-        { value: 3, name: "Lise Takviye" }
-      ];
-      let levels = [
-        { value: 1, name: "Hepsi" },
-        { value: 2, name: "Hayat Bilgisi" },
-        { value: 3, name: "\u0130ngilizce" }
-      ];
-      let teacherGender = [
-        { value: 1, name: "Hepsi" },
-        { value: 2, name: "Erkek" },
-        { value: 3, name: "Kad\u0131n" }
-      ];
-      let $$settled;
-      let $$rendered;
-      do {
-        $$settled = true;
-        $$rendered = `${$$result.head += `<!-- HEAD_svelte-cpm0jt_START -->${$$result.title = `<title>Search</title>`, ""}<meta name="${"description"}" content="${"Search in this app"}"><!-- HEAD_svelte-cpm0jt_END -->`, ""}
-
-${validate_component(Modal, "Modal").$$render(
-          $$result,
-          {
-            size: "md",
-            class: "!h-screen",
-            open: formModal
-          },
-          {
-            open: ($$value) => {
-              formModal = $$value;
-              $$settled = false;
-            }
-          },
-          {
-            default: () => {
-              return `<form class="${"flex flex-col space-y-6"}" action="${"/"}"><h3 class="${"text-xl font-medium text-gray-900 dark:text-white p-0"}">Geli\u015Fmi\u015F Arama</h3>
-		<div class="${"grid gap-4 mb-6 md:grid-cols-2"}">${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>Anahtar Kelime</span>
-				${validate_component(Input, "Input").$$render(
-                    $$result,
-                    {
-                      type: "text",
-                      name: "keywork",
-                      placeholder: "20"
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}
-			${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>B\xFCt\xE7e (\u20BA)</span>
-				${validate_component(Input, "Input").$$render(
-                    $$result,
-                    {
-                      type: "text",
-                      name: "burget",
-                      placeholder: "500"
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}
-			${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>\u015Eehir</span>
-				${validate_component(Select, "Select").$$render(
-                    $$result,
-                    {
-                      id: "select-sm",
-                      size: "md",
-                      items: cities,
-                      placeholder: "L\xFCtfen se\xE7iniz"
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}
-			${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>\u0130l\xE7e</span>
-				${validate_component(Select, "Select").$$render(
-                    $$result,
-                    {
-                      id: "select-sm",
-                      size: "md",
-                      items: counties,
-                      placeholder: "L\xFCtfen se\xE7iniz",
-                      disabled: true
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}
-			${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>Ders Alan\u0131</span>
-				${validate_component(Select, "Select").$$render(
-                    $$result,
-                    {
-                      id: "select-sm",
-                      size: "md",
-                      items: subjects,
-                      placeholder: "L\xFCtfen se\xE7iniz"
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}
-			${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>Konu</span>
-				${validate_component(Select, "Select").$$render(
-                    $$result,
-                    {
-                      id: "select-sm",
-                      size: "md",
-                      items: levels,
-                      placeholder: "L\xFCtfen se\xE7iniz",
-                      disabled: true
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}
-			${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>Ders Verme \u015Eekli</span>
-				${validate_component(Select, "Select").$$render(
-                    $$result,
-                    {
-                      id: "select-sm",
-                      size: "md",
-                      items: courseTypes,
-                      placeholder: "L\xFCtfen se\xE7iniz"
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}
-			${validate_component(Label, "Label").$$render($$result, { class: "space-y-1" }, {}, {
-                default: () => {
-                  return `<span>\xD6\u011Fretmen</span>
-				${validate_component(Select, "Select").$$render(
-                    $$result,
-                    {
-                      id: "select-sm",
-                      size: "md",
-                      items: teacherGender,
-                      placeholder: "L\xFCtfen se\xE7iniz"
-                    },
-                    {},
-                    {}
-                  )}`;
-                }
-              })}</div>
-		${validate_component(Button, "Button").$$render($$result, { type: "submit", class: "w-full1" }, {}, {
-                default: () => {
-                  return `Ara`;
-                }
-              })}</form>`;
-            }
-          }
-        )}
-
-<section class="${"dark:bg-gray-900 text-center"}"><div class="${"flex py-6"}"><div class="${"mx-auto"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">\u0130stanbul Matematik <span class="${"text-gray-800"}">\xD6zel Ders Verenler</span></h1>
-			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">\u0130stanbul \xF6zel ders verenler taraf\u0131ndan olu\u015Fturulan Matematik \xF6zel ders ilanlar\u0131 a\u015Fa\u011F\u0131dad\u0131r</p>
-			${validate_component(Search, "Search").$$render(
-          $$result,
-          {
-            class: "border-0 shadow-md",
-            placeholder: "Ne ar\u0131yorsunuz?"
-          },
-          {},
-          {
-            default: () => {
-              return `${validate_component(Button, "Button").$$render($$result, { class: "bg-netders" }, {}, {
-                default: () => {
-                  return `Ara`;
-                }
-              })}`;
-            }
-          }
-        )}
-			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <a href="${"/"}" class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</a> yapabilirsiniz.</p>
-			<div class="${"flex flex-wrap gap-2 mt-4"}"><div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"}"></path></svg>
-					<span>Y\xFCz y\xFCze</span>
-					<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></div>
-				<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-					<span>\u0130stanbul, Kad\u0131k\xF6y</span>
-					<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></div>
-				<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-					<span>\u0130lk\xF6\u011Fretim Takviye, Yabanc\u0131 Dil</span>
-					<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></div>
-				<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-					<span>200 \u20BA</span>
-					<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></div>
-				<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"}"></path></svg>
-					<span>Her ikisi</span>
-					<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></div></div></div></div></section>
-
-<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>2310</strong> e\u011Fitmen bulundu.</div>
-
-<div class="${"grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"}">${validate_component(User, "User").$$render($$result, {}, {}, {})}
-	${validate_component(User, "User").$$render($$result, {}, {}, {})}
-	${validate_component(User, "User").$$render($$result, {}, {}, {})}
-	${validate_component(User, "User").$$render($$result, {}, {}, {})}
-	${validate_component(User, "User").$$render($$result, {}, {}, {})}
-	${validate_component(User, "User").$$render($$result, {}, {}, {})}
-	${validate_component(User, "User").$$render($$result, {}, {}, {})}
-	${validate_component(User, "User").$$render($$result, {}, {}, {})}</div>
-
-<div class="${"py-4 text-sm text-center"}">${validate_component(Button, "Button").$$render($$result, {}, {}, {
-          default: () => {
-            return `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-
-
-		Daha fazla \xF6\u011Fretmen
-	`;
-          }
-        })}</div>`;
-      } while (!$$settled);
-      return $$rendered;
-    });
-  }
-});
-
 // .svelte-kit/output/server/nodes/5.js
 var __exports6 = {};
 __export(__exports6, {
@@ -5028,9 +4025,235 @@ var init__6 = __esm({
     init_page4();
     index6 = 5;
     component6 = async () => (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default;
-    file6 = "_app/immutable/components/pages/search/_page.svelte-82146b7b.js";
-    imports6 = ["_app/immutable/components/pages/search/_page.svelte-82146b7b.js", "_app/immutable/chunks/index-a4e868a2.js", "_app/immutable/chunks/Indicator.svelte_svelte_type_style_lang-75445948.js", "_app/immutable/chunks/Button-30636bce.js", "_app/immutable/chunks/User-a92f00bc.js", "_app/immutable/chunks/Frame-fdc4c42c.js", "_app/immutable/modules/pages/search/_page.js-fbbdf8bd.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-45919fdb.js"];
-    stylesheets6 = ["_app/immutable/assets/Indicator-1d121e74.css"];
+    file6 = "_app/immutable/components/pages/detail/_page.svelte-de0ac68a.js";
+    imports6 = ["_app/immutable/components/pages/detail/_page.svelte-de0ac68a.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/modules/pages/detail/_page.js-8f29c873.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-88b7be61.js"];
+    stylesheets6 = ["_app/immutable/assets/_page-1d121e74.css"];
+  }
+});
+
+// .svelte-kit/output/server/chunks/userStore.js
+var teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, teacherGendersStore;
+var init_userStore = __esm({
+  ".svelte-kit/output/server/chunks/userStore.js"() {
+    init_index2();
+    teacherSearchParamsStore = writable({
+      "page": 1,
+      "pageSize": 12,
+      "keyword": "",
+      "budget": "",
+      "cityObject": void 0,
+      "countyObject": void 0,
+      "subjectObject": void 0,
+      "levelObject": void 0,
+      "lessonTypeObject": void 0,
+      "genderObject": void 0
+    });
+    teacherItemsStore = writable([]);
+    teacherTotalStore = writable(0);
+    teacherGendersStore = writable([
+      { id: 1, title: "Erkek" },
+      { id: 2, title: "Kad\u0131n" }
+    ]);
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js
+var page_exports5 = {};
+__export(page_exports5, {
+  csr: () => csr4,
+  load: () => load2,
+  prerender: () => prerender5
+});
+async function getUsers() {
+  var _a, _b, _c, _d, _e, _f;
+  const searchParams = get_store_value(teacherSearchParamsStore);
+  const result = await fetch(
+    env.PUBLIC_API_URL + "user/teachers",
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        "page": searchParams.page,
+        "pageSize": searchParams.pageSize,
+        "keyword": searchParams.keyword,
+        "budget": searchParams.budget,
+        "cityId": (_a = searchParams.cityObject) == null ? void 0 : _a.id,
+        "countyId": (_b = searchParams.countyObject) == null ? void 0 : _b.id,
+        "subjectId": (_c = searchParams.subjectObject) == null ? void 0 : _c.id,
+        "levelId": (_d = searchParams.levelObject) == null ? void 0 : _d.id,
+        "lessonTypeId": (_e = searchParams.lessonTypeObject) == null ? void 0 : _e.id,
+        "genderId": (_f = searchParams.genderObject) == null ? void 0 : _f.id
+      })
+    }
+  );
+  const body = await result.json();
+  teacherItemsStore.set(body.result.items);
+  teacherTotalStore.set(body.result.total);
+  return body.result;
+}
+async function load2({ params }) {
+  if (params && params.catchall) {
+    const urlParams = params.catchall.split("/");
+    if (urlParams.length > 0) {
+      urlParams[0];
+      urlParams[1];
+    }
+  }
+  await getUsers();
+}
+var csr4, prerender5;
+var init_page5 = __esm({
+  ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
+    init_environment();
+    init_env_public();
+    init_chunks();
+    init_userStore();
+    csr4 = dev;
+    prerender5 = true;
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js
+var page_svelte_exports5 = {};
+__export(page_svelte_exports5, {
+  default: () => Page5
+});
+var citiesStore, countiesStore, subjectsStore, levelsStore, lessonTypesStore, Page5;
+var init_page_svelte5 = __esm({
+  ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js"() {
+    init_chunks();
+    init_UserHorizontal();
+    init_userStore();
+    init_index2();
+    citiesStore = writable([]);
+    countiesStore = writable([]);
+    subjectsStore = writable([]);
+    levelsStore = writable([]);
+    lessonTypesStore = writable([
+      { id: 1, title: "Y\xFCz Y\xFCze" },
+      { id: 2, title: "Uzaktan (Webcam)" }
+    ]);
+    Page5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
+      let $$unsubscribe_levelsStore;
+      let $teacherSearchParamsStore, $$unsubscribe_teacherSearchParamsStore;
+      let $$unsubscribe_countiesStore;
+      let $teacherTotalStore, $$unsubscribe_teacherTotalStore;
+      let $teacherItemsStore, $$unsubscribe_teacherItemsStore;
+      let $$unsubscribe_citiesStore;
+      let $$unsubscribe_subjectsStore;
+      let $$unsubscribe_lessonTypesStore;
+      let $$unsubscribe_teacherGendersStore;
+      $$unsubscribe_levelsStore = subscribe(levelsStore, (value) => value);
+      $$unsubscribe_teacherSearchParamsStore = subscribe(teacherSearchParamsStore, (value) => $teacherSearchParamsStore = value);
+      $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
+      $$unsubscribe_teacherTotalStore = subscribe(teacherTotalStore, (value) => $teacherTotalStore = value);
+      $$unsubscribe_teacherItemsStore = subscribe(teacherItemsStore, (value) => $teacherItemsStore = value);
+      $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
+      $$unsubscribe_subjectsStore = subscribe(subjectsStore, (value) => value);
+      $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
+      $$unsubscribe_teacherGendersStore = subscribe(teacherGendersStore, (value) => value);
+      let loading = false;
+      let teacherSearchParams = {
+        "keyword": "",
+        "budget": "",
+        "cityObject": void 0,
+        "countyObject": void 0,
+        "subjectObject": void 0,
+        "levelObject": void 0,
+        "lessonTypeObject": void 0,
+        "genderObject": void 0
+      };
+      $$unsubscribe_levelsStore();
+      $$unsubscribe_teacherSearchParamsStore();
+      $$unsubscribe_countiesStore();
+      $$unsubscribe_teacherTotalStore();
+      $$unsubscribe_teacherItemsStore();
+      $$unsubscribe_citiesStore();
+      $$unsubscribe_subjectsStore();
+      $$unsubscribe_lessonTypesStore();
+      $$unsubscribe_teacherGendersStore();
+      return `${$$result.head += `<!-- HEAD_svelte-1796jo3_START -->${$$result.title = `<title>${escape($teacherSearchParamsStore.cityObject ? ((_a = $teacherSearchParamsStore.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape($teacherSearchParamsStore.countyObject ? ((_b = $teacherSearchParamsStore.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape($teacherSearchParamsStore.subjectObject ? ((_c = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape($teacherSearchParamsStore.levelObject ? ((_d = $teacherSearchParamsStore.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-1796jo3_END -->`, ""}
+
+${``}
+
+<section class="${"dark:bg-gray-900 text-center"}"><div class="${"flex py-6"}"><div class="${"mx-auto"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">${escape($teacherSearchParamsStore.cityObject ? (_e = $teacherSearchParamsStore.cityObject) == null ? void 0 : _e.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_f = $teacherSearchParamsStore.countyObject) == null ? void 0 : _f.title : "")} ${escape($teacherSearchParamsStore.subjectObject ? (_g = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _g.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_h = $teacherSearchParamsStore.levelObject) == null ? void 0 : _h.title : "")} <span class="${"text-gray-800"}">\xD6zel Ders Veren \xD6\u011Fretmenler</span></h1>
+			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape($teacherSearchParamsStore.cityObject ? (_i = $teacherSearchParamsStore.cityObject) == null ? void 0 : _i.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_j = $teacherSearchParamsStore.countyObject) == null ? void 0 : _j.title : "")} \xF6zel ders veren \xF6\u011Fretmenler taraf\u0131ndan olu\u015Fturulan ${escape($teacherSearchParamsStore.subjectObject ? (_k = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _k.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_l = $teacherSearchParamsStore.levelObject) == null ? void 0 : _l.title : "")} \xF6zel ders ilanlar\u0131.</p>
+
+			<form autocomplete="${"off"}"><label for="${"default-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
+				<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
+					<input type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0"}" placeholder="${"Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"}"${add_attribute("value", teacherSearchParams.keyword, 0)}>
+
+					${`<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button>`}</div></form>
+
+			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <a href="${""}" class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</a> yapabilirsiniz.</p>
+
+			<div class="${"flex justify-center flex-wrap gap-2"}">${$teacherSearchParamsStore.keyword ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
+                        <span>${escape($teacherSearchParamsStore.keyword)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.budget ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
+						<span>${escape($teacherSearchParamsStore.budget)} \u20BA</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.cityObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+					<span>${escape((_m = $teacherSearchParamsStore.cityObject) == null ? void 0 : _m.title)}</span>
+					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.countyObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+						<span>${escape((_n = $teacherSearchParamsStore.countyObject) == null ? void 0 : _n.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.subjectObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+						<span>${escape((_o = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _o.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.levelObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+						<span>${escape((_p = $teacherSearchParamsStore.levelObject) == null ? void 0 : _p.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.lessonTypeObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"}"></path></svg>
+						<span>${escape((_q = $teacherSearchParamsStore.lessonTypeObject) == null ? void 0 : _q.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.genderObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"}"></path></svg>
+					<span>${escape((_r = $teacherSearchParamsStore.genderObject) == null ? void 0 : _r.title)}</span>
+					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}</div></div></div></section>
+
+${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape($teacherTotalStore)}</strong> e\u011Fitmen bulundu.</div>`}
+
+<div class="${"grid grid-cols-1 gap-4"}">${`${each($teacherItemsStore, (user) => {
+        return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, Object.assign(user), {}, {})}`;
+      })}`}</div>
+
+${$teacherTotalStore > 0 && !loading ? `${`<div class="${"pt-4 text-sm text-center"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
+		Daha fazla \xF6\u011Fretmen
+	</button></div>`}` : ``}`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/6.js
+var __exports7 = {};
+__export(__exports7, {
+  component: () => component7,
+  file: () => file7,
+  imports: () => imports7,
+  index: () => index7,
+  shared: () => page_exports5,
+  stylesheets: () => stylesheets7
+});
+var index7, component7, file7, imports7, stylesheets7;
+var init__7 = __esm({
+  ".svelte-kit/output/server/nodes/6.js"() {
+    init_page5();
+    index7 = 6;
+    component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-9a8d2655.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-9a8d2655.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-6195c151.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-9a15f397.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-d40bbbba.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-9a15f397.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/_page-efbe1ed3.js"];
+    stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
 
@@ -5328,8 +4551,8 @@ function stringify(value) {
       return NEGATIVE_INFINITY;
     if (thing === 0 && 1 / thing < 0)
       return NEGATIVE_ZERO;
-    const index8 = p++;
-    indexes.set(thing, index8);
+    const index9 = p++;
+    indexes.set(thing, index9);
     let str = "";
     if (is_primitive(thing)) {
       str = stringify_primitive2(thing);
@@ -5419,12 +4642,12 @@ function stringify(value) {
           }
       }
     }
-    stringified[index8] = str;
-    return index8;
+    stringified[index9] = str;
+    return index9;
   }
-  const index7 = flatten(value);
-  if (index7 < 0)
-    return `${index7}`;
+  const index8 = flatten(value);
+  if (index8 < 0)
+    return `${index8}`;
   return `[${stringified.join(",")}]`;
 }
 function stringify_primitive2(thing) {
@@ -5443,8 +4666,10 @@ function stringify_primitive2(thing) {
 }
 
 // .svelte-kit/output/server/index.js
+init_index2();
 var import_cookie = __toESM(require_cookie(), 1);
 var set_cookie_parser = __toESM(require_set_cookie(), 1);
+init_env_public();
 function afterUpdate() {
 }
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5506,20 +4731,20 @@ var Redirect = class {
   }
 };
 var ValidationError = class {
-  constructor(status, data) {
+  constructor(status, data2) {
     this.status = status;
-    this.data = data;
+    this.data = data2;
   }
 };
 function error(status, message) {
   return new HttpError(status, message);
 }
-function json(data, init2) {
+function json(data2, init2) {
   const headers = new Headers(init2 == null ? void 0 : init2.headers);
   if (!headers.has("content-type")) {
     headers.set("content-type", "application/json");
   }
-  return new Response(JSON.stringify(data), {
+  return new Response(JSON.stringify(data2), {
     ...init2,
     headers
   });
@@ -5664,13 +4889,13 @@ function allowed_methods(mod) {
     allowed.push("HEAD");
   return allowed;
 }
-function data_response(data, event) {
+function data_response(data2, event) {
   const headers = {
     "content-type": "application/json",
     "cache-control": "private, no-store"
   };
   try {
-    return new Response(stringify(data), { headers });
+    return new Response(stringify(data2), { headers });
   } catch (e3) {
     const error2 = e3;
     const match = /\[(\d+)\]\.data\.(.+)/.exec(error2.path);
@@ -5736,11 +4961,11 @@ async function render_endpoint(event, mod, state) {
   if (!handler) {
     return method_not_allowed(mod, method);
   }
-  const prerender5 = mod.prerender ?? state.prerender_default;
-  if (prerender5 && (mod.POST || mod.PATCH || mod.PUT || mod.DELETE)) {
+  const prerender6 = mod.prerender ?? state.prerender_default;
+  if (prerender6 && (mod.POST || mod.PATCH || mod.PUT || mod.DELETE)) {
     throw new Error("Cannot prerender endpoints that have mutative methods");
   }
-  if (state.prerendering && !prerender5) {
+  if (state.prerendering && !prerender6) {
     if (state.initiator) {
       throw new Error(`${event.routeId} is not prerenderable`);
     } else {
@@ -5757,7 +4982,7 @@ async function render_endpoint(event, mod, state) {
       );
     }
     if (state.prerendering) {
-      response.headers.set("x-sveltekit-prerender", String(prerender5));
+      response.headers.set("x-sveltekit-prerender", String(prerender6));
     }
     return response;
   } catch (error2) {
@@ -5811,16 +5036,16 @@ async function handle_action_json_request(event, options, server2) {
   }
   check_named_default_separate(actions);
   try {
-    const data = await call_action(event, actions);
-    if (data instanceof ValidationError) {
-      check_serializability(data.data, event.routeId, "data");
-      return action_json({ type: "invalid", status: data.status, data: data.data });
+    const data2 = await call_action(event, actions);
+    if (data2 instanceof ValidationError) {
+      check_serializability(data2.data, event.routeId, "data");
+      return action_json({ type: "invalid", status: data2.status, data: data2.data });
     } else {
-      check_serializability(data, event.routeId, "data");
+      check_serializability(data2, event.routeId, "data");
       return action_json({
         type: "success",
-        status: data ? 200 : 204,
-        data
+        status: data2 ? 200 : 204,
+        data: data2
       });
     }
   } catch (e3) {
@@ -5846,8 +5071,8 @@ async function handle_action_json_request(event, options, server2) {
 function check_incorrect_invalid_use(error2) {
   return error2 instanceof ValidationError ? new Error(`Cannot "throw invalid()". Use "return invalid()"`) : error2;
 }
-function action_json(data, init2) {
-  return json(data, init2);
+function action_json(data2, init2) {
+  return json(data2, init2);
 }
 function is_action_request(event, leaf_node) {
   return leaf_node.server && event.request.method !== "GET" && event.request.method !== "HEAD";
@@ -5866,14 +5091,14 @@ async function handle_action_request(event, server2) {
   }
   check_named_default_separate(actions);
   try {
-    const data = await call_action(event, actions);
-    if (data instanceof ValidationError) {
-      return { type: "invalid", status: data.status, data: data.data };
+    const data2 = await call_action(event, actions);
+    if (data2 instanceof ValidationError) {
+      return { type: "invalid", status: data2.status, data: data2.data };
     } else {
       return {
         type: "success",
         status: 200,
-        data
+        data: data2
       };
     }
   } catch (e3) {
@@ -6002,10 +5227,10 @@ async function load_server_data({ event, state, node, parent }) {
     },
     url
   }));
-  const data = result ? await unwrap_promises(result) : null;
+  const data2 = result ? await unwrap_promises(result) : null;
   return {
     type: "data",
-    data,
+    data: data2,
     uses: {
       dependencies: uses.dependencies.size > 0 ? Array.from(uses.dependencies) : void 0,
       params: uses.params.size > 0 ? Array.from(uses.params) : void 0,
@@ -6022,7 +5247,7 @@ async function load_data({
   server_data_promise,
   state,
   resolve_opts,
-  csr: csr4
+  csr: csr5
 }) {
   var _a;
   const server_data_node = await server_data_promise;
@@ -6087,7 +5312,7 @@ async function load_data({
           return Reflect.get(response2, key2, response2);
         }
       });
-      if (csr4) {
+      if (csr5) {
         const get = response.headers.get;
         response.headers.get = (key2) => {
           const lower = key2.toLowerCase();
@@ -6120,55 +5345,8 @@ async function load_data({
       enumerable: false
     }
   });
-  const data = await node.shared.load.call(null, load_event);
-  return data ? unwrap_promises(data) : null;
-}
-var subscriber_queue = [];
-function readable(value, start2) {
-  return {
-    subscribe: writable(value, start2).subscribe
-  };
-}
-function writable(value, start2 = noop) {
-  let stop;
-  const subscribers = /* @__PURE__ */ new Set();
-  function set(new_value) {
-    if (safe_not_equal(value, new_value)) {
-      value = new_value;
-      if (stop) {
-        const run_queue = !subscriber_queue.length;
-        for (const subscriber of subscribers) {
-          subscriber[1]();
-          subscriber_queue.push(subscriber, value);
-        }
-        if (run_queue) {
-          for (let i = 0; i < subscriber_queue.length; i += 2) {
-            subscriber_queue[i][0](subscriber_queue[i + 1]);
-          }
-          subscriber_queue.length = 0;
-        }
-      }
-    }
-  }
-  function update(fn2) {
-    set(fn2(value));
-  }
-  function subscribe2(run2, invalidate = noop) {
-    const subscriber = [run2, invalidate];
-    subscribers.add(subscriber);
-    if (subscribers.size === 1) {
-      stop = start2(set) || noop;
-    }
-    run2(value);
-    return () => {
-      subscribers.delete(subscriber);
-      if (subscribers.size === 0) {
-        stop();
-        stop = null;
-      }
-    };
-  }
-  return { set, update, subscribe: subscribe2 };
+  const data2 = await node.shared.load.call(null, load_event);
+  return data2 ? unwrap_promises(data2) : null;
 }
 function hash(value) {
   let hash22 = 5381;
@@ -6248,11 +5426,11 @@ function serialize_data(fetched, filter, prerendering = false) {
 }
 var s = JSON.stringify;
 var encoder = new TextEncoder();
-function sha256(data) {
+function sha256(data2) {
   if (!key[0])
     precompute();
   const out = init.slice(0);
-  const array2 = encode(data);
+  const array2 = encode(data2);
   for (let i = 0; i < array2.length; i += 16) {
     const w = array2.subarray(i, i + 16);
     let tmp;
@@ -6499,11 +5677,11 @@ var CspReportOnlyProvider = class extends BaseProvider {
   }
 };
 var Csp = class {
-  constructor({ mode, directives, reportOnly }, { prerender: prerender5, dev: dev2 }) {
+  constructor({ mode, directives, reportOnly }, { prerender: prerender6, dev: dev2 }) {
     __publicField(this, "nonce", generate_nonce());
     __publicField(this, "csp_provider");
     __publicField(this, "report_only_provider");
-    const use_hashes = mode === "hash" || mode === "auto" && prerender5;
+    const use_hashes = mode === "hash" || mode === "auto" && prerender6;
     this.csp_provider = new CspProvider(use_hashes, directives, this.nonce, dev2);
     this.report_only_provider = new CspReportOnlyProvider(use_hashes, reportOnly, this.nonce, dev2);
   }
@@ -6548,7 +5726,7 @@ async function render_response({
     }
   }
   const { entry } = options.manifest._;
-  const stylesheets7 = new Set(entry.stylesheets);
+  const stylesheets8 = new Set(entry.stylesheets);
   const modulepreloads = new Set(entry.imports);
   const link_header_preloads = /* @__PURE__ */ new Set();
   const inline_styles = /* @__PURE__ */ new Map();
@@ -6564,10 +5742,10 @@ async function render_response({
       components: await Promise.all(branch.map(({ node }) => node.component())),
       form: form_value
     };
-    let data = {};
+    let data2 = {};
     for (let i = 0; i < branch.length; i += 1) {
-      data = { ...data, ...branch[i].data };
-      props[`data_${i}`] = data;
+      data2 = { ...data2, ...branch[i].data };
+      props[`data_${i}`] = data2;
     }
     props.page = {
       error: error2,
@@ -6575,7 +5753,7 @@ async function render_response({
       routeId: event.routeId,
       status,
       url: event.url,
-      data,
+      data: data2,
       form: form_value
     };
     const print_error = (property, replacement) => {
@@ -6594,7 +5772,7 @@ async function render_response({
         node.imports.forEach((url) => modulepreloads.add(url));
       }
       if (node.stylesheets) {
-        node.stylesheets.forEach((url) => stylesheets7.add(url));
+        node.stylesheets.forEach((url) => stylesheets8.add(url));
       }
       if (node.inline_styles) {
         Object.entries(await node.inline_styles()).forEach(([k, v]) => inline_styles.set(k, v));
@@ -6657,7 +5835,7 @@ async function render_response({
     head += `
 	<style${attributes.join("")}>${content}</style>`;
   }
-  for (const dep of stylesheets7) {
+  for (const dep of stylesheets8) {
     const path = prefixed(dep);
     const attributes = [];
     if (csp.style_needs_nonce) {
@@ -6774,7 +5952,7 @@ async function respond_with_error({ event, options, state, status, error: error2
     const branch = [];
     const default_layout = await options.manifest._.nodes[0]();
     const ssr = get_option([default_layout], "ssr") ?? true;
-    const csr4 = get_option([default_layout], "csr") ?? true;
+    const csr5 = get_option([default_layout], "csr") ?? true;
     if (ssr) {
       state.initiator = GENERIC_ERROR;
       const server_data_promise = load_server_data({
@@ -6784,7 +5962,7 @@ async function respond_with_error({ event, options, state, status, error: error2
         parent: async () => ({})
       });
       const server_data = await server_data_promise;
-      const data = await load_data({
+      const data2 = await load_data({
         event,
         fetched,
         node: default_layout,
@@ -6792,13 +5970,13 @@ async function respond_with_error({ event, options, state, status, error: error2
         resolve_opts,
         server_data_promise,
         state,
-        csr: csr4
+        csr: csr5
       });
       branch.push(
         {
           node: default_layout,
           server_data,
-          data
+          data: data2
         },
         {
           node: await options.manifest._.nodes[1](),
@@ -6913,13 +6091,13 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
             state,
             node,
             parent: async () => {
-              const data = {};
+              const data2 = {};
               for (let j = 0; j < i; j += 1) {
                 const parent = await server_promises[j];
                 if (parent)
-                  Object.assign(data, await parent.data);
+                  Object.assign(data2, await parent.data);
               }
-              return data;
+              return data2;
             }
           });
         } catch (e3) {
@@ -6928,7 +6106,7 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
         }
       });
     });
-    const csr4 = get_option(nodes, "csr") ?? true;
+    const csr5 = get_option(nodes, "csr") ?? true;
     const load_promises = nodes.map((node, i) => {
       if (load_error)
         throw load_error;
@@ -6939,16 +6117,16 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
             fetched,
             node,
             parent: async () => {
-              const data = {};
+              const data2 = {};
               for (let j = 0; j < i; j += 1) {
-                Object.assign(data, await load_promises[j]);
+                Object.assign(data2, await load_promises[j]);
               }
-              return data;
+              return data2;
             },
             resolve_opts,
             server_data_promise: server_promises[i],
             state,
-            csr: csr4
+            csr: csr5
           });
         } catch (e3) {
           load_error = e3;
@@ -6967,8 +6145,8 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
       if (node) {
         try {
           const server_data = await server_promises[i];
-          const data = await load_promises[i];
-          branch.push({ node, server_data, data });
+          const data2 = await load_promises[i];
+          branch.push({ node, server_data, data: data2 });
         } catch (e3) {
           const err = normalize_error(e3);
           if (err instanceof Redirect) {
@@ -6988,8 +6166,8 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
           const error2 = handle_error_and_jsonify(event, options, err);
           while (i--) {
             if (page2.errors[i]) {
-              const index7 = page2.errors[i];
-              const node2 = await options.manifest._.nodes[index7]();
+              const index8 = page2.errors[i];
+              const node2 = await options.manifest._.nodes[index8]();
               let j = i;
               while (!branch[j])
                 j -= 1;
@@ -7109,14 +6287,14 @@ async function render_data(event, route, options, state) {
             state,
             node,
             parent: async () => {
-              const data = {};
+              const data2 = {};
               for (let j = 0; j < i; j += 1) {
                 const parent = await functions[j]();
                 if (parent) {
-                  Object.assign(data, parent.data);
+                  Object.assign(data2, parent.data);
                 }
               }
-              return data;
+              return data2;
             }
           });
         } catch (e3) {
@@ -7335,10 +6513,10 @@ function create_fetch({ event, options, state, get_cookie_header }) {
         const is_asset = options.manifest.assets.has(filename);
         const is_asset_html = options.manifest.assets.has(filename_html);
         if (is_asset || is_asset_html) {
-          const file7 = is_asset ? filename : filename_html;
+          const file8 = is_asset ? filename : filename_html;
           if (options.read) {
             const type = is_asset ? options.manifest.mimeTypes[filename.slice(filename.lastIndexOf("."))] : "text/html";
-            return new Response(options.read(file7), {
+            return new Response(options.read(file8), {
               headers: type ? { "content-type": type } : {}
             });
           }
@@ -7714,10 +6892,11 @@ var Server = class {
       trailing_slash: "never"
     };
   }
-  async init({ env }) {
-    const entries = Object.entries(env);
+  async init({ env: env2 }) {
+    const entries = Object.entries(env2);
     Object.fromEntries(entries.filter(([k]) => !k.startsWith("PUBLIC_")));
     const pub = Object.fromEntries(entries.filter(([k]) => k.startsWith("PUBLIC_")));
+    set_public_env(pub);
     this.options.public_env = pub;
     if (!this.options.hooks) {
       const module = await Promise.resolve().then(() => (init_hooks(), hooks_exports));
@@ -7746,14 +6925,15 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-15add132.js", "imports": ["_app/immutable/start-15add132.js", "_app/immutable/chunks/index-a4e868a2.js", "_app/immutable/chunks/singletons-a0a837ea.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-09fb4852.js", "imports": ["_app/immutable/start-09fb4852.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-3bd5cfbf.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/env-public-6aa99648.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
       () => Promise.resolve().then(() => (init__3(), __exports3)),
       () => Promise.resolve().then(() => (init__4(), __exports4)),
       () => Promise.resolve().then(() => (init__5(), __exports5)),
-      () => Promise.resolve().then(() => (init__6(), __exports6))
+      () => Promise.resolve().then(() => (init__6(), __exports6)),
+      () => Promise.resolve().then(() => (init__7(), __exports7))
     ],
     routes: [],
     matchers: async () => {
@@ -7761,7 +6941,7 @@ var manifest = {
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/search"]);
+var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/u/undefined", "/u/42587019", "/u/02389176", "/u/seyyma", "/u/73091826", "/u/39475612", "/u/01392645", "/u/matematiktutkusu", "/u/kardelenarac", "/u/80794356", "/u/23695410", "/u/98750316", "/u/28405963"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {
@@ -7797,15 +6977,15 @@ var r = o.bind(0, s2);
 var server = new Server(manifest);
 var app_path = `/${manifest.appPath}/`;
 var worker = {
-  async fetch(req, env, context) {
-    await server.init({ env });
+  async fetch(req, env2, context) {
+    await server.init({ env: env2 });
     let pragma = req.headers.get("cache-control") || "";
     let res = !pragma.includes("no-cache") && await c(req);
     if (res)
       return res;
     let { pathname } = new URL(req.url);
     if (pathname.startsWith(app_path)) {
-      res = await env.ASSETS.fetch(req);
+      res = await env2.ASSETS.fetch(req);
       if (!res.ok)
         return res;
       const cache_control = pathname.startsWith(app_path + "immutable/") ? "public, immutable, max-age=31536000" : "no-cache";
@@ -7818,16 +6998,16 @@ var worker = {
       });
     } else {
       pathname = pathname.replace(/\/$/, "") || "/";
-      let file7 = pathname.substring(1);
+      let file8 = pathname.substring(1);
       try {
-        file7 = decodeURIComponent(file7);
+        file8 = decodeURIComponent(file8);
       } catch (err) {
       }
-      if (manifest.assets.has(file7) || manifest.assets.has(file7 + "/index.html") || prerendered.has(pathname)) {
-        res = await env.ASSETS.fetch(req);
+      if (manifest.assets.has(file8) || manifest.assets.has(file8 + "/index.html") || prerendered.has(pathname)) {
+        res = await env2.ASSETS.fetch(req);
       } else {
         res = await server.respond(req, {
-          platform: { env, context, caches },
+          platform: { env: env2, context, caches },
           getClientAddress() {
             return req.headers.get("cf-connecting-ip");
           }

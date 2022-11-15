@@ -4,14 +4,15 @@ export const manifest = {
 	assets: new Set(["favicon.png","images/turkiye-white.svg","robots.txt"]),
 	mimeTypes: {".png":"image/png",".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		entry: {"file":"_app/immutable/start-15add132.js","imports":["_app/immutable/start-15add132.js","_app/immutable/chunks/index-a4e868a2.js","_app/immutable/chunks/singletons-a0a837ea.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-09fb4852.js","imports":["_app/immutable/start-09fb4852.js","_app/immutable/chunks/index-fd37714b.js","_app/immutable/chunks/singletons-3bd5cfbf.js","_app/immutable/chunks/index-571ab9cb.js","_app/immutable/chunks/env-public-6aa99648.js"],"stylesheets":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
 			() => import('./nodes/2.js'),
 			() => import('./nodes/3.js'),
 			() => import('./nodes/4.js'),
-			() => import('./nodes/5.js')
+			() => import('./nodes/5.js'),
+			() => import('./nodes/6.js')
 		],
 		routes: [
 			{
@@ -29,7 +30,7 @@ export const manifest = {
 				names: [],
 				types: [],
 				optional: [],
-				page: { layouts: [0], errors: [1], leaf: 3 },
+				page: { layouts: [0], errors: [1], leaf: 4 },
 				endpoint: null
 			},
 			{
@@ -38,16 +39,25 @@ export const manifest = {
 				names: [],
 				types: [],
 				optional: [],
-				page: { layouts: [0], errors: [1], leaf: 4 },
+				page: { layouts: [0], errors: [1], leaf: 5 },
 				endpoint: null
 			},
 			{
-				id: "/search",
-				pattern: /^\/search\/?$/,
-				names: [],
-				types: [],
-				optional: [],
-				page: { layouts: [0], errors: [1], leaf: 5 },
+				id: "/ozel-ders-ilanlari-verenler/[...catchall]",
+				pattern: /^\/ozel-ders-ilanlari-verenler(?:\/(.*))?\/?$/,
+				names: ["catchall"],
+				types: [null],
+				optional: [false],
+				page: { layouts: [0], errors: [1], leaf: 6 },
+				endpoint: null
+			},
+			{
+				id: "/[...catchall]",
+				pattern: /^(?:\/(.*))?\/?$/,
+				names: ["catchall"],
+				types: [null],
+				optional: [false],
+				page: { layouts: [0], errors: [1], leaf: 3 },
 				endpoint: null
 			}
 		],
