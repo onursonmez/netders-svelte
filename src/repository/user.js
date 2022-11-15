@@ -5,8 +5,9 @@ import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore } from '
 export async function getUsers()
 {
     const searchParams = get(teacherSearchParamsStore)
+    const myEnv = env
 
-    const result = await fetch(env.PUBLIC_API_URL + 'user/teachers',
+    const result = await fetch(myEnv.PUBLIC_API_URL + 'user/teachers',
         {
             headers:{
                 'Content-Type': 'application/json',

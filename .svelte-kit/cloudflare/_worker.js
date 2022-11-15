@@ -873,8 +873,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-bcacfe50.js";
-    imports2 = ["_app/immutable/components/error.svelte-bcacfe50.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-fd2c8475.js", "_app/immutable/chunks/index-571ab9cb.js"];
+    file2 = "_app/immutable/components/error.svelte-570edade.js";
+    imports2 = ["_app/immutable/components/error.svelte-570edade.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-a7785f92.js", "_app/immutable/chunks/index-571ab9cb.js"];
     stylesheets2 = [];
   }
 });
@@ -1366,8 +1366,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-8d28ddaf.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-8d28ddaf.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-6195c151.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-9a15f397.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-024eaca5.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-024eaca5.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-3b936ac6.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-8c838ba6.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -4067,8 +4067,9 @@ __export(page_exports5, {
 async function getUsers() {
   var _a, _b, _c, _d, _e, _f;
   const searchParams = get_store_value(teacherSearchParamsStore);
+  const myEnv = env;
   const result = await fetch(
-    env.PUBLIC_API_URL + "user/teachers",
+    myEnv.PUBLIC_API_URL + "user/teachers",
     {
       headers: {
         "Content-Type": "application/json"
@@ -4251,8 +4252,8 @@ var init__7 = __esm({
     init_page5();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-9a8d2655.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-9a8d2655.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-6195c151.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-9a15f397.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-ee932d21.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-9a15f397.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/_page-4d05f28e.js"];
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-e58c1efc.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-e58c1efc.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-3b936ac6.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-8c838ba6.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-e824ebe0.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-8c838ba6.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/_page-d2050065.js"];
     stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -6925,7 +6926,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-f994fa51.js", "imports": ["_app/immutable/start-f994fa51.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-fd2c8475.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/env-public-6aa99648.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-1900a41c.js", "imports": ["_app/immutable/start-1900a41c.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-a7785f92.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/env-public-6aa99648.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
