@@ -1,13 +1,11 @@
-import { env } from '$env/dynamic/public'
 import { get } from 'svelte/store'
 import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore } from '/src/stores/userStore'
 
 export async function getUsers()
 {
     const searchParams = get(teacherSearchParamsStore)
-    const myEnv = env
 
-    const result = await fetch(myEnv.PUBLIC_API_URL + 'user/teachers',
+    const result = await fetch(import.meta.env.VITE_API_URL + 'user/teachers',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -38,7 +36,7 @@ export async function getUsers()
 
 export async function login(email, password)
 {
-    const response = await fetch(env.PUBLIC_API_URL + 'user/login',
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/login',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -58,7 +56,7 @@ export async function login(email, password)
 
 export async function photo(username)
 {
-    const response = await fetch(env.PUBLIC_API_URL + 'user/photo/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/photo/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',

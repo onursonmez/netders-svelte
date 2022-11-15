@@ -3,7 +3,6 @@ import * as devalue from "devalue";
 import { r as readable, w as writable } from "./chunks/index2.js";
 import { parse, serialize } from "cookie";
 import * as set_cookie_parser from "set-cookie-parser";
-import { s as set_public_env } from "./chunks/env-public.js";
 function afterUpdate() {
 }
 function set_prerendering(value) {
@@ -2231,7 +2230,6 @@ class Server {
     const entries = Object.entries(env);
     Object.fromEntries(entries.filter(([k]) => !k.startsWith("PUBLIC_")));
     const pub = Object.fromEntries(entries.filter(([k]) => k.startsWith("PUBLIC_")));
-    set_public_env(pub);
     this.options.public_env = pub;
     if (!this.options.hooks) {
       const module = await import("./chunks/hooks.js");

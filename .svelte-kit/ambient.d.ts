@@ -26,6 +26,8 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const VITE_BASE_URL: string;
+	export const VITE_API_URL: string;
 	export const MANPATH: string;
 	export const NODE: string;
 	export const INIT_CWD: string;
@@ -89,8 +91,7 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	export const PUBLIC_BASE_URL: string;
-	export const PUBLIC_API_URL: string;
+
 }
 
 /**
@@ -107,6 +108,8 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		VITE_BASE_URL: string;
+		VITE_API_URL: string;
 		MANPATH: string;
 		NODE: string;
 		INIT_CWD: string;
@@ -174,8 +177,6 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
-		PUBLIC_BASE_URL: string;
-		PUBLIC_API_URL: string;
 		[key: string]: string | undefined;
 	}
 }

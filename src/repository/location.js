@@ -1,9 +1,8 @@
-import { env } from '$env/dynamic/public'
 import { citiesStore } from "../stores/locationStore";
 
 export async function getCities()
 {
-    const result = await fetch(env.PUBLIC_API_URL + 'location/cities',
+    const result = await fetch(import.meta.env.VITE_API_URL + 'location/cities',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -21,7 +20,7 @@ export async function getCities()
 
 export async function getCounties(params = [])
 {
-    const result = await fetch(env.PUBLIC_API_URL + 'location/counties/' + params?.cityId,
+    const result = await fetch(import.meta.env.VITE_API_URL + 'location/counties/' + params?.cityId,
         {
             headers:{
                 'Content-Type': 'application/json',

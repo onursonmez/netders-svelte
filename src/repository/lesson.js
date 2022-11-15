@@ -3,7 +3,7 @@ import { subjectsStore } from "../stores/lessonStore";
 
 export async function getSubjects()
 {
-    const result = await fetch(env.PUBLIC_API_URL + 'lesson/subjects',
+    const result = await fetch(import.meta.env.VITE_API_URL + 'lesson/subjects',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export async function getSubjects()
 
 export async function getLevels(params = [])
 {
-    const result = await fetch(env.PUBLIC_API_URL + 'lesson/levels/' + params.subjectId,
+    const result = await fetch(import.meta.env.VITE_API_URL + 'lesson/levels/' + params.subjectId,
         {
             headers:{
                 'Content-Type': 'application/json',

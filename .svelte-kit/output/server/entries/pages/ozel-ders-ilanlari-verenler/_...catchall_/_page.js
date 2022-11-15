@@ -1,13 +1,11 @@
 import { d as dev } from "../../../../chunks/environment.js";
-import { e as env } from "../../../../chunks/env-public.js";
 import { t as get_store_value } from "../../../../chunks/index.js";
 import { b as teacherItemsStore, a as teacherTotalStore, t as teacherSearchParamsStore } from "../../../../chunks/userStore.js";
 async function getUsers() {
   var _a, _b, _c, _d, _e, _f;
   const searchParams = get_store_value(teacherSearchParamsStore);
-  const myEnv = env;
   const result = await fetch(
-    myEnv.PUBLIC_API_URL + "user/teachers",
+    "http://api.nd.io/user/teachers",
     {
       headers: {
         "Content-Type": "application/json"

@@ -1,5 +1,4 @@
 import { c as create_ssr_component, f as escape } from "./index.js";
-import { e as env } from "./env-public.js";
 const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { id } = $$props;
   let { loginAt } = $$props;
@@ -77,7 +76,7 @@ const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slot
     $$bindings.isTeachPhysically(isTeachPhysically);
   if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
     $$bindings.searchPoint(searchPoint);
-  return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape(env.PUBLIC_BASE_URL, true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+  return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
 	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
 		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
 

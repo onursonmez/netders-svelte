@@ -668,17 +668,6 @@ var require_set_cookie = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/env-public.js
-function set_public_env(environment) {
-  env = environment;
-}
-var env;
-var init_env_public = __esm({
-  ".svelte-kit/output/server/chunks/env-public.js"() {
-    env = {};
-  }
-});
-
 // .svelte-kit/output/server/chunks/hooks.js
 var hooks_exports = {};
 var init_hooks = __esm({
@@ -873,8 +862,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-570edade.js";
-    imports2 = ["_app/immutable/components/error.svelte-570edade.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-a7785f92.js", "_app/immutable/chunks/index-571ab9cb.js"];
+    file2 = "_app/immutable/components/error.svelte-77d6eb43.js";
+    imports2 = ["_app/immutable/components/error.svelte-77d6eb43.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-22664e7e.js", "_app/immutable/chunks/index-571ab9cb.js"];
     stylesheets2 = [];
   }
 });
@@ -896,7 +885,6 @@ var UserHorizontal;
 var init_UserHorizontal = __esm({
   ".svelte-kit/output/server/chunks/UserHorizontal.js"() {
     init_chunks();
-    init_env_public();
     UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { id } = $$props;
       let { loginAt } = $$props;
@@ -974,7 +962,7 @@ var init_UserHorizontal = __esm({
         $$bindings.isTeachPhysically(isTeachPhysically);
       if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
         $$bindings.searchPoint(searchPoint);
-      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape(env.PUBLIC_BASE_URL, true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
 	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
 		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
 
@@ -1366,8 +1354,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-024eaca5.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-024eaca5.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-3b936ac6.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-8c838ba6.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-10e6c7fb.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-10e6c7fb.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-1a7dfcb4.js", "_app/immutable/chunks/user-cbfda9d3.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -4067,9 +4055,8 @@ __export(page_exports5, {
 async function getUsers() {
   var _a, _b, _c, _d, _e, _f;
   const searchParams = get_store_value(teacherSearchParamsStore);
-  const myEnv = env;
   const result = await fetch(
-    myEnv.PUBLIC_API_URL + "user/teachers",
+    "http://api.nd.io/user/teachers",
     {
       headers: {
         "Content-Type": "application/json"
@@ -4108,7 +4095,6 @@ var csr4, prerender5;
 var init_page5 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
     init_environment();
-    init_env_public();
     init_chunks();
     init_userStore();
     csr4 = dev;
@@ -4252,8 +4238,8 @@ var init__7 = __esm({
     init_page5();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-e58c1efc.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-e58c1efc.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-3b936ac6.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/user-8c838ba6.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-e824ebe0.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-8c838ba6.js", "_app/immutable/chunks/env-public-6aa99648.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/_page-d2050065.js"];
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-832417af.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-832417af.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-1a7dfcb4.js", "_app/immutable/chunks/user-cbfda9d3.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-579a8965.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-cbfda9d3.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/_page-96ec8ffb.js"];
     stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -4670,7 +4656,6 @@ function stringify_primitive2(thing) {
 init_index2();
 var import_cookie = __toESM(require_cookie(), 1);
 var set_cookie_parser = __toESM(require_set_cookie(), 1);
-init_env_public();
 function afterUpdate() {
 }
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -6893,11 +6878,10 @@ var Server = class {
       trailing_slash: "never"
     };
   }
-  async init({ env: env2 }) {
-    const entries = Object.entries(env2);
+  async init({ env }) {
+    const entries = Object.entries(env);
     Object.fromEntries(entries.filter(([k]) => !k.startsWith("PUBLIC_")));
     const pub = Object.fromEntries(entries.filter(([k]) => k.startsWith("PUBLIC_")));
-    set_public_env(pub);
     this.options.public_env = pub;
     if (!this.options.hooks) {
       const module = await Promise.resolve().then(() => (init_hooks(), hooks_exports));
@@ -6926,7 +6910,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-1900a41c.js", "imports": ["_app/immutable/start-1900a41c.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-a7785f92.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/env-public-6aa99648.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-1981d760.js", "imports": ["_app/immutable/start-1981d760.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-22664e7e.js", "_app/immutable/chunks/index-571ab9cb.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -6978,15 +6962,15 @@ var r = o.bind(0, s2);
 var server = new Server(manifest);
 var app_path = `/${manifest.appPath}/`;
 var worker = {
-  async fetch(req, env2, context) {
-    await server.init({ env: env2 });
+  async fetch(req, env, context) {
+    await server.init({ env });
     let pragma = req.headers.get("cache-control") || "";
     let res = !pragma.includes("no-cache") && await c(req);
     if (res)
       return res;
     let { pathname } = new URL(req.url);
     if (pathname.startsWith(app_path)) {
-      res = await env2.ASSETS.fetch(req);
+      res = await env.ASSETS.fetch(req);
       if (!res.ok)
         return res;
       const cache_control = pathname.startsWith(app_path + "immutable/") ? "public, immutable, max-age=31536000" : "no-cache";
@@ -7005,10 +6989,10 @@ var worker = {
       } catch (err) {
       }
       if (manifest.assets.has(file8) || manifest.assets.has(file8 + "/index.html") || prerendered.has(pathname)) {
-        res = await env2.ASSETS.fetch(req);
+        res = await env.ASSETS.fetch(req);
       } else {
         res = await server.respond(req, {
-          platform: { env: env2, context, caches },
+          platform: { env, context, caches },
           getClientAddress() {
             return req.headers.get("cf-connecting-ip");
           }
