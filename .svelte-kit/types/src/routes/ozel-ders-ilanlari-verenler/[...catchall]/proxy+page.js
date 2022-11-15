@@ -1,12 +1,6 @@
 // @ts-nocheck
 import { dev } from '$app/environment'
-
 import { getUsers } from '/src/repository/user'
-import { getCities } from "/src/repository/location"
-import { getSubjects } from "/src/repository/lesson"
-import { teacherItemsStore, teacherTotalStore } from "/src/stores/userStore"
-import { citiesStore } from "/src/stores/locationStore"
-import { subjectsStore } from "/src/stores/lessonStore"
 
 // we don't need any JS on this page, though we'll load
 // it in dev so that we get hot module replacement
