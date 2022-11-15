@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="vite env" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="vite env">
+      <change afterPath="$PROJECT_DIR$/src/components/user/UserVertical.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/Slider.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserSlider.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/user" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
@@ -43,11 +49,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/user" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/stores" />
       <recent name="$PROJECT_DIR$/src/routes/[...catchall]" />
       <recent name="$PROJECT_DIR$/src/repository" />
-      <recent name="$PROJECT_DIR$/src/components/user" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]" />
@@ -82,7 +88,7 @@
       <workItem from="1667911739421" duration="80353000" />
       <workItem from="1668284568018" duration="33584000" />
       <workItem from="1668443689639" duration="18156000" />
-      <workItem from="1668509908057" duration="7873000" />
+      <workItem from="1668509908057" duration="12314000" />
     </task>
     <task id="LOCAL-00001" summary="some updates">
       <created>1666998924079</created>
@@ -147,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668528896307</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="vite env">
+      <created>1668529792792</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668529792792</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

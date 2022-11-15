@@ -1,4 +1,4 @@
-import { c as create_ssr_component, h as compute_rest_props, s as setContext, j as spread, l as escape_object, k as escape_attribute_value, b as add_attribute, o as is_void, n as noop, p as get_current_component, v as validate_component, q as globals } from "../../../chunks/index.js";
+import { c as create_ssr_component, h as compute_rest_props, s as setContext, j as spread, l as escape_object, k as escape_attribute_value, b as add_attribute, r as is_void, n as noop, t as get_current_component, v as validate_component, u as globals } from "../../../chunks/index.js";
 import classNames from "classnames";
 import { createPopper } from "@popperjs/core";
 const Frame = create_ssr_component(($$result, $$props, $$bindings, slots) => {

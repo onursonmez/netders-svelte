@@ -2,7 +2,7 @@
 
 import Greeting from "../components/home/Greeting.svelte";
 import Categories from "../components/home/Categories.svelte";
-import Slider from "../components/user/Slider.svelte";
+import UserSlider from "../components/user/UserSlider.svelte";
 </script>
 
 <svelte:head>
@@ -14,4 +14,4 @@ import Slider from "../components/user/Slider.svelte";
 
 <Categories />
 
-<Slider />
+<UserSlider />

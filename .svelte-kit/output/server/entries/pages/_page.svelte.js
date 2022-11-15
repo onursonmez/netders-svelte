@@ -1,5 +1,5 @@
-import { c as create_ssr_component, b as add_attribute, h as compute_rest_props, i as createEventDispatcher, j as spread, k as escape_attribute_value, l as escape_object, v as validate_component } from "../../chunks/index.js";
-import { U as UserHorizontal } from "../../chunks/UserHorizontal.js";
+import { c as create_ssr_component, b as add_attribute, h as compute_rest_props, i as createEventDispatcher, j as spread, k as escape_attribute_value, l as escape_object, v as validate_component, f as escape, o as is_promise, n as noop, p as each } from "../../chunks/index.js";
+import { g as getUsers } from "../../chunks/user.js";
 const student = "http://localhost:5173/_app/immutable/assets/student-51aa6cee.png";
 const Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<section class="${"dark:bg-gray-900"}"><div class="${"grid lg:grid-cols-12 py-6"}"><div class="${"mr-auto place-self-center lg:col-span-8"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">\xD6zel ders almak hi\xE7 bu kadar kolay olmam\u0131\u015Ft\u0131!</h1>
@@ -295,47 +295,252 @@ const Categories = create_ssr_component(($$result, $$props, $$bindings, slots) =
   )}</div></div>
 </section>`;
 });
-const Slider_svelte_svelte_type_style_lang = "";
+const UserVertical = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { id } = $$props;
+  let { loginAt } = $$props;
+  let { firstName } = $$props;
+  let { genderId } = $$props;
+  let { genderName } = $$props;
+  let { lastName } = $$props;
+  let { about } = $$props;
+  let { cityId } = $$props;
+  let { cityName } = $$props;
+  let { countyId } = $$props;
+  let { countyName } = $$props;
+  let { minimumPrice } = $$props;
+  let { isOnline } = $$props;
+  let { title } = $$props;
+  let { countryId } = $$props;
+  let { countryName } = $$props;
+  let { username } = $$props;
+  let { isTeachRemotely } = $$props;
+  let { isTeachPhysically } = $$props;
+  let { searchPoint } = $$props;
+  const getPhotoEmptyUserAvatar = (genderName2) => {
+    if (genderName2 == "Erkek")
+      return "img/icon-male.png";
+    if (genderName2 == "Kad\u0131n")
+      return "img/icon-female.png";
+    return "img/icon-male.png";
+  };
+  if ($$props.id === void 0 && $$bindings.id && id !== void 0)
+    $$bindings.id(id);
+  if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
+    $$bindings.loginAt(loginAt);
+  if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
+    $$bindings.firstName(firstName);
+  if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
+    $$bindings.genderId(genderId);
+  if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
+    $$bindings.genderName(genderName);
+  if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
+    $$bindings.lastName(lastName);
+  if ($$props.about === void 0 && $$bindings.about && about !== void 0)
+    $$bindings.about(about);
+  if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
+    $$bindings.cityId(cityId);
+  if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
+    $$bindings.cityName(cityName);
+  if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
+    $$bindings.countyId(countyId);
+  if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
+    $$bindings.countyName(countyName);
+  if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
+    $$bindings.minimumPrice(minimumPrice);
+  if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
+    $$bindings.isOnline(isOnline);
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
+    $$bindings.countryId(countryId);
+  if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
+    $$bindings.countryName(countryName);
+  if ($$props.username === void 0 && $$bindings.username && username !== void 0)
+    $$bindings.username(username);
+  if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
+    $$bindings.isTeachRemotely(isTeachRemotely);
+  if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
+    $$bindings.isTeachPhysically(isTeachPhysically);
+  if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
+    $$bindings.searchPoint(searchPoint);
+  return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}"><div class="${"flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md"}"><img class="${"h-32 rounded-full"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+		<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
+
+			<div class="${"flex flex-col gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
+					${escape(minimumPrice)}\u20BA
+				</div>
+
+				<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+					${escape(cityName)}, ${escape(countyName)}</div>
+
+				<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M5.636 5.636a9 9 0 1012.728 0M12 3v9"}"></path></svg>
+					${escape(isOnline ? "\xC7evrimi\xE7i" : "\xC7evrimd\u0131\u015F\u0131")}</div></div></div></div></a>`;
+});
+const UserSlider_svelte_svelte_type_style_lang = "";
 const css = {
   code: "@import '@splidejs/splide/css/skyblue';",
   map: null
 };
-const Slider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const UserSlider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css);
-  return `<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">Fizik \xF6zel ders verenler</h2>
-
-			<div>${validate_component(Splide_1, "Splide").$$render(
-    $$result,
-    {
-      options: {
-        arrows: true,
-        gap: "1em",
-        type: "loop",
-        interval: 3e3,
-        autoplay: true,
-        perPage: 4,
-        updateOnMove: true,
-        breakpoints: {
-          1024: { perPage: 3 },
-          767: { perPage: 2 },
-          640: { perPage: 1 }
-        },
-        perMove: 1,
-        pagination: false
-      },
-      "aria-label": "Fizik \xF6zel ders verenler"
-    },
-    {},
-    {
-      default: () => {
-        return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
-          default: () => {
-            return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, {}, {}, {})}`;
-          }
-        })}`;
-      }
+  return `<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">Matematik \xD6zel Ders Verenler</h2>
+			<div>${function(__value) {
+    if (is_promise(__value)) {
+      __value.then(null, noop);
+      return `
+					Y\xFCkleniyor...
+				`;
     }
-  )}</div></div></div>
+    return function(users) {
+      return `
+				${validate_component(Splide_1, "Splide").$$render(
+        $$result,
+        {
+          options: {
+            arrows: true,
+            gap: "1em",
+            type: "loop",
+            interval: 3e3,
+            autoplay: true,
+            perPage: 4,
+            updateOnMove: true,
+            breakpoints: {
+              1024: { perPage: 3 },
+              767: { perPage: 2 },
+              640: { perPage: 1 }
+            },
+            perMove: 1,
+            pagination: false
+          },
+          "aria-label": "Matematik \xF6zel ders verenler"
+        },
+        {},
+        {
+          default: () => {
+            return `${each(users.items, (user) => {
+              return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
+                default: () => {
+                  return `${validate_component(UserVertical, "UserVertical").$$render($$result, Object.assign(user), {}, {})}
+						`;
+                }
+              })}`;
+            })}`;
+          }
+        }
+      )}
+				`;
+    }(__value);
+  }(getUsers({
+    "page": 1,
+    "pageSize": 12,
+    "keyword": "matematik"
+  }))}</div></div></div></section>
+
+<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">\u0130ngilizce \xD6zel Ders Verenler</h2>
+			<div>${function(__value) {
+    if (is_promise(__value)) {
+      __value.then(null, noop);
+      return `
+					Y\xFCkleniyor...
+				`;
+    }
+    return function(users) {
+      return `
+					${validate_component(Splide_1, "Splide").$$render(
+        $$result,
+        {
+          options: {
+            arrows: true,
+            gap: "1em",
+            type: "loop",
+            interval: 3e3,
+            autoplay: true,
+            perPage: 4,
+            updateOnMove: true,
+            breakpoints: {
+              1024: { perPage: 3 },
+              767: { perPage: 2 },
+              640: { perPage: 1 }
+            },
+            perMove: 1,
+            pagination: false
+          },
+          "aria-label": "\u0130ngilizce \xF6zel ders verenler"
+        },
+        {},
+        {
+          default: () => {
+            return `${each(users.items, (user) => {
+              return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
+                default: () => {
+                  return `${validate_component(UserVertical, "UserVertical").$$render($$result, Object.assign(user), {}, {})}
+							`;
+                }
+              })}`;
+            })}`;
+          }
+        }
+      )}
+				`;
+    }(__value);
+  }(getUsers({
+    "page": 1,
+    "pageSize": 12,
+    "keyword": "ingilizce"
+  }))}</div></div></div></section>
+
+<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">Fizik \xD6zel Ders Verenler</h2>
+			<div>${function(__value) {
+    if (is_promise(__value)) {
+      __value.then(null, noop);
+      return `
+					Y\xFCkleniyor...
+				`;
+    }
+    return function(users) {
+      return `
+					${validate_component(Splide_1, "Splide").$$render(
+        $$result,
+        {
+          options: {
+            arrows: true,
+            gap: "1em",
+            type: "loop",
+            interval: 3e3,
+            autoplay: true,
+            perPage: 4,
+            updateOnMove: true,
+            breakpoints: {
+              1024: { perPage: 3 },
+              767: { perPage: 2 },
+              640: { perPage: 1 }
+            },
+            perMove: 1,
+            pagination: false
+          },
+          "aria-label": "Fizik \xF6zel ders verenler"
+        },
+        {},
+        {
+          default: () => {
+            return `${each(users.items, (user) => {
+              return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
+                default: () => {
+                  return `${validate_component(UserVertical, "UserVertical").$$render($$result, Object.assign(user), {}, {})}
+							`;
+                }
+              })}`;
+            })}`;
+          }
+        }
+      )}
+				`;
+    }(__value);
+  }(getUsers({
+    "page": 1,
+    "pageSize": 12,
+    "keyword": "fizik"
+  }))}</div></div></div>
 </section>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -345,7 +550,7 @@ ${validate_component(Greeting, "Greeting").$$render($$result, {}, {}, {})}
 
 ${validate_component(Categories, "Categories").$$render($$result, {}, {}, {})}
 
-${validate_component(Slider, "Slider").$$render($$result, {}, {}, {})}`;
+${validate_component(UserSlider, "UserSlider").$$render($$result, {}, {}, {})}`;
 });
 export {
   Page as default

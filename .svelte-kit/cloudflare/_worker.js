@@ -53,6 +53,9 @@ var __privateSet = (obj, member, value, setter) => {
 // .svelte-kit/output/server/chunks/index.js
 function noop() {
 }
+function is_promise(value) {
+  return value && typeof value === "object" && typeof value.then === "function";
+}
 function run(fn2) {
   return fn2();
 }
@@ -775,9 +778,9 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-7a24cbd2.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-7a24cbd2.js", "_app/immutable/chunks/index-fd37714b.js"];
-    stylesheets = ["_app/immutable/assets/_layout-addfd86e.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-1e8ed050.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-1e8ed050.js", "_app/immutable/chunks/index-aced5256.js"];
+    stylesheets = ["_app/immutable/assets/_layout-39778f45.css"];
   }
 });
 
@@ -862,8 +865,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-77d6eb43.js";
-    imports2 = ["_app/immutable/components/error.svelte-77d6eb43.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-22664e7e.js", "_app/immutable/chunks/index-571ab9cb.js"];
+    file2 = "_app/immutable/components/error.svelte-c42a48bc.js";
+    imports2 = ["_app/immutable/components/error.svelte-c42a48bc.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/singletons-ab9c916c.js", "_app/immutable/chunks/index-318e6245.js"];
     stylesheets2 = [];
   }
 });
@@ -880,103 +883,66 @@ var init_page = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/UserHorizontal.js
-var UserHorizontal;
-var init_UserHorizontal = __esm({
-  ".svelte-kit/output/server/chunks/UserHorizontal.js"() {
-    init_chunks();
-    UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { id } = $$props;
-      let { loginAt } = $$props;
-      let { firstName } = $$props;
-      let { genderId } = $$props;
-      let { genderName } = $$props;
-      let { lastName } = $$props;
-      let { about } = $$props;
-      let { cityId } = $$props;
-      let { cityName } = $$props;
-      let { countyId } = $$props;
-      let { countyName } = $$props;
-      let { minimumPrice } = $$props;
-      let { isOnline } = $$props;
-      let { title } = $$props;
-      let { countryId } = $$props;
-      let { countryName } = $$props;
-      let { username } = $$props;
-      let { isTeachRemotely } = $$props;
-      let { isTeachPhysically } = $$props;
-      let { searchPoint } = $$props;
-      const getPhotoEmptyUserAvatar = (genderName2) => {
-        if (genderName2 == "Erkek")
-          return "img/icon-male.png";
-        if (genderName2 == "Kad\u0131n")
-          return "img/icon-female.png";
-        return "img/icon-male.png";
-      };
-      const truncateString = (str, num) => {
-        if (str == null)
-          return "";
-        if (str.length > num) {
-          return str.slice(0, num) + "...";
-        } else {
-          return str;
-        }
-      };
-      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
-        $$bindings.id(id);
-      if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
-        $$bindings.loginAt(loginAt);
-      if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
-        $$bindings.firstName(firstName);
-      if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
-        $$bindings.genderId(genderId);
-      if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
-        $$bindings.genderName(genderName);
-      if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
-        $$bindings.lastName(lastName);
-      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
-        $$bindings.about(about);
-      if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
-        $$bindings.cityId(cityId);
-      if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
-        $$bindings.cityName(cityName);
-      if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
-        $$bindings.countyId(countyId);
-      if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
-        $$bindings.countyName(countyName);
-      if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
-        $$bindings.minimumPrice(minimumPrice);
-      if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
-        $$bindings.isOnline(isOnline);
-      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-        $$bindings.title(title);
-      if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
-        $$bindings.countryId(countryId);
-      if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
-        $$bindings.countryName(countryName);
-      if ($$props.username === void 0 && $$bindings.username && username !== void 0)
-        $$bindings.username(username);
-      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
-        $$bindings.isTeachRemotely(isTeachRemotely);
-      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
-        $$bindings.isTeachPhysically(isTeachPhysically);
-      if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
-        $$bindings.searchPoint(searchPoint);
-      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
-	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
-		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
-
-		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-				${escape(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-				${escape(cityName)}, ${escape(countyName)}</div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M5.636 5.636a9 9 0 1012.728 0M12 3v9"}"></path></svg>
-				${escape(isOnline ? "\xC7evrimi\xE7i" : "\xC7evrimd\u0131\u015F\u0131")}</div></div>
-
-		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
+// .svelte-kit/output/server/chunks/userStore.js
+var teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, teacherGendersStore;
+var init_userStore = __esm({
+  ".svelte-kit/output/server/chunks/userStore.js"() {
+    init_index2();
+    teacherSearchParamsStore = writable({
+      "page": 1,
+      "pageSize": 12,
+      "keyword": "",
+      "budget": "",
+      "cityObject": void 0,
+      "countyObject": void 0,
+      "subjectObject": void 0,
+      "levelObject": void 0,
+      "lessonTypeObject": void 0,
+      "genderObject": void 0
     });
+    teacherItemsStore = writable([]);
+    teacherTotalStore = writable(0);
+    teacherGendersStore = writable([
+      { id: 1, title: "Erkek" },
+      { id: 2, title: "Kad\u0131n" }
+    ]);
+  }
+});
+
+// .svelte-kit/output/server/chunks/user.js
+async function getUsers(params = []) {
+  var _a, _b, _c, _d, _e, _f;
+  const searchParams = params ? params : get_store_value(teacherSearchParamsStore);
+  const result = await fetch(
+    "http://api.nd.io/user/teachers",
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        "page": searchParams == null ? void 0 : searchParams.page,
+        "pageSize": searchParams == null ? void 0 : searchParams.pageSize,
+        "keyword": searchParams == null ? void 0 : searchParams.keyword,
+        "budget": searchParams == null ? void 0 : searchParams.budget,
+        "cityId": (_a = searchParams == null ? void 0 : searchParams.cityObject) == null ? void 0 : _a.id,
+        "countyId": (_b = searchParams == null ? void 0 : searchParams.countyObject) == null ? void 0 : _b.id,
+        "subjectId": (_c = searchParams == null ? void 0 : searchParams.subjectObject) == null ? void 0 : _c.id,
+        "levelId": (_d = searchParams == null ? void 0 : searchParams.levelObject) == null ? void 0 : _d.id,
+        "lessonTypeId": (_e = searchParams == null ? void 0 : searchParams.lessonTypeObject) == null ? void 0 : _e.id,
+        "genderId": (_f = searchParams == null ? void 0 : searchParams.genderObject) == null ? void 0 : _f.id
+      })
+    }
+  );
+  const body = await result.json();
+  teacherItemsStore.set(body.result.items);
+  teacherTotalStore.set(body.result.total);
+  return body.result;
+}
+var init_user = __esm({
+  ".svelte-kit/output/server/chunks/user.js"() {
+    init_chunks();
+    init_userStore();
   }
 });
 
@@ -1040,11 +1006,11 @@ function apply(func) {
 function typeOf(type, subject) {
   return typeof subject === type;
 }
-var student, Greeting, Splide_1, SplideTrack, SplideSlide, bilgisayar, dans, direksiyon, ilkogretim, kisiselgelisim, lise, muzik, oyunhobi, ozelegitim, sanat, sinavhazirlik, spor, universite, yabancidil, css$1, Categories, css2, Slider, Page;
+var student, Greeting, Splide_1, SplideTrack, SplideSlide, bilgisayar, dans, direksiyon, ilkogretim, kisiselgelisim, lise, muzik, oyunhobi, ozelegitim, sanat, sinavhazirlik, spor, universite, yabancidil, css$1, Categories, UserVertical, css2, UserSlider, Page;
 var init_page_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_page.svelte.js"() {
     init_chunks();
-    init_UserHorizontal();
+    init_user();
     student = "http://localhost:5173/_app/immutable/assets/student-51aa6cee.png";
     Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `<section class="${"dark:bg-gray-900"}"><div class="${"grid lg:grid-cols-12 py-6"}"><div class="${"mr-auto place-self-center lg:col-span-8"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">\xD6zel ders almak hi\xE7 bu kadar kolay olmam\u0131\u015Ft\u0131!</h1>
@@ -1284,46 +1250,251 @@ var init_page_svelte = __esm({
       )}</div></div>
 </section>`;
     });
+    UserVertical = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { id } = $$props;
+      let { loginAt } = $$props;
+      let { firstName } = $$props;
+      let { genderId } = $$props;
+      let { genderName } = $$props;
+      let { lastName } = $$props;
+      let { about } = $$props;
+      let { cityId } = $$props;
+      let { cityName } = $$props;
+      let { countyId } = $$props;
+      let { countyName } = $$props;
+      let { minimumPrice } = $$props;
+      let { isOnline } = $$props;
+      let { title } = $$props;
+      let { countryId } = $$props;
+      let { countryName } = $$props;
+      let { username } = $$props;
+      let { isTeachRemotely } = $$props;
+      let { isTeachPhysically } = $$props;
+      let { searchPoint } = $$props;
+      const getPhotoEmptyUserAvatar = (genderName2) => {
+        if (genderName2 == "Erkek")
+          return "img/icon-male.png";
+        if (genderName2 == "Kad\u0131n")
+          return "img/icon-female.png";
+        return "img/icon-male.png";
+      };
+      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
+        $$bindings.id(id);
+      if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
+        $$bindings.loginAt(loginAt);
+      if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
+        $$bindings.firstName(firstName);
+      if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
+        $$bindings.genderId(genderId);
+      if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
+        $$bindings.genderName(genderName);
+      if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
+        $$bindings.lastName(lastName);
+      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
+        $$bindings.about(about);
+      if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
+        $$bindings.cityId(cityId);
+      if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
+        $$bindings.cityName(cityName);
+      if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
+        $$bindings.countyId(countyId);
+      if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
+        $$bindings.countyName(countyName);
+      if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
+        $$bindings.minimumPrice(minimumPrice);
+      if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
+        $$bindings.isOnline(isOnline);
+      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+        $$bindings.title(title);
+      if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
+        $$bindings.countryId(countryId);
+      if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
+        $$bindings.countryName(countryName);
+      if ($$props.username === void 0 && $$bindings.username && username !== void 0)
+        $$bindings.username(username);
+      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
+        $$bindings.isTeachRemotely(isTeachRemotely);
+      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
+        $$bindings.isTeachPhysically(isTeachPhysically);
+      if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
+        $$bindings.searchPoint(searchPoint);
+      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}"><div class="${"flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md"}"><img class="${"h-32 rounded-full"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+		<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
+
+			<div class="${"flex flex-col gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
+					${escape(minimumPrice)}\u20BA
+				</div>
+
+				<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+					${escape(cityName)}, ${escape(countyName)}</div>
+
+				<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M5.636 5.636a9 9 0 1012.728 0M12 3v9"}"></path></svg>
+					${escape(isOnline ? "\xC7evrimi\xE7i" : "\xC7evrimd\u0131\u015F\u0131")}</div></div></div></div></a>`;
+    });
     css2 = {
       code: "@import '@splidejs/splide/css/skyblue';",
       map: null
     };
-    Slider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    UserSlider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css2);
-      return `<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">Fizik \xF6zel ders verenler</h2>
-
-			<div>${validate_component(Splide_1, "Splide").$$render(
-        $$result,
-        {
-          options: {
-            arrows: true,
-            gap: "1em",
-            type: "loop",
-            interval: 3e3,
-            autoplay: true,
-            perPage: 4,
-            updateOnMove: true,
-            breakpoints: {
-              1024: { perPage: 3 },
-              767: { perPage: 2 },
-              640: { perPage: 1 }
-            },
-            perMove: 1,
-            pagination: false
-          },
-          "aria-label": "Fizik \xF6zel ders verenler"
-        },
-        {},
-        {
-          default: () => {
-            return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
-              default: () => {
-                return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, {}, {}, {})}`;
-              }
-            })}`;
-          }
+      return `<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">Matematik \xD6zel Ders Verenler</h2>
+			<div>${function(__value) {
+        if (is_promise(__value)) {
+          __value.then(null, noop);
+          return `
+					Y\xFCkleniyor...
+				`;
         }
-      )}</div></div></div>
+        return function(users) {
+          return `
+				${validate_component(Splide_1, "Splide").$$render(
+            $$result,
+            {
+              options: {
+                arrows: true,
+                gap: "1em",
+                type: "loop",
+                interval: 3e3,
+                autoplay: true,
+                perPage: 4,
+                updateOnMove: true,
+                breakpoints: {
+                  1024: { perPage: 3 },
+                  767: { perPage: 2 },
+                  640: { perPage: 1 }
+                },
+                perMove: 1,
+                pagination: false
+              },
+              "aria-label": "Matematik \xF6zel ders verenler"
+            },
+            {},
+            {
+              default: () => {
+                return `${each(users.items, (user) => {
+                  return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
+                    default: () => {
+                      return `${validate_component(UserVertical, "UserVertical").$$render($$result, Object.assign(user), {}, {})}
+						`;
+                    }
+                  })}`;
+                })}`;
+              }
+            }
+          )}
+				`;
+        }(__value);
+      }(getUsers({
+        "page": 1,
+        "pageSize": 12,
+        "keyword": "matematik"
+      }))}</div></div></div></section>
+
+<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">\u0130ngilizce \xD6zel Ders Verenler</h2>
+			<div>${function(__value) {
+        if (is_promise(__value)) {
+          __value.then(null, noop);
+          return `
+					Y\xFCkleniyor...
+				`;
+        }
+        return function(users) {
+          return `
+					${validate_component(Splide_1, "Splide").$$render(
+            $$result,
+            {
+              options: {
+                arrows: true,
+                gap: "1em",
+                type: "loop",
+                interval: 3e3,
+                autoplay: true,
+                perPage: 4,
+                updateOnMove: true,
+                breakpoints: {
+                  1024: { perPage: 3 },
+                  767: { perPage: 2 },
+                  640: { perPage: 1 }
+                },
+                perMove: 1,
+                pagination: false
+              },
+              "aria-label": "\u0130ngilizce \xF6zel ders verenler"
+            },
+            {},
+            {
+              default: () => {
+                return `${each(users.items, (user) => {
+                  return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
+                    default: () => {
+                      return `${validate_component(UserVertical, "UserVertical").$$render($$result, Object.assign(user), {}, {})}
+							`;
+                    }
+                  })}`;
+                })}`;
+              }
+            }
+          )}
+				`;
+        }(__value);
+      }(getUsers({
+        "page": 1,
+        "pageSize": 12,
+        "keyword": "ingilizce"
+      }))}</div></div></div></section>
+
+<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">Fizik \xD6zel Ders Verenler</h2>
+			<div>${function(__value) {
+        if (is_promise(__value)) {
+          __value.then(null, noop);
+          return `
+					Y\xFCkleniyor...
+				`;
+        }
+        return function(users) {
+          return `
+					${validate_component(Splide_1, "Splide").$$render(
+            $$result,
+            {
+              options: {
+                arrows: true,
+                gap: "1em",
+                type: "loop",
+                interval: 3e3,
+                autoplay: true,
+                perPage: 4,
+                updateOnMove: true,
+                breakpoints: {
+                  1024: { perPage: 3 },
+                  767: { perPage: 2 },
+                  640: { perPage: 1 }
+                },
+                perMove: 1,
+                pagination: false
+              },
+              "aria-label": "Fizik \xF6zel ders verenler"
+            },
+            {},
+            {
+              default: () => {
+                return `${each(users.items, (user) => {
+                  return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, {}, {}, {
+                    default: () => {
+                      return `${validate_component(UserVertical, "UserVertical").$$render($$result, Object.assign(user), {}, {})}
+							`;
+                    }
+                  })}`;
+                })}`;
+              }
+            }
+          )}
+				`;
+        }(__value);
+      }(getUsers({
+        "page": 1,
+        "pageSize": 12,
+        "keyword": "fizik"
+      }))}</div></div></div>
 </section>`;
     });
     Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -1333,7 +1504,7 @@ ${validate_component(Greeting, "Greeting").$$render($$result, {}, {}, {})}
 
 ${validate_component(Categories, "Categories").$$render($$result, {}, {}, {})}
 
-${validate_component(Slider, "Slider").$$render($$result, {}, {}, {})}`;
+${validate_component(UserSlider, "UserSlider").$$render($$result, {}, {}, {})}`;
     });
   }
 });
@@ -1354,8 +1525,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-10e6c7fb.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-10e6c7fb.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-1a7dfcb4.js", "_app/immutable/chunks/user-cbfda9d3.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-59c49f0b.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-59c49f0b.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/user-08bfa84d.js", "_app/immutable/chunks/index-318e6245.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -1424,8 +1595,8 @@ var init__4 = __esm({
     init_page2();
     index4 = 3;
     component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
-    file4 = "_app/immutable/components/pages/_...catchall_/_page.svelte-b6672c73.js";
-    imports4 = ["_app/immutable/components/pages/_...catchall_/_page.svelte-b6672c73.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/modules/pages/_...catchall_/_page.js-9728c416.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/_page-1182c353.js"];
+    file4 = "_app/immutable/components/pages/_...catchall_/_page.svelte-4b177768.js";
+    imports4 = ["_app/immutable/components/pages/_...catchall_/_page.svelte-4b177768.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/modules/pages/_...catchall_/_page.js-8128e2d1.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/_page-2759ab62.js"];
     stylesheets4 = [];
   }
 });
@@ -1493,8 +1664,8 @@ var init__5 = __esm({
     init_page3();
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/about/_page.svelte-423ecefe.js";
-    imports5 = ["_app/immutable/components/pages/about/_page.svelte-423ecefe.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/modules/pages/about/_page.js-300e0020.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-2a465e02.js"];
+    file5 = "_app/immutable/components/pages/about/_page.svelte-498a1160.js";
+    imports5 = ["_app/immutable/components/pages/about/_page.svelte-498a1160.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/modules/pages/about/_page.js-300e0020.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-2a465e02.js"];
     stylesheets5 = [];
   }
 });
@@ -4013,35 +4184,9 @@ var init__6 = __esm({
     init_page4();
     index6 = 5;
     component6 = async () => (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default;
-    file6 = "_app/immutable/components/pages/detail/_page.svelte-de0ac68a.js";
-    imports6 = ["_app/immutable/components/pages/detail/_page.svelte-de0ac68a.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/modules/pages/detail/_page.js-8f29c873.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-88b7be61.js"];
+    file6 = "_app/immutable/components/pages/detail/_page.svelte-4da8d517.js";
+    imports6 = ["_app/immutable/components/pages/detail/_page.svelte-4da8d517.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/modules/pages/detail/_page.js-8f29c873.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-88b7be61.js"];
     stylesheets6 = ["_app/immutable/assets/_page-1d121e74.css"];
-  }
-});
-
-// .svelte-kit/output/server/chunks/userStore.js
-var teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, teacherGendersStore;
-var init_userStore = __esm({
-  ".svelte-kit/output/server/chunks/userStore.js"() {
-    init_index2();
-    teacherSearchParamsStore = writable({
-      "page": 1,
-      "pageSize": 12,
-      "keyword": "",
-      "budget": "",
-      "cityObject": void 0,
-      "countyObject": void 0,
-      "subjectObject": void 0,
-      "levelObject": void 0,
-      "lessonTypeObject": void 0,
-      "genderObject": void 0
-    });
-    teacherItemsStore = writable([]);
-    teacherTotalStore = writable(0);
-    teacherGendersStore = writable([
-      { id: 1, title: "Erkek" },
-      { id: 2, title: "Kad\u0131n" }
-    ]);
   }
 });
 
@@ -4052,35 +4197,6 @@ __export(page_exports5, {
   load: () => load2,
   prerender: () => prerender5
 });
-async function getUsers() {
-  var _a, _b, _c, _d, _e, _f;
-  const searchParams = get_store_value(teacherSearchParamsStore);
-  const result = await fetch(
-    "http://api.nd.io/user/teachers",
-    {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify({
-        "page": searchParams.page,
-        "pageSize": searchParams.pageSize,
-        "keyword": searchParams.keyword,
-        "budget": searchParams.budget,
-        "cityId": (_a = searchParams.cityObject) == null ? void 0 : _a.id,
-        "countyId": (_b = searchParams.countyObject) == null ? void 0 : _b.id,
-        "subjectId": (_c = searchParams.subjectObject) == null ? void 0 : _c.id,
-        "levelId": (_d = searchParams.levelObject) == null ? void 0 : _d.id,
-        "lessonTypeId": (_e = searchParams.lessonTypeObject) == null ? void 0 : _e.id,
-        "genderId": (_f = searchParams.genderObject) == null ? void 0 : _f.id
-      })
-    }
-  );
-  const body = await result.json();
-  teacherItemsStore.set(body.result.items);
-  teacherTotalStore.set(body.result.total);
-  return body.result;
-}
 async function load2({ params }) {
   if (params && params.catchall) {
     const urlParams = params.catchall.split("/");
@@ -4095,8 +4211,7 @@ var csr4, prerender5;
 var init_page5 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
     init_environment();
-    init_chunks();
-    init_userStore();
+    init_user();
     csr4 = dev;
     prerender5 = true;
   }
@@ -4107,11 +4222,10 @@ var page_svelte_exports5 = {};
 __export(page_svelte_exports5, {
   default: () => Page5
 });
-var citiesStore, countiesStore, subjectsStore, levelsStore, lessonTypesStore, Page5;
+var citiesStore, countiesStore, subjectsStore, levelsStore, lessonTypesStore, UserHorizontal, Page5;
 var init_page_svelte5 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js"() {
     init_chunks();
-    init_UserHorizontal();
     init_userStore();
     init_index2();
     citiesStore = writable([]);
@@ -4122,6 +4236,98 @@ var init_page_svelte5 = __esm({
       { id: 1, title: "Y\xFCz Y\xFCze" },
       { id: 2, title: "Uzaktan (Webcam)" }
     ]);
+    UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { id } = $$props;
+      let { loginAt } = $$props;
+      let { firstName } = $$props;
+      let { genderId } = $$props;
+      let { genderName } = $$props;
+      let { lastName } = $$props;
+      let { about } = $$props;
+      let { cityId } = $$props;
+      let { cityName } = $$props;
+      let { countyId } = $$props;
+      let { countyName } = $$props;
+      let { minimumPrice } = $$props;
+      let { isOnline } = $$props;
+      let { title } = $$props;
+      let { countryId } = $$props;
+      let { countryName } = $$props;
+      let { username } = $$props;
+      let { isTeachRemotely } = $$props;
+      let { isTeachPhysically } = $$props;
+      let { searchPoint } = $$props;
+      const getPhotoEmptyUserAvatar = (genderName2) => {
+        if (genderName2 == "Erkek")
+          return "img/icon-male.png";
+        if (genderName2 == "Kad\u0131n")
+          return "img/icon-female.png";
+        return "img/icon-male.png";
+      };
+      const truncateString = (str, num) => {
+        if (str == null)
+          return "";
+        if (str.length > num) {
+          return str.slice(0, num) + "...";
+        } else {
+          return str;
+        }
+      };
+      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
+        $$bindings.id(id);
+      if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
+        $$bindings.loginAt(loginAt);
+      if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
+        $$bindings.firstName(firstName);
+      if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
+        $$bindings.genderId(genderId);
+      if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
+        $$bindings.genderName(genderName);
+      if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
+        $$bindings.lastName(lastName);
+      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
+        $$bindings.about(about);
+      if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
+        $$bindings.cityId(cityId);
+      if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
+        $$bindings.cityName(cityName);
+      if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
+        $$bindings.countyId(countyId);
+      if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
+        $$bindings.countyName(countyName);
+      if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
+        $$bindings.minimumPrice(minimumPrice);
+      if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
+        $$bindings.isOnline(isOnline);
+      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+        $$bindings.title(title);
+      if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
+        $$bindings.countryId(countryId);
+      if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
+        $$bindings.countryName(countryName);
+      if ($$props.username === void 0 && $$bindings.username && username !== void 0)
+        $$bindings.username(username);
+      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
+        $$bindings.isTeachRemotely(isTeachRemotely);
+      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
+        $$bindings.isTeachPhysically(isTeachPhysically);
+      if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
+        $$bindings.searchPoint(searchPoint);
+      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
+		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
+
+		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
+				${escape(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
+
+			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+				${escape(cityName)}, ${escape(countyName)}</div>
+
+			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M5.636 5.636a9 9 0 1012.728 0M12 3v9"}"></path></svg>
+				${escape(isOnline ? "\xC7evrimi\xE7i" : "\xC7evrimd\u0131\u015F\u0131")}</div></div>
+
+		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
+    });
     Page5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
       let $$unsubscribe_levelsStore;
@@ -4238,8 +4444,8 @@ var init__7 = __esm({
     init_page5();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-832417af.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-832417af.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/UserHorizontal-1a7dfcb4.js", "_app/immutable/chunks/user-cbfda9d3.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-579a8965.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-cbfda9d3.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/index-571ab9cb.js", "_app/immutable/chunks/_page-96ec8ffb.js"];
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-6cbe9bac.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-6cbe9bac.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/user-08bfa84d.js", "_app/immutable/chunks/index-318e6245.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-d447220a.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-08bfa84d.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/index-318e6245.js", "_app/immutable/chunks/_page-1947965d.js"];
     stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -6910,7 +7116,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-1981d760.js", "imports": ["_app/immutable/start-1981d760.js", "_app/immutable/chunks/index-fd37714b.js", "_app/immutable/chunks/singletons-22664e7e.js", "_app/immutable/chunks/index-571ab9cb.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-f3d11b1c.js", "imports": ["_app/immutable/start-f3d11b1c.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/singletons-ab9c916c.js", "_app/immutable/chunks/index-318e6245.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -6926,7 +7132,7 @@ var manifest = {
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/u/undefined", "/u/42587019", "/u/02389176", "/u/seyyma", "/u/73091826", "/u/39475612", "/u/01392645", "/u/matematiktutkusu", "/u/kardelenarac", "/u/80794356", "/u/23695410", "/u/98750316", "/u/28405963"]);
+var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/u/42587019", "/u/02389176", "/u/seyyma", "/u/73091826", "/u/39475612", "/u/01392645", "/u/matematiktutkusu", "/u/kardelenarac", "/u/80794356", "/u/23695410", "/u/98750316", "/u/28405963"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {

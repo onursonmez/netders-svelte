@@ -19,7 +19,7 @@ const teacherGendersStore = writable([
 ]);
 export {
   teacherTotalStore as a,
-  teacherItemsStore as b,
+  teacherSearchParamsStore as b,
   teacherGendersStore as c,
-  teacherSearchParamsStore as t
+  teacherItemsStore as t
 };

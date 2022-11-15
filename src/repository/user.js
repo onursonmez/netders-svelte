@@ -1,9 +1,9 @@
 import { get } from 'svelte/store'
 import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore } from '/src/stores/userStore'
 
-export async function getUsers()
+export async function getUsers(params = [])
 {
-    const searchParams = get(teacherSearchParamsStore)
+    const searchParams = params ? params : get(teacherSearchParamsStore)
 
     const result = await fetch(import.meta.env.VITE_API_URL + 'user/teachers',
         {
@@ -12,16 +12,16 @@ export async function getUsers()
             },
             method: 'POST',
             body: JSON.stringify({
-                'page' : searchParams.page,
-                'pageSize' : searchParams.pageSize,
-                'keyword' : searchParams.keyword,
-                'budget' : searchParams.budget,
-                'cityId' : searchParams.cityObject?.id,
-                'countyId' : searchParams.countyObject?.id,
-                'subjectId' : searchParams.subjectObject?.id,
-                'levelId' : searchParams.levelObject?.id,
-                'lessonTypeId' : searchParams.lessonTypeObject?.id,
-                'genderId' : searchParams.genderObject?.id,
+                'page' : searchParams?.page,
+                'pageSize' : searchParams?.pageSize,
+                'keyword' : searchParams?.keyword,
+                'budget' : searchParams?.budget,
+                'cityId' : searchParams?.cityObject?.id,
+                'countyId' : searchParams?.countyObject?.id,
+                'subjectId' : searchParams?.subjectObject?.id,
+                'levelId' : searchParams?.levelObject?.id,
+                'lessonTypeId' : searchParams?.lessonTypeObject?.id,
+                'genderId' : searchParams?.genderObject?.id,
             })
         },
     );

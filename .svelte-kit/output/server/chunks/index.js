@@ -1,5 +1,8 @@
 function noop() {
 }
+function is_promise(value) {
+  return value && typeof value === "object" && typeof value.then === "function";
+}
 function run(fn) {
   return fn();
 }
@@ -265,11 +268,12 @@ export {
   escape_object as l,
   missing_component as m,
   noop as n,
-  is_void as o,
-  get_current_component as p,
-  globals as q,
-  each as r,
+  is_promise as o,
+  each as p,
+  get_store_value as q,
+  is_void as r,
   setContext as s,
-  get_store_value as t,
+  get_current_component as t,
+  globals as u,
   validate_component as v
 };
