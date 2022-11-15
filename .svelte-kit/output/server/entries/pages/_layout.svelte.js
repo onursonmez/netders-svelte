@@ -1,5 +1,5 @@
 import { c as create_ssr_component, b as add_attribute, d as add_classes, v as validate_component } from "../../chunks/index.js";
-const logo = "http://localhost:5173/_app/immutable/assets/netders-logo-blue-a79eee8d.svg";
+const logo = "/_app/immutable/assets/netders-logo-blue-a79eee8d.svg";
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<header><nav class="${"shadow-md bg-white"}"><div class="${"mx-auto max-w-[90%]"}"><div class="${"relative flex h-16 items-center justify-between"}"><div class="${"absolute inset-y-0 left-0 flex items-center lg:hidden"}">
 					<button type="${"button"}" class="${"inline-flex items-center justify-center rounded-md text-gray-400 hover:text-blue-700 ring-0"}" aria-controls="${"mobile-menu"}" aria-expanded="${"false"}"><span class="${"sr-only"}">Open main menu</span>

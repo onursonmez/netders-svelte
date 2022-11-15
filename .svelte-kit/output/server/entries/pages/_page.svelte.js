@@ -1,6 +1,6 @@
 import { c as create_ssr_component, b as add_attribute, h as compute_rest_props, i as createEventDispatcher, j as spread, k as escape_attribute_value, l as escape_object, v as validate_component, f as escape, o as is_promise, n as noop, p as each } from "../../chunks/index.js";
 import { g as getUsers } from "../../chunks/user.js";
-const student = "http://localhost:5173/_app/immutable/assets/student-51aa6cee.png";
+const student = "/_app/immutable/assets/student-51aa6cee.png";
 const Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<section class="${"dark:bg-gray-900"}"><div class="${"grid lg:grid-cols-12 py-6"}"><div class="${"mr-auto place-self-center lg:col-span-8"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">\xD6zel ders almak hi\xE7 bu kadar kolay olmam\u0131\u015Ft\u0131!</h1>
 			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">Do\u011Frulanm\u0131\u015F profile sahip, alan\u0131nda <strong class="${"font-semibold"}">uzman \xF6\u011Fretmenlerden</strong> online veya y\xFCz y\xFCze \xF6zel ders al\u0131n. Hem de Netders.com g\xFCvencesiyle!</p>
@@ -157,20 +157,20 @@ const SplideSlide = create_ssr_component(($$result, $$props, $$bindings, slots) 
     {}
   )}>${slots.default ? slots.default({}) : ``}</li>`;
 });
-const bilgisayar = "http://localhost:5173/_app/immutable/assets/home-icon-bilgisayar-28e4a71a.svg";
-const dans = "http://localhost:5173/_app/immutable/assets/home-icon-dans-620f1f4c.svg";
-const direksiyon = "http://localhost:5173/_app/immutable/assets/home-icon-direksiyon-f6f5e8fc.svg";
-const ilkogretim = "http://localhost:5173/_app/immutable/assets/home-icon-ilkogretim-a3b45991.svg";
-const kisiselgelisim = "http://localhost:5173/_app/immutable/assets/home-icon-kisiselgelisim-66895feb.svg";
-const lise = "http://localhost:5173/_app/immutable/assets/home-icon-lise-864dc187.svg";
-const muzik = "http://localhost:5173/_app/immutable/assets/home-icon-muzik-83b799a3.svg";
-const oyunhobi = "http://localhost:5173/_app/immutable/assets/home-icon-oyunhobi-8013de93.svg";
-const ozelegitim = "http://localhost:5173/_app/immutable/assets/home-icon-ozelegitim-8658b55d.svg";
-const sanat = "http://localhost:5173/_app/immutable/assets/home-icon-sanat-cbe89840.svg";
-const sinavhazirlik = "http://localhost:5173/_app/immutable/assets/home-icon-sinavhazirlik-df3b54b6.svg";
-const spor = "http://localhost:5173/_app/immutable/assets/home-icon-spor-37bdddd9.svg";
-const universite = "http://localhost:5173/_app/immutable/assets/home-icon-universite-c1622639.svg";
-const yabancidil = "http://localhost:5173/_app/immutable/assets/home-icon-yabancidil-7970e6d9.svg";
+const bilgisayar = "/_app/immutable/assets/home-icon-bilgisayar-28e4a71a.svg";
+const dans = "/_app/immutable/assets/home-icon-dans-620f1f4c.svg";
+const direksiyon = "/_app/immutable/assets/home-icon-direksiyon-f6f5e8fc.svg";
+const ilkogretim = "/_app/immutable/assets/home-icon-ilkogretim-a3b45991.svg";
+const kisiselgelisim = "/_app/immutable/assets/home-icon-kisiselgelisim-66895feb.svg";
+const lise = "/_app/immutable/assets/home-icon-lise-864dc187.svg";
+const muzik = "/_app/immutable/assets/home-icon-muzik-83b799a3.svg";
+const oyunhobi = "/_app/immutable/assets/home-icon-oyunhobi-8013de93.svg";
+const ozelegitim = "/_app/immutable/assets/home-icon-ozelegitim-8658b55d.svg";
+const sanat = "/_app/immutable/assets/home-icon-sanat-cbe89840.svg";
+const sinavhazirlik = "/_app/immutable/assets/home-icon-sinavhazirlik-df3b54b6.svg";
+const spor = "/_app/immutable/assets/home-icon-spor-37bdddd9.svg";
+const universite = "/_app/immutable/assets/home-icon-universite-c1622639.svg";
+const yabancidil = "/_app/immutable/assets/home-icon-yabancidil-7970e6d9.svg";
 const Categories_svelte_svelte_type_style_lang = "";
 const css$1 = {
   code: "@import '@splidejs/splide/css/skyblue';",

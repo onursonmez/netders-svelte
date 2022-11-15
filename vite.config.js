@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 
 const config = {
-	base: 'http://localhost:5173',
+	base: process.env.VITE_TEMP_BASE_URL,
 	plugins: [sveltekit()],
 };
 

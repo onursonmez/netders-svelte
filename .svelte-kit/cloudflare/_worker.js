@@ -687,7 +687,7 @@ var logo, Header, css, Layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_layout.svelte.js"() {
     init_chunks();
-    logo = "http://localhost:5173/_app/immutable/assets/netders-logo-blue-a79eee8d.svg";
+    logo = "/_app/immutable/assets/netders-logo-blue-a79eee8d.svg";
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `<header><nav class="${"shadow-md bg-white"}"><div class="${"mx-auto max-w-[90%]"}"><div class="${"relative flex h-16 items-center justify-between"}"><div class="${"absolute inset-y-0 left-0 flex items-center lg:hidden"}">
 					<button type="${"button"}" class="${"inline-flex items-center justify-center rounded-md text-gray-400 hover:text-blue-700 ring-0"}" aria-controls="${"mobile-menu"}" aria-expanded="${"false"}"><span class="${"sr-only"}">Open main menu</span>
@@ -865,8 +865,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-c42a48bc.js";
-    imports2 = ["_app/immutable/components/error.svelte-c42a48bc.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/singletons-ab9c916c.js", "_app/immutable/chunks/index-318e6245.js"];
+    file2 = "_app/immutable/components/error.svelte-a5939a6f.js";
+    imports2 = ["_app/immutable/components/error.svelte-a5939a6f.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/singletons-cdc565bc.js", "_app/immutable/chunks/index-318e6245.js"];
     stylesheets2 = [];
   }
 });
@@ -1011,7 +1011,7 @@ var init_page_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_page.svelte.js"() {
     init_chunks();
     init_user();
-    student = "http://localhost:5173/_app/immutable/assets/student-51aa6cee.png";
+    student = "/_app/immutable/assets/student-51aa6cee.png";
     Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `<section class="${"dark:bg-gray-900"}"><div class="${"grid lg:grid-cols-12 py-6"}"><div class="${"mr-auto place-self-center lg:col-span-8"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">\xD6zel ders almak hi\xE7 bu kadar kolay olmam\u0131\u015Ft\u0131!</h1>
 			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">Do\u011Frulanm\u0131\u015F profile sahip, alan\u0131nda <strong class="${"font-semibold"}">uzman \xF6\u011Fretmenlerden</strong> online veya y\xFCz y\xFCze \xF6zel ders al\u0131n. Hem de Netders.com g\xFCvencesiyle!</p>
@@ -1113,20 +1113,20 @@ var init_page_svelte = __esm({
         {}
       )}>${slots.default ? slots.default({}) : ``}</li>`;
     });
-    bilgisayar = "http://localhost:5173/_app/immutable/assets/home-icon-bilgisayar-28e4a71a.svg";
-    dans = "http://localhost:5173/_app/immutable/assets/home-icon-dans-620f1f4c.svg";
-    direksiyon = "http://localhost:5173/_app/immutable/assets/home-icon-direksiyon-f6f5e8fc.svg";
-    ilkogretim = "http://localhost:5173/_app/immutable/assets/home-icon-ilkogretim-a3b45991.svg";
-    kisiselgelisim = "http://localhost:5173/_app/immutable/assets/home-icon-kisiselgelisim-66895feb.svg";
-    lise = "http://localhost:5173/_app/immutable/assets/home-icon-lise-864dc187.svg";
-    muzik = "http://localhost:5173/_app/immutable/assets/home-icon-muzik-83b799a3.svg";
-    oyunhobi = "http://localhost:5173/_app/immutable/assets/home-icon-oyunhobi-8013de93.svg";
-    ozelegitim = "http://localhost:5173/_app/immutable/assets/home-icon-ozelegitim-8658b55d.svg";
-    sanat = "http://localhost:5173/_app/immutable/assets/home-icon-sanat-cbe89840.svg";
-    sinavhazirlik = "http://localhost:5173/_app/immutable/assets/home-icon-sinavhazirlik-df3b54b6.svg";
-    spor = "http://localhost:5173/_app/immutable/assets/home-icon-spor-37bdddd9.svg";
-    universite = "http://localhost:5173/_app/immutable/assets/home-icon-universite-c1622639.svg";
-    yabancidil = "http://localhost:5173/_app/immutable/assets/home-icon-yabancidil-7970e6d9.svg";
+    bilgisayar = "/_app/immutable/assets/home-icon-bilgisayar-28e4a71a.svg";
+    dans = "/_app/immutable/assets/home-icon-dans-620f1f4c.svg";
+    direksiyon = "/_app/immutable/assets/home-icon-direksiyon-f6f5e8fc.svg";
+    ilkogretim = "/_app/immutable/assets/home-icon-ilkogretim-a3b45991.svg";
+    kisiselgelisim = "/_app/immutable/assets/home-icon-kisiselgelisim-66895feb.svg";
+    lise = "/_app/immutable/assets/home-icon-lise-864dc187.svg";
+    muzik = "/_app/immutable/assets/home-icon-muzik-83b799a3.svg";
+    oyunhobi = "/_app/immutable/assets/home-icon-oyunhobi-8013de93.svg";
+    ozelegitim = "/_app/immutable/assets/home-icon-ozelegitim-8658b55d.svg";
+    sanat = "/_app/immutable/assets/home-icon-sanat-cbe89840.svg";
+    sinavhazirlik = "/_app/immutable/assets/home-icon-sinavhazirlik-df3b54b6.svg";
+    spor = "/_app/immutable/assets/home-icon-spor-37bdddd9.svg";
+    universite = "/_app/immutable/assets/home-icon-universite-c1622639.svg";
+    yabancidil = "/_app/immutable/assets/home-icon-yabancidil-7970e6d9.svg";
     css$1 = {
       code: "@import '@splidejs/splide/css/skyblue';",
       map: null
@@ -7116,7 +7116,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-f3d11b1c.js", "imports": ["_app/immutable/start-f3d11b1c.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/singletons-ab9c916c.js", "_app/immutable/chunks/index-318e6245.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-8a756b35.js", "imports": ["_app/immutable/start-8a756b35.js", "_app/immutable/chunks/index-aced5256.js", "_app/immutable/chunks/singletons-cdc565bc.js", "_app/immutable/chunks/index-318e6245.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

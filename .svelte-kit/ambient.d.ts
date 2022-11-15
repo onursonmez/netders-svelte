@@ -26,6 +26,7 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const VITE_TEMP_BASE_URL: string;
 	export const VITE_BASE_URL: string;
 	export const VITE_API_URL: string;
 	export const MANPATH: string;
@@ -108,6 +109,7 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		VITE_TEMP_BASE_URL: string;
 		VITE_BASE_URL: string;
 		VITE_API_URL: string;
 		MANPATH: string;
