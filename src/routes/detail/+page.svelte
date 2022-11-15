@@ -1,12 +1,7 @@
 <script>
-	import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
 	import { Tooltip } from 'flowbite-svelte';
-
 	let style = 'dark';
-
-	import User from "../../components/user/User.svelte"
 	let formModal = false
-
 </script>
 
 <svelte:head>
