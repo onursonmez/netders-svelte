@@ -12,7 +12,7 @@
 	</main>
 
 	<footer>
-		<section class="shadow-md rounded-t-lg bg-white text-center text-base">
+		<section class="shadow-md rounded-t-lg bg-white text-center text-base mt-4">
 			<div class="p-6 text-gray-500 text-sm">
 				Copyright © 2013 - 2022 Netders.com
 			</div>
@@ -48,7 +48,6 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
 		width: 100%;
 		max-width: 90%;
 		margin: 0 auto;
@@ -59,7 +58,6 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 0 1rem 1rem 1rem;
 		width: 100%;
 		max-width: 90%;
 		margin: 0 auto;

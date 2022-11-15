@@ -1,0 +1,29 @@
+{
+	"/": [
+		"src/routes/+page.js"
+	],
+	"/about": [
+		"src/routes/about/+page.js"
+	],
+	"/detail": [
+		"src/routes/detail/+page.js"
+	],
+	"/search": [
+		"src/routes/search/+page.js"
+	],
+	"/ozel-ders-ilanlari-verenler": [
+		"src/routes/ozel-ders-ilanlari-verenler/+page.js"
+	],
+	"/ozel-ders-ilanlari-verenler/[...catchall]": [
+		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.js"
+	],
+	"/[...catchall]": [
+		"src/routes/[...catchall]/+page.js"
+	],
+	"/ozel-ders-ilanlari-verenler/[location]/[lesson]": [
+		"src/routes/ozel-ders-ilanlari-verenler/[location]/[lesson]/+page.js"
+	],
+	"/ozel-ders-ilanlari-verenler/[...catchall]/[lesson]": [
+		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/[lesson]/+page.js"
+	]
+}

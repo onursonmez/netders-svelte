@@ -1,8 +1,6 @@
 <script>
 	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
-	import { Button } from 'flowbite-svelte'
-	import { Rating } from 'flowbite-svelte';
-	import User from "./User.svelte";
+	import UserHorizontal from "./UserHorizontal.svelte";
 
 </script>
 
@@ -39,7 +37,7 @@
 					pagination: false,
 				  } } aria-label="Fizik özel ders verenler">
 					<SplideSlide>
-						<User />
+						<UserHorizontal />
 					</SplideSlide>
 				</Splide>
 			</div>

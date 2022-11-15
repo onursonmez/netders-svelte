@@ -15,8 +15,3 @@ import Slider from "../components/user/Slider.svelte";
 <Categories />
 
 <Slider />
-
-
-<style>
-
-</style>

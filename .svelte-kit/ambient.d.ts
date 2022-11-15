@@ -26,34 +26,56 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const PATH: string;
-	export const __CFBundleIdentifier: string;
-	export const SHELL: string;
-	export const TERM: string;
-	export const USER: string;
-	export const TMPDIR: string;
-	export const COMMAND_MODE: string;
-	export const TERMINAL_EMULATOR: string;
-	export const LOGIN_SHELL: string;
-	export const __INTELLIJ_COMMAND_HISTFILE__: string;
-	export const SSH_AUTH_SOCK: string;
-	export const XPC_FLAGS: string;
-	export const TERM_SESSION_ID: string;
-	export const __CF_USER_TEXT_ENCODING: string;
-	export const LOGNAME: string;
-	export const LC_CTYPE: string;
-	export const XPC_SERVICE_NAME: string;
-	export const HOME: string;
-	export const SHLVL: string;
-	export const PWD: string;
-	export const OLDPWD: string;
-	export const HOMEBREW_PREFIX: string;
-	export const HOMEBREW_CELLAR: string;
-	export const HOMEBREW_REPOSITORY: string;
 	export const MANPATH: string;
-	export const INFOPATH: string;
+	export const NODE: string;
+	export const INIT_CWD: string;
+	export const TERM: string;
+	export const SHELL: string;
+	export const npm_config_metrics_registry: string;
+	export const HOMEBREW_REPOSITORY: string;
+	export const TMPDIR: string;
+	export const npm_config_global_prefix: string;
+	export const COLOR: string;
+	export const TERM_SESSION_ID: string;
+	export const npm_config_noproxy: string;
+	export const npm_config_local_prefix: string;
+	export const __INTELLIJ_COMMAND_HISTFILE__: string;
+	export const USER: string;
+	export const COMMAND_MODE: string;
+	export const npm_config_globalconfig: string;
+	export const SSH_AUTH_SOCK: string;
+	export const __CF_USER_TEXT_ENCODING: string;
+	export const npm_execpath: string;
+	export const LOGIN_SHELL: string;
+	export const PATH: string;
+	export const TERMINAL_EMULATOR: string;
+	export const npm_package_json: string;
+	export const npm_config_engine_strict: string;
 	export const _: string;
-	export const NODE_ENV: string;
+	export const npm_config_userconfig: string;
+	export const npm_config_init_module: string;
+	export const __CFBundleIdentifier: string;
+	export const npm_command: string;
+	export const PWD: string;
+	export const npm_lifecycle_event: string;
+	export const EDITOR: string;
+	export const npm_package_name: string;
+	export const XPC_FLAGS: string;
+	export const npm_config_node_gyp: string;
+	export const npm_package_version: string;
+	export const XPC_SERVICE_NAME: string;
+	export const SHLVL: string;
+	export const HOME: string;
+	export const HOMEBREW_PREFIX: string;
+	export const npm_config_cache: string;
+	export const LOGNAME: string;
+	export const npm_lifecycle_script: string;
+	export const LC_CTYPE: string;
+	export const npm_config_user_agent: string;
+	export const INFOPATH: string;
+	export const HOMEBREW_CELLAR: string;
+	export const npm_node_execpath: string;
+	export const npm_config_prefix: string;
 }
 
 /**
@@ -66,7 +88,8 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-
+	export const PUBLIC_BASE_URL: string;
+	export const PUBLIC_API_URL: string;
 }
 
 /**
@@ -83,34 +106,56 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		PATH: string;
-		__CFBundleIdentifier: string;
-		SHELL: string;
-		TERM: string;
-		USER: string;
-		TMPDIR: string;
-		COMMAND_MODE: string;
-		TERMINAL_EMULATOR: string;
-		LOGIN_SHELL: string;
-		__INTELLIJ_COMMAND_HISTFILE__: string;
-		SSH_AUTH_SOCK: string;
-		XPC_FLAGS: string;
-		TERM_SESSION_ID: string;
-		__CF_USER_TEXT_ENCODING: string;
-		LOGNAME: string;
-		LC_CTYPE: string;
-		XPC_SERVICE_NAME: string;
-		HOME: string;
-		SHLVL: string;
-		PWD: string;
-		OLDPWD: string;
-		HOMEBREW_PREFIX: string;
-		HOMEBREW_CELLAR: string;
-		HOMEBREW_REPOSITORY: string;
 		MANPATH: string;
-		INFOPATH: string;
+		NODE: string;
+		INIT_CWD: string;
+		TERM: string;
+		SHELL: string;
+		npm_config_metrics_registry: string;
+		HOMEBREW_REPOSITORY: string;
+		TMPDIR: string;
+		npm_config_global_prefix: string;
+		COLOR: string;
+		TERM_SESSION_ID: string;
+		npm_config_noproxy: string;
+		npm_config_local_prefix: string;
+		__INTELLIJ_COMMAND_HISTFILE__: string;
+		USER: string;
+		COMMAND_MODE: string;
+		npm_config_globalconfig: string;
+		SSH_AUTH_SOCK: string;
+		__CF_USER_TEXT_ENCODING: string;
+		npm_execpath: string;
+		LOGIN_SHELL: string;
+		PATH: string;
+		TERMINAL_EMULATOR: string;
+		npm_package_json: string;
+		npm_config_engine_strict: string;
 		_: string;
-		NODE_ENV: string;
+		npm_config_userconfig: string;
+		npm_config_init_module: string;
+		__CFBundleIdentifier: string;
+		npm_command: string;
+		PWD: string;
+		npm_lifecycle_event: string;
+		EDITOR: string;
+		npm_package_name: string;
+		XPC_FLAGS: string;
+		npm_config_node_gyp: string;
+		npm_package_version: string;
+		XPC_SERVICE_NAME: string;
+		SHLVL: string;
+		HOME: string;
+		HOMEBREW_PREFIX: string;
+		npm_config_cache: string;
+		LOGNAME: string;
+		npm_lifecycle_script: string;
+		LC_CTYPE: string;
+		npm_config_user_agent: string;
+		INFOPATH: string;
+		HOMEBREW_CELLAR: string;
+		npm_node_execpath: string;
+		npm_config_prefix: string;
 		[key: string]: string | undefined;
 	}
 }
@@ -127,6 +172,8 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
+		PUBLIC_BASE_URL: string;
+		PUBLIC_API_URL: string;
 		[key: string]: string | undefined;
 	}
 }

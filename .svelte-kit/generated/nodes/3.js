@@ -1,3 +1,3 @@
-import * as shared from "../../../src/routes/about/+page.js";
+import * as shared from "../../../src/routes/[...catchall]/+page.js";
 export { shared };
-export { default as component } from "../../../src/routes/about/+page.svelte";
+export { default as component } from "../../../src/routes/[...catchall]/+page.svelte";

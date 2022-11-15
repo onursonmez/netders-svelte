@@ -1,5 +1,4 @@
 <script>
-	import { Search, Button, Modal, Label, Input, Checkbox, Select } from 'flowbite-svelte'
 	import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
 	import { Tooltip } from 'flowbite-svelte';
 
