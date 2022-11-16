@@ -1,8 +1,6 @@
 // @ts-nocheck
 import { dev } from '$app/environment'
 import { getUsers, getTeacherSearchStoreParamsBySearchParams } from '/src/repository/user'
-import { getOneCityBy, getOneCountyBy } from '/src/repository/location'
-import { teacherSearchParamsStore } from '/src/stores/userStore'
 
 // we don't need any JS on this page, though we'll load
 // it in dev so that we get hot module replacement
@@ -18,9 +16,7 @@ export async function load({ params })
     if(params && params.catchall)
     {
         await getTeacherSearchStoreParamsBySearchParams({'query': params.catchall})
-
-        await getUsers()
     }
 
-
+    await getUsers()
 }
