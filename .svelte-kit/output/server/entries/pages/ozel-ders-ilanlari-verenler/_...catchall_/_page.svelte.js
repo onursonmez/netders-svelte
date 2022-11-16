@@ -1,36 +1,18 @@
-import { c as create_ssr_component, f as escape, e as subscribe, b as add_attribute, p as each, v as validate_component } from "../../../../chunks/index.js";
+import { c as create_ssr_component, e as escape, f as subscribe, b as add_attribute, p as each, v as validate_component } from "../../../../chunks/index.js";
 import { t as teacherSearchParamsStore, b as teacherTotalStore, a as teacherItemsStore, c as teacherGendersStore } from "../../../../chunks/userStore.js";
 import { w as writable } from "../../../../chunks/index2.js";
 import { p as page } from "../../../../chunks/stores.js";
-const citiesStore = writable([]);
-const countiesStore = writable([]);
-const subjectsStore = writable([]);
-const levelsStore = writable([]);
-const lessonTypesStore = writable([
-  { id: 1, title: "Y\xFCz Y\xFCze" },
-  { id: 2, title: "Uzaktan (Webcam)" }
-]);
 const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { id } = $$props;
-  let { loginAt } = $$props;
   let { firstName } = $$props;
-  let { genderId } = $$props;
   let { genderName } = $$props;
   let { lastName } = $$props;
   let { about } = $$props;
-  let { cityId } = $$props;
   let { cityName } = $$props;
-  let { countyId } = $$props;
   let { countyName } = $$props;
   let { minimumPrice } = $$props;
   let { isOnline } = $$props;
   let { title } = $$props;
-  let { countryId } = $$props;
-  let { countryName } = $$props;
   let { username } = $$props;
-  let { isTeachRemotely } = $$props;
-  let { isTeachPhysically } = $$props;
-  let { searchPoint } = $$props;
   const getPhotoEmptyUserAvatar = (genderName2) => {
     if (genderName2 == "Erkek")
       return "img/icon-male.png";
@@ -47,26 +29,16 @@ const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slot
       return str;
     }
   };
-  if ($$props.id === void 0 && $$bindings.id && id !== void 0)
-    $$bindings.id(id);
-  if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
-    $$bindings.loginAt(loginAt);
   if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
     $$bindings.firstName(firstName);
-  if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
-    $$bindings.genderId(genderId);
   if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
     $$bindings.genderName(genderName);
   if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
     $$bindings.lastName(lastName);
   if ($$props.about === void 0 && $$bindings.about && about !== void 0)
     $$bindings.about(about);
-  if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
-    $$bindings.cityId(cityId);
   if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
     $$bindings.cityName(cityName);
-  if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
-    $$bindings.countyId(countyId);
   if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
     $$bindings.countyName(countyName);
   if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
@@ -75,19 +47,9 @@ const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slot
     $$bindings.isOnline(isOnline);
   if ($$props.title === void 0 && $$bindings.title && title !== void 0)
     $$bindings.title(title);
-  if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
-    $$bindings.countryId(countryId);
-  if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
-    $$bindings.countryName(countryName);
   if ($$props.username === void 0 && $$bindings.username && username !== void 0)
     $$bindings.username(username);
-  if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
-    $$bindings.isTeachRemotely(isTeachRemotely);
-  if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
-    $$bindings.isTeachPhysically(isTeachPhysically);
-  if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
-    $$bindings.searchPoint(searchPoint);
-  return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+  return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
 	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
 		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
 
@@ -103,6 +65,14 @@ const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slot
 		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
 });
 const Modal_svelte_svelte_type_style_lang = "";
+const citiesStore = writable([]);
+const countiesStore = writable([]);
+const subjectsStore = writable([]);
+const levelsStore = writable([]);
+const lessonTypesStore = writable([
+  { id: 1, title: "Y\xFCz Y\xFCze" },
+  { id: 2, title: "Uzaktan (Webcam)" }
+]);
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
   let $$unsubscribe_page;
@@ -159,7 +129,7 @@ ${``}
 
 					${`<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button>`}</div></form>
 
-			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <a href="${""}" class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</a> yapabilirsiniz.</p>
+			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <button class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</button> yapabilirsiniz.</p>
 
 			<div class="${"flex justify-center flex-wrap gap-2"}">${$teacherSearchParamsStore.keyword ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
                         <span>${escape($teacherSearchParamsStore.keyword)}</span>

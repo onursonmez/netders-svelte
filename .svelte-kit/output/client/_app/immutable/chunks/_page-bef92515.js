@@ -1,0 +1,1 @@
+import{d as a,g as t}from"./user-7d0aa0fc.js";const r=!1;async function o({params:e}){e&&e.catchall&&await a({query:e.catchall}),await t()}const l=Object.freeze(Object.defineProperty({__proto__:null,prerender:r,load:o},Symbol.toStringTag,{value:"Module"}));export{l as _,o as l,r as p};

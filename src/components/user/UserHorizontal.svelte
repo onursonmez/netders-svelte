@@ -2,26 +2,16 @@
 	import { photo } from '/src/repository/user'
 	import { onMount } from 'svelte'
 
-	export let id;
-	export let loginAt;
 	export let firstName;
-	export let genderId;
 	export let genderName;
 	export let lastName;
 	export let about;
-	export let cityId;
 	export let cityName;
-	export let countyId;
 	export let countyName;
 	export let minimumPrice;
 	export let isOnline;
 	export let title;
-	export let countryId;
-	export let countryName;
 	export let username;
-	export let isTeachRemotely;
-	export let isTeachPhysically;
-	export let searchPoint;
 
 	let photoUrl;
 
@@ -48,7 +38,7 @@
 
 </script>
 
-<a href="/u/{ username }" target="_blank" class="flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4">
+<a href="/u/{ username }" target="_blank" rel="noreferrer" class="flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4">
 	<img class="md:w-48 md:h-48 md:rounded-lg rounded-full h-48" src="{import.meta.env.VITE_BASE_URL}{ photoUrl || getPhotoEmptyUserAvatar(genderName) }" alt="">
 	<div class="flex flex-col w-full justify-between pl-4 leading-normal">
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center">{ firstName } { lastName }</h5>

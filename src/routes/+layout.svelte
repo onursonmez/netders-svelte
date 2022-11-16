@@ -2,6 +2,7 @@
 	import Header from '/src/components/Header.svelte';
 	import './styles.css';
 	import "../app.css";
+	import coloredBar from '$lib/images/colored-bar.jpeg'
 </script>
 
 <div class="app">
@@ -16,7 +17,7 @@
 			<div class="p-6 text-gray-500 text-sm">
 				Copyright © 2013 - 2022 Netders.com
 			</div>
-			<div class="shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain" style="background-image:url('/src/lib/images/colored-bar.jpeg')">
+			<div class="shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain" style="background-image:url('{coloredBar}')">
 				<ul class="lg:flex justify-center mt-4 text-blue-300">
 					<li class="mx-2 hover:text-white"><a href="/" class="">Ana Sayfa</a></li>
 					<li class="mx-2 hover:text-white"><a href="/">Öğretmen Ara</a></li>

@@ -93,8 +93,8 @@ function custom_event(type, detail, { bubbles = false, cancelable = false } = {}
   e3.initCustomEvent(type, bubbles, cancelable, detail);
   return e3;
 }
-function set_current_component(component8) {
-  current_component = component8;
+function set_current_component(component6) {
+  current_component = component6;
 }
 function get_current_component() {
   if (!current_component)
@@ -102,13 +102,13 @@ function get_current_component() {
   return current_component;
 }
 function createEventDispatcher() {
-  const component8 = get_current_component();
+  const component6 = get_current_component();
   return (type, detail, { cancelable = false } = {}) => {
-    const callbacks = component8.$$.callbacks[type];
+    const callbacks = component6.$$.callbacks[type];
     if (callbacks) {
       const event = custom_event(type, detail, { cancelable });
       callbacks.slice().forEach((fn2) => {
-        fn2.call(component8, event);
+        fn2.call(component6, event);
       });
       return !event.defaultPrevented;
     }
@@ -213,13 +213,13 @@ function each(items, fn2) {
   }
   return str;
 }
-function validate_component(component8, name) {
-  if (!component8 || !component8.$$render) {
+function validate_component(component6, name) {
+  if (!component6 || !component6.$$render) {
     if (name === "svelte:component")
       name += " this={...}";
     throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules. Otherwise you may need to fix a <${name}>.`);
   }
-  return component8;
+  return component6;
 }
 function create_ssr_component(fn2) {
   function $$render(result, props, bindings, slots, context) {
@@ -380,20 +380,20 @@ var require_cookie = __commonJS({
       var obj = {};
       var opt = options || {};
       var dec = opt.decode || decode;
-      var index8 = 0;
-      while (index8 < str.length) {
-        var eqIdx = str.indexOf("=", index8);
+      var index6 = 0;
+      while (index6 < str.length) {
+        var eqIdx = str.indexOf("=", index6);
         if (eqIdx === -1) {
           break;
         }
-        var endIdx = str.indexOf(";", index8);
+        var endIdx = str.indexOf(";", index6);
         if (endIdx === -1) {
           endIdx = str.length;
         } else if (endIdx < eqIdx) {
-          index8 = str.lastIndexOf(";", eqIdx - 1) + 1;
+          index6 = str.lastIndexOf(";", eqIdx - 1) + 1;
           continue;
         }
-        var key2 = str.slice(index8, eqIdx).trim();
+        var key2 = str.slice(index6, eqIdx).trim();
         if (void 0 === obj[key2]) {
           var val = str.slice(eqIdx + 1, endIdx).trim();
           if (val.charCodeAt(0) === 34) {
@@ -401,7 +401,7 @@ var require_cookie = __commonJS({
           }
           obj[key2] = tryDecode(val, dec);
         }
-        index8 = endIdx + 1;
+        index6 = endIdx + 1;
       }
       return obj;
     }
@@ -683,7 +683,7 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => Layout
 });
-var logo, Header, css, Layout;
+var logo, Header, coloredBar, css, Layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_layout.svelte.js"() {
     init_chunks();
@@ -700,15 +700,15 @@ var init_layout_svelte = __esm({
 							\xD6\u011Fretmen Ara
 						</a>
 
-						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
 							Ders Talepleri
 						</a>
 
-						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a>
+						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
 
-						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
+						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
 
-						<a href="${"#"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">\u0130leti\u015Fim</a></div></div>
+						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">\u0130leti\u015Fim</a></div></div>
 				<div class="${"absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0"}"><button type="${"button"}" class="${"hidden rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"}"><span class="${"sr-only"}">View notifications</span>
 						
 						<svg class="${"h-6 w-6"}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"}"></path></svg></button>
@@ -722,21 +722,22 @@ var init_layout_svelte = __esm({
         "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
         "hidden"
       ].join(" ").trim()}" role="${"menu"}" aria-orientation="${"vertical"}" aria-labelledby="${"user-menu-button"}" tabindex="${"-1"}">
-							<a href="${"#"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Your Profile</a>
-							<a href="${"#"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-1"}">Settings</a>
-							<a href="${"#"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-2"}">Sign out</a></div></div></div></div></div>
+							<a href="${"/detail"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Your Profile</a>
+							<a href="${"/detail"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-1"}">Settings</a>
+							<a href="${"/detail"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-2"}">Sign out</a></div></div></div></div></div>
 
 		
 		<div id="${"mobile-menu"}"${add_classes("hidden".trim())}><div class="${"space-y-1 px-2 pt-2 pb-3"}">
-				<a href="${"#"}" class="${"bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"}" aria-current="${"page"}">Dashboard</a>
+				<a href="${"/detail"}" class="${"bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"}" aria-current="${"page"}">Dashboard</a>
 
-				<a href="${"#"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Team</a>
+				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Team</a>
 
-				<a href="${"#"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Projects</a>
+				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Projects</a>
 
-				<a href="${"#"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Calendar</a></div></div></nav>
+				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Calendar</a></div></div></nav>
 </header>`;
     });
+    coloredBar = "/_app/immutable/assets/colored-bar-011c28ce.jpeg";
     css = {
       code: ".app.svelte-r97aqy{display:flex;flex-direction:column;min-height:100vh}main.svelte-r97aqy{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}footer.svelte-r97aqy{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}",
       map: null
@@ -749,7 +750,7 @@ var init_layout_svelte = __esm({
 
 	<footer class="${"svelte-r97aqy"}"><section class="${"shadow-md rounded-t-lg bg-white text-center text-base mt-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
 			</div>
-			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('/src/lib/images/colored-bar.jpeg')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
+			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\xD6\u011Fretmen Ara</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Ders talepleri</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a></li>
@@ -778,8 +779,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-38fc94c4.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-38fc94c4.js", "_app/immutable/chunks/index-f9612323.js"];
+    file = "_app/immutable/components/pages/_layout.svelte-8f546e8e.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-8f546e8e.js", "_app/immutable/chunks/index-f9612323.js"];
     stylesheets = ["_app/immutable/assets/_layout-39778f45.css"];
   }
 });
@@ -874,8 +875,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-20b1e357.js";
-    imports2 = ["_app/immutable/components/error.svelte-20b1e357.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-78baaa38.js", "_app/immutable/chunks/singletons-01dcc482.js", "_app/immutable/chunks/index-b3592fb7.js"];
+    file2 = "_app/immutable/components/error.svelte-fff00c0a.js";
+    imports2 = ["_app/immutable/components/error.svelte-fff00c0a.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-a913f24f.js", "_app/immutable/chunks/singletons-d3c06606.js", "_app/immutable/chunks/index-b3592fb7.js"];
     stylesheets2 = [];
   }
 });
@@ -888,7 +889,7 @@ __export(page_exports, {
 var prerender;
 var init_page = __esm({
   ".svelte-kit/output/server/entries/pages/_page.js"() {
-    prerender = false;
+    prerender = true;
   }
 });
 
@@ -999,7 +1000,7 @@ function isObject(subject) {
 }
 function isEqualDeep(subject1, subject2) {
   if (Array.isArray(subject1) && Array.isArray(subject2)) {
-    return subject1.length === subject2.length && !subject1.some((elm, index8) => !isEqualDeep(elm, subject2[index8]));
+    return subject1.length === subject2.length && !subject1.some((elm, index6) => !isEqualDeep(elm, subject2[index6]));
   }
   if (isObject(subject1) && isObject(subject2)) {
     const keys1 = Object.keys(subject1);
@@ -1282,26 +1283,14 @@ var init_page_svelte = __esm({
 </section>`;
     });
     UserVertical = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { id } = $$props;
-      let { loginAt } = $$props;
       let { firstName } = $$props;
-      let { genderId } = $$props;
       let { genderName } = $$props;
       let { lastName } = $$props;
-      let { about } = $$props;
-      let { cityId } = $$props;
       let { cityName } = $$props;
-      let { countyId } = $$props;
       let { countyName } = $$props;
       let { minimumPrice } = $$props;
       let { isOnline } = $$props;
-      let { title } = $$props;
-      let { countryId } = $$props;
-      let { countryName } = $$props;
       let { username } = $$props;
-      let { isTeachRemotely } = $$props;
-      let { isTeachPhysically } = $$props;
-      let { searchPoint } = $$props;
       const getPhotoEmptyUserAvatar = (genderName2) => {
         if (genderName2 == "Erkek")
           return "img/icon-male.png";
@@ -1309,47 +1298,23 @@ var init_page_svelte = __esm({
           return "img/icon-female.png";
         return "img/icon-male.png";
       };
-      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
-        $$bindings.id(id);
-      if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
-        $$bindings.loginAt(loginAt);
       if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
         $$bindings.firstName(firstName);
-      if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
-        $$bindings.genderId(genderId);
       if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
         $$bindings.genderName(genderName);
       if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
         $$bindings.lastName(lastName);
-      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
-        $$bindings.about(about);
-      if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
-        $$bindings.cityId(cityId);
       if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
         $$bindings.cityName(cityName);
-      if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
-        $$bindings.countyId(countyId);
       if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
         $$bindings.countyName(countyName);
       if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
         $$bindings.minimumPrice(minimumPrice);
       if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
         $$bindings.isOnline(isOnline);
-      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-        $$bindings.title(title);
-      if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
-        $$bindings.countryId(countryId);
-      if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
-        $$bindings.countryName(countryName);
       if ($$props.username === void 0 && $$bindings.username && username !== void 0)
         $$bindings.username(username);
-      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
-        $$bindings.isTeachRemotely(isTeachRemotely);
-      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
-        $$bindings.isTeachPhysically(isTeachPhysically);
-      if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
-        $$bindings.searchPoint(searchPoint);
-      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}"><div class="${"flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md"}"><img class="${"h-32 rounded-full"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><div class="${"flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md"}"><img class="${"h-32 rounded-full"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
 		<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
 
 			<div class="${"flex flex-col gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
@@ -1556,163 +1521,24 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-27b7ddb4.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-27b7ddb4.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-93808b0f.js", "_app/immutable/chunks/singletons-01dcc482.js", "_app/immutable/modules/pages/_page.js-9eeffa94.js", "_app/immutable/chunks/_page-0032eb25.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-13114c89.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-13114c89.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-040d0645.js", "_app/immutable/chunks/singletons-d3c06606.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
 
-// .svelte-kit/output/server/chunks/environment.js
-var dev;
-var init_environment = __esm({
-  ".svelte-kit/output/server/chunks/environment.js"() {
-    dev = false;
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/_...catchall_/_page.js
+// .svelte-kit/output/server/entries/pages/detail/_page.js
 var page_exports2 = {};
 __export(page_exports2, {
   csr: () => csr,
-  data: () => data,
-  load: () => load,
   prerender: () => prerender2
 });
-async function load({ params }) {
-  const urlParams = params.catchall.split("/");
-  if (urlParams) {
-    if (urlParams[0] == "ozel-ders-ilanlari-verenler")
-      ;
-  }
-}
-var csr, prerender2, data;
+var dev, csr, prerender2;
 var init_page2 = __esm({
-  ".svelte-kit/output/server/entries/pages/_...catchall_/_page.js"() {
-    init_environment();
-    init_chunks();
-    csr = dev;
-    prerender2 = false;
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/_...catchall_/_page.svelte.js
-var page_svelte_exports2 = {};
-__export(page_svelte_exports2, {
-  default: () => Page2
-});
-var Page2;
-var init_page_svelte2 = __esm({
-  ".svelte-kit/output/server/entries/pages/_...catchall_/_page.svelte.js"() {
-    init_chunks();
-    Page2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `se`;
-    });
-  }
-});
-
-// .svelte-kit/output/server/nodes/3.js
-var __exports4 = {};
-__export(__exports4, {
-  component: () => component4,
-  file: () => file4,
-  imports: () => imports4,
-  index: () => index4,
-  shared: () => page_exports2,
-  stylesheets: () => stylesheets4
-});
-var index4, component4, file4, imports4, stylesheets4;
-var init__4 = __esm({
-  ".svelte-kit/output/server/nodes/3.js"() {
-    init_page2();
-    index4 = 3;
-    component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
-    file4 = "_app/immutable/components/pages/_...catchall_/_page.svelte-c24567cf.js";
-    imports4 = ["_app/immutable/components/pages/_...catchall_/_page.svelte-c24567cf.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/modules/pages/_...catchall_/_page.js-62269d23.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/_page-3460c7ef.js"];
-    stylesheets4 = [];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/about/_page.js
-var page_exports3 = {};
-__export(page_exports3, {
-  csr: () => csr2,
-  prerender: () => prerender3
-});
-var csr2, prerender3;
-var init_page3 = __esm({
-  ".svelte-kit/output/server/entries/pages/about/_page.js"() {
-    init_environment();
-    csr2 = dev;
-    prerender3 = true;
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/about/_page.svelte.js
-var page_svelte_exports3 = {};
-__export(page_svelte_exports3, {
-  default: () => Page3
-});
-var Page3;
-var init_page_svelte3 = __esm({
-  ".svelte-kit/output/server/entries/pages/about/_page.svelte.js"() {
-    init_chunks();
-    Page3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `${$$result.head += `<!-- HEAD_svelte-1ds1qyu_START -->${$$result.title = `<title>About</title>`, ""}<meta name="${"description"}" content="${"About this app"}"><!-- HEAD_svelte-1ds1qyu_END -->`, ""}
-
-<div class="${"text-column"}"><h1 class="${"mb-4"}">About this app</h1>
-
-	<p>This is a <a href="${"https://kit.svelte.dev"}">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
-
-	<pre>npm create svelte@latest</pre>
-
-	<p>The page you&#39;re looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don&#39;t need to load any JavaScript. Try viewing the page&#39;s source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-	<p>The <a href="${"/"}">Sverdle</a> page illustrates SvelteKit&#39;s data loading and form handling. Try
-		using it with JavaScript disabled!
-	</p></div>`;
-    });
-  }
-});
-
-// .svelte-kit/output/server/nodes/4.js
-var __exports5 = {};
-__export(__exports5, {
-  component: () => component5,
-  file: () => file5,
-  imports: () => imports5,
-  index: () => index5,
-  shared: () => page_exports3,
-  stylesheets: () => stylesheets5
-});
-var index5, component5, file5, imports5, stylesheets5;
-var init__5 = __esm({
-  ".svelte-kit/output/server/nodes/4.js"() {
-    init_page3();
-    index5 = 4;
-    component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/about/_page.svelte-8e260fa0.js";
-    imports5 = ["_app/immutable/components/pages/about/_page.svelte-8e260fa0.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/modules/pages/about/_page.js-300e0020.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-2a465e02.js"];
-    stylesheets5 = [];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/detail/_page.js
-var page_exports4 = {};
-__export(page_exports4, {
-  csr: () => csr3,
-  prerender: () => prerender4
-});
-var csr3, prerender4;
-var init_page4 = __esm({
   ".svelte-kit/output/server/entries/pages/detail/_page.js"() {
-    init_environment();
-    csr3 = dev;
-    prerender4 = true;
+    dev = false;
+    csr = dev;
+    prerender2 = true;
   }
 });
 
@@ -3097,16 +2923,16 @@ function distanceAndSkiddingToXY(placement, rects, offset2) {
 function offset(_ref2) {
   var state = _ref2.state, options = _ref2.options, name = _ref2.name;
   var _options$offset = options.offset, offset2 = _options$offset === void 0 ? [0, 0] : _options$offset;
-  var data2 = placements.reduce(function(acc, placement) {
+  var data = placements.reduce(function(acc, placement) {
     acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset2);
     return acc;
   }, {});
-  var _data$state$placement = data2[state.placement], x = _data$state$placement.x, y = _data$state$placement.y;
+  var _data$state$placement = data[state.placement], x = _data$state$placement.x, y = _data$state$placement.y;
   if (state.modifiersData.popperOffsets != null) {
     state.modifiersData.popperOffsets.x += x;
     state.modifiersData.popperOffsets.y += y;
   }
-  state.modifiersData[name] = data2;
+  state.modifiersData[name] = data;
 }
 var offset_default;
 var init_offset = __esm({
@@ -3185,7 +3011,7 @@ function preventOverflow(_ref) {
     altAxis: 0
   }, tetherOffsetValue);
   var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null;
-  var data2 = {
+  var data = {
     x: 0,
     y: 0
   };
@@ -3221,7 +3047,7 @@ function preventOverflow(_ref) {
     var tetherMax = offset2 + maxOffset - offsetModifierValue;
     var preventedOffset = within(tether ? min(min2, tetherMin) : min2, offset2, tether ? max(max2, tetherMax) : max2);
     popperOffsets2[mainAxis] = preventedOffset;
-    data2[mainAxis] = preventedOffset - offset2;
+    data[mainAxis] = preventedOffset - offset2;
   }
   if (checkAltAxis) {
     var _offsetModifierState$2;
@@ -3237,9 +3063,9 @@ function preventOverflow(_ref) {
     var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
     var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
     popperOffsets2[altAxis] = _preventedOffset;
-    data2[altAxis] = _preventedOffset - _offset;
+    data[altAxis] = _preventedOffset - _offset;
   }
-  state.modifiersData[name] = data2;
+  state.modifiersData[name] = data;
 }
 var preventOverflow_default;
 var init_preventOverflow = __esm({
@@ -3434,8 +3260,8 @@ var init_format = __esm({
 // node_modules/@popperjs/core/lib/utils/validateModifiers.js
 function validateModifiers(modifiers) {
   modifiers.forEach(function(modifier) {
-    [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index8, self) {
-      return self.indexOf(value) === index8;
+    [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index6, self) {
+      return self.indexOf(value) === index6;
     }).forEach(function(key2) {
       switch (key2) {
         case "name":
@@ -3629,7 +3455,7 @@ function popperGenerator(generatorOptions) {
           return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
         });
         var __debug_loops__ = 0;
-        for (var index8 = 0; index8 < state.orderedModifiers.length; index8++) {
+        for (var index6 = 0; index6 < state.orderedModifiers.length; index6++) {
           if (true) {
             __debug_loops__ += 1;
             if (__debug_loops__ > 100) {
@@ -3639,10 +3465,10 @@ function popperGenerator(generatorOptions) {
           }
           if (state.reset === true) {
             state.reset = false;
-            index8 = -1;
+            index6 = -1;
             continue;
           }
-          var _state$orderedModifie = state.orderedModifiers[index8], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
+          var _state$orderedModifie = state.orderedModifiers[index6], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
           if (typeof fn2 === "function") {
             state = fn2({
               state,
@@ -3758,25 +3584,25 @@ var init_lib = __esm({
 });
 
 // .svelte-kit/output/server/entries/pages/detail/_page.svelte.js
-var page_svelte_exports4 = {};
-__export(page_svelte_exports4, {
-  default: () => Page4
+var page_svelte_exports2 = {};
+__export(page_svelte_exports2, {
+  default: () => Page2
 });
 function createEventDispatcher2() {
-  const component8 = get_current_component();
+  const component6 = get_current_component();
   return (type, target, detail) => {
-    const callbacks = component8.$$.callbacks[type];
+    const callbacks = component6.$$.callbacks[type];
     if (callbacks) {
       const event = new CustomEvent(type, { detail });
       target.dispatchEvent(event);
       callbacks.slice().forEach((fn2) => {
-        fn2.call(component8, event);
+        fn2.call(component6, event);
       });
     }
   };
 }
-var import_classnames, Frame, Object_1, Popper, Tooltip, Page4;
-var init_page_svelte4 = __esm({
+var import_classnames, Frame, Object_1, Popper, Tooltip, Page2;
+var init_page_svelte2 = __esm({
   ".svelte-kit/output/server/entries/pages/detail/_page.svelte.js"() {
     init_chunks();
     import_classnames = __toESM(require_classnames(), 1);
@@ -4017,7 +3843,7 @@ ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
         }
       })}`;
     });
-    Page4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Page2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `${$$result.head += `<!-- HEAD_svelte-13mnxwt_START -->${$$result.title = `<title>Detail</title>`, ""}<meta name="${"description"}" content="${"Detail in this app"}"><!-- HEAD_svelte-13mnxwt_END -->`, ""}
 
 
@@ -4199,94 +4025,71 @@ ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
   }
 });
 
-// .svelte-kit/output/server/nodes/5.js
-var __exports6 = {};
-__export(__exports6, {
-  component: () => component6,
-  file: () => file6,
-  imports: () => imports6,
-  index: () => index6,
-  shared: () => page_exports4,
-  stylesheets: () => stylesheets6
+// .svelte-kit/output/server/nodes/3.js
+var __exports4 = {};
+__export(__exports4, {
+  component: () => component4,
+  file: () => file4,
+  imports: () => imports4,
+  index: () => index4,
+  shared: () => page_exports2,
+  stylesheets: () => stylesheets4
 });
-var index6, component6, file6, imports6, stylesheets6;
-var init__6 = __esm({
-  ".svelte-kit/output/server/nodes/5.js"() {
-    init_page4();
-    index6 = 5;
-    component6 = async () => (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default;
-    file6 = "_app/immutable/components/pages/detail/_page.svelte-6013d376.js";
-    imports6 = ["_app/immutable/components/pages/detail/_page.svelte-6013d376.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/modules/pages/detail/_page.js-8f29c873.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-88b7be61.js"];
-    stylesheets6 = ["_app/immutable/assets/_page-1d121e74.css"];
+var index4, component4, file4, imports4, stylesheets4;
+var init__4 = __esm({
+  ".svelte-kit/output/server/nodes/3.js"() {
+    init_page2();
+    index4 = 3;
+    component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
+    file4 = "_app/immutable/components/pages/detail/_page.svelte-6013d376.js";
+    imports4 = ["_app/immutable/components/pages/detail/_page.svelte-6013d376.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/modules/pages/detail/_page.js-a17e8051.js", "_app/immutable/chunks/_page-f6af334f.js"];
+    stylesheets4 = ["_app/immutable/assets/_page-1d121e74.css"];
   }
 });
 
 // .svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js
-var page_exports5 = {};
-__export(page_exports5, {
-  csr: () => csr4,
-  load: () => load2,
-  prerender: () => prerender5,
-  ssr: () => ssr
+var page_exports3 = {};
+__export(page_exports3, {
+  load: () => load,
+  prerender: () => prerender3
 });
-async function load2({ params }) {
+async function load({ params }) {
   if (params && params.catchall) {
     await getTeacherSearchStoreParamsBySearchParams({ "query": params.catchall });
   }
   await getUsers();
 }
-var csr4, prerender5, ssr;
-var init_page5 = __esm({
+var prerender3;
+var init_page3 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
-    init_environment();
     init_user();
-    csr4 = dev;
-    prerender5 = false;
-    ssr = true;
+    prerender3 = false;
   }
 });
 
 // .svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js
-var page_svelte_exports5 = {};
-__export(page_svelte_exports5, {
-  default: () => Page5
+var page_svelte_exports3 = {};
+__export(page_svelte_exports3, {
+  default: () => Page3
 });
-var citiesStore, countiesStore, subjectsStore, levelsStore, lessonTypesStore, UserHorizontal, Page5;
-var init_page_svelte5 = __esm({
+var UserHorizontal, citiesStore, countiesStore, subjectsStore, levelsStore, lessonTypesStore, Page3;
+var init_page_svelte3 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js"() {
     init_chunks();
     init_userStore();
     init_index2();
     init_stores();
-    citiesStore = writable([]);
-    countiesStore = writable([]);
-    subjectsStore = writable([]);
-    levelsStore = writable([]);
-    lessonTypesStore = writable([
-      { id: 1, title: "Y\xFCz Y\xFCze" },
-      { id: 2, title: "Uzaktan (Webcam)" }
-    ]);
     UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { id } = $$props;
-      let { loginAt } = $$props;
       let { firstName } = $$props;
-      let { genderId } = $$props;
       let { genderName } = $$props;
       let { lastName } = $$props;
       let { about } = $$props;
-      let { cityId } = $$props;
       let { cityName } = $$props;
-      let { countyId } = $$props;
       let { countyName } = $$props;
       let { minimumPrice } = $$props;
       let { isOnline } = $$props;
       let { title } = $$props;
-      let { countryId } = $$props;
-      let { countryName } = $$props;
       let { username } = $$props;
-      let { isTeachRemotely } = $$props;
-      let { isTeachPhysically } = $$props;
-      let { searchPoint } = $$props;
       const getPhotoEmptyUserAvatar = (genderName2) => {
         if (genderName2 == "Erkek")
           return "img/icon-male.png";
@@ -4303,26 +4106,16 @@ var init_page_svelte5 = __esm({
           return str;
         }
       };
-      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
-        $$bindings.id(id);
-      if ($$props.loginAt === void 0 && $$bindings.loginAt && loginAt !== void 0)
-        $$bindings.loginAt(loginAt);
       if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
         $$bindings.firstName(firstName);
-      if ($$props.genderId === void 0 && $$bindings.genderId && genderId !== void 0)
-        $$bindings.genderId(genderId);
       if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
         $$bindings.genderName(genderName);
       if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
         $$bindings.lastName(lastName);
       if ($$props.about === void 0 && $$bindings.about && about !== void 0)
         $$bindings.about(about);
-      if ($$props.cityId === void 0 && $$bindings.cityId && cityId !== void 0)
-        $$bindings.cityId(cityId);
       if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
         $$bindings.cityName(cityName);
-      if ($$props.countyId === void 0 && $$bindings.countyId && countyId !== void 0)
-        $$bindings.countyId(countyId);
       if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
         $$bindings.countyName(countyName);
       if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
@@ -4331,19 +4124,9 @@ var init_page_svelte5 = __esm({
         $$bindings.isOnline(isOnline);
       if ($$props.title === void 0 && $$bindings.title && title !== void 0)
         $$bindings.title(title);
-      if ($$props.countryId === void 0 && $$bindings.countryId && countryId !== void 0)
-        $$bindings.countryId(countryId);
-      if ($$props.countryName === void 0 && $$bindings.countryName && countryName !== void 0)
-        $$bindings.countryName(countryName);
       if ($$props.username === void 0 && $$bindings.username && username !== void 0)
         $$bindings.username(username);
-      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
-        $$bindings.isTeachRemotely(isTeachRemotely);
-      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
-        $$bindings.isTeachPhysically(isTeachPhysically);
-      if ($$props.searchPoint === void 0 && $$bindings.searchPoint && searchPoint !== void 0)
-        $$bindings.searchPoint(searchPoint);
-      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
 	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
 		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
 
@@ -4358,7 +4141,15 @@ var init_page_svelte5 = __esm({
 
 		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
     });
-    Page5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    citiesStore = writable([]);
+    countiesStore = writable([]);
+    subjectsStore = writable([]);
+    levelsStore = writable([]);
+    lessonTypesStore = writable([
+      { id: 1, title: "Y\xFCz Y\xFCze" },
+      { id: 2, title: "Uzaktan (Webcam)" }
+    ]);
+    Page3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
       let $$unsubscribe_page;
       let $$unsubscribe_levelsStore;
@@ -4414,7 +4205,7 @@ ${``}
 
 					${`<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button>`}</div></form>
 
-			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <a href="${""}" class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</a> yapabilirsiniz.</p>
+			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <button class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</button> yapabilirsiniz.</p>
 
 			<div class="${"flex justify-center flex-wrap gap-2"}">${$teacherSearchParamsStore.keyword ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
                         <span>${escape($teacherSearchParamsStore.keyword)}</span>
@@ -4461,25 +4252,25 @@ ${$teacherTotalStore > 0 && !loading ? `${`<div class="${"pt-4 text-sm text-cent
   }
 });
 
-// .svelte-kit/output/server/nodes/6.js
-var __exports7 = {};
-__export(__exports7, {
-  component: () => component7,
-  file: () => file7,
-  imports: () => imports7,
-  index: () => index7,
-  shared: () => page_exports5,
-  stylesheets: () => stylesheets7
+// .svelte-kit/output/server/nodes/4.js
+var __exports5 = {};
+__export(__exports5, {
+  component: () => component5,
+  file: () => file5,
+  imports: () => imports5,
+  index: () => index5,
+  shared: () => page_exports3,
+  stylesheets: () => stylesheets5
 });
-var index7, component7, file7, imports7, stylesheets7;
-var init__7 = __esm({
-  ".svelte-kit/output/server/nodes/6.js"() {
-    init_page5();
-    index7 = 6;
-    component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c6ccde47.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c6ccde47.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-78baaa38.js", "_app/immutable/chunks/singletons-01dcc482.js", "_app/immutable/chunks/navigation-93808b0f.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-727bc88a.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-4c667634.js"];
-    stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
+var index5, component5, file5, imports5, stylesheets5;
+var init__5 = __esm({
+  ".svelte-kit/output/server/nodes/4.js"() {
+    init_page3();
+    index5 = 4;
+    component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
+    file5 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-4a6e0b10.js";
+    imports5 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-4a6e0b10.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-a913f24f.js", "_app/immutable/chunks/singletons-d3c06606.js", "_app/immutable/chunks/navigation-040d0645.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-f3e7588f.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-bef92515.js"];
+    stylesheets5 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
 
@@ -4777,8 +4568,8 @@ function stringify(value) {
       return NEGATIVE_INFINITY;
     if (thing === 0 && 1 / thing < 0)
       return NEGATIVE_ZERO;
-    const index9 = p++;
-    indexes.set(thing, index9);
+    const index7 = p++;
+    indexes.set(thing, index7);
     let str = "";
     if (is_primitive(thing)) {
       str = stringify_primitive2(thing);
@@ -4868,12 +4659,12 @@ function stringify(value) {
           }
       }
     }
-    stringified[index9] = str;
-    return index9;
+    stringified[index7] = str;
+    return index7;
   }
-  const index8 = flatten(value);
-  if (index8 < 0)
-    return `${index8}`;
+  const index6 = flatten(value);
+  if (index6 < 0)
+    return `${index6}`;
   return `[${stringified.join(",")}]`;
 }
 function stringify_primitive2(thing) {
@@ -4956,20 +4747,20 @@ var Redirect = class {
   }
 };
 var ValidationError = class {
-  constructor(status, data2) {
+  constructor(status, data) {
     this.status = status;
-    this.data = data2;
+    this.data = data;
   }
 };
 function error(status, message) {
   return new HttpError(status, message);
 }
-function json(data2, init2) {
+function json(data, init2) {
   const headers = new Headers(init2 == null ? void 0 : init2.headers);
   if (!headers.has("content-type")) {
     headers.set("content-type", "application/json");
   }
-  return new Response(JSON.stringify(data2), {
+  return new Response(JSON.stringify(data), {
     ...init2,
     headers
   });
@@ -5114,13 +4905,13 @@ function allowed_methods(mod) {
     allowed.push("HEAD");
   return allowed;
 }
-function data_response(data2, event) {
+function data_response(data, event) {
   const headers = {
     "content-type": "application/json",
     "cache-control": "private, no-store"
   };
   try {
-    return new Response(stringify(data2), { headers });
+    return new Response(stringify(data), { headers });
   } catch (e3) {
     const error2 = e3;
     const match = /\[(\d+)\]\.data\.(.+)/.exec(error2.path);
@@ -5186,11 +4977,11 @@ async function render_endpoint(event, mod, state) {
   if (!handler) {
     return method_not_allowed(mod, method);
   }
-  const prerender6 = mod.prerender ?? state.prerender_default;
-  if (prerender6 && (mod.POST || mod.PATCH || mod.PUT || mod.DELETE)) {
+  const prerender4 = mod.prerender ?? state.prerender_default;
+  if (prerender4 && (mod.POST || mod.PATCH || mod.PUT || mod.DELETE)) {
     throw new Error("Cannot prerender endpoints that have mutative methods");
   }
-  if (state.prerendering && !prerender6) {
+  if (state.prerendering && !prerender4) {
     if (state.initiator) {
       throw new Error(`${event.routeId} is not prerenderable`);
     } else {
@@ -5207,7 +4998,7 @@ async function render_endpoint(event, mod, state) {
       );
     }
     if (state.prerendering) {
-      response.headers.set("x-sveltekit-prerender", String(prerender6));
+      response.headers.set("x-sveltekit-prerender", String(prerender4));
     }
     return response;
   } catch (error2) {
@@ -5261,16 +5052,16 @@ async function handle_action_json_request(event, options, server2) {
   }
   check_named_default_separate(actions);
   try {
-    const data2 = await call_action(event, actions);
-    if (data2 instanceof ValidationError) {
-      check_serializability(data2.data, event.routeId, "data");
-      return action_json({ type: "invalid", status: data2.status, data: data2.data });
+    const data = await call_action(event, actions);
+    if (data instanceof ValidationError) {
+      check_serializability(data.data, event.routeId, "data");
+      return action_json({ type: "invalid", status: data.status, data: data.data });
     } else {
-      check_serializability(data2, event.routeId, "data");
+      check_serializability(data, event.routeId, "data");
       return action_json({
         type: "success",
-        status: data2 ? 200 : 204,
-        data: data2
+        status: data ? 200 : 204,
+        data
       });
     }
   } catch (e3) {
@@ -5296,8 +5087,8 @@ async function handle_action_json_request(event, options, server2) {
 function check_incorrect_invalid_use(error2) {
   return error2 instanceof ValidationError ? new Error(`Cannot "throw invalid()". Use "return invalid()"`) : error2;
 }
-function action_json(data2, init2) {
-  return json(data2, init2);
+function action_json(data, init2) {
+  return json(data, init2);
 }
 function is_action_request(event, leaf_node) {
   return leaf_node.server && event.request.method !== "GET" && event.request.method !== "HEAD";
@@ -5316,14 +5107,14 @@ async function handle_action_request(event, server2) {
   }
   check_named_default_separate(actions);
   try {
-    const data2 = await call_action(event, actions);
-    if (data2 instanceof ValidationError) {
-      return { type: "invalid", status: data2.status, data: data2.data };
+    const data = await call_action(event, actions);
+    if (data instanceof ValidationError) {
+      return { type: "invalid", status: data.status, data: data.data };
     } else {
       return {
         type: "success",
         status: 200,
-        data: data2
+        data
       };
     }
   } catch (e3) {
@@ -5452,10 +5243,10 @@ async function load_server_data({ event, state, node, parent }) {
     },
     url
   }));
-  const data2 = result ? await unwrap_promises(result) : null;
+  const data = result ? await unwrap_promises(result) : null;
   return {
     type: "data",
-    data: data2,
+    data,
     uses: {
       dependencies: uses.dependencies.size > 0 ? Array.from(uses.dependencies) : void 0,
       params: uses.params.size > 0 ? Array.from(uses.params) : void 0,
@@ -5472,7 +5263,7 @@ async function load_data({
   server_data_promise,
   state,
   resolve_opts,
-  csr: csr5
+  csr: csr2
 }) {
   var _a;
   const server_data_node = await server_data_promise;
@@ -5537,7 +5328,7 @@ async function load_data({
           return Reflect.get(response2, key2, response2);
         }
       });
-      if (csr5) {
+      if (csr2) {
         const get = response.headers.get;
         response.headers.get = (key2) => {
           const lower = key2.toLowerCase();
@@ -5570,8 +5361,8 @@ async function load_data({
       enumerable: false
     }
   });
-  const data2 = await node.shared.load.call(null, load_event);
-  return data2 ? unwrap_promises(data2) : null;
+  const data = await node.shared.load.call(null, load_event);
+  return data ? unwrap_promises(data) : null;
 }
 function hash(value) {
   let hash22 = 5381;
@@ -5651,11 +5442,11 @@ function serialize_data(fetched, filter, prerendering = false) {
 }
 var s = JSON.stringify;
 var encoder = new TextEncoder();
-function sha256(data2) {
+function sha256(data) {
   if (!key[0])
     precompute();
   const out = init.slice(0);
-  const array2 = encode(data2);
+  const array2 = encode(data);
   for (let i = 0; i < array2.length; i += 16) {
     const w = array2.subarray(i, i + 16);
     let tmp;
@@ -5902,11 +5693,11 @@ var CspReportOnlyProvider = class extends BaseProvider {
   }
 };
 var Csp = class {
-  constructor({ mode, directives, reportOnly }, { prerender: prerender6, dev: dev2 }) {
+  constructor({ mode, directives, reportOnly }, { prerender: prerender4, dev: dev2 }) {
     __publicField(this, "nonce", generate_nonce());
     __publicField(this, "csp_provider");
     __publicField(this, "report_only_provider");
-    const use_hashes = mode === "hash" || mode === "auto" && prerender6;
+    const use_hashes = mode === "hash" || mode === "auto" && prerender4;
     this.csp_provider = new CspProvider(use_hashes, directives, this.nonce, dev2);
     this.report_only_provider = new CspReportOnlyProvider(use_hashes, reportOnly, this.nonce, dev2);
   }
@@ -5951,7 +5742,7 @@ async function render_response({
     }
   }
   const { entry } = options.manifest._;
-  const stylesheets8 = new Set(entry.stylesheets);
+  const stylesheets6 = new Set(entry.stylesheets);
   const modulepreloads = new Set(entry.imports);
   const link_header_preloads = /* @__PURE__ */ new Set();
   const inline_styles = /* @__PURE__ */ new Map();
@@ -5967,10 +5758,10 @@ async function render_response({
       components: await Promise.all(branch.map(({ node }) => node.component())),
       form: form_value
     };
-    let data2 = {};
+    let data = {};
     for (let i = 0; i < branch.length; i += 1) {
-      data2 = { ...data2, ...branch[i].data };
-      props[`data_${i}`] = data2;
+      data = { ...data, ...branch[i].data };
+      props[`data_${i}`] = data;
     }
     props.page = {
       error: error2,
@@ -5978,7 +5769,7 @@ async function render_response({
       routeId: event.routeId,
       status,
       url: event.url,
-      data: data2,
+      data,
       form: form_value
     };
     const print_error = (property, replacement) => {
@@ -5997,7 +5788,7 @@ async function render_response({
         node.imports.forEach((url) => modulepreloads.add(url));
       }
       if (node.stylesheets) {
-        node.stylesheets.forEach((url) => stylesheets8.add(url));
+        node.stylesheets.forEach((url) => stylesheets6.add(url));
       }
       if (node.inline_styles) {
         Object.entries(await node.inline_styles()).forEach(([k, v]) => inline_styles.set(k, v));
@@ -6060,7 +5851,7 @@ async function render_response({
     head += `
 	<style${attributes.join("")}>${content}</style>`;
   }
-  for (const dep of stylesheets8) {
+  for (const dep of stylesheets6) {
     const path = prefixed(dep);
     const attributes = [];
     if (csp.style_needs_nonce) {
@@ -6176,9 +5967,9 @@ async function respond_with_error({ event, options, state, status, error: error2
   try {
     const branch = [];
     const default_layout = await options.manifest._.nodes[0]();
-    const ssr2 = get_option([default_layout], "ssr") ?? true;
-    const csr5 = get_option([default_layout], "csr") ?? true;
-    if (ssr2) {
+    const ssr = get_option([default_layout], "ssr") ?? true;
+    const csr2 = get_option([default_layout], "csr") ?? true;
+    if (ssr) {
       state.initiator = GENERIC_ERROR;
       const server_data_promise = load_server_data({
         event,
@@ -6187,7 +5978,7 @@ async function respond_with_error({ event, options, state, status, error: error2
         parent: async () => ({})
       });
       const server_data = await server_data_promise;
-      const data2 = await load_data({
+      const data = await load_data({
         event,
         fetched,
         node: default_layout,
@@ -6195,13 +5986,13 @@ async function respond_with_error({ event, options, state, status, error: error2
         resolve_opts,
         server_data_promise,
         state,
-        csr: csr5
+        csr: csr2
       });
       branch.push(
         {
           node: default_layout,
           server_data,
-          data: data2
+          data
         },
         {
           node: await options.manifest._.nodes[1](),
@@ -6214,7 +6005,7 @@ async function respond_with_error({ event, options, state, status, error: error2
       options,
       state,
       page_config: {
-        ssr: ssr2,
+        ssr,
         csr: get_option([default_layout], "csr") ?? true
       },
       status,
@@ -6316,13 +6107,13 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
             state,
             node,
             parent: async () => {
-              const data2 = {};
+              const data = {};
               for (let j = 0; j < i; j += 1) {
                 const parent = await server_promises[j];
                 if (parent)
-                  Object.assign(data2, await parent.data);
+                  Object.assign(data, await parent.data);
               }
-              return data2;
+              return data;
             }
           });
         } catch (e3) {
@@ -6331,7 +6122,7 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
         }
       });
     });
-    const csr5 = get_option(nodes, "csr") ?? true;
+    const csr2 = get_option(nodes, "csr") ?? true;
     const load_promises = nodes.map((node, i) => {
       if (load_error)
         throw load_error;
@@ -6342,16 +6133,16 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
             fetched,
             node,
             parent: async () => {
-              const data2 = {};
+              const data = {};
               for (let j = 0; j < i; j += 1) {
-                Object.assign(data2, await load_promises[j]);
+                Object.assign(data, await load_promises[j]);
               }
-              return data2;
+              return data;
             },
             resolve_opts,
             server_data_promise: server_promises[i],
             state,
-            csr: csr5
+            csr: csr2
           });
         } catch (e3) {
           load_error = e3;
@@ -6370,8 +6161,8 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
       if (node) {
         try {
           const server_data = await server_promises[i];
-          const data2 = await load_promises[i];
-          branch.push({ node, server_data, data: data2 });
+          const data = await load_promises[i];
+          branch.push({ node, server_data, data });
         } catch (e3) {
           const err = normalize_error(e3);
           if (err instanceof Redirect) {
@@ -6391,8 +6182,8 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
           const error2 = handle_error_and_jsonify(event, options, err);
           while (i--) {
             if (page2.errors[i]) {
-              const index8 = page2.errors[i];
-              const node2 = await options.manifest._.nodes[index8]();
+              const index6 = page2.errors[i];
+              const node2 = await options.manifest._.nodes[index6]();
               let j = i;
               while (!branch[j])
                 j -= 1;
@@ -6512,14 +6303,14 @@ async function render_data(event, route, options, state) {
             state,
             node,
             parent: async () => {
-              const data2 = {};
+              const data = {};
               for (let j = 0; j < i; j += 1) {
                 const parent = await functions[j]();
                 if (parent) {
-                  Object.assign(data2, parent.data);
+                  Object.assign(data, parent.data);
                 }
               }
-              return data2;
+              return data;
             }
           });
         } catch (e3) {
@@ -6738,10 +6529,10 @@ function create_fetch({ event, options, state, get_cookie_header }) {
         const is_asset = options.manifest.assets.has(filename);
         const is_asset_html = options.manifest.assets.has(filename_html);
         if (is_asset || is_asset_html) {
-          const file8 = is_asset ? filename : filename_html;
+          const file6 = is_asset ? filename : filename_html;
           if (options.read) {
             const type = is_asset ? options.manifest.mimeTypes[filename.slice(filename.lastIndexOf("."))] : "text/html";
-            return new Response(options.read(file8), {
+            return new Response(options.read(file6), {
               headers: type ? { "content-type": type } : {}
             });
           }
@@ -7149,42 +6940,22 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-a79552a5.js", "imports": ["_app/immutable/start-a79552a5.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-01dcc482.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-2890f04d.js", "imports": ["_app/immutable/start-2890f04d.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-d3c06606.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
       () => Promise.resolve().then(() => (init__3(), __exports3)),
       () => Promise.resolve().then(() => (init__4(), __exports4)),
-      () => Promise.resolve().then(() => (init__5(), __exports5)),
-      () => Promise.resolve().then(() => (init__6(), __exports6)),
-      () => Promise.resolve().then(() => (init__7(), __exports7))
+      () => Promise.resolve().then(() => (init__5(), __exports5))
     ],
     routes: [
-      {
-        id: "/",
-        pattern: /^\/$/,
-        names: [],
-        types: [],
-        optional: [],
-        page: { layouts: [0], errors: [1], leaf: 2 },
-        endpoint: null
-      },
       {
         id: "/ozel-ders-ilanlari-verenler/[...catchall]",
         pattern: /^\/ozel-ders-ilanlari-verenler(?:\/(.*))?\/?$/,
         names: ["catchall"],
         types: [null],
         optional: [false],
-        page: { layouts: [0], errors: [1], leaf: 6 },
-        endpoint: null
-      },
-      {
-        id: "/[...catchall]",
-        pattern: /^(?:\/(.*))?\/?$/,
-        names: ["catchall"],
-        types: [null],
-        optional: [false],
-        page: { layouts: [0], errors: [1], leaf: 3 },
+        page: { layouts: [0], errors: [1], leaf: 4 },
         endpoint: null
       }
     ],
@@ -7193,7 +6964,7 @@ var manifest = {
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/about", "/detail"]);
+var prerendered = /* @__PURE__ */ new Set(["/", "/detail"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {
@@ -7250,12 +7021,12 @@ var worker = {
       });
     } else {
       pathname = pathname.replace(/\/$/, "") || "/";
-      let file8 = pathname.substring(1);
+      let file6 = pathname.substring(1);
       try {
-        file8 = decodeURIComponent(file8);
+        file6 = decodeURIComponent(file6);
       } catch (err) {
       }
-      if (manifest.assets.has(file8) || manifest.assets.has(file8 + "/index.html") || prerendered.has(pathname)) {
+      if (manifest.assets.has(file6) || manifest.assets.has(file6 + "/index.html") || prerendered.has(pathname)) {
         res = await env.ASSETS.fetch(req);
       } else {
         res = await server.respond(req, {

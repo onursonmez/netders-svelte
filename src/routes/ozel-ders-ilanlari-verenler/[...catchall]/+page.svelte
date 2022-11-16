@@ -268,7 +268,7 @@
 				</div>
 			</form>
 
-			<p class="mt-4 text-sm text-gray-800">veya daha <a href="" class="text-blue-700 hover:text-blue-900 font-bold" on:click="{() => showSearchModal = true}">Detaylı Arama</a> yapabilirsiniz.</p>
+			<p class="mt-4 text-sm text-gray-800">veya daha <button class="text-blue-700 hover:text-blue-900 font-bold" on:click="{() => showSearchModal = true}">Detaylı Arama</button> yapabilirsiniz.</p>
 
 			<div class="flex justify-center flex-wrap gap-2">
 

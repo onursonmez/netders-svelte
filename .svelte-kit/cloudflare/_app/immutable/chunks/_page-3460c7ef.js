@@ -1,1 +1,0 @@
-import{d as r}from"./environment-b04a8a58.js";import"./index-f9612323.js";const t=r,l=!1;let o;async function s({params:a}){const e=a.catchall.split("/");e&&e[0]=="ozel-ders-ilanlari-verenler"}const i=Object.freeze(Object.defineProperty({__proto__:null,csr:t,prerender:l,data:o,load:s},Symbol.toStringTag,{value:"Module"}));export{i as _,t as c,o as d,s as l,l as p};
