@@ -6,8 +6,10 @@
 	let keyword
 
 	const onSearch = () => {
-		$teacherSearchParamsStore.keyword = keyword
-		goto('/ozel-ders-ilanlari-verenler?keyword=' + keyword)
+		if(keyword){
+			$teacherSearchParamsStore.keyword = keyword
+			goto('/ozel-ders-ilanlari-verenler?keyword=' + keyword)
+		}
 	}
 </script>
 

@@ -874,8 +874,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-35c94cb2.js";
-    imports2 = ["_app/immutable/components/error.svelte-35c94cb2.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-1f6dae06.js", "_app/immutable/chunks/singletons-5a13e00c.js", "_app/immutable/chunks/index-b3592fb7.js"];
+    file2 = "_app/immutable/components/error.svelte-f6fe6214.js";
+    imports2 = ["_app/immutable/components/error.svelte-f6fe6214.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-30eb4ec2.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/chunks/index-b3592fb7.js"];
     stylesheets2 = [];
   }
 });
@@ -946,6 +946,23 @@ async function getUsers(params = []) {
   const body = await result.json();
   teacherItemsStore.set(body.result.items);
   teacherTotalStore.set(body.result.total);
+  return body.result;
+}
+async function getTeacherSearchStoreParamsBySearchParams(params = []) {
+  const response = await fetch(
+    "http://api.nd.io/user/gtsspbsp",
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        query: params == null ? void 0 : params.query
+      })
+    }
+  );
+  const body = await response.json();
+  teacherSearchParamsStore.set(body.result);
   return body.result;
 }
 var init_user = __esm({
@@ -1148,7 +1165,7 @@ var init_page_svelte = __esm({
     Categories = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$1);
       return `<section class="${"dark:bg-gray-900"}"><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">\xD6zel ders kategorileri</h2>
-		<p class="${"text-gray-700 text-base mb-4"}">Alan\u0131nda tecr\xFCbeli e\u011Fitmenlerden \xF6zel ders alarak, ihtiyac\u0131n olan e\u011Fitime, uygun maliyetlerle ve kolayca sahip olabilirsin.
+		<p class="${"text-gray-700 text-base mb-4"}">Alan\u0131nda tecr\xFCbeli \xF6\u011Fretmenlerden \xF6zel ders alarak, ihtiyac\u0131n\u0131z olan e\u011Fitimi, en uygun fiyatlarla alabilirsiniz.
 		</p>
 
 		<div>${validate_component(Splide_1, "Splide").$$render(
@@ -1177,85 +1194,85 @@ var init_page_svelte = __esm({
           default: () => {
             return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", bilgisayar, 0)} alt="${"Bilgisayar"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/bilgisayar"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", bilgisayar, 0)} alt="${"Bilgisayar"}">
 						<span>Bilgisayar</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", dans, 0)} alt="${"Dans"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/dans"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", dans, 0)} alt="${"Dans"}">
 						<span>Dans</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", direksiyon, 0)} alt="${"Direksiyon"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/direksiyon"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", direksiyon, 0)} alt="${"Direksiyon"}">
 						<span>Direksiyon</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ilkogretim, 0)} alt="${"\u0130lk\xF6\u011Fretim Takviye"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/ilkogretim-takviye"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ilkogretim, 0)} alt="${"\u0130lk\xF6\u011Fretim Takviye"}">
 						<span>\u0130lk\xF6\u011Fretim Takviye</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", kisiselgelisim, 0)} alt="${"Ki\u015Fisel Geli\u015Fim"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/kisisel-gelisim"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", kisiselgelisim, 0)} alt="${"Ki\u015Fisel Geli\u015Fim"}">
 						<span>Ki\u015Fisel Geli\u015Fim</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", lise, 0)} alt="${"Lise Takviye"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/lise-takviye"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", lise, 0)} alt="${"Lise Takviye"}">
 						<span>Lise Takviye</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", muzik, 0)} alt="${"M\xFCzik"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/muzik"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", muzik, 0)} alt="${"M\xFCzik"}">
 						<span>M\xFCzik</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", oyunhobi, 0)} alt="${"Oyun & Hobi"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/oyun-ve-hobi"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", oyunhobi, 0)} alt="${"Oyun & Hobi"}">
 						<span>Oyun &amp; Hobi</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ozelegitim, 0)} alt="${"\xD6zel E\u011Fitim"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/ozel-egitim"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ozelegitim, 0)} alt="${"\xD6zel E\u011Fitim"}">
 						<span>\xD6zel E\u011Fitim</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sanat, 0)} alt="${"Sanat"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/sanat"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sanat, 0)} alt="${"Sanat"}">
 						<span>Sanat</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sinavhazirlik, 0)} alt="${"S\u0131nav Haz\u0131rl\u0131k"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/sinav-hazirlik"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sinavhazirlik, 0)} alt="${"S\u0131nav Haz\u0131rl\u0131k"}">
 						<span>S\u0131nav Haz\u0131rl\u0131k</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", spor, 0)} alt="${"Spor"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/spor"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", spor, 0)} alt="${"Spor"}">
 						<span>Spor</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", universite, 0)} alt="${"\xDCniversite Takviye"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/universite-takviye"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", universite, 0)} alt="${"\xDCniversite Takviye"}">
 						<span>\xDCniversite Takviye</span></a>`;
               }
             })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
               default: () => {
-                return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", yabancidil, 0)} alt="${"Yabanc\u0131 Dil"}">
+                return `<a href="${"/ozel-ders-ilanlari-verenler/yabanci-dil"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", yabancidil, 0)} alt="${"Yabanc\u0131 Dil"}">
 						<span>Yabanc\u0131 Dil</span></a>`;
               }
             })}`;
@@ -1512,7 +1529,7 @@ var init_page_svelte = __esm({
 </section>`;
     });
     Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `${$$result.head += `<!-- HEAD_svelte-t32ptj_START -->${$$result.title = `<title>Home</title>`, ""}<meta name="${"description"}" content="${"Svelte demo app"}"><!-- HEAD_svelte-t32ptj_END -->`, ""}
+      return `${$$result.head += `<!-- HEAD_svelte-1rkmm9l_START -->${$$result.title = `<title>\xD6zel Ders \u0130lanlar\u0131 \u0130le \xD6zel Ders Al Veya \xD6zel Ders Ver</title>`, ""}<meta name="${"description"}" content="${"Binlerce onayl\u0131 alan\u0131nda uzman \xF6\u011Fretmen, \xF6zel ders vermek i\xE7in sab\u0131rs\u0131zlan\u0131yor."}"><!-- HEAD_svelte-1rkmm9l_END -->`, ""}
 
 ${validate_component(Greeting, "Greeting").$$render($$result, {}, {}, {})}
 
@@ -1539,8 +1556,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-2060ee32.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-2060ee32.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-e280c5df.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-8c198c95.js", "_app/immutable/chunks/singletons-5a13e00c.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-ad6c73ab.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-ad6c73ab.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-b09faaf1.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -4213,13 +4230,9 @@ __export(page_exports5, {
 });
 async function load2({ params }) {
   if (params && params.catchall) {
-    const urlParams = params.catchall.split("/");
-    if (urlParams.length > 0) {
-      urlParams[0];
-      urlParams[1];
-    }
+    await getTeacherSearchStoreParamsBySearchParams({ "query": params.catchall });
+    await getUsers();
   }
-  await getUsers();
 }
 var csr4, prerender5;
 var init_page5 = __esm({
@@ -4352,20 +4365,20 @@ var init_page_svelte5 = __esm({
       let $$unsubscribe_countiesStore;
       let $teacherTotalStore, $$unsubscribe_teacherTotalStore;
       let $teacherItemsStore, $$unsubscribe_teacherItemsStore;
+      let $$unsubscribe_teacherGendersStore;
+      let $$unsubscribe_lessonTypesStore;
       let $$unsubscribe_citiesStore;
       let $$unsubscribe_subjectsStore;
-      let $$unsubscribe_lessonTypesStore;
-      let $$unsubscribe_teacherGendersStore;
       $$unsubscribe_page = subscribe(page, (value) => value);
       $$unsubscribe_levelsStore = subscribe(levelsStore, (value) => value);
       $$unsubscribe_teacherSearchParamsStore = subscribe(teacherSearchParamsStore, (value) => $teacherSearchParamsStore = value);
       $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
       $$unsubscribe_teacherTotalStore = subscribe(teacherTotalStore, (value) => $teacherTotalStore = value);
       $$unsubscribe_teacherItemsStore = subscribe(teacherItemsStore, (value) => $teacherItemsStore = value);
+      $$unsubscribe_teacherGendersStore = subscribe(teacherGendersStore, (value) => value);
+      $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
       $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
       $$unsubscribe_subjectsStore = subscribe(subjectsStore, (value) => value);
-      $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
-      $$unsubscribe_teacherGendersStore = subscribe(teacherGendersStore, (value) => value);
       let loading = false;
       let teacherSearchParams = {
         "keyword": "",
@@ -4383,10 +4396,10 @@ var init_page_svelte5 = __esm({
       $$unsubscribe_countiesStore();
       $$unsubscribe_teacherTotalStore();
       $$unsubscribe_teacherItemsStore();
+      $$unsubscribe_teacherGendersStore();
+      $$unsubscribe_lessonTypesStore();
       $$unsubscribe_citiesStore();
       $$unsubscribe_subjectsStore();
-      $$unsubscribe_lessonTypesStore();
-      $$unsubscribe_teacherGendersStore();
       return `${$$result.head += `<!-- HEAD_svelte-1796jo3_START -->${$$result.title = `<title>${escape($teacherSearchParamsStore.cityObject ? ((_a = $teacherSearchParamsStore.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape($teacherSearchParamsStore.countyObject ? ((_b = $teacherSearchParamsStore.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape($teacherSearchParamsStore.subjectObject ? ((_c = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape($teacherSearchParamsStore.levelObject ? ((_d = $teacherSearchParamsStore.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-1796jo3_END -->`, ""}
 
 ${``}
@@ -4463,8 +4476,8 @@ var init__7 = __esm({
     init_page5();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-3e255342.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-3e255342.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-e280c5df.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-1f6dae06.js", "_app/immutable/chunks/singletons-5a13e00c.js", "_app/immutable/chunks/navigation-8c198c95.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-188ac13f.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-e280c5df.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-a1a1a8c8.js"];
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c5d5eae0.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c5d5eae0.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-30eb4ec2.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/chunks/navigation-b09faaf1.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-0cdaa970.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-26502c96.js"];
     stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -7135,7 +7148,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-efebf398.js", "imports": ["_app/immutable/start-efebf398.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-5a13e00c.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-3fb38bcb.js", "imports": ["_app/immutable/start-3fb38bcb.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -7151,7 +7164,7 @@ var manifest = {
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/u/42587019", "/u/02389176", "/u/seyyma", "/u/73091826", "/u/39475612", "/u/01392645", "/u/matematiktutkusu", "/u/kardelenarac", "/u/80794356", "/u/23695410", "/u/98750316", "/u/28405963"]);
+var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/ozel-ders-ilanlari-verenler/bilgisayar", "/ozel-ders-ilanlari-verenler/dans", "/ozel-ders-ilanlari-verenler/direksiyon", "/ozel-ders-ilanlari-verenler/ilkogretim-takviye", "/ozel-ders-ilanlari-verenler/kisisel-gelisim", "/ozel-ders-ilanlari-verenler/lise-takviye", "/ozel-ders-ilanlari-verenler/muzik", "/ozel-ders-ilanlari-verenler/oyun-ve-hobi", "/ozel-ders-ilanlari-verenler/ozel-egitim", "/ozel-ders-ilanlari-verenler/sanat", "/ozel-ders-ilanlari-verenler/sinav-hazirlik", "/ozel-ders-ilanlari-verenler/spor", "/ozel-ders-ilanlari-verenler/universite-takviye", "/ozel-ders-ilanlari-verenler/yabanci-dil", "/u/98750316", "/u/1625526664", "/u/60382495", "/u/1651348515", "/u/62517048", "/u/1640003849", "/u/73416508", "/u/1623663766", "/u/51920478", "/u/39217064", "/u/ufaki", "/u/1618319935", "/u/1651247431", "/u/52691780", "/u/63907248", "/u/79352016", "/u/25769143", "/u/53712609", "/u/flexion", "/u/48670321", "/u/kreaplin", "/u/05984217", "/u/26547108", "/u/78569120", "/u/57024193", "/u/21653489", "/u/56793108", "/u/03127594", "/u/alibaltaci", "/u/03795418", "/u/aysegoktas", "/u/69182453", "/u/48063751", "/u/54619082", "/u/42587019", "/u/seyyma", "/u/01392645", "/u/matematiktutkusu", "/u/80794356", "/u/23695410", "/u/28405963", "/u/nurullahozcan", "/u/29103576", "/u/ilknur", "/u/34691205", "/u/17052468", "/u/93871645", "/u/1637579437", "/u/05631472", "/u/rifat-hocam", "/u/1619472063", "/u/09672831", "/u/27053894", "/u/47098253", "/u/69120435", "/u/81793245", "/u/02389176", "/u/kardelenarac", "/u/07369218", "/u/murat-hoca", "/u/fazlituz", "/u/38174206", "/u/62054938", "/u/92084657", "/u/1627703931", "/u/1625861329", "/u/reyhan", "/u/79524163", "/u/1624107484", "/u/orhanbeyaztas", "/u/63108457", "/u/1613953424", "/u/1612604835", "/u/87193654", "/u/65302471", "/u/15732604", "/u/cebiroglusuden", "/u/02847593", "/u/oguzhanalten", "/u/18973205", "/u/ozelegitimci", "/u/1637533285", "/u/1634159118", "/u/1632617505", "/u/75469320", "/u/1617129895", "/u/1630774535", "/u/1629375772", "/u/cagdas-boz", "/u/1625068246", "/u/09173856", "/u/73605819", "/u/29360841", "/u/tamer", "/u/64219708", "/u/79513406", "/u/68512074", "/u/71305896", "/u/eliftatlidil", "/u/mahfuzariturk", "/u/1638868118", "/u/1643928203", "/u/onurkaradas", "/u/1626114385", "/u/1616499905", "/u/64859210", "/u/aryayildirim", "/u/1649016011", "/u/28943705", "/u/1651776908", "/u/73091826", "/u/39475612", "/u/mine-calipinar", "/u/80159263", "/u/75480923", "/u/nidadilsiz", "/u/1652879212", "/u/1619427589", "/u/talha"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {

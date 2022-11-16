@@ -29,6 +29,24 @@ async function getUsers(params = []) {
   teacherTotalStore.set(body.result.total);
   return body.result;
 }
+async function getTeacherSearchStoreParamsBySearchParams(params = []) {
+  const response = await fetch(
+    "http://api.nd.io/user/gtsspbsp",
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        query: params == null ? void 0 : params.query
+      })
+    }
+  );
+  const body = await response.json();
+  teacherSearchParamsStore.set(body.result);
+  return body.result;
+}
 export {
+  getTeacherSearchStoreParamsBySearchParams as a,
   getUsers as g
 };

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { dev } from '$app/environment'
-import { getUsers } from '/src/repository/user'
+import { getUsers, getTeacherSearchStoreParamsBySearchParams } from '/src/repository/user'
+import { getOneCityBy, getOneCountyBy } from '/src/repository/location'
 import { teacherSearchParamsStore } from '/src/stores/userStore'
 
 // we don't need any JS on this page, though we'll load
@@ -14,19 +15,12 @@ export const prerender = true;
 /** @param {Parameters<import('./$types').PageLoad>[0]} event */
 export async function load({ params })
 {
-    let location
-    let lesson
-
     if(params && params.catchall)
     {
-        const urlParams = params.catchall.split('/')
-        if(urlParams.length > 0)
-        {
-            //TODO store'a at, getUsers() store verilerinden calissin
-            location = urlParams[0]
-            lesson = urlParams[1]
-        }
+        await getTeacherSearchStoreParamsBySearchParams({'query': params.catchall})
+
+        await getUsers()
     }
 
-    await getUsers()
+
 }

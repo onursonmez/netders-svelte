@@ -184,7 +184,7 @@ const css$1 = {
 const Categories = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$1);
   return `<section class="${"dark:bg-gray-900"}"><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">\xD6zel ders kategorileri</h2>
-		<p class="${"text-gray-700 text-base mb-4"}">Alan\u0131nda tecr\xFCbeli e\u011Fitmenlerden \xF6zel ders alarak, ihtiyac\u0131n olan e\u011Fitime, uygun maliyetlerle ve kolayca sahip olabilirsin.
+		<p class="${"text-gray-700 text-base mb-4"}">Alan\u0131nda tecr\xFCbeli \xF6\u011Fretmenlerden \xF6zel ders alarak, ihtiyac\u0131n\u0131z olan e\u011Fitimi, en uygun fiyatlarla alabilirsiniz.
 		</p>
 
 		<div>${validate_component(Splide_1, "Splide").$$render(
@@ -213,85 +213,85 @@ const Categories = create_ssr_component(($$result, $$props, $$bindings, slots) =
       default: () => {
         return `${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", bilgisayar, 0)} alt="${"Bilgisayar"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/bilgisayar"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", bilgisayar, 0)} alt="${"Bilgisayar"}">
 						<span>Bilgisayar</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", dans, 0)} alt="${"Dans"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/dans"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", dans, 0)} alt="${"Dans"}">
 						<span>Dans</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", direksiyon, 0)} alt="${"Direksiyon"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/direksiyon"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", direksiyon, 0)} alt="${"Direksiyon"}">
 						<span>Direksiyon</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ilkogretim, 0)} alt="${"\u0130lk\xF6\u011Fretim Takviye"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/ilkogretim-takviye"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ilkogretim, 0)} alt="${"\u0130lk\xF6\u011Fretim Takviye"}">
 						<span>\u0130lk\xF6\u011Fretim Takviye</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", kisiselgelisim, 0)} alt="${"Ki\u015Fisel Geli\u015Fim"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/kisisel-gelisim"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", kisiselgelisim, 0)} alt="${"Ki\u015Fisel Geli\u015Fim"}">
 						<span>Ki\u015Fisel Geli\u015Fim</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", lise, 0)} alt="${"Lise Takviye"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/lise-takviye"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", lise, 0)} alt="${"Lise Takviye"}">
 						<span>Lise Takviye</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", muzik, 0)} alt="${"M\xFCzik"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/muzik"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", muzik, 0)} alt="${"M\xFCzik"}">
 						<span>M\xFCzik</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", oyunhobi, 0)} alt="${"Oyun & Hobi"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/oyun-ve-hobi"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", oyunhobi, 0)} alt="${"Oyun & Hobi"}">
 						<span>Oyun &amp; Hobi</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ozelegitim, 0)} alt="${"\xD6zel E\u011Fitim"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/ozel-egitim"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", ozelegitim, 0)} alt="${"\xD6zel E\u011Fitim"}">
 						<span>\xD6zel E\u011Fitim</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sanat, 0)} alt="${"Sanat"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/sanat"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sanat, 0)} alt="${"Sanat"}">
 						<span>Sanat</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sinavhazirlik, 0)} alt="${"S\u0131nav Haz\u0131rl\u0131k"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/sinav-hazirlik"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", sinavhazirlik, 0)} alt="${"S\u0131nav Haz\u0131rl\u0131k"}">
 						<span>S\u0131nav Haz\u0131rl\u0131k</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", spor, 0)} alt="${"Spor"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/spor"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", spor, 0)} alt="${"Spor"}">
 						<span>Spor</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", universite, 0)} alt="${"\xDCniversite Takviye"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/universite-takviye"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", universite, 0)} alt="${"\xDCniversite Takviye"}">
 						<span>\xDCniversite Takviye</span></a>`;
           }
         })}
 				${validate_component(SplideSlide, "SplideSlide").$$render($$result, { class: "text-center" }, {}, {
           default: () => {
-            return `<a href="${"/"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", yabancidil, 0)} alt="${"Yabanc\u0131 Dil"}">
+            return `<a href="${"/ozel-ders-ilanlari-verenler/yabanci-dil"}" class="${"text-blue-700 hover:text-blue-900"}"><img${add_attribute("src", yabancidil, 0)} alt="${"Yabanc\u0131 Dil"}">
 						<span>Yabanc\u0131 Dil</span></a>`;
           }
         })}`;
@@ -549,7 +549,7 @@ const UserSlider = create_ssr_component(($$result, $$props, $$bindings, slots) =
 </section>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${$$result.head += `<!-- HEAD_svelte-t32ptj_START -->${$$result.title = `<title>Home</title>`, ""}<meta name="${"description"}" content="${"Svelte demo app"}"><!-- HEAD_svelte-t32ptj_END -->`, ""}
+  return `${$$result.head += `<!-- HEAD_svelte-1rkmm9l_START -->${$$result.title = `<title>\xD6zel Ders \u0130lanlar\u0131 \u0130le \xD6zel Ders Al Veya \xD6zel Ders Ver</title>`, ""}<meta name="${"description"}" content="${"Binlerce onayl\u0131 alan\u0131nda uzman \xF6\u011Fretmen, \xF6zel ders vermek i\xE7in sab\u0131rs\u0131zlan\u0131yor."}"><!-- HEAD_svelte-1rkmm9l_END -->`, ""}
 
 ${validate_component(Greeting, "Greeting").$$render($$result, {}, {}, {})}
 

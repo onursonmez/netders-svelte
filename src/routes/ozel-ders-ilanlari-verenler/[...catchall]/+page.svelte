@@ -13,6 +13,8 @@
 
 	onMount(async () => {
 
+		teacherSearchParams = $teacherSearchParamsStore
+
 		if($page.url.searchParams.has('keyword')){
 			teacherSearchParams.keyword = $page.url.searchParams.get('keyword')
 			$teacherSearchParamsStore.keyword = $page.url.searchParams.get('keyword')
@@ -23,13 +25,24 @@
 			$teacherSearchParamsStore.budget = $page.url.searchParams.get('budget')
 		}
 
+		if($page.url.searchParams.has('lesson_type')){
+			teacherSearchParams.lessonTypeObject = $lessonTypesStore.find(lts => lts.id == $page.url.searchParams.get('lesson_type'))
+			$teacherSearchParamsStore.lessonTypeObject = $lessonTypesStore.find(lts => lts.id == $page.url.searchParams.get('lesson_type'))
+		}
+
+		if($page.url.searchParams.has('gender')){
+			teacherSearchParams.genderObject = $teacherGendersStore.find(lts => lts.id == $page.url.searchParams.get('gender'))
+			$teacherSearchParamsStore.genderObject = $teacherGendersStore.find(lts => lts.id == $page.url.searchParams.get('gender'))
+		}
+
+
 		if(Array.from($page.url.searchParams).length > 0){
 			await onSearch()
 		}
 
 		await getCities()
 		await getSubjects()
-		teacherSearchParams = $teacherSearchParamsStore
+
 	})
 
 	let loading = false
@@ -92,21 +105,29 @@
 
 	const changeState = () => {
 
-		if(teacherSearchParams.keyword || teacherSearchParams.budget){
-			if(teacherSearchParams.keyword)
-				$page.url.searchParams.set('keyword', teacherSearchParams.keyword)
-			else
-				$page.url.searchParams.delete('keyword')
+		if(teacherSearchParams.keyword)
+			$page.url.searchParams.set('keyword', teacherSearchParams.keyword)
+		else
+			$page.url.searchParams.delete('keyword')
 
-			if(teacherSearchParams.budget)
-				$page.url.searchParams.set('budget', teacherSearchParams.budget)
-			else
-				$page.url.searchParams.delete('budget')
-
-			goto(`?${$page.url.searchParams.toString()}`);
+		if(teacherSearchParams.budget){
+			$page.url.searchParams.set('budget', teacherSearchParams.budget)
+		} else {
+			$page.url.searchParams.delete('budget')
 		}
 
+		if(teacherSearchParams.lessonTypeObject)
+			$page.url.searchParams.set('lesson_type', teacherSearchParams.lessonTypeObject.id)
+		else
+			$page.url.searchParams.delete('lesson_type')
+
+		if(teacherSearchParams.genderObject)
+			$page.url.searchParams.set('gender', teacherSearchParams.genderObject.id)
+		else
+			$page.url.searchParams.delete('gender')
+
 		let finalState = []
+		let queryParams = Array.from($page.url.searchParams).length > 0 ? '?' + $page.url.searchParams.toString() : ''
 
 		if(teacherSearchParams.cityObject?.slug || teacherSearchParams.countyObject?.slug)
 		finalState.push(teacherSearchParams.countyObject?.slug ? teacherSearchParams.countyObject?.slug : teacherSearchParams.cityObject?.slug)
@@ -115,9 +136,9 @@
 		finalState.push(teacherSearchParams.levelObject?.slug ? teacherSearchParams.levelObject?.slug : teacherSearchParams.subjectObject?.slug)
 
 		if(finalState.length > 0){
-			window.history.pushState('', '', '/ozel-ders-ilanlari-verenler/' + finalState.join('/'));
+			window.history.pushState('', '', '/ozel-ders-ilanlari-verenler/' + finalState.join('/') + queryParams);
 		} else {
-			window.history.pushState('', '', '/ozel-ders-ilanlari-verenler');
+			window.history.pushState('', '', '/ozel-ders-ilanlari-verenler' + queryParams);
 		}
 	}
 
@@ -168,7 +189,7 @@
 
 			<div>
 				<span class="pb-1 block">Ders</span>
-				<select name="city" bind:value={teacherSearchParams.subjectObject} on:change={updateLevels} class="w-full border border-gray-300 rounded-md">
+				<select name="subject" bind:value={teacherSearchParams.subjectObject} on:change={updateLevels} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seçiniz</option>
 					{#each $subjectsStore as subject}
 						<option value="{subject}">{subject.title}</option>
@@ -178,7 +199,7 @@
 
 			<div>
 				<span class="pb-1 block">Konu</span>
-				<select name="county" bind:value={teacherSearchParams.levelObject} class="w-full border border-gray-300 rounded-md">
+				<select name="level" bind:value={teacherSearchParams.levelObject} class="w-full border border-gray-300 rounded-md">
 					{#if ($levelsStore.length > 0)}
 						<option value="">Lütfen Seçiniz</option>
 						{#each $levelsStore as level}
@@ -192,7 +213,7 @@
 
 			<div>
 				<span class="pb-1 block">Ders Tipi</span>
-				<select name="county" bind:value={teacherSearchParams.lessonTypeObject} class="w-full border border-gray-300 rounded-md">
+				<select name="lesson_type" bind:value={teacherSearchParams.lessonTypeObject} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seçiniz</option>
 					{#each $lessonTypesStore as lessonType}
 						<option value="{lessonType}">{lessonType.title}</option>
@@ -202,7 +223,7 @@
 
 			<div>
 				<span class="pb-1 block">Öğretmen</span>
-				<select name="county" bind:value={teacherSearchParams.genderObject} class="w-full border border-gray-300 rounded-md">
+				<select name="gender" bind:value={teacherSearchParams.genderObject} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seçiniz</option>
 					{#each $teacherGendersStore as gender}
 						<option value="{gender}">{gender.title}</option>

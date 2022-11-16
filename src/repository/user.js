@@ -69,3 +69,24 @@ export async function photo(username)
 
     return body.result
 }
+
+export async function getTeacherSearchStoreParamsBySearchParams(params = [])
+{
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/gtsspbsp',
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                query: params?.query
+            })
+        },
+    );
+
+    const body = await response.json()
+
+    teacherSearchParamsStore.set(body.result)
+
+    return body.result
+}

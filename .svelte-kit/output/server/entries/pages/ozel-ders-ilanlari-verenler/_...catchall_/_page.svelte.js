@@ -111,20 +111,20 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$unsubscribe_countiesStore;
   let $teacherTotalStore, $$unsubscribe_teacherTotalStore;
   let $teacherItemsStore, $$unsubscribe_teacherItemsStore;
+  let $$unsubscribe_teacherGendersStore;
+  let $$unsubscribe_lessonTypesStore;
   let $$unsubscribe_citiesStore;
   let $$unsubscribe_subjectsStore;
-  let $$unsubscribe_lessonTypesStore;
-  let $$unsubscribe_teacherGendersStore;
   $$unsubscribe_page = subscribe(page, (value) => value);
   $$unsubscribe_levelsStore = subscribe(levelsStore, (value) => value);
   $$unsubscribe_teacherSearchParamsStore = subscribe(teacherSearchParamsStore, (value) => $teacherSearchParamsStore = value);
   $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
   $$unsubscribe_teacherTotalStore = subscribe(teacherTotalStore, (value) => $teacherTotalStore = value);
   $$unsubscribe_teacherItemsStore = subscribe(teacherItemsStore, (value) => $teacherItemsStore = value);
+  $$unsubscribe_teacherGendersStore = subscribe(teacherGendersStore, (value) => value);
+  $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
   $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
   $$unsubscribe_subjectsStore = subscribe(subjectsStore, (value) => value);
-  $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
-  $$unsubscribe_teacherGendersStore = subscribe(teacherGendersStore, (value) => value);
   let loading = false;
   let teacherSearchParams = {
     "keyword": "",
@@ -142,10 +142,10 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_countiesStore();
   $$unsubscribe_teacherTotalStore();
   $$unsubscribe_teacherItemsStore();
+  $$unsubscribe_teacherGendersStore();
+  $$unsubscribe_lessonTypesStore();
   $$unsubscribe_citiesStore();
   $$unsubscribe_subjectsStore();
-  $$unsubscribe_lessonTypesStore();
-  $$unsubscribe_teacherGendersStore();
   return `${$$result.head += `<!-- HEAD_svelte-1796jo3_START -->${$$result.title = `<title>${escape($teacherSearchParamsStore.cityObject ? ((_a = $teacherSearchParamsStore.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape($teacherSearchParamsStore.countyObject ? ((_b = $teacherSearchParamsStore.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape($teacherSearchParamsStore.subjectObject ? ((_c = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape($teacherSearchParamsStore.levelObject ? ((_d = $teacherSearchParamsStore.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-1796jo3_END -->`, ""}
 
 ${``}

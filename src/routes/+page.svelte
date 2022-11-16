@@ -6,8 +6,8 @@ import UserSlider from "../components/user/UserSlider.svelte";
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Özel Ders İlanları İle Özel Ders Al Veya Özel Ders Ver</title>
+	<meta name="description" content="Binlerce onaylı alanında uzman öğretmen, özel ders vermek için sabırsızlanıyor." />
 </svelte:head>
 
 <Greeting />
