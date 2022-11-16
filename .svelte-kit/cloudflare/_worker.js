@@ -874,8 +874,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-fb543ba0.js";
-    imports2 = ["_app/immutable/components/error.svelte-fb543ba0.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-93b223ec.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/chunks/index-b3592fb7.js"];
+    file2 = "_app/immutable/components/error.svelte-12588d20.js";
+    imports2 = ["_app/immutable/components/error.svelte-12588d20.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-4b4f9f74.js", "_app/immutable/chunks/singletons-e18d08d1.js", "_app/immutable/chunks/index-b3592fb7.js"];
     stylesheets2 = [];
   }
 });
@@ -888,7 +888,7 @@ __export(page_exports, {
 var prerender;
 var init_page = __esm({
   ".svelte-kit/output/server/entries/pages/_page.js"() {
-    prerender = true;
+    prerender = false;
   }
 });
 
@@ -1556,8 +1556,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-ddd54ed6.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-ddd54ed6.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-47e78651.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-6d788bda.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-6d788bda.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-d52b03b8.js", "_app/immutable/chunks/singletons-e18d08d1.js", "_app/immutable/modules/pages/_page.js-9eeffa94.js", "_app/immutable/chunks/_page-0032eb25.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -1591,7 +1591,7 @@ var init_page2 = __esm({
     init_environment();
     init_chunks();
     csr = dev;
-    prerender2 = true;
+    prerender2 = false;
   }
 });
 
@@ -1627,7 +1627,7 @@ var init__4 = __esm({
     index4 = 3;
     component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
     file4 = "_app/immutable/components/pages/_...catchall_/_page.svelte-c24567cf.js";
-    imports4 = ["_app/immutable/components/pages/_...catchall_/_page.svelte-c24567cf.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/modules/pages/_...catchall_/_page.js-efd0caa2.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/_page-04adad82.js"];
+    imports4 = ["_app/immutable/components/pages/_...catchall_/_page.svelte-c24567cf.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/modules/pages/_...catchall_/_page.js-62269d23.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/_page-3460c7ef.js"];
     stylesheets4 = [];
   }
 });
@@ -4226,8 +4226,7 @@ var page_exports5 = {};
 __export(page_exports5, {
   csr: () => csr4,
   load: () => load2,
-  prerender: () => prerender5,
-  ssr: () => ssr
+  prerender: () => prerender5
 });
 async function load2({ params }) {
   if (params && params.catchall) {
@@ -4235,14 +4234,13 @@ async function load2({ params }) {
   }
   await getUsers();
 }
-var csr4, prerender5, ssr;
+var csr4, prerender5;
 var init_page5 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
     init_environment();
     init_user();
     csr4 = dev;
-    prerender5 = true;
-    ssr = true;
+    prerender5 = false;
   }
 });
 
@@ -4477,8 +4475,8 @@ var init__7 = __esm({
     init_page5();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-0b284bd2.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-0b284bd2.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-93b223ec.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/chunks/navigation-47e78651.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-bbe94177.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-2be2cfe9.js"];
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-4fac2a92.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-4fac2a92.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-4b4f9f74.js", "_app/immutable/chunks/singletons-e18d08d1.js", "_app/immutable/chunks/navigation-d52b03b8.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-c9da8d2c.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-ff2ddfe7.js"];
     stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -6176,9 +6174,9 @@ async function respond_with_error({ event, options, state, status, error: error2
   try {
     const branch = [];
     const default_layout = await options.manifest._.nodes[0]();
-    const ssr2 = get_option([default_layout], "ssr") ?? true;
+    const ssr = get_option([default_layout], "ssr") ?? true;
     const csr5 = get_option([default_layout], "csr") ?? true;
-    if (ssr2) {
+    if (ssr) {
       state.initiator = GENERIC_ERROR;
       const server_data_promise = load_server_data({
         event,
@@ -6214,7 +6212,7 @@ async function respond_with_error({ event, options, state, status, error: error2
       options,
       state,
       page_config: {
-        ssr: ssr2,
+        ssr,
         csr: get_option([default_layout], "csr") ?? true
       },
       status,
@@ -7149,7 +7147,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-d923a797.js", "imports": ["_app/immutable/start-d923a797.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d289404c.js", "imports": ["_app/immutable/start-d289404c.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-e18d08d1.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -7159,13 +7157,41 @@ var manifest = {
       () => Promise.resolve().then(() => (init__6(), __exports6)),
       () => Promise.resolve().then(() => (init__7(), __exports7))
     ],
-    routes: [],
+    routes: [
+      {
+        id: "/",
+        pattern: /^\/$/,
+        names: [],
+        types: [],
+        optional: [],
+        page: { layouts: [0], errors: [1], leaf: 2 },
+        endpoint: null
+      },
+      {
+        id: "/ozel-ders-ilanlari-verenler/[...catchall]",
+        pattern: /^\/ozel-ders-ilanlari-verenler(?:\/(.*))?\/?$/,
+        names: ["catchall"],
+        types: [null],
+        optional: [false],
+        page: { layouts: [0], errors: [1], leaf: 6 },
+        endpoint: null
+      },
+      {
+        id: "/[...catchall]",
+        pattern: /^(?:\/(.*))?\/?$/,
+        names: ["catchall"],
+        types: [null],
+        optional: [false],
+        page: { layouts: [0], errors: [1], leaf: 3 },
+        endpoint: null
+      }
+    ],
     matchers: async () => {
       return {};
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/ozel-ders-ilanlari-verenler/bilgisayar", "/ozel-ders-ilanlari-verenler/dans", "/ozel-ders-ilanlari-verenler/direksiyon", "/ozel-ders-ilanlari-verenler/ilkogretim-takviye", "/ozel-ders-ilanlari-verenler/kisisel-gelisim", "/ozel-ders-ilanlari-verenler/lise-takviye", "/ozel-ders-ilanlari-verenler/muzik", "/ozel-ders-ilanlari-verenler/oyun-ve-hobi", "/ozel-ders-ilanlari-verenler/ozel-egitim", "/ozel-ders-ilanlari-verenler/sanat", "/ozel-ders-ilanlari-verenler/sinav-hazirlik", "/ozel-ders-ilanlari-verenler/spor", "/ozel-ders-ilanlari-verenler/universite-takviye", "/ozel-ders-ilanlari-verenler/yabanci-dil", "/u/42587019", "/u/02389176", "/u/seyyma", "/u/73091826", "/u/39475612", "/u/01392645", "/u/matematiktutkusu", "/u/kardelenarac", "/u/80794356", "/u/23695410", "/u/98750316", "/u/28405963", "/u/1625526664", "/u/60382495", "/u/1651348515", "/u/62517048", "/u/1640003849", "/u/73416508", "/u/1623663766", "/u/51920478", "/u/39217064", "/u/ufaki", "/u/1618319935", "/u/1651247431", "/u/52691780", "/u/63907248", "/u/79352016", "/u/25769143", "/u/53712609", "/u/flexion", "/u/48670321", "/u/kreaplin", "/u/05984217", "/u/26547108", "/u/78569120", "/u/57024193", "/u/21653489", "/u/56793108", "/u/03127594", "/u/alibaltaci", "/u/03795418", "/u/aysegoktas", "/u/69182453", "/u/48063751", "/u/54619082", "/u/nurullahozcan", "/u/29103576", "/u/ilknur", "/u/34691205", "/u/17052468", "/u/93871645", "/u/1637579437", "/u/05631472", "/u/rifat-hocam", "/u/1619472063", "/u/09672831", "/u/27053894", "/u/47098253", "/u/69120435", "/u/81793245", "/u/07369218", "/u/murat-hoca", "/u/fazlituz", "/u/38174206", "/u/62054938", "/u/92084657", "/u/1627703931", "/u/1625861329", "/u/reyhan", "/u/79524163", "/u/1624107484", "/u/orhanbeyaztas", "/u/63108457", "/u/1613953424", "/u/1612604835", "/u/87193654", "/u/65302471", "/u/15732604", "/u/cebiroglusuden", "/u/02847593", "/u/oguzhanalten", "/u/18973205", "/u/ozelegitimci", "/u/1637533285", "/u/1634159118", "/u/1632617505", "/u/75469320", "/u/1617129895", "/u/1630774535", "/u/1629375772", "/u/cagdas-boz", "/u/1625068246", "/u/09173856", "/u/73605819", "/u/29360841", "/u/tamer", "/u/64219708", "/u/79513406", "/u/68512074", "/u/71305896", "/u/eliftatlidil", "/u/mahfuzariturk", "/u/1638868118", "/u/1643928203", "/u/onurkaradas", "/u/1626114385", "/u/1616499905", "/u/64859210", "/u/aryayildirim", "/u/1649016011", "/u/28943705", "/u/1651776908", "/u/mine-calipinar", "/u/80159263", "/u/75480923", "/u/nidadilsiz", "/u/1652879212", "/u/1619427589", "/u/talha"]);
+var prerendered = /* @__PURE__ */ new Set(["/about", "/detail"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {
