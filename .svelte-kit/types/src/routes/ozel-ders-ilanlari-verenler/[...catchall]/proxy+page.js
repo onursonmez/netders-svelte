@@ -10,7 +10,7 @@ export const csr = dev;
 // it so that it gets served as a static asset in production
 export const prerender = true;
 
-export const ssr = true;
+console.log(dev)
 
 /** @param {Parameters<import('./$types').PageLoad>[0]} event */
 export async function load({ params })
