@@ -1,7 +1,7 @@
 import { d as dev } from "../../../chunks/environment.js";
 import "../../../chunks/index.js";
 const csr = dev;
-const prerender = true;
+const prerender = false;
 let data;
 async function load({ params }) {
   const urlParams = params.catchall.split("/");
