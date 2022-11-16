@@ -118,7 +118,7 @@
 
 		if(teacherSearchParams.lessonTypeObject)
 			$page.url.searchParams.set('lesson_type', teacherSearchParams.lessonTypeObject.id)
-		else
+		elsed
 			$page.url.searchParams.delete('lesson_type')
 
 		if(teacherSearchParams.genderObject)

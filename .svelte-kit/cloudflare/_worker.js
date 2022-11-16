@@ -874,8 +874,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-f6fe6214.js";
-    imports2 = ["_app/immutable/components/error.svelte-f6fe6214.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-30eb4ec2.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/chunks/index-b3592fb7.js"];
+    file2 = "_app/immutable/components/error.svelte-5fad54df.js";
+    imports2 = ["_app/immutable/components/error.svelte-5fad54df.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-0198622e.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/chunks/index-b3592fb7.js"];
     stylesheets2 = [];
   }
 });
@@ -1556,8 +1556,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-ad6c73ab.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-ad6c73ab.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-b09faaf1.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-e5d49cf5.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-e5d49cf5.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-7a28343a.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -4231,16 +4231,14 @@ __export(page_exports5, {
 async function load2({ params }) {
   if (params && params.catchall) {
     await getTeacherSearchStoreParamsBySearchParams({ "query": params.catchall });
-    await getUsers();
   }
+  await getUsers();
 }
 var csr4, prerender5;
 var init_page5 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
-    init_environment();
     init_user();
-    init_chunks();
-    csr4 = dev;
+    csr4 = true;
     prerender5 = true;
   }
 });
@@ -4476,8 +4474,8 @@ var init__7 = __esm({
     init_page5();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c5d5eae0.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c5d5eae0.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-30eb4ec2.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/chunks/navigation-b09faaf1.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-0cdaa970.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-26502c96.js"];
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-7e2c79d5.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-7e2c79d5.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-0198622e.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/chunks/navigation-7a28343a.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-6aaf3498.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-1413841f.js"];
     stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -7148,7 +7146,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-3fb38bcb.js", "imports": ["_app/immutable/start-3fb38bcb.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-757fae7f.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-119750a9.js", "imports": ["_app/immutable/start-119750a9.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -7164,7 +7162,7 @@ var manifest = {
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/ozel-ders-ilanlari-verenler/bilgisayar", "/ozel-ders-ilanlari-verenler/dans", "/ozel-ders-ilanlari-verenler/direksiyon", "/ozel-ders-ilanlari-verenler/ilkogretim-takviye", "/ozel-ders-ilanlari-verenler/kisisel-gelisim", "/ozel-ders-ilanlari-verenler/lise-takviye", "/ozel-ders-ilanlari-verenler/muzik", "/ozel-ders-ilanlari-verenler/oyun-ve-hobi", "/ozel-ders-ilanlari-verenler/ozel-egitim", "/ozel-ders-ilanlari-verenler/sanat", "/ozel-ders-ilanlari-verenler/sinav-hazirlik", "/ozel-ders-ilanlari-verenler/spor", "/ozel-ders-ilanlari-verenler/universite-takviye", "/ozel-ders-ilanlari-verenler/yabanci-dil", "/u/98750316", "/u/1625526664", "/u/60382495", "/u/1651348515", "/u/62517048", "/u/1640003849", "/u/73416508", "/u/1623663766", "/u/51920478", "/u/39217064", "/u/ufaki", "/u/1618319935", "/u/1651247431", "/u/52691780", "/u/63907248", "/u/79352016", "/u/25769143", "/u/53712609", "/u/flexion", "/u/48670321", "/u/kreaplin", "/u/05984217", "/u/26547108", "/u/78569120", "/u/57024193", "/u/21653489", "/u/56793108", "/u/03127594", "/u/alibaltaci", "/u/03795418", "/u/aysegoktas", "/u/69182453", "/u/48063751", "/u/54619082", "/u/42587019", "/u/seyyma", "/u/01392645", "/u/matematiktutkusu", "/u/80794356", "/u/23695410", "/u/28405963", "/u/nurullahozcan", "/u/29103576", "/u/ilknur", "/u/34691205", "/u/17052468", "/u/93871645", "/u/1637579437", "/u/05631472", "/u/rifat-hocam", "/u/1619472063", "/u/09672831", "/u/27053894", "/u/47098253", "/u/69120435", "/u/81793245", "/u/02389176", "/u/kardelenarac", "/u/07369218", "/u/murat-hoca", "/u/fazlituz", "/u/38174206", "/u/62054938", "/u/92084657", "/u/1627703931", "/u/1625861329", "/u/reyhan", "/u/79524163", "/u/1624107484", "/u/orhanbeyaztas", "/u/63108457", "/u/1613953424", "/u/1612604835", "/u/87193654", "/u/65302471", "/u/15732604", "/u/cebiroglusuden", "/u/02847593", "/u/oguzhanalten", "/u/18973205", "/u/ozelegitimci", "/u/1637533285", "/u/1634159118", "/u/1632617505", "/u/75469320", "/u/1617129895", "/u/1630774535", "/u/1629375772", "/u/cagdas-boz", "/u/1625068246", "/u/09173856", "/u/73605819", "/u/29360841", "/u/tamer", "/u/64219708", "/u/79513406", "/u/68512074", "/u/71305896", "/u/eliftatlidil", "/u/mahfuzariturk", "/u/1638868118", "/u/1643928203", "/u/onurkaradas", "/u/1626114385", "/u/1616499905", "/u/64859210", "/u/aryayildirim", "/u/1649016011", "/u/28943705", "/u/1651776908", "/u/73091826", "/u/39475612", "/u/mine-calipinar", "/u/80159263", "/u/75480923", "/u/nidadilsiz", "/u/1652879212", "/u/1619427589", "/u/talha"]);
+var prerendered = /* @__PURE__ */ new Set(["/", "/about", "/detail", "/ozel-ders-ilanlari-verenler", "/ozel-ders-ilanlari-verenler/bilgisayar", "/ozel-ders-ilanlari-verenler/dans", "/ozel-ders-ilanlari-verenler/direksiyon", "/ozel-ders-ilanlari-verenler/ilkogretim-takviye", "/ozel-ders-ilanlari-verenler/kisisel-gelisim", "/ozel-ders-ilanlari-verenler/lise-takviye", "/ozel-ders-ilanlari-verenler/muzik", "/ozel-ders-ilanlari-verenler/oyun-ve-hobi", "/ozel-ders-ilanlari-verenler/ozel-egitim", "/ozel-ders-ilanlari-verenler/sanat", "/ozel-ders-ilanlari-verenler/sinav-hazirlik", "/ozel-ders-ilanlari-verenler/spor", "/ozel-ders-ilanlari-verenler/universite-takviye", "/ozel-ders-ilanlari-verenler/yabanci-dil", "/u/42587019", "/u/02389176", "/u/seyyma", "/u/73091826", "/u/39475612", "/u/01392645", "/u/matematiktutkusu", "/u/kardelenarac", "/u/80794356", "/u/23695410", "/u/98750316", "/u/28405963", "/u/1625526664", "/u/60382495", "/u/1651348515", "/u/62517048", "/u/1640003849", "/u/73416508", "/u/1623663766", "/u/51920478", "/u/39217064", "/u/ufaki", "/u/1618319935", "/u/1651247431", "/u/52691780", "/u/63907248", "/u/79352016", "/u/25769143", "/u/53712609", "/u/flexion", "/u/48670321", "/u/kreaplin", "/u/05984217", "/u/26547108", "/u/78569120", "/u/57024193", "/u/21653489", "/u/56793108", "/u/03127594", "/u/alibaltaci", "/u/03795418", "/u/aysegoktas", "/u/69182453", "/u/48063751", "/u/54619082", "/u/nurullahozcan", "/u/29103576", "/u/ilknur", "/u/34691205", "/u/17052468", "/u/93871645", "/u/1637579437", "/u/05631472", "/u/rifat-hocam", "/u/1619472063", "/u/09672831", "/u/27053894", "/u/47098253", "/u/69120435", "/u/81793245", "/u/07369218", "/u/murat-hoca", "/u/fazlituz", "/u/38174206", "/u/62054938", "/u/92084657", "/u/1627703931", "/u/1625861329", "/u/reyhan", "/u/79524163", "/u/1624107484", "/u/orhanbeyaztas", "/u/63108457", "/u/1613953424", "/u/1612604835", "/u/87193654", "/u/65302471", "/u/15732604", "/u/cebiroglusuden", "/u/02847593", "/u/oguzhanalten", "/u/18973205", "/u/ozelegitimci", "/u/1637533285", "/u/1634159118", "/u/1632617505", "/u/75469320", "/u/1617129895", "/u/1630774535", "/u/1629375772", "/u/cagdas-boz", "/u/1625068246", "/u/09173856", "/u/73605819", "/u/29360841", "/u/tamer", "/u/64219708", "/u/79513406", "/u/68512074", "/u/71305896", "/u/eliftatlidil", "/u/mahfuzariturk", "/u/1638868118", "/u/1643928203", "/u/onurkaradas", "/u/1626114385", "/u/1616499905", "/u/64859210", "/u/aryayildirim", "/u/1649016011", "/u/28943705", "/u/1651776908", "/u/mine-calipinar", "/u/80159263", "/u/75480923", "/u/nidadilsiz", "/u/1652879212", "/u/1619427589", "/u/talha"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {

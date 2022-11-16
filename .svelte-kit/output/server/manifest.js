@@ -4,7 +4,7 @@ export const manifest = {
 	assets: new Set(["favicon.png","images/turkiye-white.svg","robots.txt"]),
 	mimeTypes: {".png":"image/png",".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		entry: {"file":"_app/immutable/start-748cd532.js","imports":["_app/immutable/start-748cd532.js","_app/immutable/chunks/index-f9612323.js","_app/immutable/chunks/singletons-d523bc09.js","_app/immutable/chunks/index-b3592fb7.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-119750a9.js","imports":["_app/immutable/start-119750a9.js","_app/immutable/chunks/index-f9612323.js","_app/immutable/chunks/singletons-d078c0f2.js","_app/immutable/chunks/index-b3592fb7.js"],"stylesheets":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
