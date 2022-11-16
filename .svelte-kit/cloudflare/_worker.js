@@ -874,8 +874,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-5fad54df.js";
-    imports2 = ["_app/immutable/components/error.svelte-5fad54df.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-0198622e.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/chunks/index-b3592fb7.js"];
+    file2 = "_app/immutable/components/error.svelte-fb543ba0.js";
+    imports2 = ["_app/immutable/components/error.svelte-fb543ba0.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-93b223ec.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/chunks/index-b3592fb7.js"];
     stylesheets2 = [];
   }
 });
@@ -1556,8 +1556,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-e5d49cf5.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-e5d49cf5.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-7a28343a.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-ddd54ed6.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-ddd54ed6.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-47e78651.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -4226,7 +4226,8 @@ var page_exports5 = {};
 __export(page_exports5, {
   csr: () => csr4,
   load: () => load2,
-  prerender: () => prerender5
+  prerender: () => prerender5,
+  ssr: () => ssr
 });
 async function load2({ params }) {
   if (params && params.catchall) {
@@ -4234,12 +4235,14 @@ async function load2({ params }) {
   }
   await getUsers();
 }
-var csr4, prerender5;
+var csr4, prerender5, ssr;
 var init_page5 = __esm({
   ".svelte-kit/output/server/entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
+    init_environment();
     init_user();
-    csr4 = true;
+    csr4 = dev;
     prerender5 = true;
+    ssr = true;
   }
 });
 
@@ -4474,8 +4477,8 @@ var init__7 = __esm({
     init_page5();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-7e2c79d5.js";
-    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-7e2c79d5.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-0198622e.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/chunks/navigation-7a28343a.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-6aaf3498.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-1413841f.js"];
+    file7 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-0b284bd2.js";
+    imports7 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-0b284bd2.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-93b223ec.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/chunks/navigation-47e78651.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-bbe94177.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-2be2cfe9.js"];
     stylesheets7 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -6173,9 +6176,9 @@ async function respond_with_error({ event, options, state, status, error: error2
   try {
     const branch = [];
     const default_layout = await options.manifest._.nodes[0]();
-    const ssr = get_option([default_layout], "ssr") ?? true;
+    const ssr2 = get_option([default_layout], "ssr") ?? true;
     const csr5 = get_option([default_layout], "csr") ?? true;
-    if (ssr) {
+    if (ssr2) {
       state.initiator = GENERIC_ERROR;
       const server_data_promise = load_server_data({
         event,
@@ -6211,7 +6214,7 @@ async function respond_with_error({ event, options, state, status, error: error2
       options,
       state,
       page_config: {
-        ssr,
+        ssr: ssr2,
         csr: get_option([default_layout], "csr") ?? true
       },
       status,
@@ -7146,7 +7149,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-119750a9.js", "imports": ["_app/immutable/start-119750a9.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-d078c0f2.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d923a797.js", "imports": ["_app/immutable/start-d923a797.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-fb5bda53.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
