@@ -1,9 +1,9 @@
 import { get } from 'svelte/store'
 import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore } from '/src/stores/userStore'
 
-export async function getUsers(params = [])
+export async function getUsers(params = {})
 {
-    const searchParams = params.length > 0 ? params : get(teacherSearchParamsStore)
+    const searchParams = Object.entries(params).length > 0 ? params : get(teacherSearchParamsStore)
 
     const result = await fetch(import.meta.env.VITE_API_URL + 'user/teachers',
         {

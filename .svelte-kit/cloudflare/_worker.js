@@ -875,8 +875,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-416c4265.js";
-    imports2 = ["_app/immutable/components/error.svelte-416c4265.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-ea1cbc93.js", "_app/immutable/chunks/singletons-de0777dc.js", "_app/immutable/chunks/index-b3592fb7.js"];
+    file2 = "_app/immutable/components/error.svelte-fb74ce7d.js";
+    imports2 = ["_app/immutable/components/error.svelte-fb74ce7d.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-865ddd60.js", "_app/immutable/chunks/singletons-53579c60.js", "_app/immutable/chunks/index-b3592fb7.js"];
     stylesheets2 = [];
   }
 });
@@ -920,9 +920,9 @@ var init_userStore = __esm({
 });
 
 // .svelte-kit/output/server/chunks/user.js
-async function getUsers(params = []) {
+async function getUsers(params = {}) {
   var _a, _b, _c, _d, _e, _f;
-  const searchParams = params.length > 0 ? params : get_store_value(teacherSearchParamsStore);
+  const searchParams = Object.entries(params).length > 0 ? params : get_store_value(teacherSearchParamsStore);
   const result = await fetch(
     "http://api.nd.io/user/teachers",
     {
@@ -1521,8 +1521,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-54a2955f.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-54a2955f.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-0fa16475.js", "_app/immutable/chunks/singletons-de0777dc.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-adeb83fd.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-adeb83fd.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-0c458fe4.js", "_app/immutable/chunks/singletons-53579c60.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -4268,8 +4268,8 @@ var init__5 = __esm({
     init_page3();
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-fd211638.js";
-    imports5 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-fd211638.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-ea1cbc93.js", "_app/immutable/chunks/singletons-de0777dc.js", "_app/immutable/chunks/navigation-0fa16475.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-f3e7588f.js", "_app/immutable/chunks/user-7d0aa0fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-bef92515.js"];
+    file5 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-030b8aa2.js";
+    imports5 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-030b8aa2.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-865ddd60.js", "_app/immutable/chunks/singletons-53579c60.js", "_app/immutable/chunks/navigation-0c458fe4.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-22109ab7.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-8b81a4b1.js"];
     stylesheets5 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -6940,7 +6940,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-079bb28f.js", "imports": ["_app/immutable/start-079bb28f.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-de0777dc.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-9af80af2.js", "imports": ["_app/immutable/start-9af80af2.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-53579c60.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
