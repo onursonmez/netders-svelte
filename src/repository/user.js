@@ -3,7 +3,7 @@ import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore } from '
 
 export async function getUsers(params = [])
 {
-    const searchParams = params ? params : get(teacherSearchParamsStore)
+    const searchParams = params.length > 0 ? params : get(teacherSearchParamsStore)
 
     const result = await fetch(import.meta.env.VITE_API_URL + 'user/teachers',
         {

@@ -18,8 +18,8 @@ const teacherGendersStore = writable([
   { id: 2, title: "Kad\u0131n" }
 ]);
 export {
-  teacherTotalStore as a,
-  teacherSearchParamsStore as b,
+  teacherItemsStore as a,
+  teacherTotalStore as b,
   teacherGendersStore as c,
-  teacherItemsStore as t
+  teacherSearchParamsStore as t
 };

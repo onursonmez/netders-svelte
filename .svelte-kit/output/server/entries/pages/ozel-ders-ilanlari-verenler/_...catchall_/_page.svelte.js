@@ -1,6 +1,7 @@
 import { c as create_ssr_component, f as escape, e as subscribe, b as add_attribute, p as each, v as validate_component } from "../../../../chunks/index.js";
-import { b as teacherSearchParamsStore, a as teacherTotalStore, t as teacherItemsStore, c as teacherGendersStore } from "../../../../chunks/userStore.js";
+import { t as teacherSearchParamsStore, b as teacherTotalStore, a as teacherItemsStore, c as teacherGendersStore } from "../../../../chunks/userStore.js";
 import { w as writable } from "../../../../chunks/index2.js";
+import { p as page } from "../../../../chunks/stores.js";
 const citiesStore = writable([]);
 const countiesStore = writable([]);
 const subjectsStore = writable([]);
@@ -104,6 +105,7 @@ const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slot
 const Modal_svelte_svelte_type_style_lang = "";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
+  let $$unsubscribe_page;
   let $$unsubscribe_levelsStore;
   let $teacherSearchParamsStore, $$unsubscribe_teacherSearchParamsStore;
   let $$unsubscribe_countiesStore;
@@ -113,6 +115,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$unsubscribe_subjectsStore;
   let $$unsubscribe_lessonTypesStore;
   let $$unsubscribe_teacherGendersStore;
+  $$unsubscribe_page = subscribe(page, (value) => value);
   $$unsubscribe_levelsStore = subscribe(levelsStore, (value) => value);
   $$unsubscribe_teacherSearchParamsStore = subscribe(teacherSearchParamsStore, (value) => $teacherSearchParamsStore = value);
   $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
@@ -133,6 +136,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     "lessonTypeObject": void 0,
     "genderObject": void 0
   };
+  $$unsubscribe_page();
   $$unsubscribe_levelsStore();
   $$unsubscribe_teacherSearchParamsStore();
   $$unsubscribe_countiesStore();

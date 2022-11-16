@@ -8,10 +8,28 @@
 	import { citiesStore, countiesStore } from '/src/stores/locationStore'
 	import { subjectsStore, levelsStore, lessonTypesStore } from '/src/stores/lessonStore'
 	import { onMount } from "svelte";
+	import { page } from "$app/stores";
+	import { goto } from "$app/navigation";
 
 	onMount(async () => {
+
+		if($page.url.searchParams.has('keyword')){
+			teacherSearchParams.keyword = $page.url.searchParams.get('keyword')
+			$teacherSearchParamsStore.keyword = $page.url.searchParams.get('keyword')
+		}
+
+		if($page.url.searchParams.has('budget')){
+			teacherSearchParams.budget = $page.url.searchParams.get('budget')
+			$teacherSearchParamsStore.budget = $page.url.searchParams.get('budget')
+		}
+
+		if(Array.from($page.url.searchParams).length > 0){
+			await onSearch()
+		}
+
 		await getCities()
 		await getSubjects()
+		teacherSearchParams = $teacherSearchParamsStore
 	})
 
 	let loading = false
@@ -73,6 +91,21 @@
 	}
 
 	const changeState = () => {
+
+		if(teacherSearchParams.keyword || teacherSearchParams.budget){
+			if(teacherSearchParams.keyword)
+				$page.url.searchParams.set('keyword', teacherSearchParams.keyword)
+			else
+				$page.url.searchParams.delete('keyword')
+
+			if(teacherSearchParams.budget)
+				$page.url.searchParams.set('budget', teacherSearchParams.budget)
+			else
+				$page.url.searchParams.delete('budget')
+
+			goto(`?${$page.url.searchParams.toString()}`);
+		}
+
 		let finalState = []
 
 		if(teacherSearchParams.cityObject?.slug || teacherSearchParams.countyObject?.slug)

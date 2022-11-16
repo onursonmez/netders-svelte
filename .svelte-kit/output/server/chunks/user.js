@@ -1,8 +1,8 @@
 import { q as get_store_value } from "./index.js";
-import { t as teacherItemsStore, a as teacherTotalStore, b as teacherSearchParamsStore } from "./userStore.js";
+import { a as teacherItemsStore, b as teacherTotalStore, t as teacherSearchParamsStore } from "./userStore.js";
 async function getUsers(params = []) {
   var _a, _b, _c, _d, _e, _f;
-  const searchParams = params ? params : get_store_value(teacherSearchParamsStore);
+  const searchParams = params.length > 0 ? params : get_store_value(teacherSearchParamsStore);
   const result = await fetch(
     "http://api.nd.io/user/teachers",
     {
