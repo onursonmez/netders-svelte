@@ -15,20 +15,20 @@
 
 	onMount(async () => {
 		const res = await photo(username);
-		photoUrl = res.url;
+		photoUrl = res.url + '?format=webp&srcset';
 	});
 
 	const getPhotoEmptyUserAvatar = (genderName) => {
-		if(genderName == 'Erkek') return 'img/icon-male.png'
-		if(genderName == 'Kadın') return 'img/icon-female.png'
+		if(genderName == 'Erkek') return 'img/icon-male.png?format=webp&srcset'
+		if(genderName == 'Kadın') return 'img/icon-female.png?format=webp&srcset'
 
-		return 'img/icon-male.png'
+		return 'img/icon-male.png?format=webp&srcset'
 	}
 </script>
 
 <a href="/u/{ username }" target="_blank" rel="noreferrer">
 	<div class="flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md">
-		<img class="h-32 rounded-full" src="{import.meta.env.VITE_BASE_URL}{ photoUrl || getPhotoEmptyUserAvatar(genderName) }" alt="">
+		<img class="h-32 rounded-full" srcset="{import.meta.env.VITE_BASE_URL}{ photoUrl || getPhotoEmptyUserAvatar(genderName) }" alt="">
 		<div class="flex flex-col w-full justify-between pl-4 leading-normal">
 			<h5 class="mb-2 text-xl font-bold tracking-tight text-blue-700 text-center">{ firstName } { lastName }</h5>
 

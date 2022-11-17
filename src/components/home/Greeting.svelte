@@ -1,5 +1,5 @@
 <script>
-	import student from '$lib/images/student.png'
+	import student from '$lib/images/student.png?format=webp&srcset'
 	import {teacherSearchParamsStore} from "../../stores/userStore"
 	import { goto } from '$app/navigation';
 
@@ -34,7 +34,7 @@
 		<div class="hidden lg:col-span-1 lg:flex">
 		</div>
 		<div class="hidden lg:col-span-3 lg:flex">
-			<img src="{student}" alt="">
+			<img srcset="{student}" type="image/webp" alt="">
 		</div>
 	</div>
 </section>
