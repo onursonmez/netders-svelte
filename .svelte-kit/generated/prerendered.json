@@ -1,1 +1,1 @@
-{"prerendered":{"pages":[["/",{"file":"index.html"}],["/detail",{"file":"detail.html"}]],"assets":[],"redirects":[],"paths":["/","/detail"]},"prerender_map":[["/",true],["/detail",true],["/ozel-ders-ilanlari-verenler/[...catchall]",false]]}
+{"prerendered":{"pages":[["/detail",{"file":"detail.html"}]],"assets":[],"redirects":[],"paths":["/detail"]},"prerender_map":[["/",false],["/detail",true],["/ozel-ders-ilanlari-verenler/[...catchall]",false]]}

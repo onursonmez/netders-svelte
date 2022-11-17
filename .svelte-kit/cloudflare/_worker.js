@@ -875,8 +875,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/error.svelte-626aa7da.js";
-    imports2 = ["_app/immutable/components/error.svelte-626aa7da.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-35dd9684.js", "_app/immutable/chunks/singletons-0a899fe5.js", "_app/immutable/chunks/index-b3592fb7.js"];
+    file2 = "_app/immutable/components/error.svelte-be69c4fc.js";
+    imports2 = ["_app/immutable/components/error.svelte-be69c4fc.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/stores-285f37bf.js", "_app/immutable/chunks/singletons-7d039d12.js", "_app/immutable/chunks/index-b3592fb7.js"];
     stylesheets2 = [];
   }
 });
@@ -889,7 +889,7 @@ __export(page_exports, {
 var prerender;
 var init_page = __esm({
   ".svelte-kit/output/server/entries/pages/_page.js"() {
-    prerender = true;
+    prerender = false;
   }
 });
 
@@ -1293,10 +1293,10 @@ var init_page_svelte = __esm({
       let { username } = $$props;
       const getPhotoEmptyUserAvatar = (genderName2) => {
         if (genderName2 == "Erkek")
-          return "img/icon-male.png?format=webp&srcset";
+          return "/img/icon-male.png";
         if (genderName2 == "Kad\u0131n")
-          return "img/icon-female.png?format=webp&srcset";
-        return "img/icon-male.png?format=webp&srcset";
+          return "/img/icon-female.png";
+        return "/img/icon-male.png";
       };
       if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
         $$bindings.firstName(firstName);
@@ -1314,7 +1314,7 @@ var init_page_svelte = __esm({
         $$bindings.isOnline(isOnline);
       if ($$props.username === void 0 && $$bindings.username && username !== void 0)
         $$bindings.username(username);
-      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><div class="${"flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md"}"><img class="${"h-32 rounded-full"}" srcset="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+      return `<a href="${"/u/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><div class="${"flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md"}"><img class="${"h-32 rounded-full"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
 		<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
 
 			<div class="${"flex flex-col gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
@@ -1521,8 +1521,8 @@ var init__3 = __esm({
     init_page();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-15cc33e9.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-15cc33e9.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-f0d09004.js", "_app/immutable/chunks/singletons-0a899fe5.js", "_app/immutable/modules/pages/_page.js-32d8ae81.js", "_app/immutable/chunks/_page-0df15927.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-fe7183c8.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-fe7183c8.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/navigation-ef3842e8.js", "_app/immutable/chunks/singletons-7d039d12.js", "_app/immutable/modules/pages/_page.js-9eeffa94.js", "_app/immutable/chunks/_page-0032eb25.js"];
     stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css"];
   }
 });
@@ -4268,8 +4268,8 @@ var init__5 = __esm({
     init_page3();
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-10abf721.js";
-    imports5 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-10abf721.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-35dd9684.js", "_app/immutable/chunks/singletons-0a899fe5.js", "_app/immutable/chunks/navigation-f0d09004.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-22109ab7.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-8b81a4b1.js"];
+    file5 = "_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-0535113b.js";
+    imports5 = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-0535113b.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/stores-285f37bf.js", "_app/immutable/chunks/singletons-7d039d12.js", "_app/immutable/chunks/navigation-ef3842e8.js", "_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-22109ab7.js", "_app/immutable/chunks/user-c10169f8.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/index-b3592fb7.js", "_app/immutable/chunks/_page-8b81a4b1.js"];
     stylesheets5 = ["_app/immutable/assets/_page-7e1b958a.css"];
   }
 });
@@ -6940,7 +6940,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-1641e0de.js", "imports": ["_app/immutable/start-1641e0de.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-0a899fe5.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-b794aee3.js", "imports": ["_app/immutable/start-b794aee3.js", "_app/immutable/chunks/index-f9612323.js", "_app/immutable/chunks/singletons-7d039d12.js", "_app/immutable/chunks/index-b3592fb7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -6949,6 +6949,15 @@ var manifest = {
       () => Promise.resolve().then(() => (init__5(), __exports5))
     ],
     routes: [
+      {
+        id: "/",
+        pattern: /^\/$/,
+        names: [],
+        types: [],
+        optional: [],
+        page: { layouts: [0], errors: [1], leaf: 2 },
+        endpoint: null
+      },
       {
         id: "/ozel-ders-ilanlari-verenler/[...catchall]",
         pattern: /^\/ozel-ders-ilanlari-verenler(?:\/(.*))?\/?$/,
@@ -6964,7 +6973,7 @@ var manifest = {
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/", "/detail"]);
+var prerendered = /* @__PURE__ */ new Set(["/detail"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {
