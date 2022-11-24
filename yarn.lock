@@ -474,6 +474,11 @@
   "resolved" "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
   "version" "3.0.0"
 
+"dayjs@^1.11.6":
+  "integrity" "sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ=="
+  "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.6.tgz"
+  "version" "1.11.6"
+
 "debug@^4.3.4", "debug@4":
   "integrity" "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
@@ -1460,6 +1465,11 @@
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
 
+"svelte-clipboard@^1.0.0":
+  "integrity" "sha512-md6HhnK2byql47mVEzMV2jor3BU465TVDqc0ExYq+pRvzdTn6V+gSDnA2WUDJPxuYUvIhzempPq05BfOMvnOPA=="
+  "resolved" "https://registry.npmjs.org/svelte-clipboard/-/svelte-clipboard-1.0.0.tgz"
+  "version" "1.0.0"
+
 "svelte-floating-ui@^0.3.2":
   "integrity" "sha512-L5YqnVLfCp+JcGNMD6MFdmzsFSgskFR+TJ/2xhKjSQkAXi4dTowImb5HzAAsJpPOPY10e/+Ta/ucyNTZPGr3VQ=="
   "resolved" "https://registry.npmjs.org/svelte-floating-ui/-/svelte-floating-ui-0.3.2.tgz"
@@ -1583,6 +1593,11 @@
   "version" "5.0.1"
   dependencies:
     "is-number" "^7.0.0"
+
+"toastify-js@^1.12.0":
+  "integrity" "sha512-HeMHCO9yLPvP9k0apGSdPUWrUbLnxUKNFzgUoZp1PHCLploIX/4DSQ7V8H25ef+h4iO9n0he7ImfcndnN6nDrQ=="
+  "resolved" "https://registry.npmjs.org/toastify-js/-/toastify-js-1.12.0.tgz"
+  "version" "1.12.0"
 
 "totalist@^3.0.0":
   "integrity" "sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw=="

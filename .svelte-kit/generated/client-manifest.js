@@ -10,8 +10,8 @@ export { matchers } from './client-matchers.js';
 
 			export const dictionary = {
 	"/": [2],
-	"/detail": [3],
-	"/ozel-ders-ilanlari-verenler/[...catchall]": [4]
+	"/ozel-ders-ilanlari-verenler/[...catchall]": [4],
+	"/[...catchall]": [3]
 };
 
 			export const hooks = {

@@ -1,5 +1,5 @@
 import { get } from 'svelte/store'
-import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore } from '/src/stores/userStore'
+import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, viewedTeacherStore } from '/src/stores/userStore'
 
 export async function getUsers(params = {})
 {
@@ -27,9 +27,6 @@ export async function getUsers(params = {})
     );
 
     const body = await result.json()
-
-    teacherItemsStore.set(body.result.items)
-    teacherTotalStore.set(body.result.total)
 
     return body.result
 }
@@ -89,4 +86,72 @@ export async function getTeacherSearchStoreParamsBySearchParams(params = [])
     teacherSearchParamsStore.set(body.result)
 
     return body.result
+}
+
+export async function getUser(username)
+{
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/one_user/' + username,
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        },
+    )
+
+    const body = await response.json()
+
+    viewedTeacherStore.set(body.result)
+
+    return body
+}
+
+export async function getTeacher(username)
+{
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/one_teacher/' + username,
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        },
+    )
+
+    const body = await response.json()
+
+    viewedTeacherStore.set(body.result)
+
+    return body
+}
+
+export async function getUserPrices(username)
+{
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/prices/' + username,
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        },
+    )
+
+    const body = await response.json()
+
+    return body
+}
+
+export async function getUserLocations(username)
+{
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/locations/' + username,
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        },
+    )
+
+    const body = await response.json()
+
+    return body
 }

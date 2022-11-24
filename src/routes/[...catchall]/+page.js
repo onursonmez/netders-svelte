@@ -1,6 +1,6 @@
 import { dev } from '$app/environment'
-import { getUsers, getTeacherSearchStoreParamsBySearchParams } from '/src/repository/user'
-import {teacherItemsStore, teacherTotalStore} from '/src/stores/userStore'
+import { getTeacher } from '/src/repository/user'
+import { error } from '@sveltejs/kit';
 
 // we don't need any JS on this page, though we'll load
 // it in dev so that we get hot module replacement
@@ -15,11 +15,10 @@ export async function load({ params })
 {
     if(params && params.catchall)
     {
-        await getTeacherSearchStoreParamsBySearchParams({'query': params.catchall})
+        let response = await getTeacher(params.catchall)
+
+        if(Object.entries(response.errors).length){
+            throw error(response.code, response.errors);
+        }
     }
-
-    const users = await getUsers()
-
-    teacherItemsStore.set(users.items)
-    teacherTotalStore.set(users.total)
 }

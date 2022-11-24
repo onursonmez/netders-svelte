@@ -18,3 +18,4 @@ export const teacherGendersStore = writable([
     {id: 1, title: "Erkek"},
     {id: 2, title: "Kadın"},
 ])
+export const viewedTeacherStore = writable([])
