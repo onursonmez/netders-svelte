@@ -1,33 +1,26 @@
 <script>
-	import Emotion1 from '$lib/images/emotion-1.svg'
-	import Emotion2 from '$lib/images/emotion-2.svg'
-	import Emotion3 from '$lib/images/emotion-3.svg'
-	import Emotion4 from '$lib/images/emotion-4.svg'
-	import Emotion5 from '$lib/images/emotion-5.svg'
-
+	import { onMount } from 'svelte'
 	import { page } from '$app/stores'
 	import Clipboard from 'svelte-clipboard'
 	import { Tooltip } from 'flowbite-svelte'
 	import { viewedTeacherStore } from '/src/stores/userStore'
 	import { getUserPrices, getUserLocations } from '/src/repository/user'
+	import { getComments } from '/src/repository/comment'
 	import Modal from '/src/components/Modal.svelte'
+	import UserComment from '/src/components/user/UserComment.svelte'
 	import Toastify from 'toastify-js'
 
 	import dayjs from 'dayjs'
 	import tr from 'dayjs/locale/tr'
 	import relativeTime from 'dayjs/plugin/relativeTime'
-	import {onMount} from "svelte";
+
 	dayjs.extend(relativeTime)
 	dayjs.locale(tr)
 
 	let shareModal = false
 	let prices = []
 	let locations = []
-	let commentRate = 5
-
-	const emotionRate = (vote) => {
-		console.log(vote)
-	}
+	let comments = []
 
 	const getPhotoEmptyUserAvatar = (genderId) => {
 		if(genderId === 1) return '/img/icon-male.png'
@@ -44,16 +37,23 @@
 		app.$destroy();
 	}
 
-	const onComment = () => {
-		//bla
-	}
+
 
 	onMount(async () => {
 		let responsePrice = await getUserPrices($viewedTeacherStore.userName)
-		prices = responsePrice.result.items
+		if(responsePrice.result.items){
+			prices = responsePrice.result.items
+		}
 
 		let responseLocation = await getUserLocations($viewedTeacherStore.userName)
-		locations = responseLocation.result.items
+		if(responseLocation.result.items){
+			locations = responseLocation.result.items
+		}
+
+		let responseComments = await getComments($viewedTeacherStore.userName)
+		if(responseComments.result.items){
+			comments = responseComments.result.items
+		}
 	})
 </script>
 
@@ -174,7 +174,7 @@
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
 				</svg>
-				0 yorum
+				{$viewedTeacherStore.totalComment} yorum
 			</p>
 			<p class="flex">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
@@ -203,7 +203,7 @@
 			<tbody>
 			{#each prices as price}
 			<tr class="border-t border-gray-200">
-				<td class="py-2">{#if (price.slug)}<a href="/ders/{price.slug}" class="text-blue-700" target="_blank" rel="noreferrer">{price.subject.title} - {price.level.title}</a>{:else}{price.subject.title} - {price.level.title}{/if}</td>
+				<td class="py-2">{#if (price.slug)}<a href="/ders/{price.slug}" target="_blank" rel="noreferrer">{price.subject.title} - {price.level.title}</a>{:else}{price.subject.title} - {price.level.title}{/if}</td>
 				<td align="right">{#if (price.pricePrivate > 0)}{price.pricePrivate}<span class="text-xs">₺</span>{:else}-{/if}</td>
 				<td align="right">{#if (price.priceLive > 0)}{price.priceLive}<span class="text-xs">₺</span>{:else}-{/if}</td>
 			</tr>
@@ -232,37 +232,30 @@
 </div>
 {/if}
 
+{#if comments.length > 0}
+	<div class="bg-white rounded-lg shadow-md mt-4">
+		<div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Yorumlar</div>
+		<div class="p-6">
+			{#each comments as comment, index}
+			<div class="flex" class:mt-6={index > 0}>
+				<div class="flex-none w-12 h-12 rounded-full border border-orange-100 bg-orange-50">
+					<div class="flex justify-center items-center w-12 h-12">{comment.fullName.charAt(0)}</div>
+				</div>
+
+				<div class="ml-4 grow">
+					<h2 class="font-semibold">{comment.fullName}</h2>
+					<p class="mt-2 text-sm text-gray-500">{#each Array(comment.rate) as _, index (index)}<span class="mr-1">⭐</span>{/each}</p>
+					<p class="mt-2 text-sm text-gray-500">{comment.comment}</p>
+				</div>
+			</div>
+			{/each}
+		</div>
+	</div>
+{/if}
+
 <div class="bg-white rounded-lg shadow-md mt-4">
 	<div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Yorum Yap</div>
 	<div class="p-6">
-		<form on:submit|preventDefault={onComment} class="grid grid-cols-2 gap-4">
-			<div class="col-span-2 mx-auto emotionRatings">
-				<img on:click={() => commentRate = 1} src="{Emotion1}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentRate !== 1} alt="Çok kötü" />
-				<img on:click={() => commentRate = 2} src="{Emotion2}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentRate !== 2} alt="Kötü" />
-				<img on:click={() => commentRate = 3} src="{Emotion3}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentRate !== 3} alt="Normal" />
-				<img on:click={() => commentRate = 4} src="{Emotion4}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentRate !== 4} alt="İyi" />
-				<img on:click={() => commentRate = 5} src="{Emotion5}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentRate !== 5} alt="Mükemmel" />
-			</div>
-			<div>
-				<span class="text-sm mb-1 block text-gray-500">Ad Soyad</span>
-				<input type="text" name="first_name" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
-			</div>
-			<div>
-				<span class="text-sm mb-1 block text-gray-500">E-posta</span>
-				<input type="text" name="last_name" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
-			</div>
-			<div class="col-span-2">
-				<span class="text-sm mb-1 block text-gray-500">Yorum</span>
-				<textarea name="comment" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"></textarea>
-			</div>
-			<div class="col-span-2 mx-auto">
-				<button class="bg-blue-700 hover:bg-blue-900 py-2 px-4 rounded-full justify-center text-sm flex text-white">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 inline-block">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-					</svg>
-					Yorumu Gönder
-				</button>
-			</div>
-		</form>
+		<UserComment username="{$viewedTeacherStore.userName}" />
 	</div>
 </div>
