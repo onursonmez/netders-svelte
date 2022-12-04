@@ -1,8 +1,8 @@
 <script>
 
-import Greeting from "../components/home/Greeting.svelte";
-import Categories from "../components/home/Categories.svelte";
-import UserSlider from "../components/user/UserSlider.svelte";
+import Greeting from '/src/components/home/Greeting.svelte'
+import Categories from '/src/components/home/Categories.svelte'
+import UserSlider from '/src/components/user/UserSlider.svelte'
 </script>
 
 <svelte:head>

@@ -1,13 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="detail page">
-      <change afterPath="$PROJECT_DIR$/src/components/user/UserComment.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repository/comment.js" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="comment">
+      <change afterPath="$PROJECT_DIR$/src/components/form/Input.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/user/UserCard.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repository/price.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(app)/+layout.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(app)/[...catchall]/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(app)/ders/[slug]/+page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(app)/ders/[slug]/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(app)/ozel-ders-talebi-olustur/+page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(app)/ozel-ders-talebi-olustur/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(auth)/+layout.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(auth)/activation/+page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(auth)/activation/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(auth)/forgot/+page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(auth)/forgot/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(auth)/login/+page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/(auth)/login/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/UserHorizontal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserHorizontal.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[...catchall]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/root.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/root.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/$types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/$types.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Categories.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Categories.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Greeting.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Greeting.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/UserComment.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserComment.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/UserSlider.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserSlider.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/UserVertical.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserVertical.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/lesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/location.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+error.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+error.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(app)/+page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(app)/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/[...catchall]/+page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(app)/[...catchall]/+page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/[...catchall]/+page.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/lessonStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/lessonStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/locationStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/locationStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +86,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/repository" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/routes/(auth)/activation" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
@@ -50,18 +95,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/repository" />
-      <recent name="$PROJECT_DIR$/src/routes/[...catchall]" />
-      <recent name="$PROJECT_DIR$/src/components/user" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/stores" />
+      <recent name="$PROJECT_DIR$/src/routes/(auth)/activation" />
+      <recent name="$PROJECT_DIR$/src/routes/(auth)/forgot" />
+      <recent name="$PROJECT_DIR$/src/routes" />
+      <recent name="$PROJECT_DIR$/src/routes/(app)" />
+      <recent name="$PROJECT_DIR$/src/routes/auth/login" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/routes" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]" />
-      <recent name="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[location]/[lesson]" />
-      <recent name="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler" />
+      <recent name="$PROJECT_DIR$/src/routes/(auth)/login" />
+      <recent name="$PROJECT_DIR$/src/routes/(auth)" />
+      <recent name="$PROJECT_DIR$/src/routes/(app)" />
+      <recent name="$PROJECT_DIR$/src/routes/auth" />
+      <recent name="$PROJECT_DIR$/src/routes/auth/login" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -93,7 +138,11 @@
       <workItem from="1668602380817" duration="13353000" />
       <workItem from="1668683293588" duration="1754000" />
       <workItem from="1668706559208" duration="35243000" />
-      <workItem from="1669228404301" duration="21100000" />
+      <workItem from="1669228404301" duration="85263000" />
+      <workItem from="1669728616543" duration="2753000" />
+      <workItem from="1669818960226" duration="434000" />
+      <workItem from="1669881979208" duration="600000" />
+      <workItem from="1669911146073" duration="33018000" />
     </task>
     <task id="LOCAL-00001" summary="some updates">
       <created>1666998924079</created>
@@ -277,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669281061659</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="comment">
+      <created>1669434634949</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1669434634949</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +365,18 @@
     <MESSAGE value="home page same teachers problem" />
     <MESSAGE value="webp" />
     <MESSAGE value="detail page" />
-    <option name="LAST_COMMIT_MESSAGE" value="detail page" />
+    <MESSAGE value="comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="comment" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/repository/lesson.js</url>
+          <line>31</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

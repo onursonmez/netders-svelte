@@ -4,6 +4,9 @@
 	import { getUsers } from '../../repository/user'
 	import UserVertical from "./UserVertical.svelte";
 
+	const prepareUserData = (userData) => {
+		return {...userData, showRequest: false}
+	}
 </script>
 
 <section class="dark:bg-gray-900 mt-4">
@@ -40,9 +43,11 @@
 					pagination: false,
 				  } } aria-label="Matematik özel ders verenler">
 
-						{#each users.items as user}
+						{#each users.items as userData}
 						<SplideSlide>
-								<UserVertical {...user} />
+							<div class="flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md">
+								<UserVertical userData="{prepareUserData(userData)}" />
+							</div>
 						</SplideSlide>
 						{/each}
 
@@ -87,9 +92,11 @@
 					pagination: false,
 				  } } aria-label="İngilizce özel ders verenler">
 
-						{#each users.items as user}
+						{#each users.items as userData}
 							<SplideSlide>
-								<UserVertical {...user} />
+								<div class="flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md">
+									<UserVertical userData="{prepareUserData(userData)}" />
+								</div>
 							</SplideSlide>
 						{/each}
 
@@ -134,9 +141,11 @@
 					pagination: false,
 				  } } aria-label="Fizik özel ders verenler">
 
-						{#each users.items as user}
+						{#each users.items as userData}
 							<SplideSlide>
-								<UserVertical {...user} />
+								<div class="flex flex-col gap-2 items-center w-full p-4 border border-blue-100 rounded-md">
+									<UserVertical userData="{prepareUserData(userData)}" />
+								</div>
 							</SplideSlide>
 						{/each}
 

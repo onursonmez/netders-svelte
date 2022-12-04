@@ -1,11 +1,10 @@
 <script>
     import { page } from '$app/stores';
     import errorImage from '$lib/images/error.svg'
-
-    console.log($page.error)
 </script>
 
-<div class="mt-4 bg-white p-12 rounded-md shadow-md text-center">
+<div class="flex text-center h-screen my-auto items-center justify-center">
+    <div>
     <div class="mt-2 text-7xl font-bold">{$page.status}</div>
     <img src="{errorImage}" width="300" class="mx-auto my-12">
 
@@ -18,4 +17,5 @@
             <div class="mt-2">{error}</div>
         {/each}
     {/if}
+    </div>
 </div>

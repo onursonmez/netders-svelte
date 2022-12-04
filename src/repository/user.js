@@ -31,7 +31,7 @@ export async function getUsers(params = {})
     return body.result
 }
 
-export async function login(email, password)
+export async function login(params = [])
 {
     const response = await fetch(import.meta.env.VITE_API_URL + 'user/login',
         {
@@ -40,15 +40,14 @@ export async function login(email, password)
             },
             method: 'POST',
             body: JSON.stringify({
-                'email' : email,
-                'password' : password,
+                'login' : params?.login,
+                'password' : params?.password,
+                'rememberMe': params?.rememberMe,
             })
         },
     );
 
-    const body = await response.json()
-
-    return body.result
+    return await response.json()
 }
 
 export async function photo(username)

@@ -1,4 +1,5 @@
-import { citiesStore } from "../stores/locationStore";
+import { citiesStore, locationSearchParamsStore } from '/src/stores/locationStore'
+import { get } from 'svelte/store'
 
 export async function getCities()
 {
@@ -65,6 +66,30 @@ export async function getOneCountyBy(params = [])
             body: JSON.stringify({
                 'id': params?.id,
                 'slug': params?.slug,
+            })
+        },
+    );
+
+    const body = await result.json()
+
+    return body.result
+}
+
+export async function searchLocation(params = {})
+{
+    const searchParams = Object.entries(params).length > 0 ? params : get(locationSearchParamsStore)
+
+    const result = await fetch(import.meta.env.VITE_API_URL + 'location/search',
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                'page' : searchParams?.page,
+                'pageSize' : searchParams?.pageSize,
+                'keyword' : searchParams?.keyword,
+                'outsideTurkey': searchParams?.outsideTurkey,
             })
         },
     );

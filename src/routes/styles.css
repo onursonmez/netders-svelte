@@ -35,10 +35,9 @@ body {
  */
 
 .toastify {
-	padding: 12px 20px;
+	padding: 15px 50px 15px 15px;
 	color: #ffffff;
 	display: inline-block;
-	box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
 	background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
 	background: linear-gradient(135deg, #73a5ff, #5477f5);
 	position: fixed;
@@ -53,34 +52,41 @@ body {
 }
 
 .toastify.info{
-	background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
-	background: linear-gradient(135deg, #73a5ff, #5477f5);
+	background: #4e80ee;
+	color: white;
 }
 
 .toastify.warning{
-	background: -webkit-linear-gradient(315deg, #ffd073, #f5bc54);
-	background: linear-gradient(135deg, #ffd073, #f5bc54);
-	color:red;
+	background: #e2b53e;
+	color:white;
 }
 
 .toastify.danger{
-	background: -webkit-linear-gradient(315deg, #ff7373, #f55454);
-	background: linear-gradient(135deg, #ff7373, #f55454);
+	background: #dd524c;
+	color:white;
+}
+
+.toastify.success{
+	background: #5ec269;
+	color:white;
 }
 
 .toastify.on {
 	opacity: 1;
 }
-
 .toast-close {
+	position: absolute;
+	top: calc(50% - 10px);
+	right: 15px;
 	background: transparent;
-	border: 0;
-	color: white;
-	cursor: pointer;
-	font-family: inherit;
-	font-size: 1em;
-	opacity: 0.4;
-	padding: 0 5px;
+	line-height: 1;
+	opacity: 1;
+	font-size: 12px;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	border: 1px solid white;
+	padding: 2px;
 }
 
 .toastify-right {

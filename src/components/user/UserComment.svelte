@@ -67,15 +67,15 @@
         <Tooltip style="custom" class="text-xs bg-blue-700 border-blue-700 text-white transition-opacity ease-in duration-700 opacity-100">Mükemmel</Tooltip>
     </div>
     <div>
-        <span class="text-sm mb-1 block text-gray-500">Ad Soyad</span>
+        <span class="text-sm mb-1 block text-gray-500">Adın soyadın</span>
         <input type="text" bind:value="{commentData.fullName}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
     </div>
     <div>
-        <span class="text-sm mb-1 block text-gray-500">E-posta</span>
+        <span class="text-sm mb-1 block text-gray-500">E-posta adresin</span>
         <input type="text" bind:value="{commentData.email}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
     </div>
     <div class="col-span-2">
-        <span class="text-sm mb-1 block text-gray-500">Yorum</span>
+        <span class="text-sm mb-1 block text-gray-500">Yorumun</span>
         <textarea bind:value="{commentData.comment}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"></textarea>
     </div>
     <div class="col-span-2 mx-auto">

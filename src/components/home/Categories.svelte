@@ -23,7 +23,7 @@
 	<div class="block p-6 rounded-lg shadow-md bg-white">
 		<h2 class="mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white">Özel ders kategorileri</h2>
 		<p class="text-gray-700 text-base mb-4">
-			Alanında tecrübeli öğretmenlerden özel ders alarak, ihtiyacınız olan eğitimi, en uygun fiyatlarla alabilirsiniz.
+			Alanında tecrübeli öğretmenlerden özel ders alarak, ihtiyacın olan doğru eğitimi, en uygun fiyatlarla alabilirsin.
 		</p>
 
 		<div>

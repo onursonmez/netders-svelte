@@ -1,7 +1,5 @@
 {
-	"/": [
-		"src/routes/+page.js"
-	],
+	"/": [],
 	"/about": [
 		"src/routes/about/+page.js"
 	],
@@ -25,5 +23,46 @@
 	],
 	"/ozel-ders-ilanlari-verenler/[...catchall]/[lesson]": [
 		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/[lesson]/+page.js"
+	],
+	"/ders/[...catchall]": [
+		"src/routes/ders/[...catchall]/+page.js"
+	],
+	"/ders/[slug]": [
+		"src/routes/ders/[slug]/+page.js"
+	],
+	"/ozel-ders-talebi-olustur/[slug]": [
+		"src/routes/ozel-ders-talebi-olustur/[slug]/+page.js"
+	],
+	"/ozel-ders-talebi-olustur": [
+		"src/routes/ozel-ders-talebi-olustur/+page.js"
+	],
+	"/auth/login": [
+		"src/routes/auth/login/+page.js"
+	],
+	"/auth": [],
+	"/(auth)/login": [
+		"src/routes/(auth)/login/+page.js"
+	],
+	"/(auth)": [],
+	"/(app)/ders/[slug]": [
+		"src/routes/(app)/ders/[slug]/+page.js"
+	],
+	"/(app)/ozel-ders-ilanlari-verenler/[...catchall]": [
+		"src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.js"
+	],
+	"/(app)/ozel-ders-talebi-olustur": [
+		"src/routes/(app)/ozel-ders-talebi-olustur/+page.js"
+	],
+	"/(app)/[...catchall]": [
+		"src/routes/(app)/[...catchall]/+page.js"
+	],
+	"/(app)": [
+		"src/routes/(app)/+page.js"
+	],
+	"/(auth)/forgot": [
+		"src/routes/(auth)/forgot/+page.js"
+	],
+	"/(auth)/activation": [
+		"src/routes/(auth)/activation/+page.js"
 	]
 }

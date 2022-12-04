@@ -168,7 +168,7 @@
 			<div>
 				<span class="pb-1 block">Şehir</span>
 				<select name="city" bind:value={teacherSearchParams.cityObject} on:change={updateCounties} class="w-full border border-gray-300 rounded-md">
-					<option value="">Lütfen Seçiniz</option>
+					<option value="">Lütfen Seç</option>
 					{#each $citiesStore as city}
 						<option value="{city}">{city.title}</option>
 					{/each}
@@ -179,7 +179,7 @@
 				<span class="pb-1 block">İlçe</span>
 				<select name="county" bind:value={teacherSearchParams.countyObject} class="w-full border border-gray-300 rounded-md">
 					{#if ($countiesStore.length > 0)}
-						<option value="">Lütfen Seçiniz</option>
+						<option value="">Lütfen Seç</option>
 						{#each $countiesStore as county}
 							<option value="{county}">{county.title}</option>
 						{/each}
@@ -192,7 +192,7 @@
 			<div>
 				<span class="pb-1 block">Ders</span>
 				<select name="subject" bind:value={teacherSearchParams.subjectObject} on:change={updateLevels} class="w-full border border-gray-300 rounded-md">
-					<option value="">Lütfen Seçiniz</option>
+					<option value="">Lütfen Seç</option>
 					{#each $subjectsStore as subject}
 						<option value="{subject}">{subject.title}</option>
 					{/each}
@@ -203,7 +203,7 @@
 				<span class="pb-1 block">Konu</span>
 				<select name="level" bind:value={teacherSearchParams.levelObject} class="w-full border border-gray-300 rounded-md">
 					{#if ($levelsStore.length > 0)}
-						<option value="">Lütfen Seçiniz</option>
+						<option value="">Lütfen Seç</option>
 						{#each $levelsStore as level}
 							<option value="{level}">{level.title}</option>
 						{/each}
@@ -216,7 +216,7 @@
 			<div>
 				<span class="pb-1 block">Ders Tipi</span>
 				<select name="lesson_type" bind:value={teacherSearchParams.lessonTypeObject} class="w-full border border-gray-300 rounded-md">
-					<option value="">Lütfen Seçiniz</option>
+					<option value="">Lütfen Seç</option>
 					{#each $lessonTypesStore as lessonType}
 						<option value="{lessonType}">{lessonType.title}</option>
 					{/each}
@@ -226,7 +226,7 @@
 			<div>
 				<span class="pb-1 block">Öğretmen</span>
 				<select name="gender" bind:value={teacherSearchParams.genderObject} class="w-full border border-gray-300 rounded-md">
-					<option value="">Lütfen Seçiniz</option>
+					<option value="">Lütfen Seç</option>
 					{#each $teacherGendersStore as gender}
 						<option value="{gender}">{gender.title}</option>
 					{/each}
@@ -270,7 +270,7 @@
 				</div>
 			</form>
 
-			<p class="mt-4 text-sm text-gray-800">veya daha <button class="text-blue-700 hover:text-blue-900 font-bold" on:click="{() => showSearchModal = true}">Detaylı Arama</button> yapabilirsiniz.</p>
+			<p class="mt-4 text-sm text-gray-800">veya daha <button class="text-blue-700 hover:text-blue-900 font-bold" on:click="{() => showSearchModal = true}">Detaylı Arama</button> yapabilirsin.</p>
 
 			<div class="flex justify-center flex-wrap gap-2">
 

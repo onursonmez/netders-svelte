@@ -1,4 +1,4 @@
-export async function getComments(username)
+export async function getUserComments(username)
 {
     const response = await fetch(import.meta.env.VITE_API_URL + 'comment/list/' + username,
         {
