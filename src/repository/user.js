@@ -50,6 +50,25 @@ export async function login(params = [])
     return await response.json()
 }
 
+export async function getUserByToken(token)
+{
+    const response = await fetch(import.meta.env.VITE_API_URL + 'user/get_user_by_token',
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                'token' : token,
+            })
+        },
+    );
+
+    let result = await response.json()
+
+    return result.result
+}
+
 export async function photo(username)
 {
     const response = await fetch(import.meta.env.VITE_API_URL + 'user/photo/' + username,

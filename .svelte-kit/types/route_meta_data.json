@@ -1,5 +1,7 @@
 {
-	"/": [],
+	"/": [
+		"src/routes/+layout.server.js"
+	],
 	"/about": [
 		"src/routes/about/+page.js"
 	],
@@ -41,28 +43,50 @@
 	],
 	"/auth": [],
 	"/(auth)/login": [
-		"src/routes/(auth)/login/+page.js"
+		"src/routes/(auth)/login/+page.js",
+		"src/routes/+layout.server.js"
 	],
-	"/(auth)": [],
+	"/(auth)": [
+		"src/routes/+layout.server.js"
+	],
 	"/(app)/ders/[slug]": [
-		"src/routes/(app)/ders/[slug]/+page.js"
+		"src/routes/(app)/ders/[slug]/+page.js",
+		"src/routes/+layout.server.js"
 	],
 	"/(app)/ozel-ders-ilanlari-verenler/[...catchall]": [
-		"src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.js"
+		"src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.js",
+		"src/routes/+layout.server.js"
 	],
 	"/(app)/ozel-ders-talebi-olustur": [
-		"src/routes/(app)/ozel-ders-talebi-olustur/+page.js"
+		"src/routes/(app)/ozel-ders-talebi-olustur/+page.js",
+		"src/routes/+layout.server.js"
 	],
 	"/(app)/[...catchall]": [
-		"src/routes/(app)/[...catchall]/+page.js"
+		"src/routes/(app)/[...catchall]/+page.js",
+		"src/routes/+layout.server.js"
 	],
 	"/(app)": [
-		"src/routes/(app)/+page.js"
+		"src/routes/(app)/+page.js",
+		"src/routes/+layout.server.js",
+		"src/routes/+layout.server.js"
 	],
 	"/(auth)/forgot": [
-		"src/routes/(auth)/forgot/+page.js"
+		"src/routes/(auth)/forgot/+page.js",
+		"src/routes/+layout.server.js"
 	],
 	"/(auth)/activation": [
-		"src/routes/(auth)/activation/+page.js"
+		"src/routes/(auth)/activation/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(auth)/logout": [
+		"src/routes/(auth)/logout/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(member)/member/dashboard": [
+		"src/routes/(member)/member/dashboard/+page.js"
+	],
+	"/(app)/member/dashboard": [
+		"src/routes/(app)/member/dashboard/+page.js",
+		"src/routes/+layout.server.js"
 	]
 }

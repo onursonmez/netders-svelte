@@ -77,7 +77,7 @@ export class Server {
 		this.options.public_env = pub;
 
 		if (!this.options.hooks) {
-			const module = await import("./hooks.js");
+			const module = await import("../../src/hooks.server.js");
 
 			// TODO remove this for 1.0
 			if (module.externalFetch) {

@@ -1470,6 +1470,11 @@
   "resolved" "https://registry.npmjs.org/svelte-clipboard/-/svelte-clipboard-1.0.0.tgz"
   "version" "1.0.0"
 
+"svelte-cookie@^1.0.1":
+  "integrity" "sha512-c4cXLMeG7vlAk3Q5axjxlppMJgeLLWd/6cCvo1wEL6ZwEueVHAP71SBRi9r5XmLYnCYr7eAqlK6NrYT/29KuKQ=="
+  "resolved" "https://registry.npmjs.org/svelte-cookie/-/svelte-cookie-1.0.1.tgz"
+  "version" "1.0.1"
+
 "svelte-floating-ui@^0.3.2":
   "integrity" "sha512-L5YqnVLfCp+JcGNMD6MFdmzsFSgskFR+TJ/2xhKjSQkAXi4dTowImb5HzAAsJpPOPY10e/+Ta/ucyNTZPGr3VQ=="
   "resolved" "https://registry.npmjs.org/svelte-floating-ui/-/svelte-floating-ui-0.3.2.tgz"

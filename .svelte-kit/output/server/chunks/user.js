@@ -1,5 +1,5 @@
 import { q as get_store_value } from "./index.js";
-import { a as teacherItemsStore, b as teacherTotalStore, t as teacherSearchParamsStore } from "./userStore.js";
+import { t as teacherSearchParamsStore, v as viewedTeacherStore } from "./userStore.js";
 async function getUsers(params = {}) {
   var _a, _b, _c, _d, _e, _f;
   const searchParams = Object.entries(params).length > 0 ? params : get_store_value(teacherSearchParamsStore);
@@ -25,8 +25,35 @@ async function getUsers(params = {}) {
     }
   );
   const body = await result.json();
-  teacherItemsStore.set(body.result.items);
-  teacherTotalStore.set(body.result.total);
+  return body.result;
+}
+async function getUserByToken(token) {
+  const response = await fetch(
+    "http://api.nd.io/user/get_user_by_token",
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        "token": token
+      })
+    }
+  );
+  let result = await response.json();
+  return result.result;
+}
+async function photo(username) {
+  const response = await fetch(
+    "http://api.nd.io/user/photo/" + username,
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    }
+  );
+  const body = await response.json();
   return body.result;
 }
 async function getTeacherSearchStoreParamsBySearchParams(params = []) {
@@ -46,7 +73,24 @@ async function getTeacherSearchStoreParamsBySearchParams(params = []) {
   teacherSearchParamsStore.set(body.result);
   return body.result;
 }
+async function getTeacher(username) {
+  const response = await fetch(
+    "http://api.nd.io/user/one_teacher/" + username,
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    }
+  );
+  const body = await response.json();
+  viewedTeacherStore.set(body.result);
+  return body;
+}
 export {
-  getTeacherSearchStoreParamsBySearchParams as a,
-  getUsers as g
+  getTeacher as a,
+  getTeacherSearchStoreParamsBySearchParams as b,
+  getUserByToken as c,
+  getUsers as g,
+  photo as p
 };

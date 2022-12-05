@@ -1,4 +1,13 @@
-import { w as writable } from "./index2.js";
+import { w as writable } from "./index3.js";
+const userStore = writable({
+  email: "",
+  username: "",
+  firstName: "",
+  lastName: "",
+  phone: "",
+  token: "",
+  roles: []
+});
 const teacherSearchParamsStore = writable({
   "page": 1,
   "pageSize": 12,
@@ -17,9 +26,12 @@ const teacherGendersStore = writable([
   { id: 1, title: "Erkek" },
   { id: 2, title: "Kad\u0131n" }
 ]);
+const viewedTeacherStore = writable([]);
 export {
-  teacherItemsStore as a,
-  teacherTotalStore as b,
+  teacherTotalStore as a,
+  teacherItemsStore as b,
   teacherGendersStore as c,
-  teacherSearchParamsStore as t
+  teacherSearchParamsStore as t,
+  userStore as u,
+  viewedTeacherStore as v
 };

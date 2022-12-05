@@ -13,6 +13,6 @@ type LayoutParentData = EnsureDefined<import('../$types.js').LayoutData>;
 export type PageServerData = null;
 export type PageLoad<OutputData extends OutputDataShape<PageParentData> = OutputDataShape<PageParentData>> = Kit.Load<RouteParams, PageServerData, PageParentData, OutputData>;
 export type PageLoadEvent = Parameters<PageLoad>[0];
-export type PageData = Expand<Omit<PageParentData, keyof PageParentData & EnsureDefined<PageServerData>> & EnsureDefined<PageParentData & EnsureDefined<PageServerData>>>;
+export type PageData = Expand<Omit<PageParentData, keyof Kit.AwaitedProperties<Awaited<ReturnType<typeof import('../../../../../src/routes/(app)/+page.js').load>>>> & EnsureDefined<Kit.AwaitedProperties<Awaited<ReturnType<typeof import('../../../../../src/routes/(app)/+page.js').load>>>>>;
 export type LayoutServerData = null;
 export type LayoutData = Expand<LayoutParentData>;

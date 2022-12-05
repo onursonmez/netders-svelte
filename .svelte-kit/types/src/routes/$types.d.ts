@@ -7,7 +7,11 @@ export type RequiredKeys<T> = { [K in keyof T]-?: {} extends { [P in K]: T[K] } 
 type OutputDataShape<T> = MaybeWithVoid<Omit<App.PageData, RequiredKeys<T>> & Partial<Pick<App.PageData, keyof T & keyof App.PageData>> & Record<string, any>>
 type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type LayoutParams = RouteParams & { catchall?: string,slug?: string }
+type LayoutServerParentData = EnsureDefined<{}>;
 type LayoutParentData = EnsureDefined<{}>;
 
-export type LayoutServerData = null;
-export type LayoutData = Expand<LayoutParentData>;
+export type LayoutServerLoad<OutputData extends OutputDataShape<LayoutServerParentData> = OutputDataShape<LayoutServerParentData>> = Kit.ServerLoad<LayoutParams, LayoutServerParentData, OutputData>;
+export type LayoutServerLoadEvent = Parameters<LayoutServerLoad>[0];
+export type LayoutServerData = Expand<Kit.AwaitedProperties<Awaited<ReturnType<typeof import('../../../../src/routes/+layout.server.js').load>>>>;
+export type LayoutData = Expand<Omit<LayoutParentData, keyof LayoutServerData> & EnsureDefined<LayoutServerData>>;
+export type RequestEvent = Kit.RequestEvent<RouteParams>;

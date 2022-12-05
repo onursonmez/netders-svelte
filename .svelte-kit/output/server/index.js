@@ -1,6 +1,7 @@
 import { c as create_ssr_component, s as setContext, v as validate_component, m as missing_component } from "./chunks/index.js";
+import { H as HttpError, R as Redirect, V as ValidationError, j as json, e as error } from "./chunks/index2.js";
 import * as devalue from "devalue";
-import { r as readable, w as writable } from "./chunks/index2.js";
+import { r as readable, w as writable } from "./chunks/index3.js";
 import { parse, serialize } from "cookie";
 import * as set_cookie_parser from "set-cookie-parser";
 function afterUpdate() {
@@ -14,6 +15,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { form } = $$props;
   let { data_0 = null } = $$props;
   let { data_1 = null } = $$props;
+  let { data_2 = null } = $$props;
   {
     setContext("__svelte__", stores);
   }
@@ -30,6 +32,8 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.data_0(data_0);
   if ($$props.data_1 === void 0 && $$bindings.data_1 && data_1 !== void 0)
     $$bindings.data_1(data_1);
+  if ($$props.data_2 === void 0 && $$bindings.data_2 && data_2 !== void 0)
+    $$bindings.data_2(data_2);
   {
     stores.page.set(page);
   }
@@ -38,52 +42,16 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 ${components[1] ? `${validate_component(components[0] || missing_component, "svelte:component").$$render($$result, { data: data_0 }, {}, {
     default: () => {
-      return `${validate_component(components[1] || missing_component, "svelte:component").$$render($$result, { data: data_1, form }, {}, {})}`;
+      return `${components[2] ? `${validate_component(components[1] || missing_component, "svelte:component").$$render($$result, { data: data_1 }, {}, {
+        default: () => {
+          return `${validate_component(components[2] || missing_component, "svelte:component").$$render($$result, { data: data_2, form }, {}, {})}`;
+        }
+      })}` : `${validate_component(components[1] || missing_component, "svelte:component").$$render($$result, { data: data_1, form }, {}, {})}`}`;
     }
   })}` : `${validate_component(components[0] || missing_component, "svelte:component").$$render($$result, { data: data_0, form }, {}, {})}`}
 
 ${``}`;
 });
-class HttpError {
-  constructor(status, body) {
-    this.status = status;
-    if (typeof body === "string") {
-      this.body = { message: body };
-    } else if (body) {
-      this.body = body;
-    } else {
-      this.body = { message: `Error: ${status}` };
-    }
-  }
-  toString() {
-    return JSON.stringify(this.body);
-  }
-}
-class Redirect {
-  constructor(status, location) {
-    this.status = status;
-    this.location = location;
-  }
-}
-class ValidationError {
-  constructor(status, data) {
-    this.status = status;
-    this.data = data;
-  }
-}
-function error(status, message) {
-  return new HttpError(status, message);
-}
-function json(data, init2) {
-  const headers = new Headers(init2 == null ? void 0 : init2.headers);
-  if (!headers.has("content-type")) {
-    headers.set("content-type", "application/json");
-  }
-  return new Response(JSON.stringify(data), {
-    ...init2,
-    headers
-  });
-}
 function negotiate(accept, types) {
   const parts = [];
   accept.split(",").forEach((str, i) => {
@@ -2232,7 +2200,7 @@ class Server {
     const pub = Object.fromEntries(entries.filter(([k]) => k.startsWith("PUBLIC_")));
     this.options.public_env = pub;
     if (!this.options.hooks) {
-      const module = await import("./chunks/hooks.js");
+      const module = await import("./chunks/hooks.server.js");
       if (module.externalFetch) {
         throw new Error("externalFetch has been removed \u2014 use handleFetch instead. See https://github.com/sveltejs/kit/pull/6565 for details");
       }

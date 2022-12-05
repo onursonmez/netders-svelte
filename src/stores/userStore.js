@@ -1,5 +1,15 @@
 import { writable } from "svelte/store";
 
+export const userStore = writable({
+    email: '',
+    username: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    token: '',
+    roles: []
+})
+
 export const teacherSearchParamsStore = writable({
     'page' : 1,
     'pageSize': 12,

@@ -35,6 +35,37 @@ function compute_rest_props(props, keys) {
       rest[k] = props[k];
   return rest;
 }
+function set_store_value(store, ret, value) {
+  store.set(value);
+  return ret;
+}
+const is_client = typeof window !== "undefined";
+let now = is_client ? () => window.performance.now() : () => Date.now();
+let raf = is_client ? (cb) => requestAnimationFrame(cb) : noop;
+const tasks = /* @__PURE__ */ new Set();
+function run_tasks(now2) {
+  tasks.forEach((task) => {
+    if (!task.c(now2)) {
+      tasks.delete(task);
+      task.f();
+    }
+  });
+  if (tasks.size !== 0)
+    raf(run_tasks);
+}
+function loop(callback) {
+  let task;
+  if (tasks.size === 0)
+    raf(run_tasks);
+  return {
+    promise: new Promise((fulfill) => {
+      tasks.add(task = { c: callback, f: fulfill });
+    }),
+    abort() {
+      tasks.delete(task);
+    }
+  };
+}
 function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
   const e = document.createEvent("CustomEvent");
   e.initCustomEvent(type, bubbles, cancelable, detail);
@@ -255,25 +286,28 @@ function style_object_to_string(style_object) {
 }
 export {
   safe_not_equal as a,
-  add_attribute as b,
+  subscribe as b,
   create_ssr_component as c,
-  add_classes as d,
+  add_attribute as d,
   escape as e,
-  subscribe as f,
+  each as f,
   getContext as g,
-  compute_rest_props as h,
-  createEventDispatcher as i,
-  spread as j,
-  escape_attribute_value as k,
-  escape_object as l,
+  add_classes as h,
+  compute_rest_props as i,
+  createEventDispatcher as j,
+  spread as k,
+  escape_attribute_value as l,
   missing_component as m,
   noop as n,
-  is_promise as o,
-  each as p,
+  escape_object as o,
+  is_promise as p,
   get_store_value as q,
   is_void as r,
   setContext as s,
   get_current_component as t,
   globals as u,
-  validate_component as v
+  validate_component as v,
+  now as w,
+  loop as x,
+  set_store_value as y
 };

@@ -3,8 +3,13 @@
 	import Logo from '$lib/images/netders-logo-blue.svg'
 	import LoginScreenImage from '$lib/images/login-screen.png'
 	import Toastify from 'toastify-js'
+	import { setCookie } from 'svelte-cookie'
 
 	import { login } from '/src/repository/user'
+	import { userStore } from '/src/stores/userStore'
+	import { goto } from '$app/navigation';
+
+	export let data
 
 	let loginData = {
 		login: '',
@@ -14,6 +19,7 @@
 	let emailLogin = true
 	let showPassword = false
 	let loading = false
+	let to = data.to
 
 	const handleSubmit = async () => {
 		loading = true
@@ -42,6 +48,24 @@
 						close: true
 					}).showToast()
 				}
+			} else {
+				$userStore = loginResponse.result
+				setCookie('token', $userStore.token, 30, true)
+
+				Toastify({
+					text: "Hesabınıza başarıyla giriş yaptınız.",
+					className: "success",
+					gravity: "top",
+					close: true
+				}).showToast()
+
+				setTimeout(() => {
+					if(to){
+						goto(to)
+					} else {
+						goto('/member/dashboard')
+					}
+				}, 1000);
 			}
 		}
 		loading = false
