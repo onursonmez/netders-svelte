@@ -44,7 +44,7 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     "hidden"
   ].join(" ").trim()}" role="${"menu"}" aria-orientation="${"vertical"}" aria-labelledby="${"user-menu-button"}" tabindex="${"-1"}">
 								<a href="${"/member/dashboard"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Hesab\u0131m</a>
-								<a href="${"/auth/logout"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-2"}">G\xFCvenli \xC7\u0131k\u0131\u015F</a></div>` : ``}</div></div></div></div>
+								<a data-sveltekit-preload-data="${"off"}" href="${"/auth/logout"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-2"}">G\xFCvenli \xC7\u0131k\u0131\u015F</a></div>` : ``}</div></div></div></div>
 
 		
 		<div id="${"mobile-menu"}"${add_classes("hidden".trim())}><div class="${"space-y-1 px-2 pt-2 pb-3"}">
