@@ -3,11 +3,9 @@ import { getUserByToken } from '/src/repository/user'
 /** @type {import('@sveltejs/kit').HandleServerError} */
 export function handleError({ error, event }) {
 
-    console.log(event.cookies.get('token'))
-
     return {
-        message: error.message,
-        code: error.code ?? 'UNKNOWN'
+        message: error?.message,
+        code: error?.code ?? 'UNKNOWN'
     };
 }
 

@@ -1,5 +1,5 @@
 <script>
-	import UserHorizontal from '/src/components/user/UserHorizontal.svelte';
+	import UserHorizontal from '/src/components/user/UserHorizontal.svelte'
 	import Modal from '/src/components/Modal.svelte'
 	import { getUsers } from '/src/repository/user'
 	import { getCities, getCounties } from '/src/repository/location'
@@ -7,9 +7,8 @@
 	import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, teacherGendersStore } from '/src/stores/userStore'
 	import { citiesStore, countiesStore } from '/src/stores/locationStore'
 	import { subjectsStore, levelsStore, lessonTypesStore } from '/src/stores/lessonStore'
-	import { onMount } from "svelte";
-	import { page } from "$app/stores";
-	import { goto } from "$app/navigation";
+	import { onMount } from 'svelte'
+	import { page } from '$app/stores'
 
 	onMount(async () => {
 

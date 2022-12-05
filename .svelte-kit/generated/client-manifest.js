@@ -11,23 +11,21 @@ export { matchers } from './client-matchers.js';
 	() => import('./nodes/8'),
 	() => import('./nodes/9'),
 	() => import('./nodes/10'),
-	() => import('./nodes/11'),
-	() => import('./nodes/12'),
-	() => import('./nodes/13')];
+	() => import('./nodes/11')];
 
 			export const server_loads = [0];
 
 			export const dictionary = {
-	"/(app)": [4,[2]],
-	"/(auth)/activation": [10,[3]],
-	"/(app)/ders/[slug]": [6,[2]],
-	"/(auth)/forgot": [11,[3]],
-	"/(auth)/login": [12,[3]],
-	"/(auth)/logout": [13,[3]],
-	"/(app)/member/dashboard": [7,[2]],
-	"/(app)/ozel-ders-ilanlari-verenler/[...catchall]": [8,[2]],
-	"/(app)/ozel-ders-talebi-olustur": [9,[2]],
-	"/(app)/[...catchall]": [5,[2]]
+	"/": [2],
+	"/(app)/auth/activation": [4],
+	"/(app)/auth/forgot": [5],
+	"/(app)/auth/login": [6],
+	"/(app)/auth/logout": [7],
+	"/(app)/ders/[slug]": [8],
+	"/(app)/member/dashboard": [9],
+	"/(app)/ozel-ders-ilanlari-verenler/[...catchall]": [10],
+	"/(app)/ozel-ders-talebi-olustur": [11],
+	"/(app)/[...catchall]": [3]
 };
 
 			export const hooks = {

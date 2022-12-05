@@ -1,4 +1,4 @@
-import { c as create_ssr_component, v as validate_component, e as escape } from "./index.js";
+import { c as create_ssr_component, v as validate_component, f as escape } from "./index.js";
 import { U as UserVertical } from "./UserVertical.js";
 const UserCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { userData } = $$props;

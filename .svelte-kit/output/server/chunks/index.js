@@ -35,10 +35,6 @@ function compute_rest_props(props, keys) {
       rest[k] = props[k];
   return rest;
 }
-function set_store_value(store, ret, value) {
-  store.set(value);
-  return ret;
-}
 const is_client = typeof window !== "undefined";
 let now = is_client ? () => window.performance.now() : () => Date.now();
 let raf = is_client ? (cb) => requestAnimationFrame(cb) : noop;
@@ -289,10 +285,10 @@ export {
   subscribe as b,
   create_ssr_component as c,
   add_attribute as d,
-  escape as e,
-  each as f,
-  getContext as g,
-  add_classes as h,
+  add_classes as e,
+  escape as f,
+  each as g,
+  getContext as h,
   compute_rest_props as i,
   createEventDispatcher as j,
   spread as k,
@@ -308,6 +304,5 @@ export {
   globals as u,
   validate_component as v,
   now as w,
-  loop as x,
-  set_store_value as y
+  loop as x
 };

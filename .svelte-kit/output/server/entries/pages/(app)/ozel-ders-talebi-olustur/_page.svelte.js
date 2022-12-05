@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as escape, d as add_attribute, f as each, v as validate_component } from "../../../../chunks/index.js";
+import { c as create_ssr_component, f as escape, d as add_attribute, g as each, v as validate_component } from "../../../../chunks/index.js";
 import { S as Student2, R as RangeSlider } from "../../../../chunks/RangeSlider.js";
 import "toastify-js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {

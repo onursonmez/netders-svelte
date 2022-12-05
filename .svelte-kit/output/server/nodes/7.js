@@ -1,8 +1,6 @@
-import * as shared from '../entries/pages/(app)/member/dashboard/_page.js';
+import * as shared from '../entries/pages/(app)/auth/logout/_page.js';
 
 export const index = 7;
-export const component = async () => (await import('../entries/pages/(app)/member/dashboard/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/(app)/member/dashboard/_page.svelte-d09ba7d9.js';
 export { shared };
-export const imports = ["_app/immutable/components/pages/(app)/member/dashboard/_page.svelte-d09ba7d9.js","_app/immutable/chunks/index-540aa180.js","_app/immutable/chunks/RangeSlider-0dcf2e84.js","_app/immutable/chunks/index-dad5f1ca.js","_app/immutable/chunks/location-f1a69202.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/modules/pages/(app)/member/dashboard/_page.js-ae5e1c01.js","_app/immutable/chunks/environment-b04a8a58.js","_app/immutable/chunks/_page-945f0351.js"];
-export const stylesheets = ["_app/immutable/assets/RangeSlider-3b636b73.css"];
+export const imports = ["_app/immutable/modules/pages/(app)/auth/logout/_page.js-7d0662a0.js","_app/immutable/chunks/environment-b04a8a58.js","_app/immutable/chunks/SvelteCookie-f4094f66.js","_app/immutable/chunks/index-5c1dbe35.js","_app/immutable/chunks/userStore-57500a02.js","_app/immutable/chunks/index-c483a1bd.js","_app/immutable/chunks/navigation-14789a00.js","_app/immutable/chunks/singletons-5a0fa43e.js","_app/immutable/chunks/_page-7b6cf77c.js"];
+export const stylesheets = [];

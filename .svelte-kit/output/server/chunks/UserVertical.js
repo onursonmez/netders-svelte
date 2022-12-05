@@ -1,4 +1,4 @@
-import { c as create_ssr_component, i as compute_rest_props, s as setContext, k as spread, o as escape_object, l as escape_attribute_value, d as add_attribute, r as is_void, n as noop, t as get_current_component, v as validate_component, u as globals, b as subscribe, e as escape } from "./index.js";
+import { c as create_ssr_component, i as compute_rest_props, s as setContext, k as spread, o as escape_object, l as escape_attribute_value, d as add_attribute, r as is_void, n as noop, t as get_current_component, v as validate_component, u as globals, b as subscribe, f as escape } from "./index.js";
 import { I as IconUser } from "./icon-user.js";
 import { p as photo } from "./user.js";
 import { p as page } from "./stores.js";

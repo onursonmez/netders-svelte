@@ -1,3 +1,3 @@
-import * as shared from "../../../src/routes/(auth)/activation/+page.js";
+import * as shared from "../../../src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.js";
 export { shared };
-export { default as component } from "../../../src/routes/(auth)/activation/+page.svelte";
+export { default as component } from "../../../src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte";

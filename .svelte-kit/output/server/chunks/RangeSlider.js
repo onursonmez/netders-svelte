@@ -1,4 +1,4 @@
-import { w as now, x as loop, c as create_ssr_component, e as escape, f as each, j as createEventDispatcher, d as add_attribute, v as validate_component, b as subscribe, n as noop } from "./index.js";
+import { w as now, x as loop, c as create_ssr_component, f as escape, g as each, j as createEventDispatcher, d as add_attribute, v as validate_component, b as subscribe, n as noop } from "./index.js";
 import { w as writable } from "./index3.js";
 const Student2 = "/_app/immutable/assets/student2-ef62a23a.png";
 function is_date(obj) {

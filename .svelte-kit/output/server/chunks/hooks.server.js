@@ -1,9 +1,8 @@
 import { c as getUserByToken } from "./user.js";
 function handleError({ error, event }) {
-  console.log(event.cookies.get("token"));
   return {
-    message: error.message,
-    code: error.code ?? "UNKNOWN"
+    message: error == null ? void 0 : error.message,
+    code: (error == null ? void 0 : error.code) ?? "UNKNOWN"
   };
 }
 async function handle({ event, resolve }) {

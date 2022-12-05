@@ -1,5 +1,7 @@
 {
 	"/": [
+		"src/routes/+page.js",
+		"src/routes/+layout.server.js",
 		"src/routes/+layout.server.js"
 	],
 	"/about": [
@@ -15,10 +17,14 @@
 		"src/routes/ozel-ders-ilanlari-verenler/+page.js"
 	],
 	"/ozel-ders-ilanlari-verenler/[...catchall]": [
-		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.js"
+		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
 	],
 	"/[...catchall]": [
-		"src/routes/[...catchall]/+page.js"
+		"src/routes/[...catchall]/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
 	],
 	"/ozel-ders-ilanlari-verenler/[location]/[lesson]": [
 		"src/routes/ozel-ders-ilanlari-verenler/[location]/[lesson]/+page.js"
@@ -30,18 +36,26 @@
 		"src/routes/ders/[...catchall]/+page.js"
 	],
 	"/ders/[slug]": [
-		"src/routes/ders/[slug]/+page.js"
+		"src/routes/ders/[slug]/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
 	],
 	"/ozel-ders-talebi-olustur/[slug]": [
 		"src/routes/ozel-ders-talebi-olustur/[slug]/+page.js"
 	],
 	"/ozel-ders-talebi-olustur": [
-		"src/routes/ozel-ders-talebi-olustur/+page.js"
+		"src/routes/ozel-ders-talebi-olustur/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
 	],
 	"/auth/login": [
-		"src/routes/auth/login/+page.js"
+		"src/routes/auth/login/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
 	],
-	"/auth": [],
+	"/auth": [
+		"src/routes/+layout.server.js"
+	],
 	"/(auth)/login": [
 		"src/routes/(auth)/login/+page.js",
 		"src/routes/+layout.server.js"
@@ -87,6 +101,42 @@
 	],
 	"/(app)/member/dashboard": [
 		"src/routes/(app)/member/dashboard/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/auth/activation": [
+		"src/routes/auth/activation/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
+	],
+	"/auth/forgot": [
+		"src/routes/auth/forgot/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
+	],
+	"/auth/logout": [
+		"src/routes/auth/logout/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member/dashboard": [
+		"src/routes/member/dashboard/+page.js",
+		"src/routes/+layout.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(app)/auth/activation": [
+		"src/routes/(app)/auth/activation/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(app)/auth/forgot": [
+		"src/routes/(app)/auth/forgot/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(app)/auth/login": [
+		"src/routes/(app)/auth/login/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(app)/auth/logout": [
+		"src/routes/(app)/auth/logout/+page.js",
 		"src/routes/+layout.server.js"
 	]
 }
