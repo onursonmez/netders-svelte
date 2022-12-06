@@ -1,3 +1,3 @@
-import * as shared from "../../../src/routes/(app)/ozel-ders-talebi-olustur/+page.js";
+import * as shared from "../../../src/routes/(auth)/auth/activation/+page.js";
 export { shared };
-export { default as component } from "../../../src/routes/(app)/ozel-ders-talebi-olustur/+page.svelte";
+export { default as component } from "../../../src/routes/(auth)/auth/activation/+page.svelte";

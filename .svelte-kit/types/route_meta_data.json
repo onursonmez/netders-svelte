@@ -1,7 +1,5 @@
 {
 	"/": [
-		"src/routes/+page.js",
-		"src/routes/+layout.server.js",
 		"src/routes/+layout.server.js"
 	],
 	"/about": [
@@ -137,6 +135,29 @@
 	],
 	"/(app)/auth/logout": [
 		"src/routes/(app)/auth/logout/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(app)/auth": [
+		"src/routes/+layout.server.js"
+	],
+	"/(auth)/auth": [
+		"src/routes/(auth)/auth/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(auth)/auth/activation": [
+		"src/routes/(auth)/auth/activation/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(auth)/auth/forgot": [
+		"src/routes/(auth)/auth/forgot/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(auth)/auth/login": [
+		"src/routes/(auth)/auth/login/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(auth)/auth/logout": [
+		"src/routes/(auth)/auth/logout/+page.js",
 		"src/routes/+layout.server.js"
 	]
 }
