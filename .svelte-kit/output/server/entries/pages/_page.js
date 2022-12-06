@@ -1,4 +1,6 @@
+import { d as dev } from "../../chunks/environment.js";
 import { u as userStore } from "../../chunks/userStore.js";
+const csr = dev;
 const prerender = false;
 const load = async ({ parent }) => {
   const { user } = await parent();
@@ -7,6 +9,7 @@ const load = async ({ parent }) => {
   }
 };
 export {
+  csr,
   load,
   prerender
 };

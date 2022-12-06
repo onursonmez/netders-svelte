@@ -1,5 +1,5 @@
 import { w as writable } from "./index3.js";
-const userStore = writable({
+const userModel = {
   email: "",
   username: "",
   firstName: "",
@@ -7,8 +7,12 @@ const userStore = writable({
   phone: "",
   token: "",
   roles: []
-});
-const teacherSearchParamsStore = writable({
+};
+const gendersModel = [
+  { id: 1, title: "Erkek" },
+  { id: 2, title: "Kad\u0131n" }
+];
+const searchParamsModel = {
   "page": 1,
   "pageSize": 12,
   "keyword": "",
@@ -19,18 +23,18 @@ const teacherSearchParamsStore = writable({
   "levelObject": void 0,
   "lessonTypeObject": void 0,
   "genderObject": void 0
-});
+};
+const userStore = writable(userModel);
+const teacherSearchParamsStore = writable(searchParamsModel);
 const teacherItemsStore = writable([]);
 const teacherTotalStore = writable(0);
-const teacherGendersStore = writable([
-  { id: 1, title: "Erkek" },
-  { id: 2, title: "Kad\u0131n" }
-]);
 const viewedTeacherStore = writable([]);
+const gendersStore = writable(gendersModel);
 export {
   teacherTotalStore as a,
   teacherItemsStore as b,
-  teacherGendersStore as c,
+  userModel as c,
+  gendersStore as g,
   teacherSearchParamsStore as t,
   userStore as u,
   viewedTeacherStore as v

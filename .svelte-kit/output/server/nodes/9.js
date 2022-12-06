@@ -1,8 +1,8 @@
-import * as shared from '../entries/pages/(app)/member/dashboard/_page.js';
+import * as shared from '../entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js';
 
 export const index = 9;
-export const component = async () => (await import('../entries/pages/(app)/member/dashboard/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/(app)/member/dashboard/_page.svelte-b62f2e44.js';
+export const component = async () => (await import('../entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js')).default;
+export const file = '_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-d90e94ba.js';
 export { shared };
-export const imports = ["_app/immutable/components/pages/(app)/member/dashboard/_page.svelte-b62f2e44.js","_app/immutable/chunks/index-5c1dbe35.js","_app/immutable/chunks/RangeSlider-e6fe9ecb.js","_app/immutable/chunks/index-c483a1bd.js","_app/immutable/chunks/location-8c23be2c.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/modules/pages/(app)/member/dashboard/_page.js-ae5e1c01.js","_app/immutable/chunks/environment-b04a8a58.js","_app/immutable/chunks/_page-945f0351.js"];
-export const stylesheets = ["_app/immutable/assets/RangeSlider-3b636b73.css"];
+export const imports = ["_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-d90e94ba.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/user-5e4a8908.js","_app/immutable/chunks/userStore-7d0e6609.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/Modal-a9efb2e7.js","_app/immutable/chunks/lesson-f97c8aea.js","_app/immutable/chunks/stores-1d1e1b0f.js","_app/immutable/chunks/singletons-5edf8516.js","_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-0e345143.js","_app/immutable/chunks/environment-b04a8a58.js","_app/immutable/chunks/user-5e4a8908.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/userStore-7d0e6609.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/_page-7fedb1c3.js"];
+export const stylesheets = ["_app/immutable/assets/Modal-7e1b958a.css"];

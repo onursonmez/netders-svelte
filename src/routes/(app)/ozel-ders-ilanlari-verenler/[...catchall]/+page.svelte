@@ -4,7 +4,7 @@
 	import { getUsers } from '/src/repository/user'
 	import { getCities, getCounties } from '/src/repository/location'
 	import { getLevels, getSubjects } from '/src/repository/lesson'
-	import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, teacherGendersStore } from '/src/stores/userStore'
+	import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, gendersStore } from '/src/stores/userStore'
 	import { citiesStore, countiesStore } from '/src/stores/locationStore'
 	import { subjectsStore, levelsStore, lessonTypesStore } from '/src/stores/lessonStore'
 	import { onMount } from 'svelte'
@@ -27,13 +27,13 @@
 		}
 
 		if($page.url.searchParams.has('lesson_type')){
-			teacherSearchParams.lessonTypeObject = $lessonTypesStore.find(lts => lts.id == $page.url.searchParams.get('lesson_type'))
-			$teacherSearchParamsStore.lessonTypeObject = $lessonTypesStore.find(lts => lts.id == $page.url.searchParams.get('lesson_type'))
+			teacherSearchParams.lessonTypeObject = $lessonTypesStore.find(lts => lts.id === $page.url.searchParams.get('lesson_type'))
+			$teacherSearchParamsStore.lessonTypeObject = $lessonTypesStore.find(lts => lts.id === $page.url.searchParams.get('lesson_type'))
 		}
 
 		if($page.url.searchParams.has('gender')){
-			teacherSearchParams.genderObject = $teacherGendersStore.find(lts => lts.id == $page.url.searchParams.get('gender'))
-			$teacherSearchParamsStore.genderObject = $teacherGendersStore.find(lts => lts.id == $page.url.searchParams.get('gender'))
+			teacherSearchParams.genderObject = $gendersStore.find(lts => lts.id === $page.url.searchParams.get('gender'))
+			$teacherSearchParamsStore.genderObject = $gendersStore.find(lts => lts.id === $page.url.searchParams.get('gender'))
 		}
 
 
@@ -226,7 +226,7 @@
 				<span class="pb-1 block">Öğretmen</span>
 				<select name="gender" bind:value={teacherSearchParams.genderObject} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seç</option>
-					{#each $teacherGendersStore as gender}
+					{#each $gendersStore as gender}
 						<option value="{gender}">{gender.title}</option>
 					{/each}
 				</select>

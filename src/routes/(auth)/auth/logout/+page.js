@@ -1,7 +1,8 @@
 import { dev } from '$app/environment'
 import { deleteCookie } from 'svelte-cookie'
 import { userStore } from '/src/stores/userStore'
-import { goto } from '$app/navigation'
+import { userModel } from '/src/models/userModel'
+
 
 // we don't need any JS on this page, though we'll load
 // it in dev so that we get hot module replacement
@@ -14,17 +15,12 @@ export const prerender = false;
 /** @type {import('./$types').PageLoad} */
 export async function load({ url })
 {
-    userStore.set({
-        email: '',
-        username: '',
-        firstName: '',
-        lastName: '',
-        phone: '',
-        token: '',
-        roles: []
-    })
-
+    userStore.set(userModel)
     deleteCookie('token')
 
-    goto(url.searchParams.get('to') ?? '/')
+    let redirectPath = url.searchParams.get('to') ? url.searchParams.get('to') : '/'
+
+    return {
+        to: redirectPath
+    }
 }

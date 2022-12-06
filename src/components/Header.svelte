@@ -2,11 +2,16 @@
 	import logo from '$lib/images/netders-logo-blue.svg'
 	import IconUser from '$lib/images/icon-user.png'
 
+	import { page } from '$app/stores';
 	import { goto } from '$app/navigation'
 	import { onMount } from 'svelte'
 
 	import { userStore } from '/src/stores/userStore'
 	import { photo } from '/src/repository/user'
+
+	let hiddenMobileMenu = true
+	let hiddenProfileMenu = true
+	let photoUrl = IconUser
 
 	onMount(async () => {
 		document.onkeydown = function(evt) {
@@ -24,10 +29,6 @@
 			}
 		}
 	})
-
-	let hiddenMobileMenu = true
-	let hiddenProfileMenu = true
-	let photoUrl = IconUser
 
 	function clickOutside(node) {
 
@@ -80,6 +81,7 @@
 					<div class="flex flex-shrink-0 items-center">
 						<a href="/">
 							<img class="h-8 w-auto" src="{logo}" alt="Netders.com">
+							{$userStore.username}
 						</a>
 					</div>
 					<div class="flex space-x-4 hidden lg:ml-6 lg:block w-full text-center">
@@ -123,7 +125,7 @@
 									<img class="h-8 w-8 rounded-full" src="{photoUrl}" alt="">
 								</button>
 							{:else}
-								<button on:click={() => goto('/auth/login')} class="bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white">
+								<button on:click={() => goto('/auth/login?to=' + $page.url.pathname)} class="bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white">
 									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block">
 										<path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
 									</svg>
@@ -134,8 +136,7 @@
 						</div>
 						{#if $userStore?.username}
 							<div class:hidden={hiddenProfileMenu} class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-								<!-- Active: "bg-gray-100", Not Active: "" -->
-								<a href="/member/dashboard" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Hesabım</a>
+								<a href="/member/account" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Hesabım</a>
 								<a data-sveltekit-prefetch="off" href="/auth/logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Güvenli Çıkış</a>
 							</div>
 						{/if}

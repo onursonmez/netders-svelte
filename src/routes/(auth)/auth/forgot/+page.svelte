@@ -17,7 +17,9 @@
 </svelte:head>
 
 <div class="mx-auto my-8">
-	<img src="{Logo}" width="200" height="200" />
+	<a href="/">
+		<img src="{Logo}" width="200" height="200" />
+	</a>
 </div>
 <div class="max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300">
 	<div class="sm:w-full text-left m-auto lg:m-0">

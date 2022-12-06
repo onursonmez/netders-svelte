@@ -1,0 +1,1 @@
+import"./index-95fd0b09.js";function d(e,t,c,s){const o=new Date;o.setTime(o.getTime()+c*24*60*60*1e3);let i="expires="+o.toUTCString();s?document.cookie=e+"="+t+";"+i+";path=/; secure":document.cookie=e+"="+t+";"+i+";path=/"}function p(e){document.cookie=e+"=; Max-Age=-99999999;"}export{p as d,d as s};

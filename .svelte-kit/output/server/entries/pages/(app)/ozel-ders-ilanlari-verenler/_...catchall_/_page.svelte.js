@@ -1,15 +1,7 @@
-import { c as create_ssr_component, f as escape, b as subscribe, d as add_attribute, g as each, v as validate_component } from "../../../../../chunks/index.js";
-/* empty css                                                         */import { t as teacherSearchParamsStore, a as teacherTotalStore, b as teacherItemsStore, c as teacherGendersStore } from "../../../../../chunks/userStore.js";
+import { c as create_ssr_component, e as escape, b as subscribe, d as add_attribute, f as each, v as validate_component } from "../../../../../chunks/index.js";
+/* empty css                                                         */import { t as teacherSearchParamsStore, a as teacherTotalStore, b as teacherItemsStore, g as gendersStore } from "../../../../../chunks/userStore.js";
 import { w as writable } from "../../../../../chunks/index3.js";
 import { p as page } from "../../../../../chunks/stores.js";
-const subjectsStore = writable([]);
-const levelsStore = writable([]);
-const lessonTypesStore = writable([
-  { id: 1, title: "Y\xFCz Y\xFCze" },
-  { id: 2, title: "Uzaktan (Webcam)" }
-]);
-const citiesStore = writable([]);
-const countiesStore = writable([]);
 const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { firstName } = $$props;
   let { genderName } = $$props;
@@ -90,6 +82,14 @@ const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slot
 
 		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
 });
+const citiesStore = writable([]);
+const countiesStore = writable([]);
+const subjectsStore = writable([]);
+const levelsStore = writable([]);
+const lessonTypesStore = writable([
+  { id: 1, title: "Y\xFCz Y\xFCze" },
+  { id: 2, title: "Uzaktan (Webcam)" }
+]);
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
   let $$unsubscribe_page;
@@ -98,7 +98,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$unsubscribe_countiesStore;
   let $teacherTotalStore, $$unsubscribe_teacherTotalStore;
   let $teacherItemsStore, $$unsubscribe_teacherItemsStore;
-  let $$unsubscribe_teacherGendersStore;
+  let $$unsubscribe_gendersStore;
   let $$unsubscribe_lessonTypesStore;
   let $$unsubscribe_citiesStore;
   let $$unsubscribe_subjectsStore;
@@ -108,7 +108,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
   $$unsubscribe_teacherTotalStore = subscribe(teacherTotalStore, (value) => $teacherTotalStore = value);
   $$unsubscribe_teacherItemsStore = subscribe(teacherItemsStore, (value) => $teacherItemsStore = value);
-  $$unsubscribe_teacherGendersStore = subscribe(teacherGendersStore, (value) => value);
+  $$unsubscribe_gendersStore = subscribe(gendersStore, (value) => value);
   $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
   $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
   $$unsubscribe_subjectsStore = subscribe(subjectsStore, (value) => value);
@@ -129,7 +129,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_countiesStore();
   $$unsubscribe_teacherTotalStore();
   $$unsubscribe_teacherItemsStore();
-  $$unsubscribe_teacherGendersStore();
+  $$unsubscribe_gendersStore();
   $$unsubscribe_lessonTypesStore();
   $$unsubscribe_citiesStore();
   $$unsubscribe_subjectsStore();

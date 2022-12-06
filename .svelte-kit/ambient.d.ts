@@ -29,6 +29,8 @@ declare module '$env/static/private' {
 	export const VITE_TEMP_BASE_URL: string;
 	export const VITE_BASE_URL: string;
 	export const VITE_API_URL: string;
+	export const VITE_EMAIL: string;
+	export const VITE_PASSWORD: string;
 	export const MANPATH: string;
 	export const NODE: string;
 	export const INIT_CWD: string;
@@ -112,6 +114,8 @@ declare module '$env/dynamic/private' {
 		VITE_TEMP_BASE_URL: string;
 		VITE_BASE_URL: string;
 		VITE_API_URL: string;
+		VITE_EMAIL: string;
+		VITE_PASSWORD: string;
 		MANPATH: string;
 		NODE: string;
 		INIT_CWD: string;

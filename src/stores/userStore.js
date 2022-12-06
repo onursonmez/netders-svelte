@@ -1,31 +1,10 @@
 import { writable } from "svelte/store";
+import { userModel, gendersModel } from '/src/models/userModel'
+import { searchParamsModel } from '/src/models/searchModel'
 
-export const userStore = writable({
-    email: '',
-    username: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
-    token: '',
-    roles: []
-})
-
-export const teacherSearchParamsStore = writable({
-    'page' : 1,
-    'pageSize': 12,
-    'keyword' : '',
-    'budget': '',
-    'cityObject': undefined,
-    'countyObject': undefined,
-    'subjectObject': undefined,
-    'levelObject': undefined,
-    'lessonTypeObject': undefined,
-    'genderObject': undefined,
-})
+export const userStore = writable(userModel)
+export const teacherSearchParamsStore = writable(searchParamsModel)
 export const teacherItemsStore = writable([])
 export const teacherTotalStore = writable(0)
-export const teacherGendersStore = writable([
-    {id: 1, title: "Erkek"},
-    {id: 2, title: "Kadın"},
-])
 export const viewedTeacherStore = writable([])
+export const gendersStore = writable(gendersModel)

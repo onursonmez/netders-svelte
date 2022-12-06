@@ -1,6 +1,7 @@
 import { dev } from '$app/environment'
 import { getUserPriceDetail } from '/src/repository/price'
 import { error } from '@sveltejs/kit'
+import { userStore } from '/src/stores/userStore'
 
 // we don't need any JS on this page, though we'll load
 // it in dev so that we get hot module replacement
@@ -11,8 +12,14 @@ export const csr = dev;
 export const prerender = false;
 
 /** @type {import('./$types').PageLoad} */
-export async function load({ params })
+export async function load({ params, parent })
 {
+    const { user } = await parent();
+
+    if(Object.entries(user).length > 0){
+        userStore.set(user)
+    }
+
     if(params && params.slug)
     {
         let response = await getUserPriceDetail(params.slug)

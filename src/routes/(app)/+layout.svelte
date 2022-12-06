@@ -13,7 +13,7 @@
 	</main>
 
 	<footer>
-		<div class="bg-white rounded-lg shadow-md mt-4 p-4 lg:p-8 invite-friend-background lg:text-xl flex flex-col lg:flex-row items-center gap-4 text-center lg:text-left lg:justify-between">
+		<div class="hidden bg-white rounded-lg shadow-md mt-4 p-4 lg:p-8 invite-friend-background lg:text-xl flex flex-col lg:flex-row items-center gap-4 text-center lg:text-left lg:justify-between">
 			<div>
 				Arkadaşını davet et <span class="font-bold text-lg lg:text-2xl animate-pulse">50₺</span> indirim kazan.
 				<br />

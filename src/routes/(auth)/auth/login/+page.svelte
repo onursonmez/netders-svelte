@@ -12,8 +12,8 @@
 	export let data
 
 	let loginData = {
-		login: '',
-		password: '',
+		login: import.meta.env.VITE_EMAIL,
+		password: import.meta.env.VITE_PASSWORD,
 		rememberMe: false,
 	}
 	let emailLogin = true
@@ -63,13 +63,7 @@
 					close: true
 				}).showToast()
 
-				setTimeout(() => {
-					if(to){
-						goto(to)
-					} else {
-						goto('/member/dashboard')
-					}
-				}, 1000);
+				await goto(data.to)
 			}
 		}
 		loading = false
@@ -81,7 +75,9 @@
 </svelte:head>
 
 <div class="mx-auto my-8">
-	<img src="{Logo}" width="200" height="200" />
+	<a href="/">
+		<img src="{Logo}" width="200" height="200" />
+	</a>
 </div>
 <div class="flex max-w-6xl mx-auto">
 	<div class="grow">

@@ -1,8 +1,8 @@
-import * as shared from '../entries/pages/(app)/auth/activation/_page.js';
+import * as shared from '../entries/pages/_page.js';
 
 export const index = 4;
-export const component = async () => (await import('../entries/pages/(app)/auth/activation/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/(app)/auth/activation/_page.svelte-0b4492ea.js';
+export const component = async () => (await import('../entries/pages/_page.svelte.js')).default;
+export const file = '_app/immutable/components/pages/_page.svelte-dde43c9f.js';
 export { shared };
-export const imports = ["_app/immutable/components/pages/(app)/auth/activation/_page.svelte-0b4492ea.js","_app/immutable/chunks/index-5c1dbe35.js","_app/immutable/chunks/Input-c01dfd78.js","_app/immutable/chunks/netders-logo-blue-db0f3a17.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/modules/pages/(app)/auth/activation/_page.js-0913ef99.js","_app/immutable/chunks/environment-b04a8a58.js","_app/immutable/chunks/_page-20d3a25f.js"];
-export const stylesheets = [];
+export const imports = ["_app/immutable/components/pages/_page.svelte-dde43c9f.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/userStore-7d0e6609.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/navigation-ef758488.js","_app/immutable/chunks/singletons-5edf8516.js","_app/immutable/chunks/user-5e4a8908.js","_app/immutable/chunks/UserVertical-d1b7bc1a.js","_app/immutable/chunks/icon-user-b12ae194.js","_app/immutable/chunks/stores-1d1e1b0f.js","_app/immutable/chunks/Modal-a9efb2e7.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/chunks/colored-bar-b91907af.js","_app/immutable/chunks/netders-logo-blue-db0f3a17.js","_app/immutable/modules/pages/_page.js-6b5722de.js","_app/immutable/chunks/environment-b04a8a58.js","_app/immutable/chunks/userStore-7d0e6609.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/_page-7ff7c199.js"];
+export const stylesheets = ["_app/immutable/assets/_page-12598ed9.css","_app/immutable/assets/app-217da9ee.css","_app/immutable/assets/UserVertical-31ccae35.css","_app/immutable/assets/Modal-7e1b958a.css"];

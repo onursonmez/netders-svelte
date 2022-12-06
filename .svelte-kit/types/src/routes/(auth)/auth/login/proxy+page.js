@@ -13,6 +13,6 @@ export const prerender = false;
 export async function load({ url })
 {
     return {
-        to: url.searchParams.get('to'),
+        to: url.searchParams.get('to') ? url.searchParams.get('to') : '/',
     }
 }

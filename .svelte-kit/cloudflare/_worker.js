@@ -116,8 +116,8 @@ function custom_event(type, detail, { bubbles = false, cancelable = false } = {}
   e3.initCustomEvent(type, bubbles, cancelable, detail);
   return e3;
 }
-function set_current_component(component12) {
-  current_component = component12;
+function set_current_component(component16) {
+  current_component = component16;
 }
 function get_current_component() {
   if (!current_component)
@@ -125,13 +125,13 @@ function get_current_component() {
   return current_component;
 }
 function createEventDispatcher() {
-  const component12 = get_current_component();
+  const component16 = get_current_component();
   return (type, detail, { cancelable = false } = {}) => {
-    const callbacks = component12.$$.callbacks[type];
+    const callbacks = component16.$$.callbacks[type];
     if (callbacks) {
       const event = custom_event(type, detail, { cancelable });
       callbacks.slice().forEach((fn2) => {
-        fn2.call(component12, event);
+        fn2.call(component16, event);
       });
       return !event.defaultPrevented;
     }
@@ -236,13 +236,13 @@ function each(items, fn2) {
   }
   return str;
 }
-function validate_component(component12, name) {
-  if (!component12 || !component12.$$render) {
+function validate_component(component16, name) {
+  if (!component16 || !component16.$$render) {
     if (name === "svelte:component")
       name += " this={...}";
     throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules. Otherwise you may need to fix a <${name}>.`);
   }
-  return component12;
+  return component16;
 }
 function create_ssr_component(fn2) {
   function $$render(result, props, bindings, slots, context) {
@@ -269,7 +269,7 @@ function create_ssr_component(fn2) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css4) => css4.code).join("\n"),
+          code: Array.from(result.css).map((css5) => css5.code).join("\n"),
           map: null
         },
         head: result.title + result.head
@@ -340,6 +340,12 @@ var init_chunks = __esm({
 // .svelte-kit/output/server/chunks/index2.js
 function error(status, message) {
   return new HttpError(status, message);
+}
+function redirect(status, location) {
+  if (isNaN(status) || status < 300 || status > 399) {
+    throw new Error("Invalid status code");
+  }
+  return new Redirect(status, location);
 }
 function json(data, init2) {
   const headers = new Headers(init2 == null ? void 0 : init2.headers);
@@ -454,20 +460,20 @@ var require_cookie = __commonJS({
       var obj = {};
       var opt = options || {};
       var dec = opt.decode || decode;
-      var index13 = 0;
-      while (index13 < str.length) {
-        var eqIdx = str.indexOf("=", index13);
+      var index17 = 0;
+      while (index17 < str.length) {
+        var eqIdx = str.indexOf("=", index17);
         if (eqIdx === -1) {
           break;
         }
-        var endIdx = str.indexOf(";", index13);
+        var endIdx = str.indexOf(";", index17);
         if (endIdx === -1) {
           endIdx = str.length;
         } else if (endIdx < eqIdx) {
-          index13 = str.lastIndexOf(";", eqIdx - 1) + 1;
+          index17 = str.lastIndexOf(";", eqIdx - 1) + 1;
           continue;
         }
-        var key2 = str.slice(index13, eqIdx).trim();
+        var key2 = str.slice(index17, eqIdx).trim();
         if (void 0 === obj[key2]) {
           var val = str.slice(eqIdx + 1, endIdx).trim();
           if (val.charCodeAt(0) === 34) {
@@ -475,7 +481,7 @@ var require_cookie = __commonJS({
           }
           obj[key2] = tryDecode(val, dec);
         }
-        index13 = endIdx + 1;
+        index17 = endIdx + 1;
       }
       return obj;
     }
@@ -746,11 +752,11 @@ var require_set_cookie = __commonJS({
 });
 
 // .svelte-kit/output/server/chunks/userStore.js
-var userStore, teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, teacherGendersStore, viewedTeacherStore;
+var userModel, gendersModel, searchParamsModel, userStore, teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, viewedTeacherStore, gendersStore;
 var init_userStore = __esm({
   ".svelte-kit/output/server/chunks/userStore.js"() {
     init_index3();
-    userStore = writable({
+    userModel = {
       email: "",
       username: "",
       firstName: "",
@@ -758,8 +764,12 @@ var init_userStore = __esm({
       phone: "",
       token: "",
       roles: []
-    });
-    teacherSearchParamsStore = writable({
+    };
+    gendersModel = [
+      { id: 1, title: "Erkek" },
+      { id: 2, title: "Kad\u0131n" }
+    ];
+    searchParamsModel = {
       "page": 1,
       "pageSize": 12,
       "keyword": "",
@@ -770,14 +780,13 @@ var init_userStore = __esm({
       "levelObject": void 0,
       "lessonTypeObject": void 0,
       "genderObject": void 0
-    });
+    };
+    userStore = writable(userModel);
+    teacherSearchParamsStore = writable(searchParamsModel);
     teacherItemsStore = writable([]);
     teacherTotalStore = writable(0);
-    teacherGendersStore = writable([
-      { id: 1, title: "Erkek" },
-      { id: 2, title: "Kad\u0131n" }
-    ]);
     viewedTeacherStore = writable([]);
+    gendersStore = writable(gendersModel);
   }
 });
 
@@ -914,118 +923,17 @@ var init_layout_server = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/netders-logo-blue.js
-var Logo;
-var init_netders_logo_blue = __esm({
-  ".svelte-kit/output/server/chunks/netders-logo-blue.js"() {
-    Logo = "/_app/immutable/assets/netders-logo-blue-a79eee8d.svg";
-  }
-});
-
-// .svelte-kit/output/server/chunks/icon-user.js
-var IconUser;
-var init_icon_user = __esm({
-  ".svelte-kit/output/server/chunks/icon-user.js"() {
-    IconUser = "/_app/immutable/assets/icon-user-ca86099d.png";
-  }
-});
-
 // .svelte-kit/output/server/entries/pages/_layout.svelte.js
 var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => Layout
 });
-var Header, coloredBar, css, Layout;
+var Layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_layout.svelte.js"() {
     init_chunks();
-    init_netders_logo_blue();
-    init_icon_user();
-    init_userStore();
-    Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $userStore, $$unsubscribe_userStore;
-      $$unsubscribe_userStore = subscribe(userStore, (value) => $userStore = value);
-      let photoUrl = IconUser;
-      $$unsubscribe_userStore();
-      return `<header><nav class="${"shadow-md bg-white"}"><div class="${"mx-auto max-w-[90%]"}"><div class="${"relative flex h-16 items-center justify-between"}"><div class="${"absolute inset-y-0 left-0 flex items-center lg:hidden"}">
-					<button type="${"button"}" class="${"inline-flex items-center justify-center rounded-md text-gray-400 hover:text-blue-700 ring-0"}" aria-controls="${"mobile-menu"}" aria-expanded="${"false"}"><span class="${"sr-only"}">Open main menu</span>
-
-						<svg class="${["h-6 w-6", ""].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}"></path></svg>
-
-						<svg class="${["h-6 w-6", "hidden"].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M6 18L18 6M6 6l12 12"}"></path></svg></button></div>
-				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", Logo, 0)} alt="${"Netders.com"}"></a></div>
-					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders-ilanlari-verenler"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
-							\xD6\u011Fretmen Ara
-						</a>
-
-						<a href="${"/ozel-ders-talebi-olustur"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-							Ders Talepleri
-						</a>
-
-						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
-
-						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
-
-						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">\u0130leti\u015Fim</a></div></div>
-				<div class="${"absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0"}"><button type="${"button"}" class="${"hidden rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"}"><span class="${"sr-only"}">View notifications</span>
-						
-						<svg class="${"h-6 w-6"}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"}"></path></svg></button>
-
-					
-					<div class="${"relative ml-3"}"><div>${($userStore == null ? void 0 : $userStore.username) ? `<button type="${"button"}" class="${"flex rounded-full text-sm"}" id="${"user-menu-button"}" aria-expanded="${"false"}" aria-haspopup="${"true"}"><span class="${"sr-only"}">Open user menu</span>
-									<img class="${"h-8 w-8 rounded-full"}"${add_attribute("src", photoUrl, 0)} alt="${""}"></button>` : `<button class="${"bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
-
-									Giri\u015F
-								</button>`}</div>
-						${($userStore == null ? void 0 : $userStore.username) ? `<div class="${[
-        "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
-        "hidden"
-      ].join(" ").trim()}" role="${"menu"}" aria-orientation="${"vertical"}" aria-labelledby="${"user-menu-button"}" tabindex="${"-1"}">
-								<a href="${"/member/dashboard"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Hesab\u0131m</a>
-								<a data-sveltekit-preload-data="${"off"}" href="${"/auth/logout"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-2"}">G\xFCvenli \xC7\u0131k\u0131\u015F</a></div>` : ``}</div></div></div></div>
-
-		
-		<div id="${"mobile-menu"}"${add_classes("hidden".trim())}><div class="${"space-y-1 px-2 pt-2 pb-3"}">
-				<a href="${"/detail"}" class="${"bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"}" aria-current="${"page"}">Dashboard</a>
-
-				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Team</a>
-
-				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Projects</a>
-
-				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Calendar</a></div></div></nav>
-</header>`;
-    });
-    coloredBar = "/_app/immutable/assets/colored-bar-011c28ce.jpeg";
-    css = {
-      code: `.app.svelte-95lviu{display:flex;flex-direction:column;min-height:100vh}main.svelte-95lviu{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}footer.svelte-95lviu{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}.invite-friend-background.svelte-95lviu{background-color:#ffaa00;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23ffb100' d='M486 705.8c-109.3-21.8-223.4-32.2-335.3-19.4C99.5 692.1 49 703 0 719.8V800h843.8c-115.9-33.2-230.8-68.1-347.6-92.2C492.8 707.1 489.4 706.5 486 705.8z'/%3E%3Cpath fill='%23ffb800' d='M1600 0H0v719.8c49-16.8 99.5-27.8 150.7-33.5c111.9-12.7 226-2.4 335.3 19.4c3.4 0.7 6.8 1.4 10.2 2c116.8 24 231.7 59 347.6 92.2H1600V0z'/%3E%3Cpath fill='%23ffbe00' d='M478.4 581c3.2 0.8 6.4 1.7 9.5 2.5c196.2 52.5 388.7 133.5 593.5 176.6c174.2 36.6 349.5 29.2 518.6-10.2V0H0v574.9c52.3-17.6 106.5-27.7 161.1-30.9C268.4 537.4 375.7 554.2 478.4 581z'/%3E%3Cpath fill='%23ffc500' d='M0 0v429.4c55.6-18.4 113.5-27.3 171.4-27.7c102.8-0.8 203.2 22.7 299.3 54.5c3 1 5.9 2 8.9 3c183.6 62 365.7 146.1 562.4 192.1c186.7 43.7 376.3 34.4 557.9-12.6V0H0z'/%3E%3Cpath fill='%23ffcc00' d='M181.8 259.4c98.2 6 191.9 35.2 281.3 72.1c2.8 1.1 5.5 2.3 8.3 3.4c171 71.6 342.7 158.5 531.3 207.7c198.8 51.8 403.4 40.8 597.3-14.8V0H0v283.2C59 263.6 120.6 255.7 181.8 259.4z'/%3E%3Cpath fill='%23ffd914' d='M1600 0H0v136.3c62.3-20.9 127.7-27.5 192.2-19.2c93.6 12.1 180.5 47.7 263.3 89.6c2.6 1.3 5.1 2.6 7.7 3.9c158.4 81.1 319.7 170.9 500.3 223.2c210.5 61 430.8 49 636.6-16.6V0z'/%3E%3Cpath fill='%23ffe529' d='M454.9 86.3C600.7 177 751.6 269.3 924.1 325c208.6 67.4 431.3 60.8 637.9-5.3c12.8-4.1 25.4-8.4 38.1-12.9V0H288.1c56 21.3 108.7 50.6 159.7 82C450.2 83.4 452.5 84.9 454.9 86.3z'/%3E%3Cpath fill='%23ffef3d' d='M1600 0H498c118.1 85.8 243.5 164.5 386.8 216.2c191.8 69.2 400 74.7 595 21.1c40.8-11.2 81.1-25.2 120.3-41.7V0z'/%3E%3Cpath fill='%23fff852' d='M1397.5 154.8c47.2-10.6 93.6-25.3 138.6-43.8c21.7-8.9 43-18.8 63.9-29.5V0H643.4c62.9 41.7 129.7 78.2 202.1 107.4C1020.4 178.1 1214.2 196.1 1397.5 154.8z'/%3E%3Cpath fill='%23ffff66' d='M1315.3 72.4c75.3-12.6 148.9-37.1 216.8-72.4h-723C966.8 71 1144.7 101 1315.3 72.4z'/%3E%3C/g%3E%3C/svg%3E");background-attachment:fixed;background-size:cover}`,
-      map: null
-    };
     Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css);
-      return `<div class="${"app svelte-95lviu"}">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
-
-	<main class="${"svelte-95lviu"}">${slots.default ? slots.default({}) : ``}</main>
-
-	<footer class="${"svelte-95lviu"}"><div class="${"bg-white rounded-lg shadow-md mt-4 p-4 lg:p-8 invite-friend-background lg:text-xl flex flex-col lg:flex-row items-center gap-4 text-center lg:text-left lg:justify-between svelte-95lviu"}"><div>Arkada\u015F\u0131n\u0131 davet et <span class="${"font-bold text-lg lg:text-2xl animate-pulse"}">50\u20BA</span> indirim kazan.
-				<br>
-				<span class="${"text-xs"}">Arkada\u015F\u0131n\u0131n \xFCye olup, ilk ge\xE7erli sipari\u015Finde indirim kuponu hesab\u0131na tan\u0131mlan\u0131r.</span></div>
-			<div><button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
-					Hemen davet Et
-				</button></div></div>
-
-		<section class="${"shadow-md rounded-t-lg bg-white text-center text-base my-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
-			</div>
-			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\xD6\u011Fretmen Ara</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Ders talepleri</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Yard\u0131m</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\u0130leti\u015Fim</a></li></ul>
-				<p class="${"pt-4 text-sm"}">Netders.com&#39;a \xFCye olarak <a href="${"/"}" class="${"text-blue-300 hover:text-white"}">Kullan\u0131m Ko\u015Fullar\u0131</a>&#39;n\u0131 kabul etmi\u015F say\u0131l\u0131rs\u0131n.</p>
-				<img src="${"/images/turkiye-white.svg"}" class="${"w-36 mx-auto py-4"}" alt="${""}">
-				<ul class="${"flex justify-center text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Kullan\u0131m Ko\u015Fullar\u0131</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Gizlilik \u0130lkeleri</a></li></ul></div></section></footer>
-</div>`;
+      return `${slots.default ? slots.default({}) : ``}`;
     });
   }
 });
@@ -1046,9 +954,9 @@ var init__ = __esm({
     init_layout_server();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-9fb607ad.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-9fb607ad.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/navigation-b0659a60.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/user-e202346c.js"];
-    stylesheets = ["_app/immutable/assets/_layout-36d438a9.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-58aa172d.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-58aa172d.js", "_app/immutable/chunks/index-95fd0b09.js"];
+    stylesheets = [];
   }
 });
 
@@ -1143,22 +1051,223 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/pages/_error.svelte-c54d022d.js";
-    imports2 = ["_app/immutable/components/pages/_error.svelte-c54d022d.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/stores-29e4fdc2.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/chunks/index-c483a1bd.js"];
+    file2 = "_app/immutable/components/pages/_error.svelte-71bbc0ce.js";
+    imports2 = ["_app/immutable/components/pages/_error.svelte-71bbc0ce.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/index-ba476fff.js"];
     stylesheets2 = [];
+  }
+});
+
+// .svelte-kit/output/server/chunks/netders-logo-blue.js
+var Logo;
+var init_netders_logo_blue = __esm({
+  ".svelte-kit/output/server/chunks/netders-logo-blue.js"() {
+    Logo = "/_app/immutable/assets/netders-logo-blue-a79eee8d.svg";
+  }
+});
+
+// .svelte-kit/output/server/chunks/icon-user.js
+var IconUser;
+var init_icon_user = __esm({
+  ".svelte-kit/output/server/chunks/icon-user.js"() {
+    IconUser = "/_app/immutable/assets/icon-user-ca86099d.png";
+  }
+});
+
+// .svelte-kit/output/server/chunks/colored-bar.js
+var Header, coloredBar;
+var init_colored_bar = __esm({
+  ".svelte-kit/output/server/chunks/colored-bar.js"() {
+    init_chunks();
+    init_netders_logo_blue();
+    init_icon_user();
+    init_stores();
+    init_userStore();
+    Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $userStore, $$unsubscribe_userStore;
+      let $$unsubscribe_page;
+      $$unsubscribe_userStore = subscribe(userStore, (value) => $userStore = value);
+      $$unsubscribe_page = subscribe(page, (value) => value);
+      let photoUrl = IconUser;
+      $$unsubscribe_userStore();
+      $$unsubscribe_page();
+      return `<header><nav class="${"shadow-md bg-white"}"><div class="${"mx-auto max-w-[90%]"}"><div class="${"relative flex h-16 items-center justify-between"}"><div class="${"absolute inset-y-0 left-0 flex items-center lg:hidden"}">
+					<button type="${"button"}" class="${"inline-flex items-center justify-center rounded-md text-gray-400 hover:text-blue-700 ring-0"}" aria-controls="${"mobile-menu"}" aria-expanded="${"false"}"><span class="${"sr-only"}">Open main menu</span>
+
+						<svg class="${["h-6 w-6", ""].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}"></path></svg>
+
+						<svg class="${["h-6 w-6", "hidden"].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M6 18L18 6M6 6l12 12"}"></path></svg></button></div>
+				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", Logo, 0)} alt="${"Netders.com"}">
+							${escape($userStore.username)}</a></div>
+					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders-ilanlari-verenler"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
+							\xD6\u011Fretmen Ara
+						</a>
+
+						<a href="${"/ozel-ders-talebi-olustur"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+							Ders Talepleri
+						</a>
+
+						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
+
+						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
+
+						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">\u0130leti\u015Fim</a></div></div>
+				<div class="${"absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0"}"><button type="${"button"}" class="${"hidden rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"}"><span class="${"sr-only"}">View notifications</span>
+						
+						<svg class="${"h-6 w-6"}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"}"></path></svg></button>
+
+					
+					<div class="${"relative ml-3"}"><div>${($userStore == null ? void 0 : $userStore.username) ? `<button type="${"button"}" class="${"flex rounded-full text-sm"}" id="${"user-menu-button"}" aria-expanded="${"false"}" aria-haspopup="${"true"}"><span class="${"sr-only"}">Open user menu</span>
+									<img class="${"h-8 w-8 rounded-full"}"${add_attribute("src", photoUrl, 0)} alt="${""}"></button>` : `<button class="${"bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
+
+									Giri\u015F
+								</button>`}</div>
+						${($userStore == null ? void 0 : $userStore.username) ? `<div class="${[
+        "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
+        "hidden"
+      ].join(" ").trim()}" role="${"menu"}" aria-orientation="${"vertical"}" aria-labelledby="${"user-menu-button"}" tabindex="${"-1"}"><a href="${"/member/account"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Hesab\u0131m</a>
+								<a data-sveltekit-prefetch="${"off"}" href="${"/auth/logout"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-2"}">G\xFCvenli \xC7\u0131k\u0131\u015F</a></div>` : ``}</div></div></div></div>
+
+		
+		<div id="${"mobile-menu"}"${add_classes("hidden".trim())}><div class="${"space-y-1 px-2 pt-2 pb-3"}">
+				<a href="${"/detail"}" class="${"bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"}" aria-current="${"page"}">Dashboard</a>
+
+				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Team</a>
+
+				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Projects</a>
+
+				<a href="${"/detail"}" class="${"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}">Calendar</a></div></div></nav>
+</header>`;
+    });
+    coloredBar = "/_app/immutable/assets/colored-bar-011c28ce.jpeg";
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(app)/_layout.svelte.js
+var layout_svelte_exports2 = {};
+__export(layout_svelte_exports2, {
+  default: () => Layout2
+});
+var css, Layout2;
+var init_layout_svelte2 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/_layout.svelte.js"() {
+    init_chunks();
+    init_colored_bar();
+    css = {
+      code: `.app.svelte-95lviu{display:flex;flex-direction:column;min-height:100vh}main.svelte-95lviu{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}footer.svelte-95lviu{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}.invite-friend-background.svelte-95lviu{background-color:#ffaa00;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23ffb100' d='M486 705.8c-109.3-21.8-223.4-32.2-335.3-19.4C99.5 692.1 49 703 0 719.8V800h843.8c-115.9-33.2-230.8-68.1-347.6-92.2C492.8 707.1 489.4 706.5 486 705.8z'/%3E%3Cpath fill='%23ffb800' d='M1600 0H0v719.8c49-16.8 99.5-27.8 150.7-33.5c111.9-12.7 226-2.4 335.3 19.4c3.4 0.7 6.8 1.4 10.2 2c116.8 24 231.7 59 347.6 92.2H1600V0z'/%3E%3Cpath fill='%23ffbe00' d='M478.4 581c3.2 0.8 6.4 1.7 9.5 2.5c196.2 52.5 388.7 133.5 593.5 176.6c174.2 36.6 349.5 29.2 518.6-10.2V0H0v574.9c52.3-17.6 106.5-27.7 161.1-30.9C268.4 537.4 375.7 554.2 478.4 581z'/%3E%3Cpath fill='%23ffc500' d='M0 0v429.4c55.6-18.4 113.5-27.3 171.4-27.7c102.8-0.8 203.2 22.7 299.3 54.5c3 1 5.9 2 8.9 3c183.6 62 365.7 146.1 562.4 192.1c186.7 43.7 376.3 34.4 557.9-12.6V0H0z'/%3E%3Cpath fill='%23ffcc00' d='M181.8 259.4c98.2 6 191.9 35.2 281.3 72.1c2.8 1.1 5.5 2.3 8.3 3.4c171 71.6 342.7 158.5 531.3 207.7c198.8 51.8 403.4 40.8 597.3-14.8V0H0v283.2C59 263.6 120.6 255.7 181.8 259.4z'/%3E%3Cpath fill='%23ffd914' d='M1600 0H0v136.3c62.3-20.9 127.7-27.5 192.2-19.2c93.6 12.1 180.5 47.7 263.3 89.6c2.6 1.3 5.1 2.6 7.7 3.9c158.4 81.1 319.7 170.9 500.3 223.2c210.5 61 430.8 49 636.6-16.6V0z'/%3E%3Cpath fill='%23ffe529' d='M454.9 86.3C600.7 177 751.6 269.3 924.1 325c208.6 67.4 431.3 60.8 637.9-5.3c12.8-4.1 25.4-8.4 38.1-12.9V0H288.1c56 21.3 108.7 50.6 159.7 82C450.2 83.4 452.5 84.9 454.9 86.3z'/%3E%3Cpath fill='%23ffef3d' d='M1600 0H498c118.1 85.8 243.5 164.5 386.8 216.2c191.8 69.2 400 74.7 595 21.1c40.8-11.2 81.1-25.2 120.3-41.7V0z'/%3E%3Cpath fill='%23fff852' d='M1397.5 154.8c47.2-10.6 93.6-25.3 138.6-43.8c21.7-8.9 43-18.8 63.9-29.5V0H643.4c62.9 41.7 129.7 78.2 202.1 107.4C1020.4 178.1 1214.2 196.1 1397.5 154.8z'/%3E%3Cpath fill='%23ffff66' d='M1315.3 72.4c75.3-12.6 148.9-37.1 216.8-72.4h-723C966.8 71 1144.7 101 1315.3 72.4z'/%3E%3C/g%3E%3C/svg%3E");background-attachment:fixed;background-size:cover}`,
+      map: null
+    };
+    Layout2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css);
+      return `<div class="${"app svelte-95lviu"}">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
+
+	<main class="${"svelte-95lviu"}">${slots.default ? slots.default({}) : ``}</main>
+
+	<footer class="${"svelte-95lviu"}"><div class="${"hidden bg-white rounded-lg shadow-md mt-4 p-4 lg:p-8 invite-friend-background lg:text-xl flex flex-col lg:flex-row items-center gap-4 text-center lg:text-left lg:justify-between svelte-95lviu"}"><div>Arkada\u015F\u0131n\u0131 davet et <span class="${"font-bold text-lg lg:text-2xl animate-pulse"}">50\u20BA</span> indirim kazan.
+				<br>
+				<span class="${"text-xs"}">Arkada\u015F\u0131n\u0131n \xFCye olup, ilk ge\xE7erli sipari\u015Finde indirim kuponu hesab\u0131na tan\u0131mlan\u0131r.</span></div>
+			<div><button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
+					Hemen davet Et
+				</button></div></div>
+
+		<section class="${"shadow-md rounded-t-lg bg-white text-center text-base my-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
+			</div>
+			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\xD6\u011Fretmen Ara</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Ders talepleri</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Yard\u0131m</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\u0130leti\u015Fim</a></li></ul>
+				<p class="${"pt-4 text-sm"}">Netders.com&#39;a \xFCye olarak <a href="${"/"}" class="${"text-blue-300 hover:text-white"}">Kullan\u0131m Ko\u015Fullar\u0131</a>&#39;n\u0131 kabul etmi\u015F say\u0131l\u0131rs\u0131n.</p>
+				<img src="${"/images/turkiye-white.svg"}" class="${"w-36 mx-auto py-4"}" alt="${""}">
+				<ul class="${"flex justify-center text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Kullan\u0131m Ko\u015Fullar\u0131</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Gizlilik \u0130lkeleri</a></li></ul></div></section></footer>
+</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/2.js
+var __exports3 = {};
+__export(__exports3, {
+  component: () => component3,
+  file: () => file3,
+  imports: () => imports3,
+  index: () => index3,
+  stylesheets: () => stylesheets3
+});
+var index3, component3, file3, imports3, stylesheets3;
+var init__3 = __esm({
+  ".svelte-kit/output/server/nodes/2.js"() {
+    index3 = 2;
+    component3 = async () => (await Promise.resolve().then(() => (init_layout_svelte2(), layout_svelte_exports2))).default;
+    file3 = "_app/immutable/components/pages/(app)/_layout.svelte-d6f919e1.js";
+    imports3 = ["_app/immutable/components/pages/(app)/_layout.svelte-d6f919e1.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/colored-bar-b91907af.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/navigation-ef758488.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/user-5e4a8908.js"];
+    stylesheets3 = ["_app/immutable/assets/_layout-a95766cb.css", "_app/immutable/assets/app-217da9ee.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(auth)/_layout.svelte.js
+var layout_svelte_exports3 = {};
+__export(layout_svelte_exports3, {
+  default: () => Layout3
+});
+var css2, Layout3;
+var init_layout_svelte3 = __esm({
+  ".svelte-kit/output/server/entries/pages/(auth)/_layout.svelte.js"() {
+    init_chunks();
+    css2 = {
+      code: ".app.svelte-jv4qyi{display:flex;flex-direction:column;min-height:100vh}main.svelte-jv4qyi{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}",
+      map: null
+    };
+    Layout3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css2);
+      return `<div class="${"app svelte-jv4qyi"}"><main class="${"svelte-jv4qyi"}">${slots.default ? slots.default({}) : ``}</main>
+</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/3.js
+var __exports4 = {};
+__export(__exports4, {
+  component: () => component4,
+  file: () => file4,
+  imports: () => imports4,
+  index: () => index4,
+  stylesheets: () => stylesheets4
+});
+var index4, component4, file4, imports4, stylesheets4;
+var init__4 = __esm({
+  ".svelte-kit/output/server/nodes/3.js"() {
+    index4 = 3;
+    component4 = async () => (await Promise.resolve().then(() => (init_layout_svelte3(), layout_svelte_exports3))).default;
+    file4 = "_app/immutable/components/pages/(auth)/_layout.svelte-3f7a1bb2.js";
+    imports4 = ["_app/immutable/components/pages/(auth)/_layout.svelte-3f7a1bb2.js", "_app/immutable/chunks/index-95fd0b09.js"];
+    stylesheets4 = ["_app/immutable/assets/_layout-a715ccf6.css", "_app/immutable/assets/app-217da9ee.css"];
+  }
+});
+
+// .svelte-kit/output/server/chunks/environment.js
+var dev;
+var init_environment = __esm({
+  ".svelte-kit/output/server/chunks/environment.js"() {
+    dev = false;
   }
 });
 
 // .svelte-kit/output/server/entries/pages/_page.js
 var page_exports = {};
 __export(page_exports, {
+  csr: () => csr,
   load: () => load2,
   prerender: () => prerender
 });
-var prerender, load2;
+var csr, prerender, load2;
 var init_page = __esm({
   ".svelte-kit/output/server/entries/pages/_page.js"() {
+    init_environment();
     init_userStore();
+    csr = dev;
     prerender = false;
     load2 = async ({ parent }) => {
       const { user } = await parent();
@@ -1574,8 +1683,8 @@ function getContainingBlock(element) {
     currentNode = currentNode.host;
   }
   while (isHTMLElement(currentNode) && ["html", "body"].indexOf(getNodeName(currentNode)) < 0) {
-    var css4 = getComputedStyle(currentNode);
-    if (css4.transform !== "none" || css4.perspective !== "none" || css4.contain === "paint" || ["transform", "perspective"].indexOf(css4.willChange) !== -1 || isFirefox && css4.willChange === "filter" || isFirefox && css4.filter && css4.filter !== "none") {
+    var css5 = getComputedStyle(currentNode);
+    if (css5.transform !== "none" || css5.perspective !== "none" || css5.contain === "paint" || ["transform", "perspective"].indexOf(css5.willChange) !== -1 || isFirefox && css5.willChange === "filter" || isFirefox && css5.filter && css5.filter !== "none") {
       return currentNode;
     } else {
       currentNode = currentNode.parentNode;
@@ -2887,8 +2996,8 @@ var init_format = __esm({
 // node_modules/@popperjs/core/lib/utils/validateModifiers.js
 function validateModifiers(modifiers) {
   modifiers.forEach(function(modifier) {
-    [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index13, self2) {
-      return self2.indexOf(value) === index13;
+    [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index17, self2) {
+      return self2.indexOf(value) === index17;
     }).forEach(function(key2) {
       switch (key2) {
         case "name":
@@ -3082,7 +3191,7 @@ function popperGenerator(generatorOptions) {
           return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
         });
         var __debug_loops__ = 0;
-        for (var index13 = 0; index13 < state.orderedModifiers.length; index13++) {
+        for (var index17 = 0; index17 < state.orderedModifiers.length; index17++) {
           if (true) {
             __debug_loops__ += 1;
             if (__debug_loops__ > 100) {
@@ -3092,10 +3201,10 @@ function popperGenerator(generatorOptions) {
           }
           if (state.reset === true) {
             state.reset = false;
-            index13 = -1;
+            index17 = -1;
             continue;
           }
-          var _state$orderedModifie = state.orderedModifiers[index13], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
+          var _state$orderedModifie = state.orderedModifiers[index17], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
           if (typeof fn2 === "function") {
             state = fn2({
               state,
@@ -3792,14 +3901,14 @@ var require_relativeTime = __commonJS({
 
 // .svelte-kit/output/server/chunks/UserVertical.js
 function createEventDispatcher2() {
-  const component12 = get_current_component();
+  const component16 = get_current_component();
   return (type, target, detail) => {
-    const callbacks = component12.$$.callbacks[type];
+    const callbacks = component16.$$.callbacks[type];
     if (callbacks) {
       const event = new CustomEvent(type, { detail });
       target.dispatchEvent(event);
       callbacks.slice().forEach((fn2) => {
-        fn2.call(component12, event);
+        fn2.call(component16, event);
       });
     }
   };
@@ -4198,7 +4307,7 @@ function isObject(subject) {
 }
 function isEqualDeep(subject1, subject2) {
   if (Array.isArray(subject1) && Array.isArray(subject2)) {
-    return subject1.length === subject2.length && !subject1.some((elm, index13) => !isEqualDeep(elm, subject2[index13]));
+    return subject1.length === subject2.length && !subject1.some((elm, index17) => !isEqualDeep(elm, subject2[index17]));
   }
   if (isObject(subject1) && isObject(subject2)) {
     const keys1 = Object.keys(subject1);
@@ -4231,13 +4340,14 @@ function apply(func) {
 function typeOf(type, subject) {
   return typeof subject === type;
 }
-var student, Greeting, Splide_1, SplideTrack, SplideSlide, bilgisayar, dans, direksiyon, ilkogretim, kisiselgelisim, lise, muzik, oyunhobi, ozelegitim, sanat, sinavhazirlik, spor, universite, yabancidil, css$1, Categories, css2, UserSlider, Page;
+var student, Greeting, Splide_1, SplideTrack, SplideSlide, bilgisayar, dans, direksiyon, ilkogretim, kisiselgelisim, lise, muzik, oyunhobi, ozelegitim, sanat, sinavhazirlik, spor, universite, yabancidil, css$2, Categories, css$1, UserSlider, css3, Page;
 var init_page_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_page.svelte.js"() {
     init_chunks();
     init_userStore();
     init_user();
     init_UserVertical();
+    init_colored_bar();
     student = "/_app/immutable/assets/student-5bcaf7c1.webp 714w";
     Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $$unsubscribe_teacherSearchParamsStore;
@@ -4358,12 +4468,12 @@ var init_page_svelte = __esm({
     spor = "/_app/immutable/assets/home-icon-spor-37bdddd9.svg";
     universite = "/_app/immutable/assets/home-icon-universite-c1622639.svg";
     yabancidil = "/_app/immutable/assets/home-icon-yabancidil-7970e6d9.svg";
-    css$1 = {
+    css$2 = {
       code: "@import '@splidejs/splide/css/skyblue';",
       map: null
     };
     Categories = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$1);
+      $$result.css.add(css$2);
       return `<section class="${"dark:bg-gray-900"}"><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">\xD6zel ders kategorileri</h2>
 		<p class="${"text-gray-700 text-base mb-4"}">Alan\u0131nda tecr\xFCbeli \xF6\u011Fretmenlerden \xF6zel ders alarak, ihtiyac\u0131n olan do\u011Fru e\u011Fitimi, en uygun fiyatlarla alabilirsin.
 		</p>
@@ -4481,7 +4591,7 @@ var init_page_svelte = __esm({
       )}</div></div>
 </section>`;
     });
-    css2 = {
+    css$1 = {
       code: "@import '@splidejs/splide/css/skyblue';",
       map: null
     };
@@ -4489,7 +4599,7 @@ var init_page_svelte = __esm({
       const prepareUserData = (userData) => {
         return { ...userData, showRequest: false };
       };
-      $$result.css.add(css2);
+      $$result.css.add(css$1);
       return `<section class="${"dark:bg-gray-900 mt-4"}"><div><div class="${"block p-6 rounded-lg shadow-md bg-white"}"><h2 class="${"mb-4 text-2xl font-bold tracking-tight leading-none lg:text-3xl dark:text-white"}">Matematik \xD6zel Ders Verenler</h2>
 			<div>${function(__value) {
         if (is_promise(__value)) {
@@ -4650,56 +4760,80 @@ var init_page_svelte = __esm({
       }))}</div></div></div>
 </section>`;
     });
+    css3 = {
+      code: `.app.svelte-95lviu{display:flex;flex-direction:column;min-height:100vh}main.svelte-95lviu{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}footer.svelte-95lviu{flex:1;display:flex;flex-direction:column;width:100%;max-width:90%;margin:0 auto;box-sizing:border-box}.invite-friend-background.svelte-95lviu{background-color:#ffaa00;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23ffb100' d='M486 705.8c-109.3-21.8-223.4-32.2-335.3-19.4C99.5 692.1 49 703 0 719.8V800h843.8c-115.9-33.2-230.8-68.1-347.6-92.2C492.8 707.1 489.4 706.5 486 705.8z'/%3E%3Cpath fill='%23ffb800' d='M1600 0H0v719.8c49-16.8 99.5-27.8 150.7-33.5c111.9-12.7 226-2.4 335.3 19.4c3.4 0.7 6.8 1.4 10.2 2c116.8 24 231.7 59 347.6 92.2H1600V0z'/%3E%3Cpath fill='%23ffbe00' d='M478.4 581c3.2 0.8 6.4 1.7 9.5 2.5c196.2 52.5 388.7 133.5 593.5 176.6c174.2 36.6 349.5 29.2 518.6-10.2V0H0v574.9c52.3-17.6 106.5-27.7 161.1-30.9C268.4 537.4 375.7 554.2 478.4 581z'/%3E%3Cpath fill='%23ffc500' d='M0 0v429.4c55.6-18.4 113.5-27.3 171.4-27.7c102.8-0.8 203.2 22.7 299.3 54.5c3 1 5.9 2 8.9 3c183.6 62 365.7 146.1 562.4 192.1c186.7 43.7 376.3 34.4 557.9-12.6V0H0z'/%3E%3Cpath fill='%23ffcc00' d='M181.8 259.4c98.2 6 191.9 35.2 281.3 72.1c2.8 1.1 5.5 2.3 8.3 3.4c171 71.6 342.7 158.5 531.3 207.7c198.8 51.8 403.4 40.8 597.3-14.8V0H0v283.2C59 263.6 120.6 255.7 181.8 259.4z'/%3E%3Cpath fill='%23ffd914' d='M1600 0H0v136.3c62.3-20.9 127.7-27.5 192.2-19.2c93.6 12.1 180.5 47.7 263.3 89.6c2.6 1.3 5.1 2.6 7.7 3.9c158.4 81.1 319.7 170.9 500.3 223.2c210.5 61 430.8 49 636.6-16.6V0z'/%3E%3Cpath fill='%23ffe529' d='M454.9 86.3C600.7 177 751.6 269.3 924.1 325c208.6 67.4 431.3 60.8 637.9-5.3c12.8-4.1 25.4-8.4 38.1-12.9V0H288.1c56 21.3 108.7 50.6 159.7 82C450.2 83.4 452.5 84.9 454.9 86.3z'/%3E%3Cpath fill='%23ffef3d' d='M1600 0H498c118.1 85.8 243.5 164.5 386.8 216.2c191.8 69.2 400 74.7 595 21.1c40.8-11.2 81.1-25.2 120.3-41.7V0z'/%3E%3Cpath fill='%23fff852' d='M1397.5 154.8c47.2-10.6 93.6-25.3 138.6-43.8c21.7-8.9 43-18.8 63.9-29.5V0H643.4c62.9 41.7 129.7 78.2 202.1 107.4C1020.4 178.1 1214.2 196.1 1397.5 154.8z'/%3E%3Cpath fill='%23ffff66' d='M1315.3 72.4c75.3-12.6 148.9-37.1 216.8-72.4h-723C966.8 71 1144.7 101 1315.3 72.4z'/%3E%3C/g%3E%3C/svg%3E");background-attachment:fixed;background-size:cover}`,
+      map: null
+    };
     Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css3);
       return `${$$result.head += `<!-- HEAD_svelte-1rkmm9l_START -->${$$result.title = `<title>\xD6zel Ders \u0130lanlar\u0131 \u0130le \xD6zel Ders Al Veya \xD6zel Ders Ver</title>`, ""}<meta name="${"description"}" content="${"Binlerce onayl\u0131 alan\u0131nda uzman \xF6\u011Fretmen, \xF6zel ders vermek i\xE7in sab\u0131rs\u0131zlan\u0131yor."}"><!-- HEAD_svelte-1rkmm9l_END -->`, ""}
 
-${validate_component(Greeting, "Greeting").$$render($$result, {}, {}, {})}
+<div class="${"app svelte-95lviu"}">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
 
-${validate_component(Categories, "Categories").$$render($$result, {}, {}, {})}
+	<main class="${"svelte-95lviu"}">${validate_component(Greeting, "Greeting").$$render($$result, {}, {}, {})}
 
-${validate_component(UserSlider, "UserSlider").$$render($$result, {}, {}, {})}`;
+		${validate_component(Categories, "Categories").$$render($$result, {}, {}, {})}
+
+		${validate_component(UserSlider, "UserSlider").$$render($$result, {}, {}, {})}</main>
+
+	<footer class="${"svelte-95lviu"}"><div class="${"hidden bg-white rounded-lg shadow-md mt-4 p-4 lg:p-8 invite-friend-background lg:text-xl flex flex-col lg:flex-row items-center gap-4 text-center lg:text-left lg:justify-between svelte-95lviu"}"><div>Arkada\u015F\u0131n\u0131 davet et <span class="${"font-bold text-lg lg:text-2xl animate-pulse"}">50\u20BA</span> indirim kazan.
+				<br>
+				<span class="${"text-xs"}">Arkada\u015F\u0131n\u0131n \xFCye olup, ilk ge\xE7erli sipari\u015Finde indirim kuponu hesab\u0131na tan\u0131mlan\u0131r.</span></div>
+			<div><button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
+					Hemen davet Et
+				</button></div></div>
+
+		<section class="${"shadow-md rounded-t-lg bg-white text-center text-base my-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
+			</div>
+			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\xD6\u011Fretmen Ara</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Ders talepleri</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Yard\u0131m</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\u0130leti\u015Fim</a></li></ul>
+				<p class="${"pt-4 text-sm"}">Netders.com&#39;a \xFCye olarak <a href="${"/"}" class="${"text-blue-300 hover:text-white"}">Kullan\u0131m Ko\u015Fullar\u0131</a>&#39;n\u0131 kabul etmi\u015F say\u0131l\u0131rs\u0131n.</p>
+				<img src="${"/images/turkiye-white.svg"}" class="${"w-36 mx-auto py-4"}" alt="${""}">
+				<ul class="${"flex justify-center text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Kullan\u0131m Ko\u015Fullar\u0131</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Gizlilik \u0130lkeleri</a></li></ul></div></section></footer>
+</div>`;
     });
   }
 });
 
-// .svelte-kit/output/server/nodes/2.js
-var __exports3 = {};
-__export(__exports3, {
-  component: () => component3,
-  file: () => file3,
-  imports: () => imports3,
-  index: () => index3,
+// .svelte-kit/output/server/nodes/4.js
+var __exports5 = {};
+__export(__exports5, {
+  component: () => component5,
+  file: () => file5,
+  imports: () => imports5,
+  index: () => index5,
   shared: () => page_exports,
-  stylesheets: () => stylesheets3
+  stylesheets: () => stylesheets5
 });
-var index3, component3, file3, imports3, stylesheets3;
-var init__3 = __esm({
-  ".svelte-kit/output/server/nodes/2.js"() {
+var index5, component5, file5, imports5, stylesheets5;
+var init__5 = __esm({
+  ".svelte-kit/output/server/nodes/4.js"() {
     init_page();
-    index3 = 2;
-    component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-6f561802.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-6f561802.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/navigation-b0659a60.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/chunks/user-e202346c.js", "_app/immutable/chunks/UserVertical-d017fb51.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-29e4fdc2.js", "_app/immutable/chunks/Modal-9dd03068.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/_page.js-e5282967.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/_page-b0682dd0.js"];
-    stylesheets3 = ["_app/immutable/assets/_page-b12f98c2.css", "_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
-  }
-});
-
-// .svelte-kit/output/server/chunks/environment.js
-var dev;
-var init_environment = __esm({
-  ".svelte-kit/output/server/chunks/environment.js"() {
-    dev = false;
+    index5 = 4;
+    component5 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
+    file5 = "_app/immutable/components/pages/_page.svelte-dde43c9f.js";
+    imports5 = ["_app/immutable/components/pages/_page.svelte-dde43c9f.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/navigation-ef758488.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/UserVertical-d1b7bc1a.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/colored-bar-b91907af.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/_page.js-6b5722de.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-7ff7c199.js"];
+    stylesheets5 = ["_app/immutable/assets/_page-12598ed9.css", "_app/immutable/assets/app-217da9ee.css", "_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
   }
 });
 
 // .svelte-kit/output/server/entries/pages/(app)/_...catchall_/_page.js
 var page_exports2 = {};
 __export(page_exports2, {
-  csr: () => csr,
+  csr: () => csr2,
   load: () => load3,
   prerender: () => prerender2
 });
-async function load3({ params }) {
+async function load3({ params, parent }) {
+  const { user } = await parent();
+  if (Object.entries(user).length > 0) {
+    userStore.set(user);
+  }
   if (params && params.catchall) {
     let response = await getTeacher(params.catchall);
     if (Object.entries(response.errors).length) {
@@ -4707,13 +4841,14 @@ async function load3({ params }) {
     }
   }
 }
-var csr, prerender2;
+var csr2, prerender2;
 var init_page2 = __esm({
   ".svelte-kit/output/server/entries/pages/(app)/_...catchall_/_page.js"() {
     init_environment();
     init_user();
     init_index2();
-    csr = dev;
+    init_userStore();
+    csr2 = dev;
     prerender2 = false;
   }
 });
@@ -4941,8 +5076,8 @@ ${locations.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><
       })}</div></div>` : ``}
 
 ${comments.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Yorumlar</div>
-		<div class="${"p-6"}">${each(comments, (comment, index13) => {
-        return `<div class="${["flex", index13 > 0 ? "mt-6" : ""].join(" ").trim()}"><div class="${"flex-none w-12 h-12 rounded-full border border-orange-100 bg-orange-50"}"><div class="${"flex justify-center items-center w-12 h-12"}">${escape(comment.fullName.charAt(0))}</div></div>
+		<div class="${"p-6"}">${each(comments, (comment, index17) => {
+        return `<div class="${["flex", index17 > 0 ? "mt-6" : ""].join(" ").trim()}"><div class="${"flex-none w-12 h-12 rounded-full border border-orange-100 bg-orange-50"}"><div class="${"flex justify-center items-center w-12 h-12"}">${escape(comment.fullName.charAt(0))}</div></div>
 
 				<div class="${"ml-4 grow"}"><h2 class="${"font-semibold"}">${escape(comment.fullName)}</h2>
 					<p class="${"mt-2 text-sm text-gray-500"}">${each(Array(comment.rate), (_, index22) => {
@@ -4958,252 +5093,6 @@ ${comments.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><d
   }
 });
 
-// .svelte-kit/output/server/nodes/3.js
-var __exports4 = {};
-__export(__exports4, {
-  component: () => component4,
-  file: () => file4,
-  imports: () => imports4,
-  index: () => index4,
-  shared: () => page_exports2,
-  stylesheets: () => stylesheets4
-});
-var index4, component4, file4, imports4, stylesheets4;
-var init__4 = __esm({
-  ".svelte-kit/output/server/nodes/3.js"() {
-    init_page2();
-    index4 = 3;
-    component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
-    file4 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-e2dc2d6f.js";
-    imports4 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-e2dc2d6f.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/user-e202346c.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-d017fb51.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-29e4fdc2.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/chunks/Modal-9dd03068.js", "_app/immutable/chunks/UserCard-ff838523.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-4b7df6d7.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-e202346c.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/index-e9ed3a62.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/_page-1f50710b.js"];
-    stylesheets4 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/auth/activation/_page.js
-var page_exports3 = {};
-__export(page_exports3, {
-  csr: () => csr2,
-  load: () => load4,
-  prerender: () => prerender3
-});
-async function load4({ url }) {
-  return {
-    email: url.searchParams.get("email"),
-    code: url.searchParams.get("code")
-  };
-}
-var csr2, prerender3;
-var init_page3 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/auth/activation/_page.js"() {
-    init_environment();
-    csr2 = dev;
-    prerender3 = false;
-  }
-});
-
-// .svelte-kit/output/server/chunks/Input.js
-var Input;
-var init_Input = __esm({
-  ".svelte-kit/output/server/chunks/Input.js"() {
-    init_chunks();
-    Input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      createEventDispatcher();
-      let { label } = $$props;
-      let { id = "" } = $$props;
-      let { type = "text" } = $$props;
-      let { placeholder = "" } = $$props;
-      let { value = "" } = $$props;
-      if ($$props.label === void 0 && $$bindings.label && label !== void 0)
-        $$bindings.label(label);
-      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
-        $$bindings.id(id);
-      if ($$props.type === void 0 && $$bindings.type && type !== void 0)
-        $$bindings.type(type);
-      if ($$props.placeholder === void 0 && $$bindings.placeholder && placeholder !== void 0)
-        $$bindings.placeholder(placeholder);
-      if ($$props.value === void 0 && $$bindings.value && value !== void 0)
-        $$bindings.value(value);
-      return `${label ? `<label class="${"block text-sm font-medium leading-8 text-gray-700"}"${add_attribute("for", id, 0)}>${escape(label)}</label>` : ``}
-<input${add_attribute("id", id, 0)}${add_attribute("type", type, 0)}${add_attribute("placeholder", placeholder, 0)}${add_attribute("value", value, 0)} class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}">`;
-    });
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/auth/activation/_page.svelte.js
-var page_svelte_exports3 = {};
-__export(page_svelte_exports3, {
-  default: () => Page3
-});
-var import_toastify_js3, Page3;
-var init_page_svelte3 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/auth/activation/_page.svelte.js"() {
-    init_chunks();
-    init_Input();
-    init_netders_logo_blue();
-    import_toastify_js3 = __toESM(require_toastify(), 1);
-    Page3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { data } = $$props;
-      let email = data.email;
-      let code = data.code;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      let $$settled;
-      let $$rendered;
-      do {
-        $$settled = true;
-        $$rendered = `${$$result.head += `<!-- HEAD_svelte-8o100v_START -->${$$result.title = `<title>E-posta Aktivasyonu</title>`, ""}<!-- HEAD_svelte-8o100v_END -->`, ""}
-
-<div class="${"row-fluid login-wrapper margin-fix single"}"><div class="${"flex justify-center"}"><a href="${"/"}"><img class="${"pt-10 mx-auto lg:mx-32 mb-10 lg:mb-0"}"${add_attribute("src", Logo, 0)} width="${"200px"}"></a></div>
-
-	<div class="${[
-          "max-w-6xl relative z-10 m-auto px-6 lg:mt-12",
-          "hidden"
-        ].join(" ").trim()}"><div class="${"bg-white rounded-lg p-10 mx-auto max-w-2xl border border-gray-300"}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Aktivasyon ba\u015Far\u0131l\u0131!</div>
-					<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-64 h-64 mx-auto animate-pulse text-green-500"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-					<p>E-posta aktivasyon i\u015Flemi ba\u015Far\u0131yla tamamland\u0131.</p>
-					<p class="${"text-gray-400 text-sm"}">Yapmak istedi\u011Fin i\u015Flemlere art\u0131k devam edebilirsin \u{1F603}</p>
-
-					<a href="${"/"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"}"></path></svg>
-
-						Ana Sayfa
-					</a></div></div></div></div>
-
-	<div class="${[
-          "max-w-6xl relative z-10 m-auto px-6 lg:mt-12",
-          ""
-        ].join(" ").trim()}"><div class="${"bg-white rounded-lg p-10 mx-auto max-w-2xl border border-gray-300"}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><h1 class="${"text-3xl md:text-4xl font-bold mb-3"}">E-posta aktivasyonu</h1>
-					<p class="${"mb-2"}">E-posta adresine g\xF6nderilen bilgileri a\u015Fa\u011F\u0131daki alanlara girerek Aktive Et butonuna t\u0131kla.</p>
-					<div class="${"w-full"}"><form><div><div class="${"mt-1"}">${validate_component(Input, "Input").$$render(
-          $$result,
-          {
-            id: "email",
-            label: "E-posta",
-            placeholder: "",
-            type: "text",
-            value: email
-          },
-          {
-            value: ($$value) => {
-              email = $$value;
-              $$settled = false;
-            }
-          },
-          {}
-        )}</div></div>
-							<div><div class="${"mt-1"}">${validate_component(Input, "Input").$$render(
-          $$result,
-          {
-            id: "login",
-            label: "Kod",
-            placeholder: "",
-            type: "text",
-            value: code
-          },
-          {
-            value: ($$value) => {
-              code = $$value;
-              $$settled = false;
-            }
-          },
-          {}
-        )}</div></div>
-
-							<div class="${"mt-10"}"><span class="${"block w-full rounded-md"}"><button type="${"submit"}" class="${"w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-blue-700 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out"}">Aktive Et
-									</button></span></div></form></div></div></div></div></div>`;
-      } while (!$$settled);
-      return $$rendered;
-    });
-  }
-});
-
-// .svelte-kit/output/server/nodes/4.js
-var __exports5 = {};
-__export(__exports5, {
-  component: () => component5,
-  file: () => file5,
-  imports: () => imports5,
-  index: () => index5,
-  shared: () => page_exports3,
-  stylesheets: () => stylesheets5
-});
-var index5, component5, file5, imports5, stylesheets5;
-var init__5 = __esm({
-  ".svelte-kit/output/server/nodes/4.js"() {
-    init_page3();
-    index5 = 4;
-    component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/(app)/auth/activation/_page.svelte-0b4492ea.js";
-    imports5 = ["_app/immutable/components/pages/(app)/auth/activation/_page.svelte-0b4492ea.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/Input-c01dfd78.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/auth/activation/_page.js-0913ef99.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-20d3a25f.js"];
-    stylesheets5 = [];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/auth/forgot/_page.js
-var page_exports4 = {};
-__export(page_exports4, {
-  csr: () => csr3,
-  prerender: () => prerender4
-});
-var csr3, prerender4;
-var init_page4 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/auth/forgot/_page.js"() {
-    init_environment();
-    csr3 = dev;
-    prerender4 = true;
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/auth/forgot/_page.svelte.js
-var page_svelte_exports4 = {};
-__export(page_svelte_exports4, {
-  default: () => Page4
-});
-var Page4;
-var init_page_svelte4 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/auth/forgot/_page.svelte.js"() {
-    init_chunks();
-    init_Input();
-    init_netders_logo_blue();
-    Page4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let login;
-      let $$settled;
-      let $$rendered;
-      do {
-        $$settled = true;
-        $$rendered = `${$$result.head += `<!-- HEAD_svelte-1pq628u_START -->${$$result.title = `<title>\u015Eifremi Unuttum</title>`, ""}<!-- HEAD_svelte-1pq628u_END -->`, ""}
-
-<div class="${"row-fluid login-wrapper margin-fix single"}"><div class="${"flex justify-center"}"><a href="${"/"}"><img class="${"pt-10 mx-auto lg:mx-32 mb-10 lg:mb-0"}"${add_attribute("src", Logo, 0)} width="${"200px"}"></a></div>
-
-	<div class="${"max-w-6xl relative z-10 m-auto px-6 lg:mt-12"}"><div class="${"bg-white rounded-lg p-10 mx-auto max-w-2xl border border-gray-300"}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><h1 class="${"text-3xl md:text-4xl font-bold mb-4"}">\u015Eifremi unuttum</h1>
-					<p class="${"mb-4"}">\u015Eifre hat\u0131rlatma e-postas\u0131 almak i\xE7in a\u015Fa\u011F\u0131daki alana e-posta adresini girmelisin.</p>
-					<p class="${"mb-10 text-sm text-gray-500"}">E\u011Fer \u015Fifreni hat\u0131rlad\u0131ysan giri\u015F yapmak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/auth/login"}">buraya</a> t\u0131klayabilirsin.</p>
-					<div class="${"w-full"}"><form><div><div class="${"mt-1 rounded-md"}">${validate_component(Input, "Input").$$render(
-          $$result,
-          {
-            id: "login",
-            label: "E-posta",
-            placeholder: "",
-            type: "text",
-            value: login
-          },
-          {
-            value: ($$value) => {
-              login = $$value;
-              $$settled = false;
-            }
-          },
-          {}
-        )}</div></div>
-
-							<div class="${"mt-10"}"><span class="${"block w-full rounded-md"}"><button type="${"submit"}" class="${"w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-blue-700 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out"}">\u015Eifremi Hat\u0131rlat
-									</button></span></div></form></div></div></div></div></div>`;
-      } while (!$$settled);
-      return $$rendered;
-    });
-  }
-});
-
 // .svelte-kit/output/server/nodes/5.js
 var __exports6 = {};
 __export(__exports6, {
@@ -5211,228 +5100,27 @@ __export(__exports6, {
   file: () => file6,
   imports: () => imports6,
   index: () => index6,
-  shared: () => page_exports4,
+  shared: () => page_exports2,
   stylesheets: () => stylesheets6
 });
 var index6, component6, file6, imports6, stylesheets6;
 var init__6 = __esm({
   ".svelte-kit/output/server/nodes/5.js"() {
-    init_page4();
+    init_page2();
     index6 = 5;
-    component6 = async () => (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default;
-    file6 = "_app/immutable/components/pages/(app)/auth/forgot/_page.svelte-270cd7b5.js";
-    imports6 = ["_app/immutable/components/pages/(app)/auth/forgot/_page.svelte-270cd7b5.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/Input-c01dfd78.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/(app)/auth/forgot/_page.js-a3f6cdd3.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-3b4d8b9a.js"];
-    stylesheets6 = [];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/auth/login/_page.js
-var page_exports5 = {};
-__export(page_exports5, {
-  csr: () => csr4,
-  load: () => load5,
-  prerender: () => prerender5
-});
-async function load5({ url }) {
-  return {
-    to: url.searchParams.get("to")
-  };
-}
-var csr4, prerender5;
-var init_page5 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/auth/login/_page.js"() {
-    init_environment();
-    csr4 = dev;
-    prerender5 = false;
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/auth/login/_page.svelte.js
-var page_svelte_exports5 = {};
-__export(page_svelte_exports5, {
-  default: () => Page5
-});
-var import_toastify_js4, LoginScreenImage, Page5;
-var init_page_svelte5 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/auth/login/_page.svelte.js"() {
-    init_chunks();
-    init_Input();
-    init_netders_logo_blue();
-    import_toastify_js4 = __toESM(require_toastify(), 1);
-    init_userStore();
-    LoginScreenImage = "/_app/immutable/assets/login-screen-14c430ce.png";
-    Page5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$unsubscribe_userStore;
-      $$unsubscribe_userStore = subscribe(userStore, (value) => value);
-      let { data } = $$props;
-      let loginData = {
-        login: "",
-        password: "",
-        rememberMe: false
-      };
-      data.to;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      let $$settled;
-      let $$rendered;
-      do {
-        $$settled = true;
-        $$rendered = `${$$result.head += `<!-- HEAD_svelte-qnxa8i_START -->${$$result.title = `<title>Giri\u015F</title>`, ""}<!-- HEAD_svelte-qnxa8i_END -->`, ""}
-
-<div class="${"row-fluid login-wrapper margin-fix single"}"><div class="${"flex justify-center"}"><a href="${"/"}"><img class="${"pt-10 mx-auto lg:mx-32 mb-10 lg:mb-0"}"${add_attribute("src", Logo, 0)} width="${"200px"}"></a></div>
-
-	<div class="${"max-w-6xl relative z-10 m-auto px-6 lg:mt-12"}"><div class="${"grid md:grid-cols-1 lg:grid-cols-2 items-center login-section"}"><div class="${"bg-white rounded-lg p-10 sm:m-auto md:m-auto lg:m-0"}" style="${"border: solid 1px #CACED0; min-height: 524px;"}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><h1 class="${"text-3xl md:text-4xl font-bold mb-4"}">Hesab\u0131na giri\u015F yap</h1>
-					<p class="${"mb-4"}">Hen\xFCz \xFCye de\u011Fil misin? \xD6zel ders almak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/"}">buraya</a>, \xF6\u011Fretmen olmak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/"}">buraya</a> t\u0131klay\u0131n.</p>
-					<div class="${"mb-4"}"><ul class="${"flex flex-row justify-center gap-4 font-semibold cursor-pointer"}"><li${add_attribute(
-          "class",
-          "border-b-2 border-blue-700 text-blue-700",
-          0
-        )}>E-posta</li>
-							<li${add_attribute(
-          "class",
-          "",
-          0
-        )}>Telefon</li></ul></div>
-					<div class="${"w-full"}"><form><div><div class="${"mt-1 rounded-md"}">${validate_component(Input, "Input").$$render(
-          $$result,
-          {
-            id: "login",
-            label: "E-posta",
-            placeholder: "",
-            type: "text",
-            value: loginData.login
-          },
-          {
-            value: ($$value) => {
-              loginData.login = $$value;
-              $$settled = false;
-            }
-          },
-          {}
-        )}</div></div>
-
-							<div class="${"relative mt-2"}">${validate_component(Input, "Input").$$render(
-          $$result,
-          {
-            id: "password",
-            label: "\u015Eifre",
-            placeholder: "",
-            type: "password",
-            value: loginData.password
-          },
-          {
-            value: ($$value) => {
-              loginData.password = $$value;
-              $$settled = false;
-            }
-          },
-          {}
-        )}
-								<div class="${"absolute bottom-1 right-1 p-1 bg-white cursor-pointer"}">${`<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"}"></path></svg>`}</div></div>
-
-							<div class="${"mt-2 flex flex-col md:flex-row justify-between"}"><div class="${"flex items-center"}"><input id="${"remember-me"}" type="${"checkbox"}" class="${"form-checkbox h-4 w-4 tw-blue transition duration-150 ease-in-out"}"${add_attribute("checked", loginData.rememberMe, 1)}>
-									<label for="${"remember-me"}" class="${"ml-2 block text-sm leading-5 text-gray-900"}">Beni hat\u0131rla
-									</label></div>
-
-								<div class="${"text-sm leading-5 mt-4 md:mt-0"}"><a href="${"/auth/forgot"}" class="${"font-medium tw-blue focus:outline-none no-underline transition ease-in-out duration-150"}">\u015Eifremi unuttum
-									</a></div></div>
-
-							<div class="${"mt-10"}">${`<button type="${"submit"}" class="${"w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-blue-700 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out"}">Giri\u015F
-									</button>`}</div></form></div></div></div>
-			<div class="${"text-center pt-10 lg:pt-0 m-auto lg:m-0 hidden lg:block"}"><img class="${"rounded-lg lg:ml-4"}" style="${"height: 524px;"}"${add_attribute("src", LoginScreenImage, 0)} alt="${"The new Tailwind"}"></div></div></div></div>`;
-      } while (!$$settled);
-      $$unsubscribe_userStore();
-      return $$rendered;
-    });
-  }
-});
-
-// .svelte-kit/output/server/nodes/6.js
-var __exports7 = {};
-__export(__exports7, {
-  component: () => component7,
-  file: () => file7,
-  imports: () => imports7,
-  index: () => index7,
-  shared: () => page_exports5,
-  stylesheets: () => stylesheets7
-});
-var index7, component7, file7, imports7, stylesheets7;
-var init__7 = __esm({
-  ".svelte-kit/output/server/nodes/6.js"() {
-    init_page5();
-    index7 = 6;
-    component7 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file7 = "_app/immutable/components/pages/(app)/auth/login/_page.svelte-c6664618.js";
-    imports7 = ["_app/immutable/components/pages/(app)/auth/login/_page.svelte-c6664618.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/Input-c01dfd78.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/SvelteCookie-f4094f66.js", "_app/immutable/chunks/user-e202346c.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/navigation-b0659a60.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/modules/pages/(app)/auth/login/_page.js-fdb37a6a.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-411e2981.js"];
-    stylesheets7 = [];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/auth/logout/_page.js
-var page_exports6 = {};
-__export(page_exports6, {
-  csr: () => csr5,
-  load: () => load6,
-  prerender: () => prerender6
-});
-function guard(name) {
-  return () => {
-    throw new Error(`Cannot call ${name}(...) on the server`);
-  };
-}
-function deleteCookie(name) {
-  document.cookie = name + "=; Max-Age=-99999999;";
-}
-async function load6({ url }) {
-  userStore.set({
-    email: "",
-    username: "",
-    firstName: "",
-    lastName: "",
-    phone: "",
-    token: "",
-    roles: []
-  });
-  deleteCookie("token");
-  goto(url.searchParams.get("to") ?? "/");
-}
-var goto, csr5, prerender6;
-var init_page6 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/auth/logout/_page.js"() {
-    init_environment();
-    init_chunks();
-    init_userStore();
-    goto = guard("goto");
-    csr5 = dev;
-    prerender6 = false;
-  }
-});
-
-// .svelte-kit/output/server/nodes/7.js
-var __exports8 = {};
-__export(__exports8, {
-  imports: () => imports8,
-  index: () => index8,
-  shared: () => page_exports6,
-  stylesheets: () => stylesheets8
-});
-var index8, imports8, stylesheets8;
-var init__8 = __esm({
-  ".svelte-kit/output/server/nodes/7.js"() {
-    init_page6();
-    index8 = 7;
-    imports8 = ["_app/immutable/modules/pages/(app)/auth/logout/_page.js-01814776.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/SvelteCookie-f4094f66.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/navigation-b0659a60.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/chunks/_page-eca7712f.js"];
-    stylesheets8 = [];
+    component6 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
+    file6 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-fede7d22.js";
+    imports6 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-fede7d22.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-d1b7bc1a.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/UserCard-5c3cf584.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-061269a4.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/_page-c33cd78b.js"];
+    stylesheets6 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
   }
 });
 
 // .svelte-kit/output/server/entries/pages/(app)/ders/_slug_/_page.js
-var page_exports7 = {};
-__export(page_exports7, {
-  csr: () => csr6,
-  load: () => load7,
-  prerender: () => prerender7
+var page_exports3 = {};
+__export(page_exports3, {
+  csr: () => csr3,
+  load: () => load4,
+  prerender: () => prerender3
 });
 async function getUserPriceDetail(slug) {
   const response = await fetch(
@@ -5446,7 +5134,11 @@ async function getUserPriceDetail(slug) {
   );
   return await response.json();
 }
-async function load7({ params }) {
+async function load4({ params, parent }) {
+  const { user } = await parent();
+  if (Object.entries(user).length > 0) {
+    userStore.set(user);
+  }
   if (params && params.slug) {
     let response = await getUserPriceDetail(params.slug);
     if (Object.entries(response.errors).length) {
@@ -5455,27 +5147,28 @@ async function load7({ params }) {
     return response.result;
   }
 }
-var csr6, prerender7;
-var init_page7 = __esm({
+var csr3, prerender3;
+var init_page3 = __esm({
   ".svelte-kit/output/server/entries/pages/(app)/ders/_slug_/_page.js"() {
     init_environment();
     init_index2();
-    csr6 = dev;
-    prerender7 = false;
+    init_userStore();
+    csr3 = dev;
+    prerender3 = false;
   }
 });
 
 // .svelte-kit/output/server/entries/pages/(app)/ders/_slug_/_page.svelte.js
-var page_svelte_exports6 = {};
-__export(page_svelte_exports6, {
-  default: () => Page6
+var page_svelte_exports3 = {};
+__export(page_svelte_exports3, {
+  default: () => Page3
 });
-var Page6;
-var init_page_svelte6 = __esm({
+var Page3;
+var init_page_svelte3 = __esm({
   ".svelte-kit/output/server/entries/pages/(app)/ders/_slug_/_page.svelte.js"() {
     init_chunks();
     init_UserCard();
-    Page6 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Page3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
       let userData = {};
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
@@ -5496,44 +5189,508 @@ ${Object.entries(userData).length > 0 ? `<div class="${"bg-white rounded-lg shad
   }
 });
 
+// .svelte-kit/output/server/nodes/6.js
+var __exports7 = {};
+__export(__exports7, {
+  component: () => component7,
+  file: () => file7,
+  imports: () => imports7,
+  index: () => index7,
+  shared: () => page_exports3,
+  stylesheets: () => stylesheets7
+});
+var index7, component7, file7, imports7, stylesheets7;
+var init__7 = __esm({
+  ".svelte-kit/output/server/nodes/6.js"() {
+    init_page3();
+    index7 = 6;
+    component7 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
+    file7 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-9020e685.js";
+    imports7 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-9020e685.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/UserCard-5c3cf584.js", "_app/immutable/chunks/UserVertical-d1b7bc1a.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-3409c7cb.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-33f3a6f3.js"];
+    stylesheets7 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(app)/member/account/_page.js
+var page_exports4 = {};
+__export(page_exports4, {
+  csr: () => csr4,
+  load: () => load5,
+  prerender: () => prerender4
+});
+var csr4, prerender4, load5;
+var init_page4 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/member/account/_page.js"() {
+    init_index2();
+    init_environment();
+    init_userStore();
+    csr4 = dev;
+    prerender4 = false;
+    load5 = async ({ parent }) => {
+      const { user } = await parent();
+      if (Object.entries(user).length > 0) {
+        userStore.set(user);
+      } else {
+        userStore.subscribe((user2) => {
+          if (!user2.username) {
+            throw redirect(307, "/auth/login");
+          }
+        });
+      }
+    };
+  }
+});
+
+// .svelte-kit/output/server/chunks/MemberHorizontalNavigation.js
+var MemberHorizontalNavigation;
+var init_MemberHorizontalNavigation = __esm({
+  ".svelte-kit/output/server/chunks/MemberHorizontalNavigation.js"() {
+    init_chunks();
+    init_stores();
+    MemberHorizontalNavigation = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $page, $$unsubscribe_page;
+      $$unsubscribe_page = subscribe(page, (value) => $page = value);
+      $$unsubscribe_page();
+      return `<div class="${"max-w-3xl w-full mx-auto mt-8 mb-4"}"><h2 class="${"sr-only"}">Hesab\u0131m</h2>
+    <ol class="${"flex justify-between text-sm"}"><li${add_classes(($page.url.pathname === "/member/account" ? "text-blue-600" : "").trim())}><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
+            <span class="${"hidden md:inline-block ml-1"}">Hesap</span></li>
+
+         <li${add_classes(($page.url.pathname === "/member/requests" ? "text-blue-600" : "").trim())}><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+            <span class="${"hidden md:inline-block ml-1"}">Talepler</span></li>
+
+         <li${add_classes(($page.url.pathname === "/member/comments" ? "text-blue-600" : "").trim())}><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"}"></path></svg>
+            <span class="${"hidden md:inline-block ml-1"}">Yorumlar</span></li>
+
+         <li${add_classes(($page.url.pathname === "/member/orders" ? "text-blue-600" : "").trim())}><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"}"></path></svg>
+            <span class="${"hidden md:inline-block ml-1"}">Sipari\u015Fler</span></li>
+
+         <li${add_classes(($page.url.pathname === "/member/preferences" ? "text-blue-600" : "").trim())}><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 12a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
+            <span class="${"hidden md:inline-block ml-1"}">Tercihler</span></li></ol></div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(app)/member/account/_page.svelte.js
+var page_svelte_exports4 = {};
+__export(page_svelte_exports4, {
+  default: () => Page4
+});
+var Page4;
+var init_page_svelte4 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/member/account/_page.svelte.js"() {
+    init_chunks();
+    init_MemberHorizontalNavigation();
+    init_userStore();
+    Page4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $userStore, $$unsubscribe_userStore;
+      let $gendersStore, $$unsubscribe_gendersStore;
+      $$unsubscribe_userStore = subscribe(userStore, (value) => $userStore = value);
+      $$unsubscribe_gendersStore = subscribe(gendersStore, (value) => $gendersStore = value);
+      let lastName, phone;
+      let { data } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$unsubscribe_userStore();
+      $$unsubscribe_gendersStore();
+      return `${$$result.head += `<!-- HEAD_svelte-juqmny_START -->${$$result.title = `<title>\xD6zel Ders Talebi Olu\u015Ftur</title>`, ""}<!-- HEAD_svelte-juqmny_END -->`, ""}
+
+${validate_component(MemberHorizontalNavigation, "MemberHorizontalNavigation").$$render($$result, {}, {}, {})}
+
+<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Ki\u015Fisel bilgiler</div>
+
+		<div class="${"grid grid-cols-2 gap-4 mt-4"}"><div><span class="${"text-sm mb-1 block text-gray-500"}">Ad\u0131n</span>
+				<input type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", $userStore.firstName, 0)}></div>
+			<div><span class="${"text-sm mb-1 block text-gray-500"}">Soyad\u0131n</span>
+				<input type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", lastName, 0)}></div>
+			<div><span class="${"text-sm mb-1 block text-gray-500"}">Telefon numaran</span>
+				<input type="${"number"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", phone, 0)}></div>
+			<div><span class="${"text-sm mb-1 block text-gray-500"}">Cinsiyetin</span>
+				<select class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"><option value="${""}">L\xFCtfen Se\xE7</option>${each($gendersStore, (gender) => {
+        return `<option${add_attribute("value", gender, 0)}>${escape(gender.title)}</option>`;
+      })}</select></div></div>
+
+		<button class="${"bg-blue-700 hover:bg-blue-900 px-6 py-2 rounded-full text-white mt-4"}"><span>Kaydet</span></button></div></div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/7.js
+var __exports8 = {};
+__export(__exports8, {
+  component: () => component8,
+  file: () => file8,
+  imports: () => imports8,
+  index: () => index8,
+  shared: () => page_exports4,
+  stylesheets: () => stylesheets8
+});
+var index8, component8, file8, imports8, stylesheets8;
+var init__8 = __esm({
+  ".svelte-kit/output/server/nodes/7.js"() {
+    init_page4();
+    index8 = 7;
+    component8 = async () => (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default;
+    file8 = "_app/immutable/components/pages/(app)/member/account/_page.svelte-7d1df61b.js";
+    imports8 = ["_app/immutable/components/pages/(app)/member/account/_page.svelte-7d1df61b.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/navigation-ef758488.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/MemberHorizontalNavigation-5b9dfe65.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/modules/pages/(app)/member/account/_page.js-2f6faee2.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-4accf164.js"];
+    stylesheets8 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(app)/member/requests/_page.js
+var page_exports5 = {};
+__export(page_exports5, {
+  csr: () => csr5,
+  load: () => load6,
+  prerender: () => prerender5
+});
+var csr5, prerender5, load6;
+var init_page5 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/member/requests/_page.js"() {
+    init_index2();
+    init_environment();
+    init_userStore();
+    csr5 = dev;
+    prerender5 = false;
+    load6 = async ({ parent }) => {
+      const { user } = await parent();
+      if (Object.entries(user).length > 0) {
+        userStore.set(user);
+      } else {
+        throw redirect(307, "/auth/login");
+      }
+    };
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(app)/member/requests/_page.svelte.js
+var page_svelte_exports5 = {};
+__export(page_svelte_exports5, {
+  default: () => Page5
+});
+var Page5;
+var init_page_svelte5 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/member/requests/_page.svelte.js"() {
+    init_chunks();
+    init_MemberHorizontalNavigation();
+    Page5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `${$$result.head += `<!-- HEAD_svelte-143as3b_START -->${$$result.title = `<title>Hesab\u0131m</title>`, ""}<!-- HEAD_svelte-143as3b_END -->`, ""}
+
+${validate_component(MemberHorizontalNavigation, "MemberHorizontalNavigation").$$render($$result, {}, {}, {})}
+
+<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Ders Talepleri</div>
+	<div class="${"p-6"}"><div>Herhangi bir \xF6zel ders talebiniz bulunmamaktad\u0131r.</div>
+		<a href="${"/ozel-ders-talebi-olustur"}" class="${"bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white mt-4 inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+			Ders Talebi Olu\u015Ftur
+		</a></div></div>`;
+    });
+  }
+});
+
 // .svelte-kit/output/server/nodes/8.js
 var __exports9 = {};
 __export(__exports9, {
-  component: () => component8,
-  file: () => file8,
+  component: () => component9,
+  file: () => file9,
   imports: () => imports9,
   index: () => index9,
-  shared: () => page_exports7,
+  shared: () => page_exports5,
   stylesheets: () => stylesheets9
 });
-var index9, component8, file8, imports9, stylesheets9;
+var index9, component9, file9, imports9, stylesheets9;
 var init__9 = __esm({
   ".svelte-kit/output/server/nodes/8.js"() {
-    init_page7();
+    init_page5();
     index9 = 8;
-    component8 = async () => (await Promise.resolve().then(() => (init_page_svelte6(), page_svelte_exports6))).default;
-    file8 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-cb1b82ed.js";
-    imports9 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-cb1b82ed.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/UserCard-ff838523.js", "_app/immutable/chunks/UserVertical-d017fb51.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-e202346c.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/stores-29e4fdc2.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/chunks/Modal-9dd03068.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-2320fe28.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/index-e9ed3a62.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/_page-ba562b6c.js"];
-    stylesheets9 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    component9 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
+    file9 = "_app/immutable/components/pages/(app)/member/requests/_page.svelte-fc5c1a17.js";
+    imports9 = ["_app/immutable/components/pages/(app)/member/requests/_page.svelte-fc5c1a17.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/MemberHorizontalNavigation-5b9dfe65.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/modules/pages/(app)/member/requests/_page.js-d847fc91.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-a7c22fb9.js"];
+    stylesheets9 = [];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/(app)/member/dashboard/_page.js
-var page_exports8 = {};
-__export(page_exports8, {
-  csr: () => csr7,
-  prerender: () => prerender8
+// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js
+var page_exports6 = {};
+__export(page_exports6, {
+  csr: () => csr6,
+  load: () => load7,
+  prerender: () => prerender6
 });
-var csr7, prerender8;
-var init_page8 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/member/dashboard/_page.js"() {
+async function load7({ params, parent }) {
+  const { user } = await parent();
+  if (Object.entries(user).length > 0) {
+    userStore.set(user);
+  }
+  if (params && params.catchall) {
+    await getTeacherSearchStoreParamsBySearchParams({ "query": params.catchall });
+  }
+  const users = await getUsers();
+  teacherItemsStore.set(users.items);
+  teacherTotalStore.set(users.total);
+}
+var csr6, prerender6;
+var init_page6 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
     init_environment();
-    csr7 = dev;
-    prerender8 = true;
+    init_user();
+    init_userStore();
+    csr6 = dev;
+    prerender6 = false;
   }
 });
 
-// .svelte-kit/output/server/chunks/RangeSlider.js
+// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js
+var page_svelte_exports6 = {};
+__export(page_svelte_exports6, {
+  default: () => Page6
+});
+var UserHorizontal, citiesStore, countiesStore, subjectsStore, levelsStore, lessonTypesStore, Page6;
+var init_page_svelte6 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js"() {
+    init_chunks();
+    init_userStore();
+    init_index3();
+    init_stores();
+    UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { firstName } = $$props;
+      let { genderName } = $$props;
+      let { lastName } = $$props;
+      let { about } = $$props;
+      let { cityName } = $$props;
+      let { countyName } = $$props;
+      let { minimumPrice } = $$props;
+      let { isOnline } = $$props;
+      let { title } = $$props;
+      let { username } = $$props;
+      let { isTeachPhysically } = $$props;
+      let { isTeachRemotely } = $$props;
+      let { totalComment } = $$props;
+      const getPhotoEmptyUserAvatar = (genderName2) => {
+        if (genderName2 == "Erkek")
+          return "img/icon-male.png";
+        if (genderName2 == "Kad\u0131n")
+          return "img/icon-female.png";
+        return "img/icon-male.png";
+      };
+      const truncateString = (str, num) => {
+        if (str == null)
+          return "";
+        if (str.length > num) {
+          return str.slice(0, num) + "...";
+        } else {
+          return str;
+        }
+      };
+      if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
+        $$bindings.firstName(firstName);
+      if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
+        $$bindings.genderName(genderName);
+      if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
+        $$bindings.lastName(lastName);
+      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
+        $$bindings.about(about);
+      if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
+        $$bindings.cityName(cityName);
+      if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
+        $$bindings.countyName(countyName);
+      if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
+        $$bindings.minimumPrice(minimumPrice);
+      if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
+        $$bindings.isOnline(isOnline);
+      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+        $$bindings.title(title);
+      if ($$props.username === void 0 && $$bindings.username && username !== void 0)
+        $$bindings.username(username);
+      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
+        $$bindings.isTeachPhysically(isTeachPhysically);
+      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
+        $$bindings.isTeachRemotely(isTeachRemotely);
+      if ($$props.totalComment === void 0 && $$bindings.totalComment && totalComment !== void 0)
+        $$bindings.totalComment(totalComment);
+      return `<a href="${"/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
+		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
+
+		<div class="${"flex flex-col gap-2 md:flex-row mb-3"}">${isTeachPhysically ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
+			Y\xFCz y\xFCze ders veriyor
+		</div>` : ``}
+
+		${isTeachRemotely ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"}"></path></svg>
+			Uzaktan, webcam ile ders veriyor
+		</div>` : ``}</div>
+
+		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
+				${escape(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
+
+			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
+				${escape(totalComment)} yorum
+			</div>
+
+			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+				${escape(cityName)}, ${escape(countyName)}</div></div>
+
+		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
+    });
+    citiesStore = writable([]);
+    countiesStore = writable([]);
+    subjectsStore = writable([]);
+    levelsStore = writable([]);
+    lessonTypesStore = writable([
+      { id: 1, title: "Y\xFCz Y\xFCze" },
+      { id: 2, title: "Uzaktan (Webcam)" }
+    ]);
+    Page6 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
+      let $$unsubscribe_page;
+      let $$unsubscribe_levelsStore;
+      let $teacherSearchParamsStore, $$unsubscribe_teacherSearchParamsStore;
+      let $$unsubscribe_countiesStore;
+      let $teacherTotalStore, $$unsubscribe_teacherTotalStore;
+      let $teacherItemsStore, $$unsubscribe_teacherItemsStore;
+      let $$unsubscribe_gendersStore;
+      let $$unsubscribe_lessonTypesStore;
+      let $$unsubscribe_citiesStore;
+      let $$unsubscribe_subjectsStore;
+      $$unsubscribe_page = subscribe(page, (value) => value);
+      $$unsubscribe_levelsStore = subscribe(levelsStore, (value) => value);
+      $$unsubscribe_teacherSearchParamsStore = subscribe(teacherSearchParamsStore, (value) => $teacherSearchParamsStore = value);
+      $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
+      $$unsubscribe_teacherTotalStore = subscribe(teacherTotalStore, (value) => $teacherTotalStore = value);
+      $$unsubscribe_teacherItemsStore = subscribe(teacherItemsStore, (value) => $teacherItemsStore = value);
+      $$unsubscribe_gendersStore = subscribe(gendersStore, (value) => value);
+      $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
+      $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
+      $$unsubscribe_subjectsStore = subscribe(subjectsStore, (value) => value);
+      let loading = false;
+      let teacherSearchParams = {
+        "keyword": "",
+        "budget": "",
+        "cityObject": void 0,
+        "countyObject": void 0,
+        "subjectObject": void 0,
+        "levelObject": void 0,
+        "lessonTypeObject": void 0,
+        "genderObject": void 0
+      };
+      $$unsubscribe_page();
+      $$unsubscribe_levelsStore();
+      $$unsubscribe_teacherSearchParamsStore();
+      $$unsubscribe_countiesStore();
+      $$unsubscribe_teacherTotalStore();
+      $$unsubscribe_teacherItemsStore();
+      $$unsubscribe_gendersStore();
+      $$unsubscribe_lessonTypesStore();
+      $$unsubscribe_citiesStore();
+      $$unsubscribe_subjectsStore();
+      return `${$$result.head += `<!-- HEAD_svelte-1796jo3_START -->${$$result.title = `<title>${escape($teacherSearchParamsStore.cityObject ? ((_a = $teacherSearchParamsStore.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape($teacherSearchParamsStore.countyObject ? ((_b = $teacherSearchParamsStore.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape($teacherSearchParamsStore.subjectObject ? ((_c = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape($teacherSearchParamsStore.levelObject ? ((_d = $teacherSearchParamsStore.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-1796jo3_END -->`, ""}
+
+${``}
+
+<section class="${"dark:bg-gray-900 text-center"}"><div class="${"flex py-6"}"><div class="${"mx-auto"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">${escape($teacherSearchParamsStore.cityObject ? (_e = $teacherSearchParamsStore.cityObject) == null ? void 0 : _e.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_f = $teacherSearchParamsStore.countyObject) == null ? void 0 : _f.title : "")} ${escape($teacherSearchParamsStore.subjectObject ? (_g = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _g.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_h = $teacherSearchParamsStore.levelObject) == null ? void 0 : _h.title : "")} <span class="${"text-gray-800"}">\xD6zel Ders Veren \xD6\u011Fretmenler</span></h1>
+			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape($teacherSearchParamsStore.cityObject ? (_i = $teacherSearchParamsStore.cityObject) == null ? void 0 : _i.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_j = $teacherSearchParamsStore.countyObject) == null ? void 0 : _j.title : "")} \xF6zel ders veren \xF6\u011Fretmenler taraf\u0131ndan olu\u015Fturulan ${escape($teacherSearchParamsStore.subjectObject ? (_k = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _k.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_l = $teacherSearchParamsStore.levelObject) == null ? void 0 : _l.title : "")} \xF6zel ders ilanlar\u0131.</p>
+
+			<form autocomplete="${"off"}"><label for="${"default-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
+				<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
+					<input name="${"keyword"}" type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0"}" placeholder="${"Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"}"${add_attribute("value", teacherSearchParams.keyword, 0)}>
+
+					${`<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button>`}</div></form>
+
+			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <button class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</button> yapabilirsin.</p>
+
+			<div class="${"flex justify-center flex-wrap gap-2"}">${$teacherSearchParamsStore.keyword ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
+                        <span>${escape($teacherSearchParamsStore.keyword)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.budget ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
+						<span>${escape($teacherSearchParamsStore.budget)} \u20BA</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.cityObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+					<span>${escape((_m = $teacherSearchParamsStore.cityObject) == null ? void 0 : _m.title)}</span>
+					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.countyObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
+						<span>${escape((_n = $teacherSearchParamsStore.countyObject) == null ? void 0 : _n.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.subjectObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+						<span>${escape((_o = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _o.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.levelObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
+						<span>${escape((_p = $teacherSearchParamsStore.levelObject) == null ? void 0 : _p.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.lessonTypeObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"}"></path></svg>
+						<span>${escape((_q = $teacherSearchParamsStore.lessonTypeObject) == null ? void 0 : _q.title)}</span>
+						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
+
+				${$teacherSearchParamsStore.genderObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"}"></path></svg>
+					<span>${escape((_r = $teacherSearchParamsStore.genderObject) == null ? void 0 : _r.title)}</span>
+					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}</div></div></div></section>
+
+${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape($teacherTotalStore)}</strong> e\u011Fitmen bulundu.</div>`}
+
+<div class="${"grid grid-cols-1 gap-4"}">${`${each($teacherItemsStore, (user) => {
+        return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, Object.assign(user), {}, {})}`;
+      })}`}</div>
+
+${$teacherTotalStore > 0 && !loading ? `${`<div class="${"pt-4 text-sm text-center"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
+		Daha fazla \xF6\u011Fretmen
+	</button></div>`}` : ``}`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/9.js
+var __exports10 = {};
+__export(__exports10, {
+  component: () => component10,
+  file: () => file10,
+  imports: () => imports10,
+  index: () => index10,
+  shared: () => page_exports6,
+  stylesheets: () => stylesheets10
+});
+var index10, component10, file10, imports10, stylesheets10;
+var init__10 = __esm({
+  ".svelte-kit/output/server/nodes/9.js"() {
+    init_page6();
+    index10 = 9;
+    component10 = async () => (await Promise.resolve().then(() => (init_page_svelte6(), page_svelte_exports6))).default;
+    file10 = "_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-d90e94ba.js";
+    imports10 = ["_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-d90e94ba.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/lesson-f97c8aea.js", "_app/immutable/chunks/stores-1d1e1b0f.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-0e345143.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/_page-7fedb1c3.js"];
+    stylesheets10 = ["_app/immutable/assets/Modal-7e1b958a.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.js
+var page_exports7 = {};
+__export(page_exports7, {
+  csr: () => csr7,
+  load: () => load8,
+  prerender: () => prerender7
+});
+var csr7, prerender7, load8;
+var init_page7 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.js"() {
+    init_environment();
+    init_userStore();
+    csr7 = dev;
+    prerender7 = true;
+    load8 = async ({ parent }) => {
+      const { user } = await parent();
+      if (Object.entries(user).length > 0) {
+        userStore.set(user);
+      }
+    };
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.svelte.js
+var page_svelte_exports7 = {};
+__export(page_svelte_exports7, {
+  default: () => Page7
+});
 function is_date(obj) {
   return Object.prototype.toString.call(obj) === "[object Date]";
 }
@@ -5631,11 +5788,12 @@ function spring(value, opts = {}) {
   };
   return spring2;
 }
-var Student2, css$12, RangePips, css3, RangeSlider;
-var init_RangeSlider = __esm({
-  ".svelte-kit/output/server/chunks/RangeSlider.js"() {
+var import_toastify_js3, Student2, css$12, RangePips, css4, RangeSlider, Page7;
+var init_page_svelte7 = __esm({
+  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.svelte.js"() {
     init_chunks();
     init_index3();
+    import_toastify_js3 = __toESM(require_toastify(), 1);
     Student2 = "/_app/immutable/assets/student2-ef62a23a.png";
     css$12 = {
       code: ".rangeSlider{--pip:var(--range-pip, lightslategray);--pip-text:var(--range-pip-text, var(--pip));--pip-active:var(--range-pip-active, darkslategrey);--pip-active-text:var(--range-pip-active-text, var(--pip-active));--pip-hover:var(--range-pip-hover, darkslategrey);--pip-hover-text:var(--range-pip-hover-text, var(--pip-hover));--pip-in-range:var(--range-pip-in-range, var(--pip-active));--pip-in-range-text:var(--range-pip-in-range-text, var(--pip-active-text))}.rangePips{position:absolute;height:1em;left:0;right:0;bottom:-1em}.rangePips.vertical{height:auto;width:1em;left:100%;right:auto;top:0;bottom:0}.rangePips .pip{height:0.4em;position:absolute;top:0.25em;width:1px;white-space:nowrap}.rangePips.vertical .pip{height:1px;width:0.4em;left:0.25em;top:auto;bottom:auto}.rangePips .pipVal{position:absolute;top:0.4em;transform:translate(-50%, 25%)}.rangePips.vertical .pipVal{position:absolute;top:0;left:0.4em;transform:translate(25%, -50%)}.rangePips .pip{transition:all 0.15s ease}.rangePips .pipVal{transition:all 0.15s ease, font-weight 0s linear}.rangePips .pip{color:lightslategray;color:var(--pip-text);background-color:lightslategray;background-color:var(--pip)}.rangePips .pip.selected{color:darkslategrey;color:var(--pip-active-text);background-color:darkslategrey;background-color:var(--pip-active)}.rangePips.hoverable:not(.disabled) .pip:hover{color:darkslategrey;color:var(--pip-hover-text);background-color:darkslategrey;background-color:var(--pip-hover)}.rangePips .pip.in-range{color:darkslategrey;color:var(--pip-in-range-text);background-color:darkslategrey;background-color:var(--pip-in-range)}.rangePips .pip.selected{height:0.75em}.rangePips.vertical .pip.selected{height:1px;width:0.75em}.rangePips .pip.selected .pipVal{font-weight:bold;top:0.75em}.rangePips.vertical .pip.selected .pipVal{top:0;left:0.75em}.rangePips.hoverable:not(.disabled) .pip:not(.selected):hover{transition:none}.rangePips.hoverable:not(.disabled) .pip:not(.selected):hover .pipVal{transition:none;font-weight:bold}",
@@ -5754,7 +5912,7 @@ var init_RangeSlider = __esm({
         (isSelected(max2) ? "selected" : "") + " " + (inRange(max2) ? "in-range" : "")
       ].join(" ").trim()}" style="${escape(orientationStart, true) + ": 100%;"}">${all === "label" || last === "label" ? `<span class="${"pipVal"}">${prefix ? `<span class="${"pipVal-prefix"}">${escape(prefix)}</span>` : ``}${escape(formatter(fixFloat(max2), pipCount, 100))}${suffix ? `<span class="${"pipVal-suffix"}">${escape(suffix)}</span>` : ``}</span>` : ``}</span>` : ``}</div>`;
     });
-    css3 = {
+    css4 = {
       code: '.rangeSlider{--slider:var(--range-slider, #d7dada);--handle-inactive:var(--range-handle-inactive, #99a2a2);--handle:var(--range-handle, #838de7);--handle-focus:var(--range-handle-focus, #4a40d4);--handle-border:var(--range-handle-border, var(--handle));--range-inactive:var(--range-range-inactive, var(--handle-inactive));--range:var(--range-range, var(--handle-focus));--float-inactive:var(--range-float-inactive, var(--handle-inactive));--float:var(--range-float, var(--handle-focus));--float-text:var(--range-float-text, white);position:relative;border-radius:100px;height:0.5em;margin:1em;transition:opacity 0.2s ease;-webkit-user-select:none;-moz-user-select:none;user-select:none}.rangeSlider *{-webkit-user-select:none;-moz-user-select:none;user-select:none}.rangeSlider.pips{margin-bottom:1.8em}.rangeSlider.pip-labels{margin-bottom:2.8em}.rangeSlider.vertical{display:inline-block;border-radius:100px;width:0.5em;min-height:200px}.rangeSlider.vertical.pips{margin-right:1.8em;margin-bottom:1em}.rangeSlider.vertical.pip-labels{margin-right:2.8em;margin-bottom:1em}.rangeSlider .rangeHandle{position:absolute;display:block;height:1.4em;width:1.4em;top:0.25em;bottom:auto;transform:translateY(-50%) translateX(-50%);z-index:2}.rangeSlider.reversed .rangeHandle{transform:translateY(-50%) translateX(50%)}.rangeSlider.vertical .rangeHandle{left:0.25em;top:auto;transform:translateY(50%) translateX(-50%)}.rangeSlider.vertical.reversed .rangeHandle{transform:translateY(-50%) translateX(-50%)}.rangeSlider .rangeNub,.rangeSlider .rangeHandle:before{position:absolute;left:0;top:0;display:block;border-radius:10em;height:100%;width:100%;transition:box-shadow 0.2s ease}.rangeSlider .rangeHandle:before{content:"";left:1px;top:1px;bottom:1px;right:1px;height:auto;width:auto;box-shadow:0 0 0 0px var(--handle-border);opacity:0}.rangeSlider.hoverable:not(.disabled) .rangeHandle:hover:before{box-shadow:0 0 0 8px var(--handle-border);opacity:0.2}.rangeSlider.hoverable:not(.disabled) .rangeHandle.press:before,.rangeSlider.hoverable:not(.disabled) .rangeHandle.press:hover:before{box-shadow:0 0 0 12px var(--handle-border);opacity:0.4}.rangeSlider.range:not(.min):not(.max) .rangeNub{border-radius:10em 10em 10em 1.6em}.rangeSlider.range .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(-135deg)}.rangeSlider.range .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(45deg)}.rangeSlider.range.reversed .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(45deg)}.rangeSlider.range.reversed .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(-135deg)}.rangeSlider.range.vertical .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(135deg)}.rangeSlider.range.vertical .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(-45deg)}.rangeSlider.range.vertical.reversed .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(-45deg)}.rangeSlider.range.vertical.reversed .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(135deg)}.rangeSlider .rangeFloat{display:block;position:absolute;left:50%;top:-0.5em;transform:translate(-50%, -100%);text-align:center;opacity:0;pointer-events:none;white-space:nowrap;transition:all 0.2s ease;font-size:0.9em;padding:0.2em 0.4em;border-radius:0.2em}.rangeSlider .rangeHandle.active .rangeFloat,.rangeSlider.hoverable .rangeHandle:hover .rangeFloat{opacity:1;top:-0.2em;transform:translate(-50%, -100%)}.rangeSlider .rangeBar{position:absolute;display:block;transition:background 0.2s ease;border-radius:1em;height:0.5em;top:0;-webkit-user-select:none;-moz-user-select:none;user-select:none;z-index:1}.rangeSlider.vertical .rangeBar{width:0.5em;height:auto}.rangeSlider{background-color:#d7dada;background-color:var(--slider)}.rangeSlider .rangeBar{background-color:#99a2a2;background-color:var(--range-inactive)}.rangeSlider.focus .rangeBar{background-color:#838de7;background-color:var(--range)}.rangeSlider .rangeNub{background-color:#99a2a2;background-color:var(--handle-inactive)}.rangeSlider.focus .rangeNub{background-color:#838de7;background-color:var(--handle)}.rangeSlider .rangeHandle.active .rangeNub{background-color:#4a40d4;background-color:var(--handle-focus)}.rangeSlider .rangeFloat{color:white;color:var(--float-text);background-color:#99a2a2;background-color:var(--float-inactive)}.rangeSlider.focus .rangeFloat{background-color:#4a40d4;background-color:var(--float)}.rangeSlider.disabled{opacity:0.5}.rangeSlider.disabled .rangeNub{background-color:#d7dada;background-color:var(--slider)}',
       map: null
     };
@@ -5807,19 +5965,19 @@ var init_RangeSlider = __esm({
           return values2;
         }
       }
-      function moveHandle(index13, value) {
+      function moveHandle(index17, value) {
         value = alignValueToStep(value);
-        if (typeof index13 === "undefined") {
-          index13 = activeHandle;
+        if (typeof index17 === "undefined") {
+          index17 = activeHandle;
         }
         if (range) {
-          if (index13 === 0 && value > values[1]) {
+          if (index17 === 0 && value > values[1]) {
             if (pushy) {
               values[1] = value;
             } else {
               value = values[1];
             }
-          } else if (index13 === 1 && value < values[0]) {
+          } else if (index17 === 1 && value < values[0]) {
             if (pushy) {
               values[0] = value;
             } else {
@@ -5827,8 +5985,8 @@ var init_RangeSlider = __esm({
             }
           }
         }
-        if (values[index13] !== value) {
-          values[index13] = value;
+        if (values[index17] !== value) {
+          values[index17] = value;
         }
         if (previousValue !== value) {
           eChange();
@@ -5911,7 +6069,7 @@ var init_RangeSlider = __esm({
         $$bindings.precision(precision);
       if ($$props.springValues === void 0 && $$bindings.springValues && springValues !== void 0)
         $$bindings.springValues(springValues);
-      $$result.css.add(css3);
+      $$result.css.add(css4);
       clampValue = function(val) {
         return val <= min2 ? min2 : val >= max2 ? max2 : val;
       };
@@ -5960,12 +6118,12 @@ var init_RangeSlider = __esm({
       return `<div${add_attribute("id", id, 0)} class="${[
         "rangeSlider",
         (range ? "range" : "") + " " + (disabled ? "disabled" : "") + " " + (hoverable ? "hoverable" : "") + " " + (vertical ? "vertical" : "") + " " + (reversed ? "reversed" : "") + "  " + (range === "min" ? "min" : "") + " " + (range === "max" ? "max" : "") + " " + (pips ? "pips" : "") + " " + (all === "label" || first === "label" || last === "label" || rest === "label" ? "pip-labels" : "")
-      ].join(" ").trim()}"${add_attribute("this", slider, 0)}>${each(values, (value, index13) => {
+      ].join(" ").trim()}"${add_attribute("this", slider, 0)}>${each(values, (value, index17) => {
         return `<span role="${"slider"}" class="${[
           "rangeHandle",
           " "
-        ].join(" ").trim()}"${add_attribute("data-handle", index13, 0)} style="${escape(orientationStart, true) + ": " + escape($springPositions[index13], true) + "%; z-index: " + escape(activeHandle === index13 ? 3 : 2, true) + ";"}"${add_attribute("aria-valuemin", range === true && index13 === 1 ? values[0] : min2, 0)}${add_attribute("aria-valuemax", range === true && index13 === 0 ? values[1] : max2, 0)}${add_attribute("aria-valuenow", value, 0)} aria-valuetext="${escape(prefix, true) + escape(handleFormatter(value, index13, percentOf(value)), true) + escape(suffix, true)}"${add_attribute("aria-orientation", vertical ? "vertical" : "horizontal", 0)}${add_attribute("aria-disabled", disabled, 0)} ${disabled ? "disabled" : ""}${add_attribute("tabindex", disabled ? -1 : 0, 0)}><span class="${"rangeNub"}"></span>
-      ${float ? `<span class="${"rangeFloat"}">${prefix ? `<span class="${"rangeFloat-prefix"}">${escape(prefix)}</span>` : ``}${escape(handleFormatter(value, index13, percentOf(value)))}${suffix ? `<span class="${"rangeFloat-suffix"}">${escape(suffix)}</span>` : ``}
+        ].join(" ").trim()}"${add_attribute("data-handle", index17, 0)} style="${escape(orientationStart, true) + ": " + escape($springPositions[index17], true) + "%; z-index: " + escape(activeHandle === index17 ? 3 : 2, true) + ";"}"${add_attribute("aria-valuemin", range === true && index17 === 1 ? values[0] : min2, 0)}${add_attribute("aria-valuemax", range === true && index17 === 0 ? values[1] : max2, 0)}${add_attribute("aria-valuenow", value, 0)} aria-valuetext="${escape(prefix, true) + escape(handleFormatter(value, index17, percentOf(value)), true) + escape(suffix, true)}"${add_attribute("aria-orientation", vertical ? "vertical" : "horizontal", 0)}${add_attribute("aria-disabled", disabled, 0)} ${disabled ? "disabled" : ""}${add_attribute("tabindex", disabled ? -1 : 0, 0)}><span class="${"rangeNub"}"></span>
+      ${float ? `<span class="${"rangeFloat"}">${prefix ? `<span class="${"rangeFloat-prefix"}">${escape(prefix)}</span>` : ``}${escape(handleFormatter(value, index17, percentOf(value)))}${suffix ? `<span class="${"rangeFloat-suffix"}">${escape(suffix)}</span>` : ``}
         </span>` : ``}
     </span>`;
       })}
@@ -6002,20 +6160,6 @@ var init_RangeSlider = __esm({
 
 `;
     });
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/(app)/member/dashboard/_page.svelte.js
-var page_svelte_exports7 = {};
-__export(page_svelte_exports7, {
-  default: () => Page7
-});
-var import_toastify_js5, Page7;
-var init_page_svelte7 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/member/dashboard/_page.svelte.js"() {
-    init_chunks();
-    init_RangeSlider();
-    import_toastify_js5 = __toESM(require_toastify(), 1);
     Page7 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let currentStep = 4;
       let lessons = { items: [], total: 0 };
@@ -6234,280 +6378,217 @@ var init_page_svelte7 = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/9.js
-var __exports10 = {};
-__export(__exports10, {
-  component: () => component9,
-  file: () => file9,
-  imports: () => imports10,
-  index: () => index10,
-  shared: () => page_exports8,
-  stylesheets: () => stylesheets10
+// .svelte-kit/output/server/nodes/10.js
+var __exports11 = {};
+__export(__exports11, {
+  component: () => component11,
+  file: () => file11,
+  imports: () => imports11,
+  index: () => index11,
+  shared: () => page_exports7,
+  stylesheets: () => stylesheets11
 });
-var index10, component9, file9, imports10, stylesheets10;
-var init__10 = __esm({
-  ".svelte-kit/output/server/nodes/9.js"() {
-    init_page8();
-    index10 = 9;
-    component9 = async () => (await Promise.resolve().then(() => (init_page_svelte7(), page_svelte_exports7))).default;
-    file9 = "_app/immutable/components/pages/(app)/member/dashboard/_page.svelte-b62f2e44.js";
-    imports10 = ["_app/immutable/components/pages/(app)/member/dashboard/_page.svelte-b62f2e44.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/RangeSlider-e6fe9ecb.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/location-8c23be2c.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/member/dashboard/_page.js-ae5e1c01.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-945f0351.js"];
-    stylesheets10 = ["_app/immutable/assets/RangeSlider-3b636b73.css"];
+var index11, component11, file11, imports11, stylesheets11;
+var init__11 = __esm({
+  ".svelte-kit/output/server/nodes/10.js"() {
+    init_page7();
+    index11 = 10;
+    component11 = async () => (await Promise.resolve().then(() => (init_page_svelte7(), page_svelte_exports7))).default;
+    file11 = "_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-19711159.js";
+    imports11 = ["_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-19711159.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/lesson-f97c8aea.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ozel-ders-talebi-olustur/_page.js-01515844.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-15eac8d1.js"];
+    stylesheets11 = ["_app/immutable/assets/_page-3b636b73.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js
+// .svelte-kit/output/server/entries/pages/(auth)/auth/_page.js
+var page_exports8 = {};
+__export(page_exports8, {
+  prerender: () => prerender8
+});
+var prerender8;
+var init_page8 = __esm({
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/_page.js"() {
+    prerender8 = false;
+  }
+});
+
+// .svelte-kit/output/server/nodes/11.js
+var __exports12 = {};
+__export(__exports12, {
+  imports: () => imports12,
+  index: () => index12,
+  shared: () => page_exports8,
+  stylesheets: () => stylesheets12
+});
+var index12, imports12, stylesheets12;
+var init__12 = __esm({
+  ".svelte-kit/output/server/nodes/11.js"() {
+    init_page8();
+    index12 = 11;
+    imports12 = ["_app/immutable/modules/pages/(auth)/auth/_page.js-8e67cbf2.js", "_app/immutable/chunks/_page-3a850627.js"];
+    stylesheets12 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(auth)/auth/activation/_page.js
 var page_exports9 = {};
 __export(page_exports9, {
   csr: () => csr8,
-  load: () => load8,
+  load: () => load9,
   prerender: () => prerender9
 });
-async function load8({ params }) {
-  if (params && params.catchall) {
-    await getTeacherSearchStoreParamsBySearchParams({ "query": params.catchall });
-  }
-  const users = await getUsers();
-  teacherItemsStore.set(users.items);
-  teacherTotalStore.set(users.total);
+async function load9({ url }) {
+  return {
+    email: url.searchParams.get("email"),
+    code: url.searchParams.get("code")
+  };
 }
 var csr8, prerender9;
 var init_page9 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js"() {
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/activation/_page.js"() {
     init_environment();
-    init_user();
-    init_userStore();
     csr8 = dev;
     prerender9 = false;
   }
 });
 
-// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js
+// .svelte-kit/output/server/chunks/Input.js
+var Input;
+var init_Input = __esm({
+  ".svelte-kit/output/server/chunks/Input.js"() {
+    init_chunks();
+    Input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      createEventDispatcher();
+      let { label } = $$props;
+      let { id = "" } = $$props;
+      let { type = "text" } = $$props;
+      let { placeholder = "" } = $$props;
+      let { value = "" } = $$props;
+      if ($$props.label === void 0 && $$bindings.label && label !== void 0)
+        $$bindings.label(label);
+      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
+        $$bindings.id(id);
+      if ($$props.type === void 0 && $$bindings.type && type !== void 0)
+        $$bindings.type(type);
+      if ($$props.placeholder === void 0 && $$bindings.placeholder && placeholder !== void 0)
+        $$bindings.placeholder(placeholder);
+      if ($$props.value === void 0 && $$bindings.value && value !== void 0)
+        $$bindings.value(value);
+      return `${label ? `<label class="${"block text-sm font-medium leading-8 text-gray-700"}"${add_attribute("for", id, 0)}>${escape(label)}</label>` : ``}
+<input${add_attribute("id", id, 0)}${add_attribute("type", type, 0)}${add_attribute("placeholder", placeholder, 0)}${add_attribute("value", value, 0)} class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}">`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(auth)/auth/activation/_page.svelte.js
 var page_svelte_exports8 = {};
 __export(page_svelte_exports8, {
   default: () => Page8
 });
-var subjectsStore, levelsStore, lessonTypesStore, citiesStore, countiesStore, UserHorizontal, Page8;
+var import_toastify_js4, Page8;
 var init_page_svelte8 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js"() {
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/activation/_page.svelte.js"() {
     init_chunks();
-    init_userStore();
-    init_index3();
-    init_stores();
-    subjectsStore = writable([]);
-    levelsStore = writable([]);
-    lessonTypesStore = writable([
-      { id: 1, title: "Y\xFCz Y\xFCze" },
-      { id: 2, title: "Uzaktan (Webcam)" }
-    ]);
-    citiesStore = writable([]);
-    countiesStore = writable([]);
-    UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { firstName } = $$props;
-      let { genderName } = $$props;
-      let { lastName } = $$props;
-      let { about } = $$props;
-      let { cityName } = $$props;
-      let { countyName } = $$props;
-      let { minimumPrice } = $$props;
-      let { isOnline } = $$props;
-      let { title } = $$props;
-      let { username } = $$props;
-      let { isTeachPhysically } = $$props;
-      let { isTeachRemotely } = $$props;
-      let { totalComment } = $$props;
-      const getPhotoEmptyUserAvatar = (genderName2) => {
-        if (genderName2 == "Erkek")
-          return "img/icon-male.png";
-        if (genderName2 == "Kad\u0131n")
-          return "img/icon-female.png";
-        return "img/icon-male.png";
-      };
-      const truncateString = (str, num) => {
-        if (str == null)
-          return "";
-        if (str.length > num) {
-          return str.slice(0, num) + "...";
-        } else {
-          return str;
-        }
-      };
-      if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
-        $$bindings.firstName(firstName);
-      if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
-        $$bindings.genderName(genderName);
-      if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
-        $$bindings.lastName(lastName);
-      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
-        $$bindings.about(about);
-      if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
-        $$bindings.cityName(cityName);
-      if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
-        $$bindings.countyName(countyName);
-      if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
-        $$bindings.minimumPrice(minimumPrice);
-      if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
-        $$bindings.isOnline(isOnline);
-      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-        $$bindings.title(title);
-      if ($$props.username === void 0 && $$bindings.username && username !== void 0)
-        $$bindings.username(username);
-      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
-        $$bindings.isTeachPhysically(isTeachPhysically);
-      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
-        $$bindings.isTeachRemotely(isTeachRemotely);
-      if ($$props.totalComment === void 0 && $$bindings.totalComment && totalComment !== void 0)
-        $$bindings.totalComment(totalComment);
-      return `<a href="${"/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
-	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
-		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
-
-		<div class="${"flex flex-col gap-2 md:flex-row mb-3"}">${isTeachPhysically ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
-			Y\xFCz y\xFCze ders veriyor
-		</div>` : ``}
-
-		${isTeachRemotely ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"}"></path></svg>
-			Uzaktan, webcam ile ders veriyor
-		</div>` : ``}</div>
-
-		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-				${escape(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
-				${escape(totalComment)} yorum
-			</div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-				${escape(cityName)}, ${escape(countyName)}</div></div>
-
-		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
-    });
+    init_Input();
+    init_netders_logo_blue();
+    import_toastify_js4 = __toESM(require_toastify(), 1);
     Page8 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
-      let $$unsubscribe_page;
-      let $$unsubscribe_levelsStore;
-      let $teacherSearchParamsStore, $$unsubscribe_teacherSearchParamsStore;
-      let $$unsubscribe_countiesStore;
-      let $teacherTotalStore, $$unsubscribe_teacherTotalStore;
-      let $teacherItemsStore, $$unsubscribe_teacherItemsStore;
-      let $$unsubscribe_teacherGendersStore;
-      let $$unsubscribe_lessonTypesStore;
-      let $$unsubscribe_citiesStore;
-      let $$unsubscribe_subjectsStore;
-      $$unsubscribe_page = subscribe(page, (value) => value);
-      $$unsubscribe_levelsStore = subscribe(levelsStore, (value) => value);
-      $$unsubscribe_teacherSearchParamsStore = subscribe(teacherSearchParamsStore, (value) => $teacherSearchParamsStore = value);
-      $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
-      $$unsubscribe_teacherTotalStore = subscribe(teacherTotalStore, (value) => $teacherTotalStore = value);
-      $$unsubscribe_teacherItemsStore = subscribe(teacherItemsStore, (value) => $teacherItemsStore = value);
-      $$unsubscribe_teacherGendersStore = subscribe(teacherGendersStore, (value) => value);
-      $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
-      $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
-      $$unsubscribe_subjectsStore = subscribe(subjectsStore, (value) => value);
-      let loading = false;
-      let teacherSearchParams = {
-        "keyword": "",
-        "budget": "",
-        "cityObject": void 0,
-        "countyObject": void 0,
-        "subjectObject": void 0,
-        "levelObject": void 0,
-        "lessonTypeObject": void 0,
-        "genderObject": void 0
-      };
-      $$unsubscribe_page();
-      $$unsubscribe_levelsStore();
-      $$unsubscribe_teacherSearchParamsStore();
-      $$unsubscribe_countiesStore();
-      $$unsubscribe_teacherTotalStore();
-      $$unsubscribe_teacherItemsStore();
-      $$unsubscribe_teacherGendersStore();
-      $$unsubscribe_lessonTypesStore();
-      $$unsubscribe_citiesStore();
-      $$unsubscribe_subjectsStore();
-      return `${$$result.head += `<!-- HEAD_svelte-1796jo3_START -->${$$result.title = `<title>${escape($teacherSearchParamsStore.cityObject ? ((_a = $teacherSearchParamsStore.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape($teacherSearchParamsStore.countyObject ? ((_b = $teacherSearchParamsStore.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape($teacherSearchParamsStore.subjectObject ? ((_c = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape($teacherSearchParamsStore.levelObject ? ((_d = $teacherSearchParamsStore.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-1796jo3_END -->`, ""}
+      let { data } = $$props;
+      let email = data.email;
+      let code = data.code;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      let $$settled;
+      let $$rendered;
+      do {
+        $$settled = true;
+        $$rendered = `${$$result.head += `<!-- HEAD_svelte-8o100v_START -->${$$result.title = `<title>E-posta Aktivasyonu</title>`, ""}<!-- HEAD_svelte-8o100v_END -->`, ""}
 
-${``}
+<div class="${"mx-auto my-8"}"><a href="${"/"}"><img${add_attribute("src", Logo, 0)} width="${"200"}" height="${"200"}"></a></div>
+<div class="${[
+          "max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300",
+          "hidden"
+        ].join(" ").trim()}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Aktivasyon ba\u015Far\u0131l\u0131!</div>
+			<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-64 h-64 mx-auto animate-pulse text-green-500"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
+			<p>E-posta aktivasyon i\u015Flemi ba\u015Far\u0131yla tamamland\u0131.</p>
+			<p class="${"text-gray-400 text-sm"}">Yapmak istedi\u011Fin i\u015Flemlere art\u0131k devam edebilirsin \u{1F603}</p>
 
-<section class="${"dark:bg-gray-900 text-center"}"><div class="${"flex py-6"}"><div class="${"mx-auto"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">${escape($teacherSearchParamsStore.cityObject ? (_e = $teacherSearchParamsStore.cityObject) == null ? void 0 : _e.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_f = $teacherSearchParamsStore.countyObject) == null ? void 0 : _f.title : "")} ${escape($teacherSearchParamsStore.subjectObject ? (_g = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _g.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_h = $teacherSearchParamsStore.levelObject) == null ? void 0 : _h.title : "")} <span class="${"text-gray-800"}">\xD6zel Ders Veren \xD6\u011Fretmenler</span></h1>
-			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape($teacherSearchParamsStore.cityObject ? (_i = $teacherSearchParamsStore.cityObject) == null ? void 0 : _i.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_j = $teacherSearchParamsStore.countyObject) == null ? void 0 : _j.title : "")} \xF6zel ders veren \xF6\u011Fretmenler taraf\u0131ndan olu\u015Fturulan ${escape($teacherSearchParamsStore.subjectObject ? (_k = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _k.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_l = $teacherSearchParamsStore.levelObject) == null ? void 0 : _l.title : "")} \xF6zel ders ilanlar\u0131.</p>
+			<a href="${"/"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"}"></path></svg>
 
-			<form autocomplete="${"off"}"><label for="${"default-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
-				<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
-					<input name="${"keyword"}" type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0"}" placeholder="${"Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"}"${add_attribute("value", teacherSearchParams.keyword, 0)}>
+				Ana Sayfa
+			</a></div></div></div>
 
-					${`<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button>`}</div></form>
+<div class="${[
+          "max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300 mt-4",
+          ""
+        ].join(" ").trim()}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><h1 class="${"text-3xl md:text-4xl font-bold mb-3"}">E-posta aktivasyonu</h1>
+		<p class="${"mb-2"}">E-posta adresine g\xF6nderilen bilgileri a\u015Fa\u011F\u0131daki alanlara girerek Aktive Et butonuna t\u0131kla.</p>
+		<div class="${"w-full"}"><form><div><div class="${"mt-1"}">${validate_component(Input, "Input").$$render(
+          $$result,
+          {
+            id: "email",
+            label: "E-posta",
+            placeholder: "",
+            type: "text",
+            value: email
+          },
+          {
+            value: ($$value) => {
+              email = $$value;
+              $$settled = false;
+            }
+          },
+          {}
+        )}</div></div>
+				<div><div class="${"mt-1"}">${validate_component(Input, "Input").$$render(
+          $$result,
+          {
+            id: "login",
+            label: "Kod",
+            placeholder: "",
+            type: "text",
+            value: code
+          },
+          {
+            value: ($$value) => {
+              code = $$value;
+              $$settled = false;
+            }
+          },
+          {}
+        )}</div></div>
 
-			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <button class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</button> yapabilirsin.</p>
-
-			<div class="${"flex justify-center flex-wrap gap-2"}">${$teacherSearchParamsStore.keyword ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
-                        <span>${escape($teacherSearchParamsStore.keyword)}</span>
-						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
-
-				${$teacherSearchParamsStore.budget ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-						<span>${escape($teacherSearchParamsStore.budget)} \u20BA</span>
-						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
-
-				${$teacherSearchParamsStore.cityObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-					<span>${escape((_m = $teacherSearchParamsStore.cityObject) == null ? void 0 : _m.title)}</span>
-					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
-
-				${$teacherSearchParamsStore.countyObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-						<span>${escape((_n = $teacherSearchParamsStore.countyObject) == null ? void 0 : _n.title)}</span>
-						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
-
-				${$teacherSearchParamsStore.subjectObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-						<span>${escape((_o = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _o.title)}</span>
-						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
-
-				${$teacherSearchParamsStore.levelObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-						<span>${escape((_p = $teacherSearchParamsStore.levelObject) == null ? void 0 : _p.title)}</span>
-						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
-
-				${$teacherSearchParamsStore.lessonTypeObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"}"></path></svg>
-						<span>${escape((_q = $teacherSearchParamsStore.lessonTypeObject) == null ? void 0 : _q.title)}</span>
-						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
-
-				${$teacherSearchParamsStore.genderObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"}"></path></svg>
-					<span>${escape((_r = $teacherSearchParamsStore.genderObject) == null ? void 0 : _r.title)}</span>
-					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}</div></div></div></section>
-
-${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape($teacherTotalStore)}</strong> e\u011Fitmen bulundu.</div>`}
-
-<div class="${"grid grid-cols-1 gap-4"}">${`${each($teacherItemsStore, (user) => {
-        return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, Object.assign(user), {}, {})}`;
-      })}`}</div>
-
-${$teacherTotalStore > 0 && !loading ? `${`<div class="${"pt-4 text-sm text-center"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-		Daha fazla \xF6\u011Fretmen
-	</button></div>`}` : ``}`;
+				<div class="${"mt-10"}"><span class="${"block w-full rounded-md"}"><button type="${"submit"}" class="${"w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-blue-700 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out"}">Aktive Et
+									</button></span></div></form></div></div></div>`;
+      } while (!$$settled);
+      return $$rendered;
     });
   }
 });
 
-// .svelte-kit/output/server/nodes/10.js
-var __exports11 = {};
-__export(__exports11, {
-  component: () => component10,
-  file: () => file10,
-  imports: () => imports11,
-  index: () => index11,
+// .svelte-kit/output/server/nodes/12.js
+var __exports13 = {};
+__export(__exports13, {
+  component: () => component12,
+  file: () => file12,
+  imports: () => imports13,
+  index: () => index13,
   shared: () => page_exports9,
-  stylesheets: () => stylesheets11
+  stylesheets: () => stylesheets13
 });
-var index11, component10, file10, imports11, stylesheets11;
-var init__11 = __esm({
-  ".svelte-kit/output/server/nodes/10.js"() {
+var index13, component12, file12, imports13, stylesheets13;
+var init__13 = __esm({
+  ".svelte-kit/output/server/nodes/12.js"() {
     init_page9();
-    index11 = 10;
-    component10 = async () => (await Promise.resolve().then(() => (init_page_svelte8(), page_svelte_exports8))).default;
-    file10 = "_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-ab1b48c6.js";
-    imports11 = ["_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-ab1b48c6.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/user-e202346c.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/Modal-9dd03068.js", "_app/immutable/chunks/location-8c23be2c.js", "_app/immutable/chunks/stores-29e4fdc2.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-daba3917.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/user-e202346c.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/userStore-57500a02.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/_page-7da92981.js"];
-    stylesheets11 = ["_app/immutable/assets/Modal-7e1b958a.css"];
+    index13 = 12;
+    component12 = async () => (await Promise.resolve().then(() => (init_page_svelte8(), page_svelte_exports8))).default;
+    file12 = "_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-57a4cd4e.js";
+    imports13 = ["_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-57a4cd4e.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/Input-c1aeede8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(auth)/auth/activation/_page.js-cecfc3c9.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-732d9d16.js"];
+    stylesheets13 = [];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.js
+// .svelte-kit/output/server/entries/pages/(auth)/auth/forgot/_page.js
 var page_exports10 = {};
 __export(page_exports10, {
   csr: () => csr9,
@@ -6515,261 +6596,312 @@ __export(page_exports10, {
 });
 var csr9, prerender10;
 var init_page10 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.js"() {
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/forgot/_page.js"() {
     init_environment();
     csr9 = dev;
     prerender10 = true;
   }
 });
 
-// .svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.svelte.js
+// .svelte-kit/output/server/entries/pages/(auth)/auth/forgot/_page.svelte.js
 var page_svelte_exports9 = {};
 __export(page_svelte_exports9, {
   default: () => Page9
 });
-var import_toastify_js6, Page9;
+var Page9;
 var init_page_svelte9 = __esm({
-  ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-talebi-olustur/_page.svelte.js"() {
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/forgot/_page.svelte.js"() {
     init_chunks();
-    init_RangeSlider();
-    import_toastify_js6 = __toESM(require_toastify(), 1);
+    init_Input();
+    init_netders_logo_blue();
     Page9 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let currentStep = 4;
-      let lessons = { items: [], total: 0 };
-      let locations = { items: [], total: 0 };
-      let requestData = {
-        keywordLesson: "",
-        keywordLocation: "",
-        outsideTurkey: false,
-        levelId: "",
-        countryId: "",
-        countyId: "",
-        placeOwn: false,
-        placeTeacher: false,
-        placeRemote: false,
-        budget: [50, 200],
-        budgetSecret: false,
-        genderId: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
-        responseTypeId: "",
-        isAgreementChecked: false
-      };
+      let login;
       let $$settled;
       let $$rendered;
       do {
         $$settled = true;
-        {
-          {
-            locations = { items: [], total: 0 };
-          }
-        }
-        {
-          {
-            lessons = { items: [], total: 0 };
-          }
-        }
-        $$rendered = `${$$result.head += `<!-- HEAD_svelte-juqmny_START -->${$$result.title = `<title>\xD6zel Ders Talebi Olu\u015Ftur</title>`, ""}<!-- HEAD_svelte-juqmny_END -->`, ""}
+        $$rendered = `${$$result.head += `<!-- HEAD_svelte-1pq628u_START -->${$$result.title = `<title>\u015Eifremi Unuttum</title>`, ""}<!-- HEAD_svelte-1pq628u_END -->`, ""}
 
-<div class="${["max-w-2xl w-full mx-auto mt-8 mb-4", ""].join(" ").trim()}"><h2 class="${"sr-only"}">Ad\u0131mlar</h2>
-	<div><div class="${"overflow-hidden rounded-full bg-white"}"><div class="${[
-          "h-2 rounded-full bg-blue-500 " + escape("w-" + (currentStep - 1) + "/5", true),
-          ""
-        ].join(" ").trim()}"></div></div>
-
-		<ol class="${"mt-4 grid grid-cols-5 text-sm font-medium"}"><li class="${[
-          "flex items-center justify-center",
-          ""
-        ].join(" ").trim()}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"h-5 w-5"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-				<span class="${"hidden md:block ml-1"}">Ders</span></li>
-
-			<li class="${[
-          "flex items-center justify-center",
-          ""
-        ].join(" ").trim()}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"h-5 w-5"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-				<span class="${"hidden md:block ml-1"}">Yer</span></li>
-
-			<li class="${[
-          "flex items-center justify-center",
-          requestData.placeIds && requestData.genderId && (requestData.budget || requestData.budgetSecret) ? "text-blue-600" : ""
-        ].join(" ").trim()}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"h-5 w-5"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 12a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
-				<span class="${"hidden md:block ml-1"}">Kriter</span></li>
-
-			<li class="${[
-          "flex items-center justify-center",
-          ""
-        ].join(" ").trim()}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"h-5 w-5"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"}"></path></svg>
-
-				<span class="${"hidden md:block ml-1"}">Bilgiler</span></li>
-
-			<li class="${["flex items-center justify-center", ""].join(" ").trim()}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"h-5 w-5"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"}"></path></svg>
-
-				<span class="${"hidden md:block ml-1"}">Bitti</span></li></ol></div></div>
-
-<div class="${["bg-white rounded-lg shadow-md mt-4", "hidden"].join(" ").trim()}"><div class="${"p-6"}"><div class="${"grid md:grid-cols-4"}"><div class="${"hidden md:block"}"><img${add_attribute("src", Student2, 0)} alt="${""}"></div>
-			<div class="${"md:col-span-3"}"><h5 class="${"font-semibold text-2xl"}">Do\u011Fru \xF6\u011Fretmene ula\u015Fman\u0131n en kolay kolu</h5>
-				<p class="${"mt-1"}">Almak istedi\u011Fin \xF6zel dersle ilgili do\u011Fru \xF6\u011Fretmeni bulam\u0131yor veya buldu\u011Fun \xF6\u011Fretmenlerden emin olam\u0131yorsan, \xF6zel ders talebi b\u0131rakarak kriterlerine en uygun \xF6\u011Fretmenin sana ula\u015Fmas\u0131n\u0131 sa\u011Flayabilirsin.</p>
-				<p class="${"font-semibold mt-4"}">Ders talebi b\u0131rakman\u0131n avantajlar\u0131</p>
-				<ul class="${"list-none mt-1"}"><li>\u2B50 \xDCcretsizdir. Ders talebi b\u0131rakmak i\xE7in herhangi bir \xFCcret \xF6demezsin.</li>
-					<li>\u2B50 Kolayd\u0131r. Sen \xF6\u011Fretmen aramazs\u0131n, \xF6\u011Fretmen sana ula\u015F\u0131r.</li>
-					<li>\u2B50 Se\xE7me hakk\u0131n olur. Yaln\u0131zca be\u011Fendi\u011Fin \xF6\u011Fretmenle devam edersin.</li>
-					<li>\u2B50 H\u0131zl\u0131d\u0131r. Yakla\u015F\u0131k 1-2 saat i\xE7erisinde arad\u0131\u011F\u0131n \xF6\u011Fretmeni bulursun.</li>
-					<li>\u2B50 G\xFCvenlidir. Yaln\u0131zca kriterlerini tam olarak kar\u015F\u0131layan, onayl\u0131 \xF6\u011Fretmenler sana ula\u015Fabilir.</li></ul>
-
-
-				<button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-6 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6v12m6-6H6"}"></path></svg>
-					Ders Talebi Olu\u015Ftur
-				</button></div></div></div></div>
-
-<div class="${["bg-white rounded-lg shadow-md mt-2", "hidden"].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg mb-4"}">Almak istedi\u011Fin \xF6zel ders nedir?</div>
-		<label for="${"default-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
-		<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
-			<input autocomplete="${"off"}" type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Almak istedi\u011Fin \xF6zel dersin ad\u0131n\u0131 yazar m\u0131s\u0131n?"}"${add_attribute("value", requestData.keywordLesson, 0)}></div>
-
-		<p class="${"text-xs mt-4 text-gray-400"}">Yukar\u0131daki alana almak istedi\u011Fin \xF6zel dersin ad\u0131n\u0131 yazmal\u0131s\u0131n.</p></div>
-
-	${requestData.keywordLesson.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape(requestData.keywordLesson)}</span>&quot; aramas\u0131na uygun <span class="${"font-semibold"}">${escape(lessons.total)}</span> sonu\xE7 bulundu.
-		</div>
-		${lessons.items.length > 0 ? `${each(lessons.items, (lesson) => {
-          return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-500"}">${escape(lesson.subjectTitle)}</div>
-				<div>${escape(lesson.title)}</div>
-			</div>`;
-        })}` : ``}</div>
-
-	<div class="${"mb-4 text-sm text-center"}" id="${"moreLessonArea"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-			Daha fazla ders
-		</button></div>` : ``}</div>
-
-<div class="${["bg-white rounded-lg shadow-md mt-2", "hidden"].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg mb-4"}">Nerede ya\u015F\u0131yorsun?</div>
-		<label for="${"location-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
-		<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
-			<input autocomplete="${"off"}" type="${"text"}" id="${"location-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Hangi " + escape("\u015Fehirdesin", true) + "?"}"${add_attribute("value", requestData.keywordLocation, 0)}></div>
-
-		<p class="${"text-xs mt-3 text-gray-400"}">Yukar\u0131daki alana bulundu\u011Fun ${escape("\u015Fehrin")} ismini yazmal\u0131s\u0131n.</p>
-
-		<p class="${"mt-4 text-sm"}"><label><input type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", requestData.outsideTurkey, 1)}> T\xFCrkiye&#39;de ya\u015Fam\u0131yorum
-			</label></p></div>
-
-	${locations.items.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape(requestData.keywordLocation)}</span>&quot; arama sonucuna uygun <span class="${"font-semibold"}">${escape(locations.total)}</span> sonu\xE7 bulundu.
-		</div>
-		${each(locations.items, (location) => {
-          return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-400"}">${escape("\u015Eehir")}</div>
-				<div>${escape(location.title)}</div>
-			</div>`;
-        })}</div>
-	<div class="${"mb-4 text-sm text-center"}" id="${"moreLocationArea"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-			Daha fazla lokasyon
-		</button></div>` : ``}</div>
-
-<div class="${["bg-white rounded-lg shadow-md mt-2", ""].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Nerede ders almak istersin?</div>
-		<p class="${"text-xs text-gray-400"}">Birden fazla se\xE7im yapabilirsin.</p>
-		<div class="${"grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 mt-2"}"><div><input type="${"checkbox"}" id="${"location-own"}" class="${"hidden peer"}" required${add_attribute("value", requestData.placeOwn, 0)}>
-				<label for="${"location-own"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Kendi evimde</div></label></div>
-
-			<div><input type="${"checkbox"}" id="${"location-teacher"}" class="${"hidden peer"}" required${add_attribute("value", requestData.placeTeacher, 0)}>
-				<label for="${"location-teacher"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">\xD6\u011Fretmen evinde</div></label></div>
-
-			<div><input type="${"checkbox"}" id="${"location-online"}" class="${"hidden peer"}" required${add_attribute("value", requestData.placeRemote, 0)}>
-				<label for="${"location-online"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Uzaktan, webcam ile</div></label></div></div>
-
-		<div class="${"mt-4 text-gray-400"}">-\u2022-</div>
-
-		<div class="${"font-semibold text-lg mt-2"}">Kimden ders almak istersin?</div>
-		<p class="${"text-xs text-gray-400"}">Yaln\u0131zca bir se\xE7im yapabilirsin.</p>
-		<div class="${"grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 mt-2"}"><div><input type="${"radio"}" id="${"teacher-gender-male"}" value="${"1"}" class="${"hidden peer"}" required${""}>
-				<label for="${"teacher-gender-male"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Erkek \xD6\u011Fretmen</div></label></div>
-
-			<div><input type="${"radio"}" id="${"teacher-gender-female"}" value="${"2"}" class="${"hidden peer"}" required${""}>
-				<label for="${"teacher-gender-female"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Kad\u0131n \xD6\u011Fretmen</div></label></div>
-
-			<div><input type="${"radio"}" id="${"teacher-gender-none"}" value="${"3"}" class="${"hidden peer"}" required${""}>
-				<label for="${"teacher-gender-none"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Farketmez</div></label></div></div>
-
-		<div class="${"mt-4 text-gray-400"}">-\u2022-</div>
-
-		<div class="${"font-semibold text-lg mt-2"}">Bir ders i\xE7in b\xFCt\xE7en nedir?</div>
-		<p class="${"text-xs text-gray-400"}">B\xFCt\xE7enin aral\u0131\u011F\u0131n\u0131 se\xE7 veya \xF6\u011Fretmene belirt.</p>
-		${`${validate_component(RangeSlider, "RangeSlider").$$render(
+<div class="${"mx-auto my-8"}"><a href="${"/"}"><img${add_attribute("src", Logo, 0)} width="${"200"}" height="${"200"}"></a></div>
+<div class="${"max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300"}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><h1 class="${"text-3xl md:text-4xl font-bold mb-4"}">\u015Eifremi unuttum</h1>
+		<p class="${"mb-4"}">\u015Eifre hat\u0131rlatma e-postas\u0131 almak i\xE7in a\u015Fa\u011F\u0131daki alana e-posta adresini gir.</p>
+		<p class="${"mb-10 text-sm text-gray-500"}">\u015Eifreni hat\u0131rlad\u0131ysan giri\u015F yapmak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/auth/login"}">buraya</a> t\u0131kla.</p>
+		<div class="${"w-full"}"><form><div><div class="${"mt-1 rounded-md"}">${validate_component(Input, "Input").$$render(
           $$result,
           {
-            min: 50,
-            max: 700,
-            pips: "true",
-            step: 50,
-            values: requestData.budget
+            id: "login",
+            label: "E-posta",
+            placeholder: "",
+            type: "text",
+            value: login
           },
           {
-            values: ($$value) => {
-              requestData.budget = $$value;
+            value: ($$value) => {
+              login = $$value;
               $$settled = false;
             }
           },
           {}
-        )}
-			<div class="${"font-semibold"}">${escape(requestData.budget[0])} - ${escape(requestData.budget[1])} \u20BA</div>`}
+        )}</div></div>
 
-		<label class="${"mt-2 block text-sm"}"><input type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", requestData.budgetSecret, 1)}> B\xFCt\xE7emi \xF6\u011Fretmene belirtmek istiyorum
-		</label>
-
-		<button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-6 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
-			Devam et
-		</button></div></div>
-
-<div class="${["bg-white rounded-lg shadow-md mt-2", "hidden"].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Son olarak seni biraz tan\u0131yabilir miyim?</div>
-
-		<div class="${"grid grid-cols-2 gap-4 mt-4"}"><div><span class="${"text-sm mb-1 block text-gray-500"}">Ad\u0131n</span>
-				<input type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", requestData.firstName, 0)}></div>
-			<div><span class="${"text-sm mb-1 block text-gray-500"}">Soyad\u0131n</span>
-				<input type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", requestData.lastName, 0)}></div>
-			<div><span class="${"text-sm mb-1 block text-gray-500"}">E-posta adresin</span>
-				<input type="${"email"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", requestData.email, 0)}></div>
-			<div><span class="${"text-sm mb-1 block text-gray-500"}">Telefon numaran</span>
-				<input type="${"number"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", requestData.phone, 0)}></div>
-			<div class="${"col-span-2"}"><span class="${"text-sm mb-1 block text-gray-500"}">Almak istedi\u011Fin \xF6zel ders ile ilgili mevcut seviyeni, beklentilerini, derse ne zaman ba\u015Flamak istedi\u011Fini, okula gidiyorsan ka\xE7\u0131nc\u0131 s\u0131n\u0131fa gitti\u011Fini yazabilir misin? Bunlar\u0131n d\u0131\u015F\u0131nda ne kadar detay verirsen o kadar do\u011Fru \xF6\u011Fretmenle e\u015Fle\u015Firsin.</span>
-				<textarea minlength="${"30"}" rows="${"5"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}">${""}</textarea>
-				<span class="${"text-xs text-gray-400"}">Minimum 30 karakter yazmal\u0131s\u0131n.</span></div></div>
-
-		<button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
-			G\xF6nder
-		</button></div></div>
-
-<div class="${["bg-white rounded-lg shadow-md mt-2", "hidden"].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">\u0130\u015Fte bu kadar! \xD6zel ders talebin ba\u015Far\u0131yla al\u0131nd\u0131.</div>
-		<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-64 h-64 mx-auto animate-pulse text-green-500"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-		<p>Talebin edit\xF6rlerimiz taraf\u0131ndan incelenme a\u015Famas\u0131ndad\u0131r.</p>
-		<p class="${"text-gray-400 text-sm"}">En k\u0131sa s\xFCre i\xE7erisinde bizden alacaks\u0131n \u{1F603}</p>
-
-		<a href="${"/"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"}"></path></svg>
-
-			Ana Sayfa
-		</a></div></div>`;
+				<div class="${"mt-10"}"><span class="${"block w-full rounded-md"}"><button type="${"submit"}" class="${"w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-blue-700 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out"}">\u015Eifremi Hat\u0131rlat
+						</button></span></div></form></div></div></div>`;
       } while (!$$settled);
       return $$rendered;
     });
   }
 });
 
-// .svelte-kit/output/server/nodes/11.js
-var __exports12 = {};
-__export(__exports12, {
-  component: () => component11,
-  file: () => file11,
-  imports: () => imports12,
-  index: () => index12,
+// .svelte-kit/output/server/nodes/13.js
+var __exports14 = {};
+__export(__exports14, {
+  component: () => component13,
+  file: () => file13,
+  imports: () => imports14,
+  index: () => index14,
   shared: () => page_exports10,
-  stylesheets: () => stylesheets12
+  stylesheets: () => stylesheets14
 });
-var index12, component11, file11, imports12, stylesheets12;
-var init__12 = __esm({
-  ".svelte-kit/output/server/nodes/11.js"() {
+var index14, component13, file13, imports14, stylesheets14;
+var init__14 = __esm({
+  ".svelte-kit/output/server/nodes/13.js"() {
     init_page10();
-    index12 = 11;
-    component11 = async () => (await Promise.resolve().then(() => (init_page_svelte9(), page_svelte_exports9))).default;
-    file11 = "_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-fac3975c.js";
-    imports12 = ["_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-fac3975c.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/RangeSlider-e6fe9ecb.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/location-8c23be2c.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ozel-ders-talebi-olustur/_page.js-e2c258a2.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-1f53c3d8.js"];
-    stylesheets12 = ["_app/immutable/assets/RangeSlider-3b636b73.css"];
+    index14 = 13;
+    component13 = async () => (await Promise.resolve().then(() => (init_page_svelte9(), page_svelte_exports9))).default;
+    file13 = "_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-d861b123.js";
+    imports14 = ["_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-d861b123.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/Input-c1aeede8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/(auth)/auth/forgot/_page.js-e70ff889.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-947e02da.js"];
+    stylesheets14 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(auth)/auth/login/_page.js
+var page_exports11 = {};
+__export(page_exports11, {
+  csr: () => csr10,
+  load: () => load10,
+  prerender: () => prerender11
+});
+async function load10({ url }) {
+  return {
+    to: url.searchParams.get("to") ? url.searchParams.get("to") : "/"
+  };
+}
+var csr10, prerender11;
+var init_page11 = __esm({
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/login/_page.js"() {
+    init_environment();
+    csr10 = dev;
+    prerender11 = false;
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(auth)/auth/login/_page.svelte.js
+var page_svelte_exports10 = {};
+__export(page_svelte_exports10, {
+  default: () => Page10
+});
+var import_toastify_js5, LoginScreenImage, Page10;
+var init_page_svelte10 = __esm({
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/login/_page.svelte.js"() {
+    init_chunks();
+    init_netders_logo_blue();
+    init_Input();
+    import_toastify_js5 = __toESM(require_toastify(), 1);
+    init_userStore();
+    LoginScreenImage = "/_app/immutable/assets/login-screen-14c430ce.png";
+    Page10 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $$unsubscribe_userStore;
+      $$unsubscribe_userStore = subscribe(userStore, (value) => value);
+      let { data } = $$props;
+      let loginData = {
+        login: "onursonmez@destechhasar.com",
+        password: "Muglayagittik1",
+        rememberMe: false
+      };
+      data.to;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      let $$settled;
+      let $$rendered;
+      do {
+        $$settled = true;
+        $$rendered = `${$$result.head += `<!-- HEAD_svelte-qnxa8i_START -->${$$result.title = `<title>Giri\u015F</title>`, ""}<!-- HEAD_svelte-qnxa8i_END -->`, ""}
+
+<div class="${"mx-auto my-8"}"><a href="${"/"}"><img${add_attribute("src", Logo, 0)} width="${"200"}" height="${"200"}"></a></div>
+<div class="${"flex max-w-6xl mx-auto"}"><div class="${"grow"}"><div class="${"bg-white rounded-lg p-10 sm:m-auto md:m-auto lg:m-0"}" style="${"border: solid 1px #CACED0; min-height: 524px;"}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><h1 class="${"text-3xl md:text-4xl font-bold mb-4"}">Hesab\u0131na giri\u015F yap</h1>
+				<p class="${"mb-4"}">Hen\xFCz \xFCye de\u011Fil misin? \xD6zel ders almak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/"}">buraya</a>, \xF6\u011Fretmen olmak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/"}">buraya</a> t\u0131klay\u0131n.</p>
+				<div class="${"mb-4"}"><ul class="${"flex flex-row justify-center gap-4 font-semibold cursor-pointer"}"><li${add_attribute(
+          "class",
+          "border-b-2 border-blue-700 text-blue-700",
+          0
+        )}>E-posta</li>
+						<li${add_attribute(
+          "class",
+          "",
+          0
+        )}>Telefon</li></ul></div>
+				<div class="${"w-full"}"><form><div><div class="${"mt-1 rounded-md"}">${validate_component(Input, "Input").$$render(
+          $$result,
+          {
+            id: "login",
+            label: "E-posta",
+            placeholder: "",
+            type: "text",
+            value: loginData.login
+          },
+          {
+            value: ($$value) => {
+              loginData.login = $$value;
+              $$settled = false;
+            }
+          },
+          {}
+        )}</div></div>
+
+						<div class="${"relative mt-2"}">${validate_component(Input, "Input").$$render(
+          $$result,
+          {
+            id: "password",
+            label: "\u015Eifre",
+            placeholder: "",
+            type: "password",
+            value: loginData.password
+          },
+          {
+            value: ($$value) => {
+              loginData.password = $$value;
+              $$settled = false;
+            }
+          },
+          {}
+        )}
+							<div class="${"absolute bottom-1 right-1 p-1 bg-white cursor-pointer"}">${`<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"}"></path></svg>`}</div></div>
+
+						<div class="${"mt-2 flex flex-col md:flex-row justify-between"}"><div class="${"flex items-center"}"><input id="${"remember-me"}" type="${"checkbox"}" class="${"form-checkbox h-4 w-4 tw-blue transition duration-150 ease-in-out"}"${add_attribute("checked", loginData.rememberMe, 1)}>
+								<label for="${"remember-me"}" class="${"ml-2 block text-sm leading-5 text-gray-900"}">Beni hat\u0131rla
+								</label></div>
+
+							<div class="${"text-sm leading-5 mt-4 md:mt-0"}"><a href="${"/auth/forgot"}" class="${"font-medium tw-blue focus:outline-none no-underline transition ease-in-out duration-150"}">\u015Eifremi unuttum
+								</a></div></div>
+
+						<div class="${"mt-10"}">${`<button type="${"submit"}" class="${"w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-blue-700 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out"}">Giri\u015F
+								</button>`}</div></form></div></div></div></div>
+	<div class="${"flex-none ml-1 hidden lg:block"}"><img style="${"height: 524px;"}"${add_attribute("src", LoginScreenImage, 0)} alt="${""}"></div></div>`;
+      } while (!$$settled);
+      $$unsubscribe_userStore();
+      return $$rendered;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/14.js
+var __exports15 = {};
+__export(__exports15, {
+  component: () => component14,
+  file: () => file14,
+  imports: () => imports15,
+  index: () => index15,
+  shared: () => page_exports11,
+  stylesheets: () => stylesheets15
+});
+var index15, component14, file14, imports15, stylesheets15;
+var init__15 = __esm({
+  ".svelte-kit/output/server/nodes/14.js"() {
+    init_page11();
+    index15 = 14;
+    component14 = async () => (await Promise.resolve().then(() => (init_page_svelte10(), page_svelte_exports10))).default;
+    file14 = "_app/immutable/components/pages/(auth)/auth/login/_page.svelte-47238864.js";
+    imports15 = ["_app/immutable/components/pages/(auth)/auth/login/_page.svelte-47238864.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/Input-c1aeede8.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/SvelteCookie-ba5917f9.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/navigation-ef758488.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/modules/pages/(auth)/auth/login/_page.js-8e2fb687.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/_page-d2aa77fc.js"];
+    stylesheets15 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(auth)/auth/logout/_page.js
+var page_exports12 = {};
+__export(page_exports12, {
+  csr: () => csr11,
+  load: () => load11,
+  prerender: () => prerender12
+});
+function deleteCookie(name) {
+  document.cookie = name + "=; Max-Age=-99999999;";
+}
+async function load11({ url }) {
+  userStore.set(userModel);
+  deleteCookie("token");
+  let redirectPath = url.searchParams.get("to") ? url.searchParams.get("to") : "/";
+  return {
+    to: redirectPath
+  };
+}
+var csr11, prerender12;
+var init_page12 = __esm({
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/logout/_page.js"() {
+    init_environment();
+    init_chunks();
+    init_userStore();
+    csr11 = dev;
+    prerender12 = false;
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/(auth)/auth/logout/_page.svelte.js
+var page_svelte_exports11 = {};
+__export(page_svelte_exports11, {
+  default: () => Page11
+});
+function guard(name) {
+  return () => {
+    throw new Error(`Cannot call ${name}(...) on the server`);
+  };
+}
+var goto, Bye, Page11;
+var init_page_svelte11 = __esm({
+  ".svelte-kit/output/server/entries/pages/(auth)/auth/logout/_page.svelte.js"() {
+    init_chunks();
+    goto = guard("goto");
+    Bye = "/_app/immutable/assets/bye-688e24e7.png";
+    Page11 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { data } = $$props;
+      setTimeout(
+        () => {
+          goto(data.to);
+        },
+        1e3
+      );
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      return `<div class="${"flex text-center h-screen my-auto items-center justify-center"}"><div><div class="${"mt-2 text-7xl font-bold"}">Good bye!</div>
+        <img${add_attribute("src", Bye, 0)} width="${"300"}" class="${"mx-auto my-12"}">
+        <div class="${"text-2xl font-bold"}">Hesab\u0131ndan ba\u015Far\u0131yla \xE7\u0131k\u0131\u015F yapt\u0131n.</div>
+        <div class="${"mt-2"}">En yak\u0131n zamanda tekrar g\xF6r\xFC\u015Fmek dile\u011Fiyle.</div>
+        <a href="${"/"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"}"></path></svg>
+
+            Ana Sayfa
+        </a></div></div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/15.js
+var __exports16 = {};
+__export(__exports16, {
+  component: () => component15,
+  file: () => file15,
+  imports: () => imports16,
+  index: () => index16,
+  shared: () => page_exports12,
+  stylesheets: () => stylesheets16
+});
+var index16, component15, file15, imports16, stylesheets16;
+var init__16 = __esm({
+  ".svelte-kit/output/server/nodes/15.js"() {
+    init_page12();
+    index16 = 15;
+    component15 = async () => (await Promise.resolve().then(() => (init_page_svelte11(), page_svelte_exports11))).default;
+    file15 = "_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-19723227.js";
+    imports16 = ["_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-19723227.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/navigation-ef758488.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/modules/pages/(auth)/auth/logout/_page.js-da284dbb.js", "_app/immutable/chunks/environment-b04a8a58.js", "_app/immutable/chunks/SvelteCookie-ba5917f9.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/_page-73344b8f.js"];
+    stylesheets16 = [];
   }
 });
 
@@ -7068,8 +7200,8 @@ function stringify(value) {
       return NEGATIVE_INFINITY;
     if (thing === 0 && 1 / thing < 0)
       return NEGATIVE_ZERO;
-    const index14 = p++;
-    indexes.set(thing, index14);
+    const index18 = p++;
+    indexes.set(thing, index18);
     let str = "";
     if (is_primitive(thing)) {
       str = stringify_primitive2(thing);
@@ -7159,12 +7291,12 @@ function stringify(value) {
           }
       }
     }
-    stringified[index14] = str;
-    return index14;
+    stringified[index18] = str;
+    return index18;
   }
-  const index13 = flatten(value);
-  if (index13 < 0)
-    return `${index13}`;
+  const index17 = flatten(value);
+  if (index17 < 0)
+    return `${index17}`;
   return `[${stringified.join(",")}]`;
 }
 function stringify_primitive2(thing) {
@@ -7195,6 +7327,7 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { form } = $$props;
   let { data_0 = null } = $$props;
   let { data_1 = null } = $$props;
+  let { data_2 = null } = $$props;
   {
     setContext("__svelte__", stores);
   }
@@ -7211,6 +7344,8 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.data_0(data_0);
   if ($$props.data_1 === void 0 && $$bindings.data_1 && data_1 !== void 0)
     $$bindings.data_1(data_1);
+  if ($$props.data_2 === void 0 && $$bindings.data_2 && data_2 !== void 0)
+    $$bindings.data_2(data_2);
   {
     stores.page.set(page2);
   }
@@ -7219,7 +7354,11 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 ${components[1] ? `${validate_component(components[0] || missing_component, "svelte:component").$$render($$result, { data: data_0 }, {}, {
     default: () => {
-      return `${validate_component(components[1] || missing_component, "svelte:component").$$render($$result, { data: data_1, form }, {}, {})}`;
+      return `${components[2] ? `${validate_component(components[1] || missing_component, "svelte:component").$$render($$result, { data: data_1 }, {}, {
+        default: () => {
+          return `${validate_component(components[2] || missing_component, "svelte:component").$$render($$result, { data: data_2, form }, {}, {})}`;
+        }
+      })}` : `${validate_component(components[1] || missing_component, "svelte:component").$$render($$result, { data: data_1, form }, {}, {})}`}`;
     }
   })}` : `${validate_component(components[0] || missing_component, "svelte:component").$$render($$result, { data: data_0, form }, {}, {})}`}
 
@@ -7437,11 +7576,11 @@ async function render_endpoint(event, mod, state) {
   if (!handler) {
     return method_not_allowed(mod, method);
   }
-  const prerender11 = mod.prerender ?? state.prerender_default;
-  if (prerender11 && (mod.POST || mod.PATCH || mod.PUT || mod.DELETE)) {
+  const prerender13 = mod.prerender ?? state.prerender_default;
+  if (prerender13 && (mod.POST || mod.PATCH || mod.PUT || mod.DELETE)) {
     throw new Error("Cannot prerender endpoints that have mutative methods");
   }
-  if (state.prerendering && !prerender11) {
+  if (state.prerendering && !prerender13) {
     if (state.initiator) {
       throw new Error(`${event.routeId} is not prerenderable`);
     } else {
@@ -7458,7 +7597,7 @@ async function render_endpoint(event, mod, state) {
       );
     }
     if (state.prerendering) {
-      response.headers.set("x-sveltekit-prerender", String(prerender11));
+      response.headers.set("x-sveltekit-prerender", String(prerender13));
     }
     return response;
   } catch (error2) {
@@ -7723,7 +7862,7 @@ async function load_data({
   server_data_promise,
   state,
   resolve_opts,
-  csr: csr10
+  csr: csr12
 }) {
   var _a;
   const server_data_node = await server_data_promise;
@@ -7788,7 +7927,7 @@ async function load_data({
           return Reflect.get(response2, key2, response2);
         }
       });
-      if (csr10) {
+      if (csr12) {
         const get = response.headers.get;
         response.headers.get = (key2) => {
           const lower = key2.toLowerCase();
@@ -8153,11 +8292,11 @@ var CspReportOnlyProvider = class extends BaseProvider {
   }
 };
 var Csp = class {
-  constructor({ mode, directives, reportOnly }, { prerender: prerender11, dev: dev2 }) {
+  constructor({ mode, directives, reportOnly }, { prerender: prerender13, dev: dev2 }) {
     __publicField(this, "nonce", generate_nonce());
     __publicField(this, "csp_provider");
     __publicField(this, "report_only_provider");
-    const use_hashes = mode === "hash" || mode === "auto" && prerender11;
+    const use_hashes = mode === "hash" || mode === "auto" && prerender13;
     this.csp_provider = new CspProvider(use_hashes, directives, this.nonce, dev2);
     this.report_only_provider = new CspReportOnlyProvider(use_hashes, reportOnly, this.nonce, dev2);
   }
@@ -8202,7 +8341,7 @@ async function render_response({
     }
   }
   const { entry } = options.manifest._;
-  const stylesheets13 = new Set(entry.stylesheets);
+  const stylesheets17 = new Set(entry.stylesheets);
   const modulepreloads = new Set(entry.imports);
   const link_header_preloads = /* @__PURE__ */ new Set();
   const inline_styles = /* @__PURE__ */ new Map();
@@ -8248,7 +8387,7 @@ async function render_response({
         node.imports.forEach((url) => modulepreloads.add(url));
       }
       if (node.stylesheets) {
-        node.stylesheets.forEach((url) => stylesheets13.add(url));
+        node.stylesheets.forEach((url) => stylesheets17.add(url));
       }
       if (node.inline_styles) {
         Object.entries(await node.inline_styles()).forEach(([k, v]) => inline_styles.set(k, v));
@@ -8311,7 +8450,7 @@ async function render_response({
     head += `
 	<style${attributes.join("")}>${content}</style>`;
   }
-  for (const dep of stylesheets13) {
+  for (const dep of stylesheets17) {
     const path = prefixed(dep);
     const attributes = [];
     if (csp.style_needs_nonce) {
@@ -8428,7 +8567,7 @@ async function respond_with_error({ event, options, state, status, error: error2
     const branch = [];
     const default_layout = await options.manifest._.nodes[0]();
     const ssr = get_option([default_layout], "ssr") ?? true;
-    const csr10 = get_option([default_layout], "csr") ?? true;
+    const csr12 = get_option([default_layout], "csr") ?? true;
     if (ssr) {
       state.initiator = GENERIC_ERROR;
       const server_data_promise = load_server_data({
@@ -8446,7 +8585,7 @@ async function respond_with_error({ event, options, state, status, error: error2
         resolve_opts,
         server_data_promise,
         state,
-        csr: csr10
+        csr: csr12
       });
       branch.push(
         {
@@ -8582,7 +8721,7 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
         }
       });
     });
-    const csr10 = get_option(nodes, "csr") ?? true;
+    const csr12 = get_option(nodes, "csr") ?? true;
     const load_promises = nodes.map((node, i) => {
       if (load_error)
         throw load_error;
@@ -8602,7 +8741,7 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
             resolve_opts,
             server_data_promise: server_promises[i],
             state,
-            csr: csr10
+            csr: csr12
           });
         } catch (e3) {
           load_error = e3;
@@ -8642,8 +8781,8 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
           const error2 = handle_error_and_jsonify(event, options, err);
           while (i--) {
             if (page2.errors[i]) {
-              const index13 = page2.errors[i];
-              const node2 = await options.manifest._.nodes[index13]();
+              const index17 = page2.errors[i];
+              const node2 = await options.manifest._.nodes[index17]();
               let j = i;
               while (!branch[j])
                 j -= 1;
@@ -8989,10 +9128,10 @@ function create_fetch({ event, options, state, get_cookie_header }) {
         const is_asset = options.manifest.assets.has(filename);
         const is_asset_html = options.manifest.assets.has(filename_html);
         if (is_asset || is_asset_html) {
-          const file12 = is_asset ? filename : filename_html;
+          const file16 = is_asset ? filename : filename_html;
           if (options.read) {
             const type = is_asset ? options.manifest.mimeTypes[filename.slice(filename.lastIndexOf("."))] : "text/html";
-            return new Response(options.read(file12), {
+            return new Response(options.read(file16), {
               headers: type ? { "content-type": type } : {}
             });
           }
@@ -9400,7 +9539,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set([".DS_Store", "favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-27c140d2.js", "imports": ["_app/immutable/start-27c140d2.js", "_app/immutable/chunks/index-5c1dbe35.js", "_app/immutable/chunks/singletons-158c7876.js", "_app/immutable/chunks/index-c483a1bd.js", "_app/immutable/chunks/control-03134885.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-a92a8a8b.js", "imports": ["_app/immutable/start-a92a8a8b.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/singletons-5edf8516.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/control-03134885.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -9413,7 +9552,11 @@ var manifest = {
       () => Promise.resolve().then(() => (init__9(), __exports9)),
       () => Promise.resolve().then(() => (init__10(), __exports10)),
       () => Promise.resolve().then(() => (init__11(), __exports11)),
-      () => Promise.resolve().then(() => (init__12(), __exports12))
+      () => Promise.resolve().then(() => (init__12(), __exports12)),
+      () => Promise.resolve().then(() => (init__13(), __exports13)),
+      () => Promise.resolve().then(() => (init__14(), __exports14)),
+      () => Promise.resolve().then(() => (init__15(), __exports15)),
+      () => Promise.resolve().then(() => (init__16(), __exports16))
     ],
     routes: [
       {
@@ -9422,34 +9565,43 @@ var manifest = {
         names: [],
         types: [],
         optional: [],
-        page: { layouts: [0], errors: [1], leaf: 2 },
-        endpoint: null
-      },
-      {
-        id: "/(app)/auth/activation",
-        pattern: /^\/auth\/activation\/?$/,
-        names: [],
-        types: [],
-        optional: [],
         page: { layouts: [0], errors: [1], leaf: 4 },
         endpoint: null
       },
       {
-        id: "/(app)/auth/login",
+        id: "/(auth)/auth",
+        pattern: /^\/auth\/?$/,
+        names: [],
+        types: [],
+        optional: [],
+        page: { layouts: [0, 3], errors: [1, ,], leaf: 11 },
+        endpoint: null
+      },
+      {
+        id: "/(auth)/auth/activation",
+        pattern: /^\/auth\/activation\/?$/,
+        names: [],
+        types: [],
+        optional: [],
+        page: { layouts: [0, 3], errors: [1, ,], leaf: 12 },
+        endpoint: null
+      },
+      {
+        id: "/(auth)/auth/login",
         pattern: /^\/auth\/login\/?$/,
         names: [],
         types: [],
         optional: [],
-        page: { layouts: [0], errors: [1], leaf: 6 },
+        page: { layouts: [0, 3], errors: [1, ,], leaf: 14 },
         endpoint: null
       },
       {
-        id: "/(app)/auth/logout",
+        id: "/(auth)/auth/logout",
         pattern: /^\/auth\/logout\/?$/,
         names: [],
         types: [],
         optional: [],
-        page: { layouts: [0], errors: [1], leaf: 7 },
+        page: { layouts: [0, 3], errors: [1, ,], leaf: 15 },
         endpoint: null
       },
       {
@@ -9458,7 +9610,25 @@ var manifest = {
         names: ["slug"],
         types: [null],
         optional: [false],
-        page: { layouts: [0], errors: [1], leaf: 8 },
+        page: { layouts: [0, 2], errors: [1, ,], leaf: 6 },
+        endpoint: null
+      },
+      {
+        id: "/(app)/member/account",
+        pattern: /^\/member\/account\/?$/,
+        names: [],
+        types: [],
+        optional: [],
+        page: { layouts: [0, 2], errors: [1, ,], leaf: 7 },
+        endpoint: null
+      },
+      {
+        id: "/(app)/member/requests",
+        pattern: /^\/member\/requests\/?$/,
+        names: [],
+        types: [],
+        optional: [],
+        page: { layouts: [0, 2], errors: [1, ,], leaf: 8 },
         endpoint: null
       },
       {
@@ -9467,7 +9637,7 @@ var manifest = {
         names: ["catchall"],
         types: [null],
         optional: [false],
-        page: { layouts: [0], errors: [1], leaf: 10 },
+        page: { layouts: [0, 2], errors: [1, ,], leaf: 9 },
         endpoint: null
       },
       {
@@ -9476,7 +9646,7 @@ var manifest = {
         names: ["catchall"],
         types: [null],
         optional: [false],
-        page: { layouts: [0], errors: [1], leaf: 3 },
+        page: { layouts: [0, 2], errors: [1, ,], leaf: 5 },
         endpoint: null
       }
     ],
@@ -9485,7 +9655,7 @@ var manifest = {
     }
   }
 };
-var prerendered = /* @__PURE__ */ new Set(["/auth/forgot", "/auth/forgot/__data.json", "/member/dashboard", "/member/dashboard/__data.json", "/ozel-ders-talebi-olustur", "/ozel-ders-talebi-olustur/__data.json"]);
+var prerendered = /* @__PURE__ */ new Set(["/auth/forgot", "/auth/forgot/__data.json", "/ozel-ders-talebi-olustur", "/ozel-ders-talebi-olustur/__data.json"]);
 
 // .svelte-kit/cloudflare-tmp/_worker.js
 async function e(e3, t2) {
@@ -9542,12 +9712,12 @@ var worker = {
       });
     } else {
       pathname = pathname.replace(/\/$/, "") || "/";
-      let file12 = pathname.substring(1);
+      let file16 = pathname.substring(1);
       try {
-        file12 = decodeURIComponent(file12);
+        file16 = decodeURIComponent(file16);
       } catch (err) {
       }
-      if (manifest.assets.has(file12) || manifest.assets.has(file12 + "/index.html") || prerendered.has(pathname)) {
+      if (manifest.assets.has(file16) || manifest.assets.has(file16 + "/index.html") || prerendered.has(pathname)) {
         res = await env.ASSETS.fetch(req);
       } else {
         res = await server.respond(req, {
