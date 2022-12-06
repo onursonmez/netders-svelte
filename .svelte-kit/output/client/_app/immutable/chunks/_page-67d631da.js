@@ -1,0 +1,1 @@
+import{u as r}from"./userStore-7d0e6609.js";const o=!0,s=async({parent:t})=>{const{user:e}=await t();Object.entries(e).length>0&&r.set(e)},n=Object.freeze(Object.defineProperty({__proto__:null,prerender:o,load:s},Symbol.toStringTag,{value:"Module"}));export{n as _,s as l,o as p};

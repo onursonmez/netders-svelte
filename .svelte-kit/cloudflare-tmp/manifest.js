@@ -4,7 +4,7 @@ export const manifest = {
 	assets: new Set([".DS_Store","favicon.png","images/turkiye-white.svg","robots.txt"]),
 	mimeTypes: {".png":"image/png",".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		entry: {"file":"_app/immutable/start-a92a8a8b.js","imports":["_app/immutable/start-a92a8a8b.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/singletons-5edf8516.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/control-03134885.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-e1256abc.js","imports":["_app/immutable/start-e1256abc.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/singletons-d0258cb4.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/control-03134885.js"],"stylesheets":[]},
 		nodes: [
 			() => import('../output/server/nodes/0.js'),
 			() => import('../output/server/nodes/1.js'),
@@ -24,15 +24,6 @@ export const manifest = {
 			() => import('../output/server/nodes/15.js')
 		],
 		routes: [
-			{
-				id: "/",
-				pattern: /^\/$/,
-				names: [],
-				types: [],
-				optional: [],
-				page: { layouts: [0], errors: [1], leaf: 4 },
-				endpoint: null
-			},
 			{
 				id: "/(auth)/auth",
 				pattern: /^\/auth\/?$/,
@@ -122,4 +113,4 @@ export const manifest = {
 	}
 };
 
-export const prerendered = new Set(["/auth/forgot","/auth/forgot/__data.json","/ozel-ders-talebi-olustur","/ozel-ders-talebi-olustur/__data.json"]);
+export const prerendered = new Set(["/","/__data.json","/auth/forgot","/auth/forgot/__data.json","/ozel-ders-talebi-olustur","/ozel-ders-talebi-olustur/__data.json"]);
