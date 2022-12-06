@@ -2,8 +2,7 @@
 import { dev } from '$app/environment'
 import { deleteCookie } from 'svelte-cookie'
 import { userStore } from '/src/stores/userStore'
-import { userModel } from '/src/models/userModel'
-
+import { redirect } from '@sveltejs/kit'
 
 // we don't need any JS on this page, though we'll load
 // it in dev so that we get hot module replacement
@@ -13,15 +12,13 @@ import { userModel } from '/src/models/userModel'
 // it so that it gets served as a static asset in production
 export const prerender = false;
 
+deleteCookie('token')
+userStore.set(null)
+console.log("logout page.js called")
 /** @param {Parameters<import('./$types').PageLoad>[0]} event */
 export async function load({ url })
 {
-    userStore.set(userModel)
-    deleteCookie('token')
-
     let redirectPath = url.searchParams.get('to') ? url.searchParams.get('to') : '/'
 
-    return {
-        to: redirectPath
-    }
+    throw redirect(307, redirectPath)
 }

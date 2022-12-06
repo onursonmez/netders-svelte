@@ -1,0 +1,1 @@
+import{w as e}from"./index-89f006b4.js";const t=[{id:1,title:"Erkek"},{id:2,title:"Kad\u0131n"}],n={page:1,pageSize:12,keyword:"",budget:"",cityObject:void 0,countyObject:void 0,subjectObject:void 0,levelObject:void 0,lessonTypeObject:void 0,genderObject:void 0},r=e(null),a=e(n),c=e([]),d=e(0),o=e([]),i=e(t);export{c as a,d as b,i as g,a as t,r as u,o as v};

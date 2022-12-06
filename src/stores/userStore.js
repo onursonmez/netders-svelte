@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 import { userModel, gendersModel } from '/src/models/userModel'
 import { searchParamsModel } from '/src/models/searchModel'
 
-export const userStore = writable(userModel)
+export const userStore = writable(null)
 export const teacherSearchParamsStore = writable(searchParamsModel)
 export const teacherItemsStore = writable([])
 export const teacherTotalStore = writable(0)

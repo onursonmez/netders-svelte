@@ -12,8 +12,6 @@
 
 	onMount(async () => {
 
-		console.log("onMounted")
-
 		teacherSearchParams = {...$teacherSearchParamsStore}
 
 		if($page.url.searchParams.has('keyword')){

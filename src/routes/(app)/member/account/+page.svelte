@@ -1,9 +1,8 @@
 <script>
-	import { goto } from '$app/navigation'
-
 	import MemberHorizontalNavigation from '/src/components/MemberHorizontalNavigation.svelte'
 	import { gendersStore, userStore } from '/src/stores/userStore'
 	import {onMount} from "svelte";
+	import {goto} from "$app/navigation";
 	let gender, firstName, lastName, phone
 
 	export let data
@@ -13,7 +12,9 @@
 	}
 
 	onMount(() => {
-
+		if($userStore === null){
+			goto('/auth/login')
+		}
 	})
 </script>
 

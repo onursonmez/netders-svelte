@@ -288,7 +288,7 @@ function add_classes(classes) {
   return classes ? ` class="${classes}"` : "";
 }
 function style_object_to_string(style_object) {
-  return Object.keys(style_object).filter((key2) => style_object[key2]).map((key2) => `${key2}: ${style_object[key2]};`).join(" ");
+  return Object.keys(style_object).filter((key2) => style_object[key2]).map((key2) => `${key2}: ${escape_attribute_value(style_object[key2])};`).join(" ");
 }
 var is_client, now, raf, tasks, current_component, globals, boolean_attributes, void_element_names, invalid_attribute_name_character, ATTR_REGEX, CONTENT_REGEX, missing_component, on_destroy;
 var init_chunks = __esm({
@@ -339,10 +339,13 @@ var init_chunks = __esm({
 
 // .svelte-kit/output/server/chunks/index2.js
 function error(status, message) {
+  if (isNaN(status) || status < 400 || status > 599) {
+    throw new Error(`HTTP error status codes must be between 400 and 599 \u2014 ${status} is invalid`);
+  }
   return new HttpError(status, message);
 }
 function redirect(status, location) {
-  if (isNaN(status) || status < 300 || status > 399) {
+  if (isNaN(status) || status < 300 || status > 308) {
     throw new Error("Invalid status code");
   }
   return new Redirect(status, location);
@@ -459,7 +462,7 @@ var require_cookie = __commonJS({
       }
       var obj = {};
       var opt = options || {};
-      var dec = opt.decode || decode;
+      var dec = opt.decode || decode2;
       var index17 = 0;
       while (index17 < str.length) {
         var eqIdx = str.indexOf("=", index17);
@@ -568,7 +571,7 @@ var require_cookie = __commonJS({
       }
       return str;
     }
-    function decode(str) {
+    function decode2(str) {
       return str.indexOf("%") !== -1 ? decodeURIComponent(str) : str;
     }
     function encode2(val) {
@@ -577,9 +580,9 @@ var require_cookie = __commonJS({
     function isDate(val) {
       return __toString.call(val) === "[object Date]" || val instanceof Date;
     }
-    function tryDecode(str, decode2) {
+    function tryDecode(str, decode3) {
       try {
-        return decode2(str);
+        return decode3(str);
       } catch (e3) {
         return str;
       }
@@ -752,19 +755,10 @@ var require_set_cookie = __commonJS({
 });
 
 // .svelte-kit/output/server/chunks/userStore.js
-var userModel, gendersModel, searchParamsModel, userStore, teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, viewedTeacherStore, gendersStore;
+var gendersModel, searchParamsModel, userStore, teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, viewedTeacherStore, gendersStore;
 var init_userStore = __esm({
   ".svelte-kit/output/server/chunks/userStore.js"() {
     init_index3();
-    userModel = {
-      email: "",
-      username: "",
-      firstName: "",
-      lastName: "",
-      phone: "",
-      token: "",
-      roles: []
-    };
     gendersModel = [
       { id: 1, title: "Erkek" },
       { id: 2, title: "Kad\u0131n" }
@@ -781,7 +775,7 @@ var init_userStore = __esm({
       "lessonTypeObject": void 0,
       "genderObject": void 0
     };
-    userStore = writable(userModel);
+    userStore = writable(null);
     teacherSearchParamsStore = writable(searchParamsModel);
     teacherItemsStore = writable([]);
     teacherTotalStore = writable(0);
@@ -943,20 +937,22 @@ var __exports = {};
 __export(__exports, {
   component: () => component,
   file: () => file,
+  fonts: () => fonts,
   imports: () => imports,
   index: () => index,
   server: () => layout_server_exports,
   stylesheets: () => stylesheets
 });
-var index, component, file, imports, stylesheets;
+var index, component, file, imports, stylesheets, fonts;
 var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     init_layout_server();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-58aa172d.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-58aa172d.js", "_app/immutable/chunks/index-95fd0b09.js"];
+    file = "_app/immutable/components/pages/_layout.svelte-b5d3d305.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-b5d3d305.js", "_app/immutable/chunks/index-90af3250.js"];
     stylesheets = [];
+    fonts = [];
   }
 });
 
@@ -1042,18 +1038,20 @@ var __exports2 = {};
 __export(__exports2, {
   component: () => component2,
   file: () => file2,
+  fonts: () => fonts2,
   imports: () => imports2,
   index: () => index2,
   stylesheets: () => stylesheets2
 });
-var index2, component2, file2, imports2, stylesheets2;
+var index2, component2, file2, imports2, stylesheets2, fonts2;
 var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    file2 = "_app/immutable/components/pages/_error.svelte-f48e83e6.js";
-    imports2 = ["_app/immutable/components/pages/_error.svelte-f48e83e6.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/index-ba476fff.js"];
+    file2 = "_app/immutable/components/pages/_error.svelte-353cb239.js";
+    imports2 = ["_app/immutable/components/pages/_error.svelte-353cb239.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js"];
     stylesheets2 = [];
+    fonts2 = [];
   }
 });
 
@@ -1097,7 +1095,7 @@ var init_colored_bar = __esm({
 
 						<svg class="${["h-6 w-6", "hidden"].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M6 18L18 6M6 6l12 12"}"></path></svg></button></div>
 				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", Logo, 0)} alt="${"Netders.com"}">
-							${escape($userStore.username)}</a></div>
+							${escape($userStore == null ? void 0 : $userStore.username)}</a></div>
 					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders-ilanlari-verenler"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
 							\xD6\u011Fretmen Ara
 						</a>
@@ -1106,7 +1104,7 @@ var init_colored_bar = __esm({
 							Ders Talepleri
 						</a>
 
-						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
+						<a href="${"/member/account"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
 
 						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
 
@@ -1191,18 +1189,20 @@ var __exports3 = {};
 __export(__exports3, {
   component: () => component3,
   file: () => file3,
+  fonts: () => fonts3,
   imports: () => imports3,
   index: () => index3,
   stylesheets: () => stylesheets3
 });
-var index3, component3, file3, imports3, stylesheets3;
+var index3, component3, file3, imports3, stylesheets3, fonts3;
 var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_layout_svelte2(), layout_svelte_exports2))).default;
-    file3 = "_app/immutable/components/pages/(app)/_layout.svelte-affb12b5.js";
-    imports3 = ["_app/immutable/components/pages/(app)/_layout.svelte-affb12b5.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/colored-bar-b3f0f5fa.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/navigation-bf1f4e8c.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/user-5e4a8908.js"];
-    stylesheets3 = ["_app/immutable/assets/_layout-a95766cb.css", "_app/immutable/assets/app-217da9ee.css"];
+    file3 = "_app/immutable/components/pages/(app)/_layout.svelte-aaa392b9.js";
+    imports3 = ["_app/immutable/components/pages/(app)/_layout.svelte-aaa392b9.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/colored-bar-d2bdead8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/user-f0822e94.js"];
+    stylesheets3 = ["_app/immutable/assets/_layout-a95766cb.css", "_app/immutable/assets/app-2d0c3135.css"];
+    fonts3 = [];
   }
 });
 
@@ -1232,18 +1232,20 @@ var __exports4 = {};
 __export(__exports4, {
   component: () => component4,
   file: () => file4,
+  fonts: () => fonts4,
   imports: () => imports4,
   index: () => index4,
   stylesheets: () => stylesheets4
 });
-var index4, component4, file4, imports4, stylesheets4;
+var index4, component4, file4, imports4, stylesheets4, fonts4;
 var init__4 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
     index4 = 3;
     component4 = async () => (await Promise.resolve().then(() => (init_layout_svelte3(), layout_svelte_exports3))).default;
-    file4 = "_app/immutable/components/pages/(auth)/_layout.svelte-3f7a1bb2.js";
-    imports4 = ["_app/immutable/components/pages/(auth)/_layout.svelte-3f7a1bb2.js", "_app/immutable/chunks/index-95fd0b09.js"];
-    stylesheets4 = ["_app/immutable/assets/_layout-a715ccf6.css", "_app/immutable/assets/app-217da9ee.css"];
+    file4 = "_app/immutable/components/pages/(auth)/_layout.svelte-0b08f40c.js";
+    imports4 = ["_app/immutable/components/pages/(auth)/_layout.svelte-0b08f40c.js", "_app/immutable/chunks/index-90af3250.js"];
+    stylesheets4 = ["_app/immutable/assets/_layout-a715ccf6.css", "_app/immutable/assets/app-2d0c3135.css"];
+    fonts4 = [];
   }
 });
 
@@ -4794,20 +4796,22 @@ var __exports5 = {};
 __export(__exports5, {
   component: () => component5,
   file: () => file5,
+  fonts: () => fonts5,
   imports: () => imports5,
   index: () => index5,
   shared: () => page_exports,
   stylesheets: () => stylesheets5
 });
-var index5, component5, file5, imports5, stylesheets5;
+var index5, component5, file5, imports5, stylesheets5, fonts5;
 var init__5 = __esm({
   ".svelte-kit/output/server/nodes/4.js"() {
     init_page();
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file5 = "_app/immutable/components/pages/_page.svelte-2ab5867b.js";
-    imports5 = ["_app/immutable/components/pages/_page.svelte-2ab5867b.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/navigation-bf1f4e8c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/UserVertical-1679ab4d.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/colored-bar-b3f0f5fa.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/_page.js-02cb9d76.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-6c441749.js"];
-    stylesheets5 = ["_app/immutable/assets/_page-12598ed9.css", "_app/immutable/assets/app-217da9ee.css", "_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    file5 = "_app/immutable/components/pages/_page.svelte-84d846b2.js";
+    imports5 = ["_app/immutable/components/pages/_page.svelte-84d846b2.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/UserVertical-dabc6eed.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/colored-bar-d2bdead8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/_page.js-93ded3c8.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-404b6d1e.js"];
+    stylesheets5 = ["_app/immutable/assets/_page-12598ed9.css", "_app/immutable/assets/app-2d0c3135.css", "_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    fonts5 = [];
   }
 });
 
@@ -5084,20 +5088,22 @@ var __exports6 = {};
 __export(__exports6, {
   component: () => component6,
   file: () => file6,
+  fonts: () => fonts6,
   imports: () => imports6,
   index: () => index6,
   shared: () => page_exports2,
   stylesheets: () => stylesheets6
 });
-var index6, component6, file6, imports6, stylesheets6;
+var index6, component6, file6, imports6, stylesheets6, fonts6;
 var init__6 = __esm({
   ".svelte-kit/output/server/nodes/5.js"() {
     init_page2();
     index6 = 5;
     component6 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
-    file6 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-f46f454b.js";
-    imports6 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-f46f454b.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-1679ab4d.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/UserCard-ca678c0e.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-73dcf3e0.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/_page-773e8c46.js"];
+    file6 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-343a4633.js";
+    imports6 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-343a4633.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-dabc6eed.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/UserCard-53a44f31.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-d9d512c5.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/_page-ea38d12c.js"];
     stylesheets6 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    fonts6 = [];
   }
 });
 
@@ -5177,20 +5183,22 @@ var __exports7 = {};
 __export(__exports7, {
   component: () => component7,
   file: () => file7,
+  fonts: () => fonts7,
   imports: () => imports7,
   index: () => index7,
   shared: () => page_exports3,
   stylesheets: () => stylesheets7
 });
-var index7, component7, file7, imports7, stylesheets7;
+var index7, component7, file7, imports7, stylesheets7, fonts7;
 var init__7 = __esm({
   ".svelte-kit/output/server/nodes/6.js"() {
     init_page3();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file7 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-cfa69fa1.js";
-    imports7 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-cfa69fa1.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/UserCard-ca678c0e.js", "_app/immutable/chunks/UserVertical-1679ab4d.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-c4b844f6.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-48836291.js"];
+    file7 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-7c57fac6.js";
+    imports7 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-7c57fac6.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/UserCard-53a44f31.js", "_app/immutable/chunks/UserVertical-dabc6eed.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-6a3b895e.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-aab34f45.js"];
     stylesheets7 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    fonts7 = [];
   }
 });
 
@@ -5207,12 +5215,13 @@ var init_page4 = __esm({
     init_userStore();
     prerender4 = false;
     load5 = async ({ parent }) => {
+      console.log("hop");
       const { user } = await parent();
       if (Object.entries(user).length > 0) {
         userStore.set(user);
       } else {
         userStore.subscribe((user2) => {
-          if (!user2.username) {
+          if (!(user2 == null ? void 0 : user2.username)) {
             throw redirect(307, "/auth/login");
           }
         });
@@ -5299,20 +5308,22 @@ var __exports8 = {};
 __export(__exports8, {
   component: () => component8,
   file: () => file8,
+  fonts: () => fonts8,
   imports: () => imports8,
   index: () => index8,
   shared: () => page_exports4,
   stylesheets: () => stylesheets8
 });
-var index8, component8, file8, imports8, stylesheets8;
+var index8, component8, file8, imports8, stylesheets8, fonts8;
 var init__8 = __esm({
   ".svelte-kit/output/server/nodes/7.js"() {
     init_page4();
     index8 = 7;
     component8 = async () => (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default;
-    file8 = "_app/immutable/components/pages/(app)/member/account/_page.svelte-84720568.js";
-    imports8 = ["_app/immutable/components/pages/(app)/member/account/_page.svelte-84720568.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/navigation-bf1f4e8c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/MemberHorizontalNavigation-4d49cfbf.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/modules/pages/(app)/member/account/_page.js-524457b8.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-666bdb0b.js"];
+    file8 = "_app/immutable/components/pages/(app)/member/account/_page.svelte-4d55827a.js";
+    imports8 = ["_app/immutable/components/pages/(app)/member/account/_page.svelte-4d55827a.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/MemberHorizontalNavigation-885ae6a1.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/modules/pages/(app)/member/account/_page.js-6ff269fb.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-07a6445d.js"];
     stylesheets8 = [];
+    fonts8 = [];
   }
 });
 
@@ -5368,20 +5379,22 @@ var __exports9 = {};
 __export(__exports9, {
   component: () => component9,
   file: () => file9,
+  fonts: () => fonts9,
   imports: () => imports9,
   index: () => index9,
   shared: () => page_exports5,
   stylesheets: () => stylesheets9
 });
-var index9, component9, file9, imports9, stylesheets9;
+var index9, component9, file9, imports9, stylesheets9, fonts9;
 var init__9 = __esm({
   ".svelte-kit/output/server/nodes/8.js"() {
     init_page5();
     index9 = 8;
     component9 = async () => (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default;
-    file9 = "_app/immutable/components/pages/(app)/member/requests/_page.svelte-be674b39.js";
-    imports9 = ["_app/immutable/components/pages/(app)/member/requests/_page.svelte-be674b39.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/MemberHorizontalNavigation-4d49cfbf.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/modules/pages/(app)/member/requests/_page.js-53ca5c21.js", "_app/immutable/chunks/index-b593c33b.js", "_app/immutable/chunks/control-03134885.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-2994d4ae.js"];
+    file9 = "_app/immutable/components/pages/(app)/member/requests/_page.svelte-5c28afa8.js";
+    imports9 = ["_app/immutable/components/pages/(app)/member/requests/_page.svelte-5c28afa8.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/MemberHorizontalNavigation-885ae6a1.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/modules/pages/(app)/member/requests/_page.js-2d6187ee.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-78166d27.js"];
     stylesheets9 = [];
+    fonts9 = [];
   }
 });
 
@@ -5620,20 +5633,22 @@ var __exports10 = {};
 __export(__exports10, {
   component: () => component10,
   file: () => file10,
+  fonts: () => fonts10,
   imports: () => imports10,
   index: () => index10,
   shared: () => page_exports6,
   stylesheets: () => stylesheets10
 });
-var index10, component10, file10, imports10, stylesheets10;
+var index10, component10, file10, imports10, stylesheets10, fonts10;
 var init__10 = __esm({
   ".svelte-kit/output/server/nodes/9.js"() {
     init_page6();
     index10 = 9;
     component10 = async () => (await Promise.resolve().then(() => (init_page_svelte6(), page_svelte_exports6))).default;
-    file10 = "_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-2981ec24.js";
-    imports10 = ["_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-2981ec24.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/Modal-a9efb2e7.js", "_app/immutable/chunks/lesson-f97c8aea.js", "_app/immutable/chunks/stores-d636880c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-da2a4b0d.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/_page-ad7cafa8.js"];
+    file10 = "_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c73b4e15.js";
+    imports10 = ["_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-c73b4e15.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/lesson-83a00894.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-3d01ee0e.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/_page-87b24bad.js"];
     stylesheets10 = ["_app/immutable/assets/Modal-7e1b958a.css"];
+    fonts10 = [];
   }
 });
 
@@ -6354,20 +6369,22 @@ var __exports11 = {};
 __export(__exports11, {
   component: () => component11,
   file: () => file11,
+  fonts: () => fonts11,
   imports: () => imports11,
   index: () => index11,
   shared: () => page_exports7,
   stylesheets: () => stylesheets11
 });
-var index11, component11, file11, imports11, stylesheets11;
+var index11, component11, file11, imports11, stylesheets11, fonts11;
 var init__11 = __esm({
   ".svelte-kit/output/server/nodes/10.js"() {
     init_page7();
     index11 = 10;
     component11 = async () => (await Promise.resolve().then(() => (init_page_svelte7(), page_svelte_exports7))).default;
-    file11 = "_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-19711159.js";
-    imports11 = ["_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-19711159.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/lesson-f97c8aea.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ozel-ders-talebi-olustur/_page.js-af7fb968.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/_page-c0767ab4.js"];
+    file11 = "_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-cb4b86f6.js";
+    imports11 = ["_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-cb4b86f6.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/lesson-83a00894.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ozel-ders-talebi-olustur/_page.js-cee40317.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-57fca70d.js"];
     stylesheets11 = ["_app/immutable/assets/_page-3b636b73.css"];
+    fonts11 = [];
   }
 });
 
@@ -6386,18 +6403,20 @@ var init_page8 = __esm({
 // .svelte-kit/output/server/nodes/11.js
 var __exports12 = {};
 __export(__exports12, {
+  fonts: () => fonts12,
   imports: () => imports12,
   index: () => index12,
   shared: () => page_exports8,
   stylesheets: () => stylesheets12
 });
-var index12, imports12, stylesheets12;
+var index12, imports12, stylesheets12, fonts12;
 var init__12 = __esm({
   ".svelte-kit/output/server/nodes/11.js"() {
     init_page8();
     index12 = 11;
     imports12 = ["_app/immutable/modules/pages/(auth)/auth/_page.js-8e67cbf2.js", "_app/immutable/chunks/_page-3a850627.js"];
     stylesheets12 = [];
+    fonts12 = [];
   }
 });
 
@@ -6539,20 +6558,22 @@ var __exports13 = {};
 __export(__exports13, {
   component: () => component12,
   file: () => file12,
+  fonts: () => fonts13,
   imports: () => imports13,
   index: () => index13,
   shared: () => page_exports9,
   stylesheets: () => stylesheets13
 });
-var index13, component12, file12, imports13, stylesheets13;
+var index13, component12, file12, imports13, stylesheets13, fonts13;
 var init__13 = __esm({
   ".svelte-kit/output/server/nodes/12.js"() {
     init_page9();
     index13 = 12;
     component12 = async () => (await Promise.resolve().then(() => (init_page_svelte8(), page_svelte_exports8))).default;
-    file12 = "_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-57a4cd4e.js";
-    imports13 = ["_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-57a4cd4e.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/Input-c1aeede8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(auth)/auth/activation/_page.js-23b65071.js", "_app/immutable/chunks/_page-bacf8e76.js"];
+    file12 = "_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-2a405a3b.js";
+    imports13 = ["_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-2a405a3b.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/Input-44b40e20.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(auth)/auth/activation/_page.js-23b65071.js", "_app/immutable/chunks/_page-bacf8e76.js"];
     stylesheets13 = [];
+    fonts13 = [];
   }
 });
 
@@ -6622,20 +6643,22 @@ var __exports14 = {};
 __export(__exports14, {
   component: () => component13,
   file: () => file13,
+  fonts: () => fonts14,
   imports: () => imports14,
   index: () => index14,
   shared: () => page_exports10,
   stylesheets: () => stylesheets14
 });
-var index14, component13, file13, imports14, stylesheets14;
+var index14, component13, file13, imports14, stylesheets14, fonts14;
 var init__14 = __esm({
   ".svelte-kit/output/server/nodes/13.js"() {
     init_page10();
     index14 = 13;
     component13 = async () => (await Promise.resolve().then(() => (init_page_svelte9(), page_svelte_exports9))).default;
-    file13 = "_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-d861b123.js";
-    imports14 = ["_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-d861b123.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/Input-c1aeede8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/(auth)/auth/forgot/_page.js-a605e759.js", "_app/immutable/chunks/_page-b7482555.js"];
+    file13 = "_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-3c40730d.js";
+    imports14 = ["_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-3c40730d.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/Input-44b40e20.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/(auth)/auth/forgot/_page.js-a605e759.js", "_app/immutable/chunks/_page-b7482555.js"];
     stylesheets14 = [];
+    fonts14 = [];
   }
 });
 
@@ -6761,20 +6784,22 @@ var __exports15 = {};
 __export(__exports15, {
   component: () => component14,
   file: () => file14,
+  fonts: () => fonts15,
   imports: () => imports15,
   index: () => index15,
   shared: () => page_exports11,
   stylesheets: () => stylesheets15
 });
-var index15, component14, file14, imports15, stylesheets15;
+var index15, component14, file14, imports15, stylesheets15, fonts15;
 var init__15 = __esm({
   ".svelte-kit/output/server/nodes/14.js"() {
     init_page11();
     index15 = 14;
     component14 = async () => (await Promise.resolve().then(() => (init_page_svelte10(), page_svelte_exports10))).default;
-    file14 = "_app/immutable/components/pages/(auth)/auth/login/_page.svelte-f03cc4bf.js";
-    imports15 = ["_app/immutable/components/pages/(auth)/auth/login/_page.svelte-f03cc4bf.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/Input-c1aeede8.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/SvelteCookie-ba5917f9.js", "_app/immutable/chunks/user-5e4a8908.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/navigation-bf1f4e8c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/modules/pages/(auth)/auth/login/_page.js-014bafbd.js", "_app/immutable/chunks/_page-3362f046.js"];
+    file14 = "_app/immutable/components/pages/(auth)/auth/login/_page.svelte-bf709042.js";
+    imports15 = ["_app/immutable/components/pages/(auth)/auth/login/_page.svelte-bf709042.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/Input-44b40e20.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/SvelteCookie-6ae7a851.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/modules/pages/(auth)/auth/login/_page.js-014bafbd.js", "_app/immutable/chunks/_page-3362f046.js"];
     stylesheets15 = [];
+    fonts15 = [];
   }
 });
 
@@ -6788,19 +6813,19 @@ function deleteCookie(name) {
   document.cookie = name + "=; Max-Age=-99999999;";
 }
 async function load11({ url }) {
-  userStore.set(userModel);
-  deleteCookie("token");
   let redirectPath = url.searchParams.get("to") ? url.searchParams.get("to") : "/";
-  return {
-    to: redirectPath
-  };
+  throw redirect(307, redirectPath);
 }
 var prerender12;
 var init_page12 = __esm({
   ".svelte-kit/output/server/entries/pages/(auth)/auth/logout/_page.js"() {
     init_chunks();
     init_userStore();
+    init_index2();
     prerender12 = false;
+    deleteCookie("token");
+    userStore.set(null);
+    console.log("logout page.js called");
   }
 });
 
@@ -6809,27 +6834,13 @@ var page_svelte_exports11 = {};
 __export(page_svelte_exports11, {
   default: () => Page11
 });
-function guard(name) {
-  return () => {
-    throw new Error(`Cannot call ${name}(...) on the server`);
-  };
-}
-var goto, Bye, Page11;
+var Bye, Page11;
 var init_page_svelte11 = __esm({
   ".svelte-kit/output/server/entries/pages/(auth)/auth/logout/_page.svelte.js"() {
     init_chunks();
-    goto = guard("goto");
     Bye = "/_app/immutable/assets/bye-688e24e7.png";
     Page11 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { data } = $$props;
-      setTimeout(
-        () => {
-          goto(data.to);
-        },
-        1e3
-      );
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
+      console.log("logout page.svelte called");
       return `<div class="${"flex text-center h-screen my-auto items-center justify-center"}"><div><div class="${"mt-2 text-7xl font-bold"}">Good bye!</div>
         <img${add_attribute("src", Bye, 0)} width="${"300"}" class="${"mx-auto my-12"}">
         <div class="${"text-2xl font-bold"}">Hesab\u0131ndan ba\u015Far\u0131yla \xE7\u0131k\u0131\u015F yapt\u0131n.</div>
@@ -6847,20 +6858,22 @@ var __exports16 = {};
 __export(__exports16, {
   component: () => component15,
   file: () => file15,
+  fonts: () => fonts16,
   imports: () => imports16,
   index: () => index16,
   shared: () => page_exports12,
   stylesheets: () => stylesheets16
 });
-var index16, component15, file15, imports16, stylesheets16;
+var index16, component15, file15, imports16, stylesheets16, fonts16;
 var init__16 = __esm({
   ".svelte-kit/output/server/nodes/15.js"() {
     init_page12();
     index16 = 15;
     component15 = async () => (await Promise.resolve().then(() => (init_page_svelte11(), page_svelte_exports11))).default;
-    file15 = "_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-4d8b72e6.js";
-    imports16 = ["_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-4d8b72e6.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/navigation-bf1f4e8c.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/modules/pages/(auth)/auth/logout/_page.js-85781581.js", "_app/immutable/chunks/SvelteCookie-ba5917f9.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/userStore-7d0e6609.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/_page-9f541f16.js"];
+    file15 = "_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-d458d87c.js";
+    imports16 = ["_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-d458d87c.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/modules/pages/(auth)/auth/logout/_page.js-5e11db66.js", "_app/immutable/chunks/SvelteCookie-6ae7a851.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/_page-081a3dbf.js"];
     stylesheets16 = [];
+    fonts16 = [];
   }
 });
 
@@ -6937,12 +6950,12 @@ function uneval(value) {
     if (typeof thing === "function") {
       throw new DevalueError(`Cannot stringify a function`, keys);
     }
-    if (counts.has(thing)) {
-      counts.set(thing, counts.get(thing) + 1);
-      return;
-    }
-    counts.set(thing, 1);
     if (!is_primitive(thing)) {
+      if (counts.has(thing)) {
+        counts.set(thing, counts.get(thing) + 1);
+        return;
+      }
+      counts.set(thing, 1);
       const type = get_type(thing);
       switch (type) {
         case "Number":
@@ -7366,6 +7379,12 @@ function is_content_type(request, ...types) {
 function is_form_content_type(request) {
   return is_content_type(request, "application/x-www-form-urlencoded", "multipart/form-data");
 }
+function coalesce_to_error(err) {
+  return err instanceof Error || err && err.name && err.message ? err : new Error(JSON.stringify(err));
+}
+function normalize_error(error2) {
+  return error2;
+}
 function normalize_path(path, trailing_slash) {
   if (path === "/" || trailing_slash === "ignore")
     return path;
@@ -7376,9 +7395,12 @@ function normalize_path(path, trailing_slash) {
   }
   return path;
 }
+function decode_pathname(pathname) {
+  return pathname.split("%25").map(decodeURI).join("%25");
+}
 function decode_params(params) {
   for (const key2 in params) {
-    params[key2] = params[key2].replace(/%23/g, "#").replace(/%3[Bb]/g, ";").replace(/%2[Cc]/g, ",").replace(/%2[Ff]/g, "/").replace(/%3[Ff]/g, "?").replace(/%3[Aa]/g, ":").replace(/%40/g, "@").replace(/%26/g, "&").replace(/%3[Dd]/g, "=").replace(/%2[Bb]/g, "+").replace(/%24/g, "$");
+    params[key2] = decodeURIComponent(params[key2]);
   }
   return params;
 }
@@ -7463,20 +7485,6 @@ function allowed_methods(mod) {
     allowed.push("HEAD");
   return allowed;
 }
-function data_response(data, event) {
-  const headers = {
-    "content-type": "application/json",
-    "cache-control": "private, no-store"
-  };
-  try {
-    return new Response(stringify(data), { headers });
-  } catch (e3) {
-    const error2 = e3;
-    const match = /\[(\d+)\]\.data\.(.+)/.exec(error2.path);
-    const message = match ? `Data returned from \`load\` while rendering ${event.routeId} is not serializable: ${error2.message} (data.${match[2]})` : error2.message;
-    return new Response(JSON.stringify(message), { headers, status: 500 });
-  }
-}
 function get_option(nodes, option) {
   return nodes.reduce((value, node) => {
     var _a, _b;
@@ -7496,9 +7504,10 @@ function static_error_page(options, status, message) {
     status
   });
 }
-function handle_fatal_error(event, options, error2) {
+async function handle_fatal_error(event, options, error2) {
+  error2 = error2 instanceof HttpError ? error2 : coalesce_to_error(error2);
   const status = error2 instanceof HttpError ? error2.status : 500;
-  const body = handle_error_and_jsonify(event, options, error2);
+  const body = await handle_error_and_jsonify(event, options, error2);
   const type = negotiate(event.request.headers.get("accept") || "text/html", [
     "application/json",
     "text/html"
@@ -7525,6 +7534,37 @@ function redirect_response(status, location) {
   });
   return response;
 }
+function clarify_devalue_error(event, error2) {
+  if (error2.path) {
+    return `Data returned from \`load\` while rendering ${event.route.id} is not serializable: ${error2.message} (data${error2.path})`;
+  }
+  if (error2.path === "") {
+    return `Data returned from \`load\` while rendering ${event.route.id} is not a plain object`;
+  }
+  return error2.message;
+}
+function serialize_data_node(node) {
+  if (!node)
+    return "null";
+  if (node.type === "error" || node.type === "skip") {
+    return JSON.stringify(node);
+  }
+  const stringified = stringify(node.data);
+  const uses = [];
+  if (node.uses.dependencies.size > 0) {
+    uses.push(`"dependencies":${JSON.stringify(Array.from(node.uses.dependencies))}`);
+  }
+  if (node.uses.params.size > 0) {
+    uses.push(`"params":${JSON.stringify(Array.from(node.uses.params))}`);
+  }
+  if (node.uses.parent)
+    uses.push(`"parent":1`);
+  if (node.uses.route)
+    uses.push(`"route":1`);
+  if (node.uses.url)
+    uses.push(`"url":1`);
+  return `{"type":"data","data":${stringified},"uses":{${uses.join(",")}}${node.slash ? `,"slash":${JSON.stringify(node.slash)}` : ""}}`;
+}
 async function render_endpoint(event, mod, state) {
   const method = event.request.method;
   check_method_names(mod);
@@ -7541,7 +7581,7 @@ async function render_endpoint(event, mod, state) {
   }
   if (state.prerendering && !prerender13) {
     if (state.initiator) {
-      throw new Error(`${event.routeId} is not prerenderable`);
+      throw new Error(`${event.route.id} is not prerenderable`);
     } else {
       return new Response(void 0, { status: 204 });
     }
@@ -7565,8 +7605,6 @@ async function render_endpoint(event, mod, state) {
         status: error2.status,
         headers: { location: error2.location }
       });
-    } else if (error2 instanceof ValidationError) {
-      return json(error2.data, { status: error2.status });
     }
     throw error2;
   }
@@ -7583,12 +7621,6 @@ function is_endpoint_request(event) {
 }
 function compact(arr) {
   return arr.filter((val) => val != null);
-}
-function coalesce_to_error(err) {
-  return err instanceof Error || err && err.name && err.message ? err : new Error(JSON.stringify(err));
-}
-function normalize_error(error2) {
-  return error2;
 }
 function is_action_json_request(event) {
   const accept = negotiate(event.request.headers.get("accept") ?? "*/*", [
@@ -7612,14 +7644,16 @@ async function handle_action_json_request(event, options, server2) {
   try {
     const data = await call_action(event, actions);
     if (data instanceof ValidationError) {
-      check_serializability(data.data, event.routeId, "data");
-      return action_json({ type: "invalid", status: data.status, data: data.data });
+      return action_json({
+        type: "invalid",
+        status: data.status,
+        data: stringify_action_response(data.data, event.route.id)
+      });
     } else {
-      check_serializability(data, event.routeId, "data");
       return action_json({
         type: "success",
         status: data ? 200 : 204,
-        data
+        data: stringify_action_response(data, event.route.id)
       });
     }
   } catch (e3) {
@@ -7634,7 +7668,7 @@ async function handle_action_json_request(event, options, server2) {
     return action_json(
       {
         type: "error",
-        error: handle_error_and_jsonify(event, options, check_incorrect_invalid_use(error2))
+        error: await handle_error_and_jsonify(event, options, check_incorrect_invalid_use(error2))
       },
       {
         status: error2 instanceof HttpError ? error2.status : 500
@@ -7729,30 +7763,25 @@ function maybe_throw_migration_error(server2) {
     }
   }
 }
-function check_serializability(value, id, path) {
-  const type = typeof value;
-  if (type === "string" || type === "boolean" || type === "number" || type === "undefined") {
-    return;
-  }
-  if (type === "object") {
-    if (!value)
-      return;
-    if (Array.isArray(value)) {
-      value.forEach((child, i) => {
-        check_serializability(child, id, `${path}[${i}]`);
-      });
-      return;
+function uneval_action_response(data, route_id) {
+  return try_deserialize(data, uneval, route_id);
+}
+function stringify_action_response(data, route_id) {
+  return try_deserialize(data, stringify, route_id);
+}
+function try_deserialize(data, fn2, route_id) {
+  try {
+    return fn2(data);
+  } catch (e3) {
+    const error2 = e3;
+    if ("path" in error2) {
+      let message = `Data returned from action inside ${route_id} is not serializable: ${error2.message}`;
+      if (error2.path !== "")
+        message += ` (data.${error2.path})`;
+      throw new Error(message);
     }
-    if (Object.getPrototypeOf(value) === Object.prototype) {
-      for (const key2 in value) {
-        check_serializability(value[key2], id, `${path}.${key2}`);
-      }
-      return;
-    }
+    throw error2;
   }
-  throw new Error(
-    `${path} returned from action in ${id} cannot be serialized as JSON without losing its original type` + (value instanceof Date ? " (Date objects are serialized as strings)" : "")
-  );
 }
 async function unwrap_promises(object) {
   var _a;
@@ -7773,6 +7802,7 @@ async function load_server_data({ event, state, node, parent }) {
     dependencies: /* @__PURE__ */ new Set(),
     params: /* @__PURE__ */ new Set(),
     parent: false,
+    route: false,
     url: false
   };
   const url = make_trackable(event.url, () => {
@@ -7799,18 +7829,20 @@ async function load_server_data({ event, state, node, parent }) {
       uses.parent = true;
       return parent();
     },
+    route: {
+      get id() {
+        uses.route = true;
+        return event.route.id;
+      }
+    },
     url
   }));
   const data = result ? await unwrap_promises(result) : null;
   return {
     type: "data",
     data,
-    uses: {
-      dependencies: uses.dependencies.size > 0 ? Array.from(uses.dependencies) : void 0,
-      params: uses.params.size > 0 ? Array.from(uses.params) : void 0,
-      parent: uses.parent ? 1 : void 0,
-      url: uses.url ? 1 : void 0
-    }
+    uses,
+    slash: node.server.trailingSlash
   };
 }
 async function load_data({
@@ -7832,15 +7864,28 @@ async function load_data({
     url: event.url,
     params: event.params,
     data: (server_data_node == null ? void 0 : server_data_node.data) ?? null,
-    routeId: event.routeId,
+    route: event.route,
     fetch: async (input, init2) => {
+      const cloned_body = input instanceof Request && input.body ? input.clone().body : null;
       const response = await event.fetch(input, init2);
       const url = new URL(input instanceof Request ? input.url : input, event.url);
       const same_origin = url.origin === event.url.origin;
       let dependency;
-      if (same_origin && state.prerendering) {
-        dependency = { response, body: null };
-        state.prerendering.dependencies.set(url.pathname, dependency);
+      if (same_origin) {
+        if (state.prerendering) {
+          dependency = { response, body: null };
+          state.prerendering.dependencies.set(url.pathname, dependency);
+        }
+      } else {
+        const mode = input instanceof Request ? input.mode : (init2 == null ? void 0 : init2.mode) ?? "cors";
+        if (mode !== "no-cors") {
+          const acao = response.headers.get("access-control-allow-origin");
+          if (!acao || acao !== event.url.origin && acao !== "*") {
+            throw new Error(
+              `CORS error: ${acao ? "Incorrect" : "No"} 'Access-Control-Allow-Origin' header is present on the requested resource`
+            );
+          }
+        }
       }
       const proxy = new Proxy(response, {
         get(response2, key2, _receiver) {
@@ -7856,7 +7901,7 @@ async function load_data({
               fetched.push({
                 url: same_origin ? url.href.slice(event.url.origin.length) : url.href,
                 method: event.request.method,
-                request_body: init2 == null ? void 0 : init2.body,
+                request_body: input instanceof Request && cloned_body ? await stream_to_string(cloned_body) : init2 == null ? void 0 : init2.body,
                 response_body: body,
                 response: response2
               });
@@ -7895,7 +7940,7 @@ async function load_data({
             const included = resolve_opts.filterSerializedResponseHeaders(lower, value);
             if (!included) {
               throw new Error(
-                `Failed to get response header "${lower}" \u2014 it must be included by the \`filterSerializedResponseHeaders\` option: https://kit.svelte.dev/docs/hooks#server-hooks-handle (at ${event.routeId})`
+                `Failed to get response header "${lower}" \u2014 it must be included by the \`filterSerializedResponseHeaders\` option: https://kit.svelte.dev/docs/hooks#server-hooks-handle (at ${event.route})`
               );
             }
           }
@@ -7921,6 +7966,19 @@ async function load_data({
   });
   const data = await node.shared.load.call(null, load_event);
   return data ? unwrap_promises(data) : null;
+}
+async function stream_to_string(stream) {
+  let result = "";
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) {
+      break;
+    }
+    result += decoder.decode(value);
+  }
+  return result;
 }
 function hash(value) {
   let hash22 = 5381;
@@ -8004,7 +8062,7 @@ function sha256(data) {
   if (!key[0])
     precompute();
   const out = init.slice(0);
-  const array2 = encode(data);
+  const array2 = encode$1(data);
   for (let i = 0; i < array2.length; i += 16) {
     const w = array2.subarray(i, i + 16);
     let tmp;
@@ -8085,7 +8143,7 @@ function reverse_endianness(bytes) {
     bytes[i + 3] = a2;
   }
 }
-function encode(str) {
+function encode$1(str) {
   const encoded = encoder.encode(str);
   const length = encoded.length * 8;
   const size = 512 * Math.ceil((length + 65) / 512);
@@ -8290,7 +8348,7 @@ async function render_response({
   resolve_opts,
   action_result
 }) {
-  var _a, _b, _c, _d, _e;
+  var _a;
   if (state.prerendering) {
     if (options.csp.mode === "nonce") {
       throw new Error('Cannot use prerendering if config.kit.csp.mode === "nonce"');
@@ -8302,6 +8360,7 @@ async function render_response({
   const { entry } = options.manifest._;
   const stylesheets17 = new Set(entry.stylesheets);
   const modulepreloads = new Set(entry.imports);
+  const fonts17 = new Set(options.manifest._.entry.fonts);
   const link_header_preloads = /* @__PURE__ */ new Set();
   const inline_styles = /* @__PURE__ */ new Map();
   let rendered;
@@ -8324,7 +8383,7 @@ async function render_response({
     props.page = {
       error: error2,
       params: event.params,
-      routeId: event.routeId,
+      route: event.route,
       status,
       url: event.url,
       data,
@@ -8347,6 +8406,9 @@ async function render_response({
       }
       if (node.stylesheets) {
         node.stylesheets.forEach((url) => stylesheets17.add(url));
+      }
+      if (node.fonts) {
+        node.fonts.forEach((url) => fonts17.add(url));
       }
       if (node.inline_styles) {
         Object.entries(await node.inline_styles()).forEach(([k, v]) => inline_styles.set(k, v));
@@ -8374,29 +8436,32 @@ async function render_response({
   const prefixed = (path) => path.startsWith("/") ? path : `${assets2}/${path}`;
   const serialized = { data: "", form: "null" };
   try {
-    serialized.data = uneval(branch.map(({ server_data }) => server_data));
+    serialized.data = `[${branch.map(({ server_data }) => {
+      if ((server_data == null ? void 0 : server_data.type) === "data") {
+        const data = uneval(server_data.data);
+        const uses = [];
+        if (server_data.uses.dependencies.size > 0) {
+          uses.push(`dependencies:${s(Array.from(server_data.uses.dependencies))}`);
+        }
+        if (server_data.uses.params.size > 0) {
+          uses.push(`params:${s(Array.from(server_data.uses.params))}`);
+        }
+        if (server_data.uses.parent)
+          uses.push(`parent:1`);
+        if (server_data.uses.route)
+          uses.push(`route:1`);
+        if (server_data.uses.url)
+          uses.push(`url:1`);
+        return `{type:"data",data:${data},uses:{${uses.join(",")}}${server_data.slash ? `,slash:${s(server_data.slash)}` : ""}}`;
+      }
+      return s(server_data);
+    }).join(",")}]`;
   } catch (e3) {
     const error3 = e3;
-    const match = /\[(\d+)\]\.data\.(.+)/.exec(error3.path);
-    if (match) {
-      throw new Error(
-        `Data returned from \`load\` while rendering ${event.routeId} is not serializable: ${error3.message} (data.${match[2]})`
-      );
-    }
-    const nonPojoError = /pojo/i.exec(error3.message);
-    if (nonPojoError) {
-      const constructorName = (_e = (_d = (_c = (_b = branch.find(({ server_data }) => {
-        var _a2, _b2;
-        return (_b2 = (_a2 = server_data == null ? void 0 : server_data.data) == null ? void 0 : _a2.constructor) == null ? void 0 : _b2.name;
-      })) == null ? void 0 : _b.server_data) == null ? void 0 : _c.data) == null ? void 0 : _d.constructor) == null ? void 0 : _e.name;
-      throw new Error(
-        `Data returned from \`load\` (while rendering ${event.routeId}) must be a plain object${constructorName ? ` rather than an instance of ${constructorName}` : ""}`
-      );
-    }
-    throw error3;
+    throw new Error(clarify_devalue_error(event, error3));
   }
   if (form_value) {
-    serialized.form = uneval(form_value);
+    serialized.form = uneval_action_response(form_value, event.route.id);
   }
   if (inline_styles.size > 0) {
     const content = Array.from(inline_styles.values()).join("\n");
@@ -8411,19 +8476,36 @@ async function render_response({
   }
   for (const dep of stylesheets17) {
     const path = prefixed(dep);
-    const attributes = [];
-    if (csp.style_needs_nonce) {
-      attributes.push(`nonce="${csp.nonce}"`);
-    }
-    if (inline_styles.has(dep)) {
-      attributes.push("disabled", 'media="(max-width: 0)"');
-    } else {
-      const preload_atts = ['rel="preload"', 'as="style"'].concat(attributes);
-      link_header_preloads.add(`<${encodeURI(path)}>; ${preload_atts.join(";")}; nopush`);
-    }
-    attributes.unshift('rel="stylesheet"');
-    head += `
+    if (resolve_opts.preload({ type: "css", path })) {
+      const attributes = [];
+      if (csp.style_needs_nonce) {
+        attributes.push(`nonce="${csp.nonce}"`);
+      }
+      if (inline_styles.has(dep)) {
+        attributes.push("disabled", 'media="(max-width: 0)"');
+      } else {
+        const preload_atts = ['rel="preload"', 'as="style"'].concat(attributes);
+        link_header_preloads.add(`<${encodeURI(path)}>; ${preload_atts.join(";")}; nopush`);
+      }
+      attributes.unshift('rel="stylesheet"');
+      head += `
 		<link href="${path}" ${attributes.join(" ")}>`;
+    }
+  }
+  for (const dep of fonts17) {
+    const path = prefixed(dep);
+    if (resolve_opts.preload({ type: "font", path })) {
+      const ext = dep.slice(dep.lastIndexOf(".") + 1);
+      const attributes = [
+        'rel="preload"',
+        'as="font"',
+        `type="font/${ext}"`,
+        `href="${path}"`,
+        "crossorigin"
+      ];
+      head += `
+		<link ${attributes.join(" ")}>`;
+    }
   }
   if (page_config.csr) {
     const init_app = `
@@ -8433,24 +8515,26 @@ async function render_response({
 				env: ${s(options.public_env)},
 				hydrate: ${page_config.ssr ? `{
 					status: ${status},
-					error: ${s(error2)},
+					error: ${uneval(error2)},
 					node_ids: [${branch.map(({ node }) => node.index).join(", ")}],
 					params: ${uneval(event.params)},
-					routeId: ${s(event.routeId)},
+					route: ${s(event.route)},
 					data: ${serialized.data},
 					form: ${serialized.form}
 				}` : "null"},
 				paths: ${s(options.paths)},
 				target: document.querySelector('[data-sveltekit-hydrate="${target}"]').parentNode,
-				trailing_slash: ${s(options.trailing_slash)}
+				version: ${s(options.version)}
 			});
 		`;
     for (const dep of modulepreloads) {
       const path = prefixed(dep);
-      link_header_preloads.add(`<${encodeURI(path)}>; rel="modulepreload"; nopush`);
-      if (state.prerendering) {
-        head += `
+      if (resolve_opts.preload({ type: "js", path })) {
+        link_header_preloads.add(`<${encodeURI(path)}>; rel="modulepreload"; nopush`);
+        if (state.prerendering) {
+          head += `
 		<link rel="modulepreload" href="${path}">`;
+        }
       }
     }
     const attributes = ['type="module"', `data-sveltekit-hydrate="${target}"`];
@@ -8468,10 +8552,11 @@ async function render_response({
     ).join("\n	")}`;
   }
   if (options.service_worker) {
+    const opts = options.dev ? `, { type: 'module' }` : "";
     const init_service_worker = `
 			if ('serviceWorker' in navigator) {
 				addEventListener('load', function () {
-					navigator.serviceWorker.register('${prefixed("service-worker.js")}');
+					navigator.serviceWorker.register('${prefixed("service-worker.js")}'${opts});
 				});
 			}
 		`;
@@ -8567,7 +8652,7 @@ async function respond_with_error({ event, options, state, status, error: error2
         csr: get_option([default_layout], "csr") ?? true
       },
       status,
-      error: handle_error_and_jsonify(event, options, error2),
+      error: await handle_error_and_jsonify(event, options, error2),
       branch,
       fetched,
       event,
@@ -8580,7 +8665,7 @@ async function respond_with_error({ event, options, state, status, error: error2
     return static_error_page(
       options,
       error3 instanceof HttpError ? error3.status : 500,
-      handle_error_and_jsonify(event, options, error3).message
+      (await handle_error_and_jsonify(event, options, error3)).message
     );
   }
 }
@@ -8725,7 +8810,7 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
           const err = normalize_error(e3);
           if (err instanceof Redirect) {
             if (state.prerendering && should_prerender_data) {
-              const body = stringify({
+              const body = JSON.stringify({
                 type: "redirect",
                 location: err.location
               });
@@ -8737,7 +8822,7 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
             return redirect_response(err.status, err.location);
           }
           const status2 = err instanceof HttpError ? err.status : 500;
-          const error2 = handle_error_and_jsonify(event, options, err);
+          const error2 = await handle_error_and_jsonify(event, options, err);
           while (i--) {
             if (page2.errors[i]) {
               const index17 = page2.errors[i];
@@ -8769,10 +8854,7 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
       }
     }
     if (state.prerendering && should_prerender_data) {
-      const body = stringify({
-        type: "data",
-        nodes: branch.map((branch_node) => branch_node == null ? void 0 : branch_node.server_data)
-      });
+      const body = `{"type":"data","nodes":[${branch.map((node) => serialize_data_node(node == null ? void 0 : node.server_data)).join(",")}]}`;
       state.prerendering.dependencies.set(data_pathname, {
         response: new Response(body),
         body
@@ -8804,24 +8886,46 @@ async function render_page(event, route, page2, options, state, resolve_opts) {
     });
   }
 }
-function exec(match, { names, types, optional }, matchers) {
-  const params = {};
-  for (let i = 0; i < names.length; i += 1) {
-    const name = names[i];
-    const type = types[i];
-    let value = match[i + 1];
-    if (value || !optional[i]) {
-      if (type) {
-        const matcher = matchers[type];
-        if (!matcher)
-          throw new Error(`Missing "${type}" param matcher`);
-        if (!matcher(value))
-          return;
+function exec(match, params, matchers) {
+  const result = {};
+  const values = match.slice(1);
+  let buffered = "";
+  for (let i = 0; i < params.length; i += 1) {
+    const param = params[i];
+    let value = values[i];
+    if (param.chained && param.rest && buffered) {
+      value = value ? buffered + "/" + value : buffered;
+    }
+    buffered = "";
+    if (value === void 0) {
+      if (param.rest)
+        result[param.name] = "";
+    } else {
+      if (param.matcher && !matchers[param.matcher](value)) {
+        if (param.optional && param.chained) {
+          let j = values.indexOf(void 0, i);
+          if (j === -1) {
+            const next = params[i + 1];
+            if ((next == null ? void 0 : next.rest) && next.chained) {
+              buffered = value;
+            } else {
+              return;
+            }
+          }
+          while (j >= i) {
+            values[j] = values[j - 1];
+            j -= 1;
+          }
+          continue;
+        }
+        return;
       }
-      params[name] = value ?? "";
+      result[param.name] = value;
     }
   }
-  return params;
+  if (buffered)
+    return;
+  return result;
 }
 function once(fn2) {
   let done = false;
@@ -8833,7 +8937,8 @@ function once(fn2) {
     return result = fn2();
   };
 }
-async function render_data(event, route, options, state) {
+var INVALIDATED_HEADER = "x-sveltekit-invalidated";
+async function render_data(event, route, options, state, trailing_slash) {
   var _a;
   if (!route.page) {
     return new Response(void 0, {
@@ -8842,10 +8947,11 @@ async function render_data(event, route, options, state) {
   }
   try {
     const node_ids = [...route.page.layouts, route.page.leaf];
-    const invalidated = ((_a = event.request.headers.get("x-sveltekit-invalidated")) == null ? void 0 : _a.split(",").map(Boolean)) ?? node_ids.map(() => true);
+    const invalidated = ((_a = event.url.searchParams.get(INVALIDATED_HEADER)) == null ? void 0 : _a.split("_").map(Boolean)) ?? node_ids.map(() => true);
+    event.url.searchParams.delete(INVALIDATED_HEADER);
     let aborted = false;
     const url = new URL(event.url);
-    url.pathname = normalize_path(strip_data_suffix(url.pathname), options.trailing_slash);
+    url.pathname = normalize_path(strip_data_suffix(url.pathname), trailing_slash);
     const new_event = { ...event, url };
     const functions = node_ids.map((n2, i) => {
       return once(async () => {
@@ -8888,41 +8994,79 @@ async function render_data(event, route, options, state) {
     let length = promises.length;
     const nodes = await Promise.all(
       promises.map(
-        (p, i) => p.catch((error2) => {
+        (p, i) => p.catch(async (error2) => {
           if (error2 instanceof Redirect) {
             throw error2;
           }
           length = Math.min(length, i + 1);
           return {
             type: "error",
-            error: handle_error_and_jsonify(event, options, error2),
+            error: await handle_error_and_jsonify(event, options, error2),
             status: error2 instanceof HttpError ? error2.status : void 0
           };
         })
       )
     );
-    const server_data = {
-      type: "data",
-      nodes: nodes.slice(0, length)
-    };
-    return data_response(server_data, event);
+    try {
+      const stubs = nodes.slice(0, length).map(serialize_data_node);
+      const json2 = `{"type":"data","nodes":[${stubs.join(",")}]}`;
+      return json_response(json2);
+    } catch (e3) {
+      const error2 = e3;
+      return json_response(JSON.stringify(clarify_devalue_error(event, error2)), 500);
+    }
   } catch (e3) {
     const error2 = normalize_error(e3);
     if (error2 instanceof Redirect) {
-      const server_data = {
-        type: "redirect",
-        location: error2.location
-      };
-      return data_response(server_data, event);
+      return redirect_json_response(error2);
     } else {
-      return data_response(handle_error_and_jsonify(event, options, error2), event);
+      return json_response(JSON.stringify(await handle_error_and_jsonify(event, options, error2)));
     }
   }
 }
+function json_response(json2, status = 200) {
+  return new Response(json2, {
+    status,
+    headers: {
+      "content-type": "application/json",
+      "cache-control": "private, no-store"
+    }
+  });
+}
+function redirect_json_response(redirect2) {
+  return json_response(
+    JSON.stringify({
+      type: "redirect",
+      location: redirect2.location
+    })
+  );
+}
 var cookie_paths = {};
-function get_cookies(request, url, options) {
+var encode = encodeURIComponent;
+var decode = decodeURIComponent;
+function get_cookies(request, url, dev, trailing_slash) {
   const header = request.headers.get("cookie") ?? "";
-  const initial_cookies = (0, import_cookie.parse)(header);
+  const initial_cookies = (0, import_cookie.parse)(header, { decode });
+  const normalized_url = normalize_path(
+    has_data_suffix(url.pathname) ? strip_data_suffix(url.pathname) : url.pathname,
+    trailing_slash
+  );
+  const default_path = normalized_url.split("/").slice(0, -1).join("/") || "/";
+  if (dev) {
+    for (const name of Object.keys(cookie_paths)) {
+      cookie_paths[name] = new Set(
+        [...cookie_paths[name]].filter(
+          (path) => !path_matches(normalized_url, path) || name in initial_cookies
+        )
+      );
+    }
+    for (const name in initial_cookies) {
+      cookie_paths[name] = cookie_paths[name] ?? /* @__PURE__ */ new Set();
+      if (![...cookie_paths[name]].some((path) => path_matches(normalized_url, path))) {
+        cookie_paths[name].add(default_path);
+      }
+    }
+  }
   const new_cookies = {};
   const defaults = {
     httpOnly: true,
@@ -8931,32 +9075,28 @@ function get_cookies(request, url, options) {
   };
   const cookies = {
     get(name, opts) {
-      var _a;
       const c2 = new_cookies[name];
       if (c2 && domain_matches(url.hostname, c2.options.domain) && path_matches(url.pathname, c2.options.path)) {
         return c2.value;
       }
-      const decode = (opts == null ? void 0 : opts.decode) || decodeURIComponent;
-      const req_cookies = (0, import_cookie.parse)(header, { decode });
+      const decoder = (opts == null ? void 0 : opts.decode) || decode;
+      const req_cookies = (0, import_cookie.parse)(header, { decode: decoder });
       const cookie = req_cookies[name];
-      if (!options.dev || cookie) {
+      if (!dev || cookie) {
         return cookie;
       }
-      if (c2 || ((_a = cookie_paths[name]) == null ? void 0 : _a.size) > 0) {
+      const paths = /* @__PURE__ */ new Set([...cookie_paths[name] ?? []]);
+      if (c2) {
+        paths.add(c2.options.path ?? default_path);
+      }
+      if (paths.size > 0) {
         console.warn(
-          `Cookie with name '${name}' was not found, but a cookie with that name exists at a sub path. Did you mean to set its 'path' to '/'?`
+          `Cookie with name '${name}' was not found at path '${url.pathname}', but a cookie with that name exists at these paths: '${[...paths].join("', '")}'. Did you mean to set its 'path' to '/' instead?`
         );
       }
     },
     set(name, value, opts = {}) {
-      let path = opts.path;
-      if (!path) {
-        const normalized = normalize_path(
-          has_data_suffix(url.pathname) ? strip_data_suffix(url.pathname) : url.pathname,
-          options.trailing_slash
-        );
-        path = normalized.split("/").slice(0, -1).join("/") || "/";
-      }
+      let path = opts.path ?? default_path;
       new_cookies[name] = {
         name,
         value,
@@ -8966,12 +9106,13 @@ function get_cookies(request, url, options) {
           path
         }
       };
-      if (options.dev) {
-        cookie_paths[name] = cookie_paths[name] || /* @__PURE__ */ new Set();
+      if (dev) {
+        cookie_paths[name] = cookie_paths[name] ?? /* @__PURE__ */ new Set();
         if (!value) {
           if (!cookie_paths[name].has(path) && cookie_paths[name].size > 0) {
+            const paths = `'${Array.from(cookie_paths[name]).join("', '")}'`;
             console.warn(
-              `Trying to delete cookie '${name}' at path '${path}', but a cookie with that name only exists at a different path.`
+              `Trying to delete cookie '${name}' at path '${path}', but a cookie with that name only exists at these paths: ${paths}.`
             );
           }
           cookie_paths[name].delete(path);
@@ -8996,7 +9137,7 @@ function get_cookies(request, url, options) {
   function get_cookie_header(destination, header2) {
     const combined_cookies = {};
     for (const name in initial_cookies) {
-      combined_cookies[name] = initial_cookies[name];
+      combined_cookies[name] = encode(initial_cookies[name]);
     }
     for (const key2 in new_cookies) {
       const cookie = new_cookies[key2];
@@ -9004,12 +9145,13 @@ function get_cookies(request, url, options) {
         continue;
       if (!path_matches(destination.pathname, cookie.options.path))
         continue;
-      combined_cookies[cookie.name] = cookie.value;
+      const encoder2 = cookie.options.encode || encode;
+      combined_cookies[cookie.name] = encoder2(cookie.value);
     }
     if (header2) {
-      const parsed = (0, import_cookie.parse)(header2);
+      const parsed = (0, import_cookie.parse)(header2, { decode });
       for (const name in parsed) {
-        combined_cookies[name] = parsed[name];
+        combined_cookies[name] = encode(parsed[name]);
       }
     }
     return Object.entries(combined_cookies).map(([name, value]) => `${name}=${value}`).join("; ");
@@ -9040,42 +9182,39 @@ function add_cookies_to_headers(headers, cookies) {
 }
 function create_fetch({ event, options, state, get_cookie_header }) {
   return async (info, init2) => {
-    const request = normalize_fetch_input(info, init2, event.url);
+    const original_request = normalize_fetch_input(info, init2, event.url);
     const request_body = init2 == null ? void 0 : init2.body;
+    let mode = (info instanceof Request ? info.mode : init2 == null ? void 0 : init2.mode) ?? "cors";
+    let credentials = (info instanceof Request ? info.credentials : init2 == null ? void 0 : init2.credentials) ?? "same-origin";
     return await options.hooks.handleFetch({
       event,
-      request,
+      request: original_request,
       fetch: async (info2, init3) => {
-        const request2 = normalize_fetch_input(info2, init3, event.url);
-        const url = new URL(request2.url);
-        if (!request2.headers.has("origin")) {
-          request2.headers.set("origin", event.url.origin);
+        const request = normalize_fetch_input(info2, init3, event.url);
+        const url = new URL(request.url);
+        if (!request.headers.has("origin")) {
+          request.headers.set("origin", event.url.origin);
         }
-        if ((request2.method === "GET" || request2.method === "HEAD") && (request2.mode === "no-cors" && url.origin !== event.url.origin || url.origin === event.url.origin)) {
-          request2.headers.delete("origin");
+        if (info2 !== original_request) {
+          mode = (info2 instanceof Request ? info2.mode : init3 == null ? void 0 : init3.mode) ?? "cors";
+          credentials = (info2 instanceof Request ? info2.credentials : init3 == null ? void 0 : init3.credentials) ?? "same-origin";
+        }
+        if ((request.method === "GET" || request.method === "HEAD") && (mode === "no-cors" && url.origin !== event.url.origin || url.origin === event.url.origin)) {
+          request.headers.delete("origin");
         }
         if (url.origin !== event.url.origin) {
-          if (`.${url.hostname}`.endsWith(`.${event.url.hostname}`) && request2.credentials !== "omit") {
-            const cookie = get_cookie_header(url, request2.headers.get("cookie"));
+          if (`.${url.hostname}`.endsWith(`.${event.url.hostname}`) && credentials !== "omit") {
+            const cookie = get_cookie_header(url, request.headers.get("cookie"));
             if (cookie)
-              request2.headers.set("cookie", cookie);
+              request.headers.set("cookie", cookie);
           }
-          let response2 = await fetch(request2);
-          if (request2.mode === "no-cors") {
+          let response2 = await fetch(request);
+          if (mode === "no-cors") {
             response2 = new Response("", {
               status: response2.status,
               statusText: response2.statusText,
               headers: response2.headers
             });
-          } else {
-            if (url.origin !== event.url.origin) {
-              const acao = response2.headers.get("access-control-allow-origin");
-              if (!acao || acao !== event.url.origin && acao !== "*") {
-                throw new Error(
-                  `CORS error: ${acao ? "Incorrect" : "No"} 'Access-Control-Allow-Origin' header is present on the requested resource`
-                );
-              }
-            }
           }
           return response2;
         }
@@ -9094,22 +9233,31 @@ function create_fetch({ event, options, state, get_cookie_header }) {
               headers: type ? { "content-type": type } : {}
             });
           }
-          return await fetch(request2);
+          return await fetch(request);
         }
-        if (request2.credentials !== "omit") {
-          const cookie = get_cookie_header(url, request2.headers.get("cookie"));
+        if (credentials !== "omit") {
+          const cookie = get_cookie_header(url, request.headers.get("cookie"));
           if (cookie) {
-            request2.headers.set("cookie", cookie);
+            request.headers.set("cookie", cookie);
           }
           const authorization = event.request.headers.get("authorization");
-          if (authorization && !request2.headers.has("authorization")) {
-            request2.headers.set("authorization", authorization);
+          if (authorization && !request.headers.has("authorization")) {
+            request.headers.set("authorization", authorization);
           }
         }
         if (request_body && typeof request_body !== "string" && !ArrayBuffer.isView(request_body)) {
           throw new Error("Request body must be a string or TypedArray");
         }
-        response = await respond(request2, options, state);
+        if (!request.headers.has("accept")) {
+          request.headers.set("accept", "*/*");
+        }
+        if (!request.headers.has("accept-language")) {
+          request.headers.set(
+            "accept-language",
+            event.request.headers.get("accept-language")
+          );
+        }
+        response = await respond(request, options, state);
         const set_cookie = response.headers.get("set-cookie");
         if (set_cookie) {
           for (const str of set_cookie_parser.splitCookiesString(set_cookie)) {
@@ -9134,6 +9282,7 @@ function normalize_fetch_input(info, init2, url) {
 }
 var default_transform = ({ html }) => html;
 var default_filter = () => false;
+var default_preload = ({ type }) => type === "js" || type === "css";
 async function respond(request, options, state) {
   var _a, _b, _c;
   let url = new URL(request.url);
@@ -9147,7 +9296,7 @@ async function respond(request, options, state) {
   }
   let decoded;
   try {
-    decoded = decodeURI(url.pathname);
+    decoded = decode_pathname(url.pathname);
   } catch {
     return new Response("Malformed URI", { status: 400 });
   }
@@ -9161,14 +9310,14 @@ async function respond(request, options, state) {
   }
   const is_data_request = has_data_suffix(decoded);
   if (is_data_request)
-    decoded = strip_data_suffix(decoded);
+    decoded = strip_data_suffix(decoded) || "/";
   if (!((_b = state.prerendering) == null ? void 0 : _b.fallback)) {
     const matchers = await options.manifest._.matchers();
     for (const candidate of options.manifest._.routes) {
       const match = candidate.pattern.exec(decoded);
       if (!match)
         continue;
-      const matched = exec(match, candidate, matchers);
+      const matched = exec(match, candidate.params, matchers);
       if (matched) {
         route = candidate;
         params = decode_params(matched);
@@ -9176,24 +9325,10 @@ async function respond(request, options, state) {
       }
     }
   }
-  if ((route == null ? void 0 : route.page) && !is_data_request) {
-    const normalized = normalize_path(url.pathname, options.trailing_slash);
-    if (normalized !== url.pathname && !((_c = state.prerendering) == null ? void 0 : _c.fallback)) {
-      return new Response(void 0, {
-        status: 301,
-        headers: {
-          "x-sveltekit-normalize": "1",
-          location: (normalized.startsWith("//") ? url.origin + normalized : normalized) + (url.search === "?" ? "" : url.search)
-        }
-      });
-    }
-  }
+  let trailing_slash = void 0;
   const headers = {};
-  const { cookies, new_cookies, get_cookie_header } = get_cookies(request, url, options);
-  if (state.prerendering)
-    disable_search(url);
   const event = {
-    cookies,
+    cookies: null,
     fetch: null,
     getClientAddress: state.getClientAddress || (() => {
       throw new Error(
@@ -9204,7 +9339,7 @@ async function respond(request, options, state) {
     params,
     platform: state.platform,
     request,
-    routeId: route && route.id,
+    route: { id: (route == null ? void 0 : route.id) ?? null },
     setHeaders: (new_headers) => {
       for (const key2 in new_headers) {
         const lower = key2.toLowerCase();
@@ -9225,7 +9360,6 @@ async function respond(request, options, state) {
     },
     url
   };
-  event.fetch = create_fetch({ event, options, state, get_cookie_header });
   const removed = (property, replacement, suffix = "") => ({
     get: () => {
       throw new Error(`event.${property} has been replaced by event.${replacement}` + suffix);
@@ -9247,101 +9381,57 @@ async function respond(request, options, state) {
     path: removed("path", "url.pathname"),
     query: removed("query", "url.searchParams"),
     body: body_getter,
-    rawBody: body_getter
+    rawBody: body_getter,
+    routeId: removed("routeId", "route.id")
   });
   let resolve_opts = {
     transformPageChunk: default_transform,
-    filterSerializedResponseHeaders: default_filter
+    filterSerializedResponseHeaders: default_filter,
+    preload: default_preload
   };
-  async function resolve(event2, opts) {
-    var _a2;
-    try {
-      if (opts) {
-        if ("transformPage" in opts) {
-          throw new Error(
-            "transformPage has been replaced by transformPageChunk \u2014 see https://github.com/sveltejs/kit/pull/5657 for more information"
-          );
-        }
-        if ("ssr" in opts) {
-          throw new Error(
-            "ssr has been removed, set it in the appropriate +layout.js instead. See the PR for more information: https://github.com/sveltejs/kit/pull/6197"
-          );
-        }
-        resolve_opts = {
-          transformPageChunk: opts.transformPageChunk || default_transform,
-          filterSerializedResponseHeaders: opts.filterSerializedResponseHeaders || default_filter
-        };
-      }
-      if ((_a2 = state.prerendering) == null ? void 0 : _a2.fallback) {
-        return await render_response({
-          event: event2,
-          options,
-          state,
-          page_config: { ssr: false, csr: true },
-          status: 200,
-          error: null,
-          branch: [],
-          fetched: [],
-          resolve_opts
-        });
-      }
-      if (route) {
-        let response;
-        if (is_data_request) {
-          response = await render_data(event2, route, options, state);
-        } else if (route.endpoint && (!route.page || is_endpoint_request(event2))) {
-          response = await render_endpoint(event2, await route.endpoint(), state);
-        } else if (route.page) {
-          response = await render_page(event2, route, route.page, options, state, resolve_opts);
-        } else {
-          throw new Error("This should never happen");
-        }
-        return response;
-      }
-      if (state.initiator === GENERIC_ERROR) {
-        return new Response("Internal Server Error", {
-          status: 500
-        });
-      }
-      if (!state.initiator) {
-        return await respond_with_error({
-          event: event2,
-          options,
-          state,
-          status: 404,
-          error: new Error(`Not found: ${event2.url.pathname}`),
-          resolve_opts
-        });
-      }
-      if (state.prerendering) {
-        return new Response("not found", { status: 404 });
-      }
-      return await fetch(request);
-    } catch (e3) {
-      const error2 = e3 instanceof HttpError ? e3 : coalesce_to_error(e3);
-      return handle_fatal_error(event2, options, error2);
-    } finally {
-      event2.cookies.set = () => {
-        throw new Error("Cannot use `cookies.set(...)` after the response has been generated");
-      };
-      event2.setHeaders = () => {
-        throw new Error("Cannot use `setHeaders(...)` after the response has been generated");
-      };
-    }
-  }
   try {
+    if (route && !is_data_request) {
+      if (route.page) {
+        const nodes = await Promise.all([
+          ...route.page.layouts.map((n2) => n2 == void 0 ? n2 : options.manifest._.nodes[n2]()),
+          options.manifest._.nodes[route.page.leaf]()
+        ]);
+        trailing_slash = get_option(nodes, "trailingSlash");
+      } else if (route.endpoint) {
+        const node = await route.endpoint();
+        trailing_slash = node.trailingSlash;
+      }
+      const normalized = normalize_path(url.pathname, trailing_slash ?? "never");
+      if (normalized !== url.pathname && !((_c = state.prerendering) == null ? void 0 : _c.fallback)) {
+        return new Response(void 0, {
+          status: 301,
+          headers: {
+            "x-sveltekit-normalize": "1",
+            location: (normalized.startsWith("//") ? url.origin + normalized : normalized) + (url.search === "?" ? "" : url.search)
+          }
+        });
+      }
+    }
+    const { cookies, new_cookies, get_cookie_header } = get_cookies(
+      request,
+      url,
+      options.dev,
+      trailing_slash ?? "never"
+    );
+    event.cookies = cookies;
+    event.fetch = create_fetch({ event, options, state, get_cookie_header });
+    if (state.prerendering && !state.prerendering.fallback)
+      disable_search(url);
     const response = await options.hooks.handle({
       event,
       resolve: (event2, opts) => resolve(event2, opts).then((response2) => {
-        if (!is_data_request) {
-          for (const key2 in headers) {
-            const value = headers[key2];
-            response2.headers.set(key2, value);
-          }
+        for (const key2 in headers) {
+          const value = headers[key2];
+          response2.headers.set(key2, value);
         }
         add_cookies_to_headers(response2.headers, Object.values(new_cookies));
-        if (state.prerendering && event2.routeId !== null) {
-          response2.headers.set("x-sveltekit-routeid", encodeURI(event2.routeId));
+        if (state.prerendering && event2.route.id !== null) {
+          response2.headers.set("x-sveltekit-routeid", encodeURI(event2.route.id));
         }
         return response2;
       }),
@@ -9375,10 +9465,98 @@ async function respond(request, options, state) {
         });
       }
     }
+    if (is_data_request && response.status >= 300 && response.status <= 308) {
+      const location = response.headers.get("location");
+      if (location) {
+        return redirect_json_response(new Redirect(response.status, location));
+      }
+    }
     return response;
-  } catch (e3) {
-    const error2 = coalesce_to_error(e3);
-    return handle_fatal_error(event, options, error2);
+  } catch (error2) {
+    if (error2 instanceof Redirect) {
+      if (is_data_request) {
+        return redirect_json_response(error2);
+      } else {
+        return redirect_response(error2.status, error2.location);
+      }
+    }
+    return await handle_fatal_error(event, options, error2);
+  }
+  async function resolve(event2, opts) {
+    var _a2;
+    try {
+      if (opts) {
+        if ("transformPage" in opts) {
+          throw new Error(
+            "transformPage has been replaced by transformPageChunk \u2014 see https://github.com/sveltejs/kit/pull/5657 for more information"
+          );
+        }
+        if ("ssr" in opts) {
+          throw new Error(
+            "ssr has been removed, set it in the appropriate +layout.js instead. See the PR for more information: https://github.com/sveltejs/kit/pull/6197"
+          );
+        }
+        resolve_opts = {
+          transformPageChunk: opts.transformPageChunk || default_transform,
+          filterSerializedResponseHeaders: opts.filterSerializedResponseHeaders || default_filter,
+          preload: opts.preload || default_preload
+        };
+      }
+      if ((_a2 = state.prerendering) == null ? void 0 : _a2.fallback) {
+        return await render_response({
+          event: event2,
+          options,
+          state,
+          page_config: { ssr: false, csr: true },
+          status: 200,
+          error: null,
+          branch: [],
+          fetched: [],
+          resolve_opts
+        });
+      }
+      if (route) {
+        let response;
+        if (is_data_request) {
+          response = await render_data(event2, route, options, state, trailing_slash ?? "never");
+        } else if (route.endpoint && (!route.page || is_endpoint_request(event2))) {
+          response = await render_endpoint(event2, await route.endpoint(), state);
+        } else if (route.page) {
+          response = await render_page(event2, route, route.page, options, state, resolve_opts);
+        } else {
+          throw new Error("This should never happen");
+        }
+        return response;
+      }
+      if (state.initiator === GENERIC_ERROR) {
+        return new Response("Internal Server Error", {
+          status: 500
+        });
+      }
+      if (!state.initiator) {
+        return await respond_with_error({
+          event: event2,
+          options,
+          state,
+          status: 404,
+          error: new Error(`Not found: ${event2.url.pathname}`),
+          resolve_opts
+        });
+      }
+      if (state.prerendering) {
+        return new Response("not found", { status: 404 });
+      }
+      return await fetch(request);
+    } catch (error2) {
+      return await handle_fatal_error(event2, options, error2);
+    } finally {
+      event2.cookies.set = () => {
+        throw new Error("Cannot use `cookies.set(...)` after the response has been generated");
+      };
+      event2.setHeaders = () => {
+        throw new Error("Cannot use `setHeaders(...)` after the response has been generated");
+      };
+    }
   }
 }
 var base = "";
@@ -9451,7 +9629,7 @@ var Server = class {
           get request() {
             throw new Error("request in handleError has been replaced with event. See https://github.com/sveltejs/kit/pull/3384 for details");
           }
-        }) ?? { message: event.routeId != null ? "Internal Error" : "Not Found" };
+        }) ?? { message: event.route.id != null ? "Internal Error" : "Not Found" };
       },
       hooks: null,
       manifest: manifest2,
@@ -9463,7 +9641,7 @@ var Server = class {
       app_template,
       app_template_contains_nonce: false,
       error_template,
-      trailing_slash: "never"
+      version: "1670359172036"
     };
   }
   async init({ env }) {
@@ -9498,7 +9676,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set([".DS_Store", "favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-50be9b7b.js", "imports": ["_app/immutable/start-50be9b7b.js", "_app/immutable/chunks/index-95fd0b09.js", "_app/immutable/chunks/singletons-254c656d.js", "_app/immutable/chunks/index-ba476fff.js", "_app/immutable/chunks/control-03134885.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-a518906c.js", "imports": ["_app/immutable/start-a518906c.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/control-ba37bfb4.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -9521,108 +9699,84 @@ var manifest = {
       {
         id: "/",
         pattern: /^\/$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0], errors: [1], leaf: 4 },
         endpoint: null
       },
       {
         id: "/(auth)/auth",
         pattern: /^\/auth\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 3], errors: [1, ,], leaf: 11 },
         endpoint: null
       },
       {
         id: "/(auth)/auth/activation",
         pattern: /^\/auth\/activation\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 3], errors: [1, ,], leaf: 12 },
         endpoint: null
       },
       {
         id: "/(auth)/auth/forgot",
         pattern: /^\/auth\/forgot\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 3], errors: [1, ,], leaf: 13 },
         endpoint: null
       },
       {
         id: "/(auth)/auth/login",
         pattern: /^\/auth\/login\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 3], errors: [1, ,], leaf: 14 },
         endpoint: null
       },
       {
         id: "/(auth)/auth/logout",
         pattern: /^\/auth\/logout\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 3], errors: [1, ,], leaf: 15 },
         endpoint: null
       },
       {
         id: "/(app)/ders/[slug]",
         pattern: /^\/ders\/([^/]+?)\/?$/,
-        names: ["slug"],
-        types: [null],
-        optional: [false],
+        params: [{ "name": "slug", "optional": false, "rest": false, "chained": false }],
         page: { layouts: [0, 2], errors: [1, ,], leaf: 6 },
         endpoint: null
       },
       {
         id: "/(app)/member/account",
         pattern: /^\/member\/account\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 2], errors: [1, ,], leaf: 7 },
         endpoint: null
       },
       {
         id: "/(app)/member/requests",
         pattern: /^\/member\/requests\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 2], errors: [1, ,], leaf: 8 },
         endpoint: null
       },
       {
         id: "/(app)/ozel-ders-ilanlari-verenler/[...catchall]",
         pattern: /^\/ozel-ders-ilanlari-verenler(?:\/(.*))?\/?$/,
-        names: ["catchall"],
-        types: [null],
-        optional: [false],
+        params: [{ "name": "catchall", "optional": false, "rest": true, "chained": true }],
         page: { layouts: [0, 2], errors: [1, ,], leaf: 9 },
         endpoint: null
       },
       {
         id: "/(app)/ozel-ders-talebi-olustur",
         pattern: /^\/ozel-ders-talebi-olustur\/?$/,
-        names: [],
-        types: [],
-        optional: [],
+        params: [],
         page: { layouts: [0, 2], errors: [1, ,], leaf: 10 },
         endpoint: null
       },
       {
         id: "/(app)/[...catchall]",
         pattern: /^(?:\/(.*))?\/?$/,
-        names: ["catchall"],
-        types: [null],
-        optional: [false],
+        params: [{ "name": "catchall", "optional": false, "rest": true, "chained": true }],
         page: { layouts: [0, 2], errors: [1, ,], leaf: 5 },
         endpoint: null
       }

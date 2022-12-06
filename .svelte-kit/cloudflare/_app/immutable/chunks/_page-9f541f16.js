@@ -1,1 +1,0 @@
-import{d as t}from"./SvelteCookie-ba5917f9.js";import{u as r,c as o}from"./userStore-7d0e6609.js";const a=!1;async function s({url:e}){return r.set(o),t("token"),{to:e.searchParams.get("to")?e.searchParams.get("to"):"/"}}const d=Object.freeze(Object.defineProperty({__proto__:null,prerender:a,load:s},Symbol.toStringTag,{value:"Module"}));export{d as _,s as l,a as p};

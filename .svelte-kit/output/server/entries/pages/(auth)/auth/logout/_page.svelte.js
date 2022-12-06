@@ -1,21 +1,7 @@
 import { c as create_ssr_component, d as add_attribute } from "../../../../../chunks/index.js";
-function guard(name) {
-  return () => {
-    throw new Error(`Cannot call ${name}(...) on the server`);
-  };
-}
-const goto = guard("goto");
 const Bye = "/_app/immutable/assets/bye-688e24e7.png";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { data } = $$props;
-  setTimeout(
-    () => {
-      goto(data.to);
-    },
-    1e3
-  );
-  if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-    $$bindings.data(data);
+  console.log("logout page.svelte called");
   return `<div class="${"flex text-center h-screen my-auto items-center justify-center"}"><div><div class="${"mt-2 text-7xl font-bold"}">Good bye!</div>
         <img${add_attribute("src", Bye, 0)} width="${"300"}" class="${"mx-auto my-12"}">
         <div class="${"text-2xl font-bold"}">Hesab\u0131ndan ba\u015Far\u0131yla \xE7\u0131k\u0131\u015F yapt\u0131n.</div>

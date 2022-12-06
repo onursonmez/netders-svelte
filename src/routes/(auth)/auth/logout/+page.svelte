@@ -1,17 +1,6 @@
 <script>
     import Bye from '$lib/images/bye.png'
-    import { goto } from '$app/navigation'
-    import {onMount} from "svelte";
-
-    export let data
-
-    setTimeout(() => {
-        goto(data.to)
-    }, 1000)
-
-    onMount(() => {
-
-    })
+    console.log("logout page.svelte called")
 </script>
 
 <div class="flex text-center h-screen my-auto items-center justify-center">

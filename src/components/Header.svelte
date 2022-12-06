@@ -81,7 +81,7 @@
 					<div class="flex flex-shrink-0 items-center">
 						<a href="/">
 							<img class="h-8 w-auto" src="{logo}" alt="Netders.com">
-							{$userStore.username}
+							{$userStore?.username}
 						</a>
 					</div>
 					<div class="flex space-x-4 hidden lg:ml-6 lg:block w-full text-center">
@@ -100,7 +100,7 @@
 							Ders Talepleri
 						</a>
 
-						<a href="/detail" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Nasıl Çalışırr?</a>
+						<a href="/member/account" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Nasıl Çalışırr?</a>
 
 						<a href="/detail" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Yardım</a>
 
