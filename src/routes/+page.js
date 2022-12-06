@@ -16,3 +16,4 @@ export const load = async ({ parent }) => {
         userStore.set(user)
     }
 };
+
