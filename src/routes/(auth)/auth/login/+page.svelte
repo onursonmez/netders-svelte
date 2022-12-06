@@ -3,7 +3,7 @@
 	import Input from '/src/components/form/Input.svelte'
 	import LoginScreenImage from '$lib/images/login-screen.png'
 	import Toastify from 'toastify-js'
-	import { setCookie } from 'svelte-cookie'
+	import Cookies from 'js-cookie'
 
 	import { login } from '/src/repository/user'
 	import { userStore } from '/src/stores/userStore'
@@ -50,7 +50,7 @@
 				}
 			} else {
 				$userStore = loginResponse.result
-				setCookie('token', $userStore.token, 30, true)
+				Cookies.set('token', $userStore.token, { expires: 10 })
 				loginData = {
 					login: '',
 					password: '',

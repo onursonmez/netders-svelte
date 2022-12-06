@@ -2,6 +2,7 @@ import { c as create_ssr_component, b as subscribe, d as add_attribute, v as val
 import { L as Logo } from "../../../../../chunks/netders-logo-blue.js";
 import { I as Input } from "../../../../../chunks/Input.js";
 import "toastify-js";
+import "js-cookie";
 import { u as userStore } from "../../../../../chunks/userStore.js";
 const LoginScreenImage = "/_app/immutable/assets/login-screen-14c430ce.png";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {

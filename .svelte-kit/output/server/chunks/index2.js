@@ -26,10 +26,13 @@ class ValidationError {
   }
 }
 function error(status, message) {
+  if (isNaN(status) || status < 400 || status > 599) {
+    throw new Error(`HTTP error status codes must be between 400 and 599 \u2014 ${status} is invalid`);
+  }
   return new HttpError(status, message);
 }
 function redirect(status, location) {
-  if (isNaN(status) || status < 300 || status > 399) {
+  if (isNaN(status) || status < 300 || status > 308) {
     throw new Error("Invalid status code");
   }
   return new Redirect(status, location);

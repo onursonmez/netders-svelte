@@ -81,7 +81,6 @@
 					<div class="flex flex-shrink-0 items-center">
 						<a href="/">
 							<img class="h-8 w-auto" src="{logo}" alt="Netders.com">
-							{$userStore?.username}
 						</a>
 					</div>
 					<div class="flex space-x-4 hidden lg:ml-6 lg:block w-full text-center">

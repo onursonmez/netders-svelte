@@ -1,1 +1,0 @@
-import{r as s}from"./index-b593c33b.js";import{u as r}from"./userStore-7d0e6609.js";const a=!1,n=async({parent:t})=>{const{user:e}=await t();Object.entries(e).length>0?r.set(e):r.subscribe(o=>{if(!o.username)throw s(307,"/auth/login")})},c=Object.freeze(Object.defineProperty({__proto__:null,prerender:a,load:n},Symbol.toStringTag,{value:"Module"}));export{c as _,n as l,a as p};

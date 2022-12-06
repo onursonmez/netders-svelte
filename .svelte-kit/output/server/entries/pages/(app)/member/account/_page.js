@@ -7,7 +7,7 @@ const load = async ({ parent }) => {
     userStore.set(user);
   } else {
     userStore.subscribe((user2) => {
-      if (!user2.username) {
+      if (!(user2 == null ? void 0 : user2.username)) {
         throw redirect(307, "/auth/login");
       }
     });

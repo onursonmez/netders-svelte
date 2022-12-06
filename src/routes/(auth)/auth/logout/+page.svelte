@@ -1,6 +1,5 @@
 <script>
     import Bye from '$lib/images/bye.png'
-    console.log("logout page.svelte called")
 </script>
 
 <div class="flex text-center h-screen my-auto items-center justify-center">

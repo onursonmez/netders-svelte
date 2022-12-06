@@ -204,7 +204,7 @@ function merge_ssr_styles(style_attribute, style_directive) {
   }
   return style_object;
 }
-function escape(value, is_attr = false) {
+function escape2(value, is_attr = false) {
   const str = String(value);
   const pattern2 = is_attr ? ATTR_REGEX : CONTENT_REGEX;
   pattern2.lastIndex = 0;
@@ -220,7 +220,7 @@ function escape(value, is_attr = false) {
 }
 function escape_attribute_value(value) {
   const should_escape = typeof value === "string" || value && typeof value === "object";
-  return should_escape ? escape(value, true) : value;
+  return should_escape ? escape2(value, true) : value;
 }
 function escape_object(obj) {
   const result = {};
@@ -281,7 +281,7 @@ function create_ssr_component(fn2) {
 function add_attribute(name, value, boolean) {
   if (value == null || boolean && !value)
     return "";
-  const assignment = boolean && value === true ? "" : `="${escape(value, true)}"`;
+  const assignment = boolean && value === true ? "" : `="${escape2(value, true)}"`;
   return ` ${name}${assignment}`;
 }
 function add_classes(classes) {
@@ -350,13 +350,13 @@ function redirect(status, location) {
   }
   return new Redirect(status, location);
 }
-function json(data, init2) {
-  const headers = new Headers(init2 == null ? void 0 : init2.headers);
+function json(data, init3) {
+  const headers = new Headers(init3 == null ? void 0 : init3.headers);
   if (!headers.has("content-type")) {
     headers.set("content-type", "application/json");
   }
   return new Response(JSON.stringify(data), {
-    ...init2,
+    ...init3,
     headers
   });
 }
@@ -1021,13 +1021,13 @@ var init_error_svelte = __esm({
       let $page, $$unsubscribe_page;
       $$unsubscribe_page = subscribe(page, (value) => $page = value);
       $$unsubscribe_page();
-      return `<div class="${"flex text-center h-screen my-auto items-center justify-center"}"><div><div class="${"mt-2 text-7xl font-bold"}">${escape($page.status)}</div>
+      return `<div class="${"flex text-center h-screen my-auto items-center justify-center"}"><div><div class="${"mt-2 text-7xl font-bold"}">${escape2($page.status)}</div>
     <img${add_attribute("src", errorImage, 0)} width="${"300"}" class="${"mx-auto my-12"}">
 
     ${$page.error.message ? `<div class="${"text-2xl font-bold"}">Hay aksi! Teknik bir hata olu\u015Ftu.</div>
     <div class="${"mt-2"}">Teknik ekibimiz konunun \xE7\xF6z\xFCm\xFC i\xE7in \xE7al\u0131\u015Fmalar\u0131n\u0131 s\xFCrd\xFCr\xFCyor. En k\u0131sa s\xFCre i\xE7erisinde problemin \xE7\xF6z\xFClece\u011Fini bildirmek isteriz.</div>
-    <div class="${"mt-2 text-xs text-gray-300"}">${escape($page.error.message)}</div>` : `${$page.error ? `${each(Object.values($page.error), (error2) => {
-        return `<div class="${"mt-2"}">${escape(error2)}</div>`;
+    <div class="${"mt-2 text-xs text-gray-300"}">${escape2($page.error.message)}</div>` : `${$page.error ? `${each(Object.values($page.error), (error2) => {
+        return `<div class="${"mt-2"}">${escape2(error2)}</div>`;
       })}` : ``}`}</div></div>`;
     });
   }
@@ -1094,8 +1094,7 @@ var init_colored_bar = __esm({
 						<svg class="${["h-6 w-6", ""].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}"></path></svg>
 
 						<svg class="${["h-6 w-6", "hidden"].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M6 18L18 6M6 6l12 12"}"></path></svg></button></div>
-				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", Logo, 0)} alt="${"Netders.com"}">
-							${escape($userStore == null ? void 0 : $userStore.username)}</a></div>
+				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", Logo, 0)} alt="${"Netders.com"}"></a></div>
 					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders-ilanlari-verenler"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
 							\xD6\u011Fretmen Ara
 						</a>
@@ -1169,7 +1168,7 @@ var init_layout_svelte2 = __esm({
 
 		<section class="${"shadow-md rounded-t-lg bg-white text-center text-base my-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
 			</div>
-			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
+			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape2(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\xD6\u011Fretmen Ara</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Ders talepleri</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a></li>
@@ -1199,8 +1198,8 @@ var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_layout_svelte2(), layout_svelte_exports2))).default;
-    file3 = "_app/immutable/components/pages/(app)/_layout.svelte-aaa392b9.js";
-    imports3 = ["_app/immutable/components/pages/(app)/_layout.svelte-aaa392b9.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/colored-bar-d2bdead8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/user-f0822e94.js"];
+    file3 = "_app/immutable/components/pages/(app)/_layout.svelte-9ade7644.js";
+    imports3 = ["_app/immutable/components/pages/(app)/_layout.svelte-9ade7644.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/colored-bar-664454de.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/user-f0822e94.js"];
     stylesheets3 = ["_app/immutable/assets/_layout-a95766cb.css", "_app/immutable/assets/app-2d0c3135.css"];
     fonts3 = [];
   }
@@ -4057,7 +4056,7 @@ var init_UserVertical = __esm({
       let triggerEl;
       let contentEl;
       let popper2;
-      function init2(node, _triggerEl) {
+      function init3(node, _triggerEl) {
         popper2 = createPopper(_triggerEl, node, {
           placement,
           strategy,
@@ -4113,7 +4112,7 @@ var init_UserVertical = __esm({
 
 ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
         $$result,
-        Object_1.assign({ use: init2 }, { options: triggerEl }, { role: "tooltip" }, { tabIndex: activeContent ? -1 : void 0 }, $$restProps, {
+        Object_1.assign({ use: init3 }, { options: triggerEl }, { role: "tooltip" }, { tabIndex: activeContent ? -1 : void 0 }, $$restProps, {
           class: (0, import_classnames.default)("z-10 outline-none", $$props.class)
         }),
         {},
@@ -4185,18 +4184,18 @@ ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
       $$unsubscribe_page();
       return `${``}
 
-${Object.entries(userData).length > 0 ? `<a href="${"/" + escape(userData.username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><img class="${"h-32 rounded-full mx-auto"}"${add_attribute("src", photoUrl, 0)} alt="${""}"></a>
-<div class="${"flex flex-col w-full justify-between pl-4 leading-normal mt-2"}">${userData.firstName ? `<a href="${"/" + escape(userData.username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape(userData.firstName)} ${escape(userData.lastName)}</h5></a>` : ``}
+${Object.entries(userData).length > 0 ? `<a href="${"/" + escape2(userData.username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><img class="${"h-32 rounded-full mx-auto"}"${add_attribute("src", photoUrl, 0)} alt="${""}"></a>
+<div class="${"flex flex-col w-full justify-between pl-4 leading-normal mt-2"}">${userData.firstName ? `<a href="${"/" + escape2(userData.username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape2(userData.firstName)} ${escape2(userData.lastName)}</h5></a>` : ``}
 
 	${userData.minimumPrice || userData.cityName || userData.countyName || userData.totalComment ? `<div class="${"flex flex-col gap-2 justify-between text-gray-500 text-sm mt-1"}">${userData.minimumPrice ? `<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-			${escape(userData.minimumPrice)}\u20BA
+			${escape2(userData.minimumPrice)}\u20BA
 		</div>` : ``}
 
 		${userData.cityName && userData.countyName ? `<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-			${escape(userData.cityName)}, ${escape(userData.countyName)}</div>` : ``}
+			${escape2(userData.cityName)}, ${escape2(userData.countyName)}</div>` : ``}
 
 		${userData.totalComment ? `<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
-			${escape(userData.totalComment)} yorum
+			${escape2(userData.totalComment)} yorum
 		</div>` : ``}</div>` : ``}
 
 	${userData.badges ? `<div class="${"flex items-center justify-center gap-2 mt-2"}">${userData.badges.showApprovedBadge ? `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 outline-none"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
@@ -4224,7 +4223,7 @@ ${Object.entries(userData).length > 0 ? `<a href="${"/" + escape(userData.userna
         {},
         {
           default: () => {
-            return `${escape((0, import_dayjs.default)(new Date(userData.createdAt.date)).fromNow())} \xFCye oldu`;
+            return `${escape2((0, import_dayjs.default)(new Date(userData.createdAt.date)).fromNow())} \xFCye oldu`;
           }
         }
       )}` : ``}
@@ -4239,7 +4238,7 @@ ${Object.entries(userData).length > 0 ? `<a href="${"/" + escape(userData.userna
         {},
         {
           default: () => {
-            return `${escape(userData.isOnline ? "\xC7evrimi\xE7i" : "\xC7evrimd\u0131\u015F\u0131")}`;
+            return `${escape2(userData.isOnline ? "\xC7evrimi\xE7i" : "\xC7evrimd\u0131\u015F\u0131")}`;
           }
         }
       )}` : ``}
@@ -4776,7 +4775,7 @@ var init_page_svelte = __esm({
 
 		<section class="${"shadow-md rounded-t-lg bg-white text-center text-base my-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2022 Netders.com
 			</div>
-			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
+			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape2(coloredBar, true) + "')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">\xD6\u011Fretmen Ara</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Ders talepleri</a></li>
 					<li class="${"mx-2 hover:text-white"}"><a href="${"/"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a></li>
@@ -4808,8 +4807,8 @@ var init__5 = __esm({
     init_page();
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file5 = "_app/immutable/components/pages/_page.svelte-84d846b2.js";
-    imports5 = ["_app/immutable/components/pages/_page.svelte-84d846b2.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/UserVertical-dabc6eed.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/colored-bar-d2bdead8.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/_page.js-93ded3c8.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-404b6d1e.js"];
+    file5 = "_app/immutable/components/pages/_page.svelte-a9d2d91c.js";
+    imports5 = ["_app/immutable/components/pages/_page.svelte-a9d2d91c.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/UserVertical-13db28a4.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/colored-bar-664454de.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/_page.js-93ded3c8.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-404b6d1e.js"];
     stylesheets5 = ["_app/immutable/assets/_page-12598ed9.css", "_app/immutable/assets/app-2d0c3135.css", "_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
     fonts5 = [];
   }
@@ -4866,8 +4865,8 @@ var init_UserCard = __esm({
       if ($$props.userData === void 0 && $$bindings.userData && userData !== void 0)
         $$bindings.userData(userData);
       return `<div class="${"lg:basis-3/12 xl:basis-2/12 mb-4 lg:mb-0"}">${validate_component(UserVertical, "UserVertical").$$render($$result, { userData: userProfileData }, {}, {})}</div>
-<div class="${"lg:lg:basis-9/12 xl:basis-10/12 mb-4 lg:mb-0"}"><h1 class="${"mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl dark:text-white"}">${escape(userData.firstName)} ${escape(userData.lastName)}</h1>
-    <p class="${"mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape(userData.title)}</p>
+<div class="${"lg:lg:basis-9/12 xl:basis-10/12 mb-4 lg:mb-0"}"><h1 class="${"mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl dark:text-white"}">${escape2(userData.firstName)} ${escape2(userData.lastName)}</h1>
+    <p class="${"mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape2(userData.title)}</p>
 
     ${userData.isTeachPhysically ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
         Y\xFCz y\xFCze ders veriyor
@@ -4878,13 +4877,13 @@ var init_UserCard = __esm({
     </span>` : ``}
 
     <div class="${"lg:flex lg:flex-row lg:justify-between mb-3 text-gray-500 text-sm mt-4"}"><p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-            <span>${escape(userData.minimumPrice)}<span class="${"text-xs"}">\u20BA</span></span></p>
+            <span>${escape2(userData.minimumPrice)}<span class="${"text-xs"}">\u20BA</span></span></p>
         <p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
-            ${escape(userData.totalComment)} yorum
+            ${escape2(userData.totalComment)} yorum
         </p>
         <p class="${"flex"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-            ${escape(userData.cityName)}, ${escape(userData.countyName)}</p></div>
-    <p class="${"text-sm text-justify leading-relaxed"}">${escape(userData.about)}</p></div>`;
+            ${escape2(userData.cityName)}, ${escape2(userData.countyName)}</p></div>
+    <p class="${"text-sm text-justify leading-relaxed"}">${escape2(userData.about)}</p></div>`;
     });
   }
 });
@@ -5041,7 +5040,7 @@ var init_page_svelte2 = __esm({
       let locations = [];
       let comments = [];
       $$unsubscribe_viewedTeacherStore();
-      return `${$$result.head += `<!-- HEAD_svelte-8y1598_START -->${$$result.title = `<title>${escape($viewedTeacherStore.firstName)} ${escape($viewedTeacherStore.lastName)} \xD6zel Ders Profil Sayfas\u0131 ${escape($viewedTeacherStore.cityName)}</title>`, ""}<!-- HEAD_svelte-8y1598_END -->`, ""}
+      return `${$$result.head += `<!-- HEAD_svelte-8y1598_START -->${$$result.title = `<title>${escape2($viewedTeacherStore.firstName)} ${escape2($viewedTeacherStore.lastName)} \xD6zel Ders Profil Sayfas\u0131 ${escape2($viewedTeacherStore.cityName)}</title>`, ""}<!-- HEAD_svelte-8y1598_END -->`, ""}
 
 <div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(UserCard, "UserCard").$$render($$result, { userData }, {}, {})}</div>
 
@@ -5050,30 +5049,30 @@ ${prices.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div
 				<th align="${"right"}" class="${"font-semibold"}">Y\xFCz Y\xFCze</th>
 				<th align="${"right"}" class="${"font-semibold"}">Uzaktan (Webcam)</th></tr></thead>
 			<tbody>${each(prices, (price) => {
-        return `<tr class="${"border-t border-gray-200"}"><td class="${"py-2"}">${price.slug ? `<a href="${"/ders/" + escape(price.slug, true)}" target="${"_blank"}" rel="${"noreferrer"}">${escape(price.subject.title)} - ${escape(price.level.title)}</a>` : `${escape(price.subject.title)} - ${escape(price.level.title)}`}</td>
-				<td align="${"right"}">${price.pricePrivate > 0 ? `${escape(price.pricePrivate)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
-				<td align="${"right"}">${price.priceLive > 0 ? `${escape(price.priceLive)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
+        return `<tr class="${"border-t border-gray-200"}"><td class="${"py-2"}">${price.slug ? `<a href="${"/ders/" + escape2(price.slug, true)}" target="${"_blank"}" rel="${"noreferrer"}">${escape2(price.subject.title)} - ${escape2(price.level.title)}</a>` : `${escape2(price.subject.title)} - ${escape2(price.level.title)}`}</td>
+				<td align="${"right"}">${price.pricePrivate > 0 ? `${escape2(price.pricePrivate)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
+				<td align="${"right"}">${price.priceLive > 0 ? `${escape2(price.priceLive)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
 			</tr>`;
       })}</tbody></table></div></div>` : ``}
 
 ${locations.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Y\xFCz Y\xFCze Ders Verdi\u011Fi Lokasyonlar</div>
 	<div class="${"flex flex-col gap-4 p-6"}">${each(locations, (location) => {
-        return `<div><span class="${"font-semibold"}">${escape(location.city.title)}</span>
+        return `<div><span class="${"font-semibold"}">${escape2(location.city.title)}</span>
 			<ul class="${"grid grid-cols-1 md:grid-cols-3"}">${each(location.counties, (county) => {
-          return `<li>${escape(county.title)}</li>`;
+          return `<li>${escape2(county.title)}</li>`;
         })}</ul>
 		</div>`;
       })}</div></div>` : ``}
 
 ${comments.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Yorumlar</div>
 		<div class="${"p-6"}">${each(comments, (comment, index17) => {
-        return `<div class="${["flex", index17 > 0 ? "mt-6" : ""].join(" ").trim()}"><div class="${"flex-none w-12 h-12 rounded-full border border-orange-100 bg-orange-50"}"><div class="${"flex justify-center items-center w-12 h-12"}">${escape(comment.fullName.charAt(0))}</div></div>
+        return `<div class="${["flex", index17 > 0 ? "mt-6" : ""].join(" ").trim()}"><div class="${"flex-none w-12 h-12 rounded-full border border-orange-100 bg-orange-50"}"><div class="${"flex justify-center items-center w-12 h-12"}">${escape2(comment.fullName.charAt(0))}</div></div>
 
-				<div class="${"ml-4 grow"}"><h2 class="${"font-semibold"}">${escape(comment.fullName)}</h2>
+				<div class="${"ml-4 grow"}"><h2 class="${"font-semibold"}">${escape2(comment.fullName)}</h2>
 					<p class="${"mt-2 text-sm text-gray-500"}">${each(Array(comment.rate), (_, index22) => {
           return `<span class="${"mr-1"}">\u2B50</span>`;
         })}</p>
-					<p class="${"mt-2 text-sm text-gray-500"}">${escape(comment.comment)}</p></div>
+					<p class="${"mt-2 text-sm text-gray-500"}">${escape2(comment.comment)}</p></div>
 			</div>`;
       })}</div></div>` : ``}
 
@@ -5100,8 +5099,8 @@ var init__6 = __esm({
     init_page2();
     index6 = 5;
     component6 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
-    file6 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-343a4633.js";
-    imports6 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-343a4633.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-dabc6eed.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/UserCard-53a44f31.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-d9d512c5.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/_page-ea38d12c.js"];
+    file6 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-3e4a9a99.js";
+    imports6 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-3e4a9a99.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-13db28a4.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/UserCard-0cb81f68.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-d9d512c5.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/_page-ea38d12c.js"];
     stylesheets6 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
     fonts6 = [];
   }
@@ -5162,17 +5161,17 @@ var init_page_svelte3 = __esm({
       let userData = {};
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      return `${$$result.head += `<!-- HEAD_svelte-8oibt4_START -->${$$result.title = `<title>${escape(data.title)}</title>`, ""}<!-- HEAD_svelte-8oibt4_END -->`, ""}
+      return `${$$result.head += `<!-- HEAD_svelte-8oibt4_START -->${$$result.title = `<title>${escape2(data.title)}</title>`, ""}<!-- HEAD_svelte-8oibt4_END -->`, ""}
 
-<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">${escape(data.title)}</div>
-	<div class="${"p-6"}">${escape(data.content)}
+<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">${escape2(data.title)}</div>
+	<div class="${"p-6"}">${escape2(data.content)}
 
-		<ul class="${"mt-4"}"><li>Ders: ${escape(data.subject.title)}</li>
-			<li>Konu: ${escape(data.level.title)}</li>
-			${data.pricePrivate ? `<li>Y\xFCz Y\xFCze Ders \xDCcreti: ${escape(data.pricePrivate)}\u20BA</li>` : ``}
-			${data.priceLive ? `<li>Uzaktan, Webcam Ders \xDCcreti: ${escape(data.priceLive)}\u20BA</li>` : ``}</ul></div></div>
+		<ul class="${"mt-4"}"><li>Ders: ${escape2(data.subject.title)}</li>
+			<li>Konu: ${escape2(data.level.title)}</li>
+			${data.pricePrivate ? `<li>Y\xFCz Y\xFCze Ders \xDCcreti: ${escape2(data.pricePrivate)}\u20BA</li>` : ``}
+			${data.priceLive ? `<li>Uzaktan, Webcam Ders \xDCcreti: ${escape2(data.priceLive)}\u20BA</li>` : ``}</ul></div></div>
 
-${Object.entries(userData).length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">${escape(userData.firstName)} ${escape(userData.lastName)} Hakk\u0131nda</div>
+${Object.entries(userData).length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">${escape2(userData.firstName)} ${escape2(userData.lastName)} Hakk\u0131nda</div>
 		<div class="${"p-6"}"><div class="${"lg:flex lg:flex-row gap-6"}">${validate_component(UserCard, "UserCard").$$render($$result, { userData }, {}, {})}</div></div></div>` : ``}`;
     });
   }
@@ -5195,8 +5194,8 @@ var init__7 = __esm({
     init_page3();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file7 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-7c57fac6.js";
-    imports7 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-7c57fac6.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/UserCard-53a44f31.js", "_app/immutable/chunks/UserVertical-dabc6eed.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-6a3b895e.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-aab34f45.js"];
+    file7 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-12283e05.js";
+    imports7 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-12283e05.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/UserCard-0cb81f68.js", "_app/immutable/chunks/UserVertical-13db28a4.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/Modal-62dd23b6.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-6a3b895e.js", "_app/immutable/chunks/price-53e82af7.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-aab34f45.js"];
     stylesheets7 = ["_app/immutable/assets/UserVertical-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
     fonts7 = [];
   }
@@ -5215,7 +5214,6 @@ var init_page4 = __esm({
     init_userStore();
     prerender4 = false;
     load5 = async ({ parent }) => {
-      console.log("hop");
       const { user } = await parent();
       if (Object.entries(user).length > 0) {
         userStore.set(user);
@@ -5295,7 +5293,7 @@ ${validate_component(MemberHorizontalNavigation, "MemberHorizontalNavigation").$
 				<input type="${"number"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", phone, 0)}></div>
 			<div><span class="${"text-sm mb-1 block text-gray-500"}">Cinsiyetin</span>
 				<select class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"><option value="${""}">L\xFCtfen Se\xE7</option>${each($gendersStore, (gender) => {
-        return `<option${add_attribute("value", gender, 0)}>${escape(gender.title)}</option>`;
+        return `<option${add_attribute("value", gender, 0)}>${escape2(gender.title)}</option>`;
       })}</select></div></div>
 
 		<button class="${"bg-blue-700 hover:bg-blue-900 px-6 py-2 rounded-full text-white mt-4"}"><span>Kaydet</span></button></div></div>`;
@@ -5321,7 +5319,7 @@ var init__8 = __esm({
     index8 = 7;
     component8 = async () => (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default;
     file8 = "_app/immutable/components/pages/(app)/member/account/_page.svelte-4d55827a.js";
-    imports8 = ["_app/immutable/components/pages/(app)/member/account/_page.svelte-4d55827a.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/MemberHorizontalNavigation-885ae6a1.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/modules/pages/(app)/member/account/_page.js-6ff269fb.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-07a6445d.js"];
+    imports8 = ["_app/immutable/components/pages/(app)/member/account/_page.svelte-4d55827a.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/MemberHorizontalNavigation-885ae6a1.js", "_app/immutable/chunks/stores-dd483718.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/modules/pages/(app)/member/account/_page.js-f31c12e7.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-f828dd28.js"];
     stylesheets8 = [];
     fonts8 = [];
   }
@@ -5493,9 +5491,9 @@ var init_page_svelte6 = __esm({
         $$bindings.isTeachRemotely(isTeachRemotely);
       if ($$props.totalComment === void 0 && $$bindings.totalComment && totalComment !== void 0)
         $$bindings.totalComment(totalComment);
-      return `<a href="${"/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com/", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
-	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
-		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
+      return `<a href="${"/" + escape2(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape2("https://netders.com/", true) + escape2(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
+	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape2(firstName)} ${escape2(lastName)}</h5>
+		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape2(title)}</p>
 
 		<div class="${"flex flex-col gap-2 md:flex-row mb-3"}">${isTeachPhysically ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
 			Y\xFCz y\xFCze ders veriyor
@@ -5506,16 +5504,16 @@ var init_page_svelte6 = __esm({
 		</div>` : ``}</div>
 
 		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-				${escape(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
+				${escape2(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
 
 			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
-				${escape(totalComment)} yorum
+				${escape2(totalComment)} yorum
 			</div>
 
 			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-				${escape(cityName)}, ${escape(countyName)}</div></div>
+				${escape2(cityName)}, ${escape2(countyName)}</div></div>
 
-		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
+		<div class="${"mb-3 font-normal mt-4"}">${escape2(truncateString(about, 230))}</div></div></a>`;
     });
     citiesStore = writable([]);
     countiesStore = writable([]);
@@ -5568,12 +5566,12 @@ var init_page_svelte6 = __esm({
       $$unsubscribe_lessonTypesStore();
       $$unsubscribe_citiesStore();
       $$unsubscribe_subjectsStore();
-      return `${$$result.head += `<!-- HEAD_svelte-1796jo3_START -->${$$result.title = `<title>${escape($teacherSearchParamsStore.cityObject ? ((_a = $teacherSearchParamsStore.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape($teacherSearchParamsStore.countyObject ? ((_b = $teacherSearchParamsStore.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape($teacherSearchParamsStore.subjectObject ? ((_c = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape($teacherSearchParamsStore.levelObject ? ((_d = $teacherSearchParamsStore.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-1796jo3_END -->`, ""}
+      return `${$$result.head += `<!-- HEAD_svelte-1796jo3_START -->${$$result.title = `<title>${escape2($teacherSearchParamsStore.cityObject ? ((_a = $teacherSearchParamsStore.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape2($teacherSearchParamsStore.countyObject ? ((_b = $teacherSearchParamsStore.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape2($teacherSearchParamsStore.subjectObject ? ((_c = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape2($teacherSearchParamsStore.levelObject ? ((_d = $teacherSearchParamsStore.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-1796jo3_END -->`, ""}
 
 ${``}
 
-<section class="${"dark:bg-gray-900 text-center"}"><div class="${"flex py-6"}"><div class="${"mx-auto"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">${escape($teacherSearchParamsStore.cityObject ? (_e = $teacherSearchParamsStore.cityObject) == null ? void 0 : _e.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_f = $teacherSearchParamsStore.countyObject) == null ? void 0 : _f.title : "")} ${escape($teacherSearchParamsStore.subjectObject ? (_g = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _g.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_h = $teacherSearchParamsStore.levelObject) == null ? void 0 : _h.title : "")} <span class="${"text-gray-800"}">\xD6zel Ders Veren \xD6\u011Fretmenler</span></h1>
-			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape($teacherSearchParamsStore.cityObject ? (_i = $teacherSearchParamsStore.cityObject) == null ? void 0 : _i.title : "")} ${escape($teacherSearchParamsStore.countyObject ? (_j = $teacherSearchParamsStore.countyObject) == null ? void 0 : _j.title : "")} \xF6zel ders veren \xF6\u011Fretmenler taraf\u0131ndan olu\u015Fturulan ${escape($teacherSearchParamsStore.subjectObject ? (_k = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _k.title : "")} ${escape($teacherSearchParamsStore.levelObject ? (_l = $teacherSearchParamsStore.levelObject) == null ? void 0 : _l.title : "")} \xF6zel ders ilanlar\u0131.</p>
+<section class="${"dark:bg-gray-900 text-center"}"><div class="${"flex py-6"}"><div class="${"mx-auto"}"><h1 class="${"mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white"}">${escape2($teacherSearchParamsStore.cityObject ? (_e = $teacherSearchParamsStore.cityObject) == null ? void 0 : _e.title : "")} ${escape2($teacherSearchParamsStore.countyObject ? (_f = $teacherSearchParamsStore.countyObject) == null ? void 0 : _f.title : "")} ${escape2($teacherSearchParamsStore.subjectObject ? (_g = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _g.title : "")} ${escape2($teacherSearchParamsStore.levelObject ? (_h = $teacherSearchParamsStore.levelObject) == null ? void 0 : _h.title : "")} <span class="${"text-gray-800"}">\xD6zel Ders Veren \xD6\u011Fretmenler</span></h1>
+			<p class="${"mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape2($teacherSearchParamsStore.cityObject ? (_i = $teacherSearchParamsStore.cityObject) == null ? void 0 : _i.title : "")} ${escape2($teacherSearchParamsStore.countyObject ? (_j = $teacherSearchParamsStore.countyObject) == null ? void 0 : _j.title : "")} \xF6zel ders veren \xF6\u011Fretmenler taraf\u0131ndan olu\u015Fturulan ${escape2($teacherSearchParamsStore.subjectObject ? (_k = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _k.title : "")} ${escape2($teacherSearchParamsStore.levelObject ? (_l = $teacherSearchParamsStore.levelObject) == null ? void 0 : _l.title : "")} \xF6zel ders ilanlar\u0131.</p>
 
 			<form autocomplete="${"off"}"><label for="${"default-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
 				<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
@@ -5584,38 +5582,38 @@ ${``}
 			<p class="${"mt-4 text-sm text-gray-800"}">veya daha <button class="${"text-blue-700 hover:text-blue-900 font-bold"}">Detayl\u0131 Arama</button> yapabilirsin.</p>
 
 			<div class="${"flex justify-center flex-wrap gap-2"}">${$teacherSearchParamsStore.keyword ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
-                        <span>${escape($teacherSearchParamsStore.keyword)}</span>
+                        <span>${escape2($teacherSearchParamsStore.keyword)}</span>
 						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
 
 				${$teacherSearchParamsStore.budget ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-						<span>${escape($teacherSearchParamsStore.budget)} \u20BA</span>
+						<span>${escape2($teacherSearchParamsStore.budget)} \u20BA</span>
 						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
 
 				${$teacherSearchParamsStore.cityObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-					<span>${escape((_m = $teacherSearchParamsStore.cityObject) == null ? void 0 : _m.title)}</span>
+					<span>${escape2((_m = $teacherSearchParamsStore.cityObject) == null ? void 0 : _m.title)}</span>
 					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
 
 				${$teacherSearchParamsStore.countyObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-						<span>${escape((_n = $teacherSearchParamsStore.countyObject) == null ? void 0 : _n.title)}</span>
+						<span>${escape2((_n = $teacherSearchParamsStore.countyObject) == null ? void 0 : _n.title)}</span>
 						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
 
 				${$teacherSearchParamsStore.subjectObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-						<span>${escape((_o = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _o.title)}</span>
+						<span>${escape2((_o = $teacherSearchParamsStore.subjectObject) == null ? void 0 : _o.title)}</span>
 						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
 
 				${$teacherSearchParamsStore.levelObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
-						<span>${escape((_p = $teacherSearchParamsStore.levelObject) == null ? void 0 : _p.title)}</span>
+						<span>${escape2((_p = $teacherSearchParamsStore.levelObject) == null ? void 0 : _p.title)}</span>
 						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
 
 				${$teacherSearchParamsStore.lessonTypeObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"}"></path></svg>
-						<span>${escape((_q = $teacherSearchParamsStore.lessonTypeObject) == null ? void 0 : _q.title)}</span>
+						<span>${escape2((_q = $teacherSearchParamsStore.lessonTypeObject) == null ? void 0 : _q.title)}</span>
 						<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}
 
 				${$teacherSearchParamsStore.genderObject ? `<div class="${"bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block text-gray-400"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"}"></path></svg>
-					<span>${escape((_r = $teacherSearchParamsStore.genderObject) == null ? void 0 : _r.title)}</span>
+					<span>${escape2((_r = $teacherSearchParamsStore.genderObject) == null ? void 0 : _r.title)}</span>
 					<button><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6 inline-block text-blue-700"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg></button></div>` : ``}</div></div></div></section>
 
-${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape($teacherTotalStore)}</strong> e\u011Fitmen bulundu.</div>`}
+${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape2($teacherTotalStore)}</strong> e\u011Fitmen bulundu.</div>`}
 
 <div class="${"grid grid-cols-1 gap-4"}">${`${each($teacherItemsStore, (user) => {
         return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, Object.assign(user), {}, {})}`;
@@ -5882,13 +5880,13 @@ var init_page_svelte7 = __esm({
       ].join(" ").trim()}">${all && first !== false || first ? `<span class="${[
         "pip first",
         (isSelected(min2) ? "selected" : "") + " " + (inRange(min2) ? "in-range" : "")
-      ].join(" ").trim()}" style="${escape(orientationStart, true) + ": 0%;"}">${all === "label" || first === "label" ? `<span class="${"pipVal"}">${prefix ? `<span class="${"pipVal-prefix"}">${escape(prefix)}</span>` : ``}${escape(formatter(fixFloat(min2), 0, 0))}${suffix ? `<span class="${"pipVal-suffix"}">${escape(suffix)}</span>` : ``}</span>` : ``}</span>` : ``}
+      ].join(" ").trim()}" style="${escape2(orientationStart, true) + ": 0%;"}">${all === "label" || first === "label" ? `<span class="${"pipVal"}">${prefix ? `<span class="${"pipVal-prefix"}">${escape2(prefix)}</span>` : ``}${escape2(formatter(fixFloat(min2), 0, 0))}${suffix ? `<span class="${"pipVal-suffix"}">${escape2(suffix)}</span>` : ``}</span>` : ``}</span>` : ``}
 
   ${all && rest !== false || rest ? `${each(Array(pipCount + 1), (_, i) => {
         return `${pipVal(i) !== min2 && pipVal(i) !== max2 ? `<span class="${[
           "pip",
           (isSelected(pipVal(i)) ? "selected" : "") + " " + (inRange(pipVal(i)) ? "in-range" : "")
-        ].join(" ").trim()}" style="${escape(orientationStart, true) + ": " + escape(percentOf(pipVal(i)), true) + "%;"}">${all === "label" || rest === "label" ? `<span class="${"pipVal"}">${prefix ? `<span class="${"pipVal-prefix"}">${escape(prefix)}</span>` : ``}${escape(formatter(pipVal(i), i, percentOf(pipVal(i))))}${suffix ? `<span class="${"pipVal-suffix"}">${escape(suffix)}</span>` : ``}
+        ].join(" ").trim()}" style="${escape2(orientationStart, true) + ": " + escape2(percentOf(pipVal(i)), true) + "%;"}">${all === "label" || rest === "label" ? `<span class="${"pipVal"}">${prefix ? `<span class="${"pipVal-prefix"}">${escape2(prefix)}</span>` : ``}${escape2(formatter(pipVal(i), i, percentOf(pipVal(i))))}${suffix ? `<span class="${"pipVal-suffix"}">${escape2(suffix)}</span>` : ``}
             </span>` : ``}
         </span>` : ``}`;
       })}` : ``}
@@ -5896,7 +5894,7 @@ var init_page_svelte7 = __esm({
   ${all && last !== false || last ? `<span class="${[
         "pip last",
         (isSelected(max2) ? "selected" : "") + " " + (inRange(max2) ? "in-range" : "")
-      ].join(" ").trim()}" style="${escape(orientationStart, true) + ": 100%;"}">${all === "label" || last === "label" ? `<span class="${"pipVal"}">${prefix ? `<span class="${"pipVal-prefix"}">${escape(prefix)}</span>` : ``}${escape(formatter(fixFloat(max2), pipCount, 100))}${suffix ? `<span class="${"pipVal-suffix"}">${escape(suffix)}</span>` : ``}</span>` : ``}</span>` : ``}</div>`;
+      ].join(" ").trim()}" style="${escape2(orientationStart, true) + ": 100%;"}">${all === "label" || last === "label" ? `<span class="${"pipVal"}">${prefix ? `<span class="${"pipVal-prefix"}">${escape2(prefix)}</span>` : ``}${escape2(formatter(fixFloat(max2), pipCount, 100))}${suffix ? `<span class="${"pipVal-suffix"}">${escape2(suffix)}</span>` : ``}</span>` : ``}</span>` : ``}</div>`;
     });
     css4 = {
       code: '.rangeSlider{--slider:var(--range-slider, #d7dada);--handle-inactive:var(--range-handle-inactive, #99a2a2);--handle:var(--range-handle, #838de7);--handle-focus:var(--range-handle-focus, #4a40d4);--handle-border:var(--range-handle-border, var(--handle));--range-inactive:var(--range-range-inactive, var(--handle-inactive));--range:var(--range-range, var(--handle-focus));--float-inactive:var(--range-float-inactive, var(--handle-inactive));--float:var(--range-float, var(--handle-focus));--float-text:var(--range-float-text, white);position:relative;border-radius:100px;height:0.5em;margin:1em;transition:opacity 0.2s ease;-webkit-user-select:none;-moz-user-select:none;user-select:none}.rangeSlider *{-webkit-user-select:none;-moz-user-select:none;user-select:none}.rangeSlider.pips{margin-bottom:1.8em}.rangeSlider.pip-labels{margin-bottom:2.8em}.rangeSlider.vertical{display:inline-block;border-radius:100px;width:0.5em;min-height:200px}.rangeSlider.vertical.pips{margin-right:1.8em;margin-bottom:1em}.rangeSlider.vertical.pip-labels{margin-right:2.8em;margin-bottom:1em}.rangeSlider .rangeHandle{position:absolute;display:block;height:1.4em;width:1.4em;top:0.25em;bottom:auto;transform:translateY(-50%) translateX(-50%);z-index:2}.rangeSlider.reversed .rangeHandle{transform:translateY(-50%) translateX(50%)}.rangeSlider.vertical .rangeHandle{left:0.25em;top:auto;transform:translateY(50%) translateX(-50%)}.rangeSlider.vertical.reversed .rangeHandle{transform:translateY(-50%) translateX(-50%)}.rangeSlider .rangeNub,.rangeSlider .rangeHandle:before{position:absolute;left:0;top:0;display:block;border-radius:10em;height:100%;width:100%;transition:box-shadow 0.2s ease}.rangeSlider .rangeHandle:before{content:"";left:1px;top:1px;bottom:1px;right:1px;height:auto;width:auto;box-shadow:0 0 0 0px var(--handle-border);opacity:0}.rangeSlider.hoverable:not(.disabled) .rangeHandle:hover:before{box-shadow:0 0 0 8px var(--handle-border);opacity:0.2}.rangeSlider.hoverable:not(.disabled) .rangeHandle.press:before,.rangeSlider.hoverable:not(.disabled) .rangeHandle.press:hover:before{box-shadow:0 0 0 12px var(--handle-border);opacity:0.4}.rangeSlider.range:not(.min):not(.max) .rangeNub{border-radius:10em 10em 10em 1.6em}.rangeSlider.range .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(-135deg)}.rangeSlider.range .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(45deg)}.rangeSlider.range.reversed .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(45deg)}.rangeSlider.range.reversed .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(-135deg)}.rangeSlider.range.vertical .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(135deg)}.rangeSlider.range.vertical .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(-45deg)}.rangeSlider.range.vertical.reversed .rangeHandle:nth-of-type(1) .rangeNub{transform:rotate(-45deg)}.rangeSlider.range.vertical.reversed .rangeHandle:nth-of-type(2) .rangeNub{transform:rotate(135deg)}.rangeSlider .rangeFloat{display:block;position:absolute;left:50%;top:-0.5em;transform:translate(-50%, -100%);text-align:center;opacity:0;pointer-events:none;white-space:nowrap;transition:all 0.2s ease;font-size:0.9em;padding:0.2em 0.4em;border-radius:0.2em}.rangeSlider .rangeHandle.active .rangeFloat,.rangeSlider.hoverable .rangeHandle:hover .rangeFloat{opacity:1;top:-0.2em;transform:translate(-50%, -100%)}.rangeSlider .rangeBar{position:absolute;display:block;transition:background 0.2s ease;border-radius:1em;height:0.5em;top:0;-webkit-user-select:none;-moz-user-select:none;user-select:none;z-index:1}.rangeSlider.vertical .rangeBar{width:0.5em;height:auto}.rangeSlider{background-color:#d7dada;background-color:var(--slider)}.rangeSlider .rangeBar{background-color:#99a2a2;background-color:var(--range-inactive)}.rangeSlider.focus .rangeBar{background-color:#838de7;background-color:var(--range)}.rangeSlider .rangeNub{background-color:#99a2a2;background-color:var(--handle-inactive)}.rangeSlider.focus .rangeNub{background-color:#838de7;background-color:var(--handle)}.rangeSlider .rangeHandle.active .rangeNub{background-color:#4a40d4;background-color:var(--handle-focus)}.rangeSlider .rangeFloat{color:white;color:var(--float-text);background-color:#99a2a2;background-color:var(--float-inactive)}.rangeSlider.focus .rangeFloat{background-color:#4a40d4;background-color:var(--float)}.rangeSlider.disabled{opacity:0.5}.rangeSlider.disabled .rangeNub{background-color:#d7dada;background-color:var(--slider)}',
@@ -6108,12 +6106,12 @@ var init_page_svelte7 = __esm({
         return `<span role="${"slider"}" class="${[
           "rangeHandle",
           " "
-        ].join(" ").trim()}"${add_attribute("data-handle", index17, 0)} style="${escape(orientationStart, true) + ": " + escape($springPositions[index17], true) + "%; z-index: " + escape(activeHandle === index17 ? 3 : 2, true) + ";"}"${add_attribute("aria-valuemin", range === true && index17 === 1 ? values[0] : min2, 0)}${add_attribute("aria-valuemax", range === true && index17 === 0 ? values[1] : max2, 0)}${add_attribute("aria-valuenow", value, 0)} aria-valuetext="${escape(prefix, true) + escape(handleFormatter(value, index17, percentOf(value)), true) + escape(suffix, true)}"${add_attribute("aria-orientation", vertical ? "vertical" : "horizontal", 0)}${add_attribute("aria-disabled", disabled, 0)} ${disabled ? "disabled" : ""}${add_attribute("tabindex", disabled ? -1 : 0, 0)}><span class="${"rangeNub"}"></span>
-      ${float ? `<span class="${"rangeFloat"}">${prefix ? `<span class="${"rangeFloat-prefix"}">${escape(prefix)}</span>` : ``}${escape(handleFormatter(value, index17, percentOf(value)))}${suffix ? `<span class="${"rangeFloat-suffix"}">${escape(suffix)}</span>` : ``}
+        ].join(" ").trim()}"${add_attribute("data-handle", index17, 0)} style="${escape2(orientationStart, true) + ": " + escape2($springPositions[index17], true) + "%; z-index: " + escape2(activeHandle === index17 ? 3 : 2, true) + ";"}"${add_attribute("aria-valuemin", range === true && index17 === 1 ? values[0] : min2, 0)}${add_attribute("aria-valuemax", range === true && index17 === 0 ? values[1] : max2, 0)}${add_attribute("aria-valuenow", value, 0)} aria-valuetext="${escape2(prefix, true) + escape2(handleFormatter(value, index17, percentOf(value)), true) + escape2(suffix, true)}"${add_attribute("aria-orientation", vertical ? "vertical" : "horizontal", 0)}${add_attribute("aria-disabled", disabled, 0)} ${disabled ? "disabled" : ""}${add_attribute("tabindex", disabled ? -1 : 0, 0)}><span class="${"rangeNub"}"></span>
+      ${float ? `<span class="${"rangeFloat"}">${prefix ? `<span class="${"rangeFloat-prefix"}">${escape2(prefix)}</span>` : ``}${escape2(handleFormatter(value, index17, percentOf(value)))}${suffix ? `<span class="${"rangeFloat-suffix"}">${escape2(suffix)}</span>` : ``}
         </span>` : ``}
     </span>`;
       })}
-  ${range ? `<span class="${"rangeBar"}" style="${escape(orientationStart, true) + ": " + escape(rangeStart($springPositions), true) + "%; " + escape(orientationEnd, true) + ": " + escape(rangeEnd($springPositions), true) + "%;"}"></span>` : ``}
+  ${range ? `<span class="${"rangeBar"}" style="${escape2(orientationStart, true) + ": " + escape2(rangeStart($springPositions), true) + "%; " + escape2(orientationEnd, true) + ": " + escape2(rangeEnd($springPositions), true) + "%;"}"></span>` : ``}
   ${pips ? `${validate_component(RangePips, "RangePips").$$render(
         $$result,
         {
@@ -6189,7 +6187,7 @@ var init_page_svelte7 = __esm({
 
 <div class="${["max-w-2xl w-full mx-auto mt-8 mb-4", ""].join(" ").trim()}"><h2 class="${"sr-only"}">Ad\u0131mlar</h2>
 	<div><div class="${"overflow-hidden rounded-full bg-white"}"><div class="${[
-          "h-2 rounded-full bg-blue-500 " + escape("w-" + (currentStep - 1) + "/5", true),
+          "h-2 rounded-full bg-blue-500 " + escape2("w-" + (currentStep - 1) + "/5", true),
           ""
         ].join(" ").trim()}"></div></div>
 
@@ -6244,11 +6242,11 @@ var init_page_svelte7 = __esm({
 
 		<p class="${"text-xs mt-4 text-gray-400"}">Yukar\u0131daki alana almak istedi\u011Fin \xF6zel dersin ad\u0131n\u0131 yazmal\u0131s\u0131n.</p></div>
 
-	${requestData.keywordLesson.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape(requestData.keywordLesson)}</span>&quot; aramas\u0131na uygun <span class="${"font-semibold"}">${escape(lessons.total)}</span> sonu\xE7 bulundu.
+	${requestData.keywordLesson.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape2(requestData.keywordLesson)}</span>&quot; aramas\u0131na uygun <span class="${"font-semibold"}">${escape2(lessons.total)}</span> sonu\xE7 bulundu.
 		</div>
 		${lessons.items.length > 0 ? `${each(lessons.items, (lesson) => {
-          return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-500"}">${escape(lesson.subjectTitle)}</div>
-				<div>${escape(lesson.title)}</div>
+          return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-500"}">${escape2(lesson.subjectTitle)}</div>
+				<div>${escape2(lesson.title)}</div>
 			</div>`;
         })}` : ``}</div>
 
@@ -6259,18 +6257,18 @@ var init_page_svelte7 = __esm({
 <div class="${["bg-white rounded-lg shadow-md mt-2", "hidden"].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg mb-4"}">Nerede ya\u015F\u0131yorsun?</div>
 		<label for="${"location-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
 		<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
-			<input autocomplete="${"off"}" type="${"text"}" id="${"location-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Hangi " + escape("\u015Fehirdesin", true) + "?"}"${add_attribute("value", requestData.keywordLocation, 0)}></div>
+			<input autocomplete="${"off"}" type="${"text"}" id="${"location-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Hangi " + escape2("\u015Fehirdesin", true) + "?"}"${add_attribute("value", requestData.keywordLocation, 0)}></div>
 
-		<p class="${"text-xs mt-3 text-gray-400"}">Yukar\u0131daki alana bulundu\u011Fun ${escape("\u015Fehrin")} ismini yazmal\u0131s\u0131n.</p>
+		<p class="${"text-xs mt-3 text-gray-400"}">Yukar\u0131daki alana bulundu\u011Fun ${escape2("\u015Fehrin")} ismini yazmal\u0131s\u0131n.</p>
 
 		<p class="${"mt-4 text-sm"}"><label><input type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", requestData.outsideTurkey, 1)}> T\xFCrkiye&#39;de ya\u015Fam\u0131yorum
 			</label></p></div>
 
-	${locations.items.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape(requestData.keywordLocation)}</span>&quot; arama sonucuna uygun <span class="${"font-semibold"}">${escape(locations.total)}</span> sonu\xE7 bulundu.
+	${locations.items.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape2(requestData.keywordLocation)}</span>&quot; arama sonucuna uygun <span class="${"font-semibold"}">${escape2(locations.total)}</span> sonu\xE7 bulundu.
 		</div>
 		${each(locations.items, (location) => {
-          return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-400"}">${escape("\u015Eehir")}</div>
-				<div>${escape(location.title)}</div>
+          return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-400"}">${escape2("\u015Eehir")}</div>
+				<div>${escape2(location.title)}</div>
 			</div>`;
         })}</div>
 	<div class="${"mb-4 text-sm text-center"}" id="${"moreLocationArea"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
@@ -6322,7 +6320,7 @@ var init_page_svelte7 = __esm({
           },
           {}
         )}
-			<div class="${"font-semibold"}">${escape(requestData.budget[0])} - ${escape(requestData.budget[1])} \u20BA</div>`}
+			<div class="${"font-semibold"}">${escape2(requestData.budget[0])} - ${escape2(requestData.budget[1])} \u20BA</div>`}
 
 		<label class="${"mt-2 block text-sm"}"><input type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", requestData.budgetSecret, 1)}> B\xFCt\xE7emi \xF6\u011Fretmene belirtmek istiyorum
 		</label>
@@ -6461,7 +6459,7 @@ var init_Input = __esm({
         $$bindings.placeholder(placeholder);
       if ($$props.value === void 0 && $$bindings.value && value !== void 0)
         $$bindings.value(value);
-      return `${label ? `<label class="${"block text-sm font-medium leading-8 text-gray-700"}"${add_attribute("for", id, 0)}>${escape(label)}</label>` : ``}
+      return `${label ? `<label class="${"block text-sm font-medium leading-8 text-gray-700"}"${add_attribute("for", id, 0)}>${escape2(label)}</label>` : ``}
 <input${add_attribute("id", id, 0)}${add_attribute("type", type, 0)}${add_attribute("placeholder", placeholder, 0)}${add_attribute("value", value, 0)} class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}">`;
     });
   }
@@ -6680,6 +6678,110 @@ var init_page11 = __esm({
   }
 });
 
+// node_modules/js-cookie/dist/js.cookie.mjs
+function assign(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key2 in source) {
+      target[key2] = source[key2];
+    }
+  }
+  return target;
+}
+function init2(converter, defaultAttributes) {
+  function set(key2, value, attributes) {
+    if (typeof document === "undefined") {
+      return;
+    }
+    attributes = assign({}, defaultAttributes, attributes);
+    if (typeof attributes.expires === "number") {
+      attributes.expires = new Date(Date.now() + attributes.expires * 864e5);
+    }
+    if (attributes.expires) {
+      attributes.expires = attributes.expires.toUTCString();
+    }
+    key2 = encodeURIComponent(key2).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
+    var stringifiedAttributes = "";
+    for (var attributeName in attributes) {
+      if (!attributes[attributeName]) {
+        continue;
+      }
+      stringifiedAttributes += "; " + attributeName;
+      if (attributes[attributeName] === true) {
+        continue;
+      }
+      stringifiedAttributes += "=" + attributes[attributeName].split(";")[0];
+    }
+    return document.cookie = key2 + "=" + converter.write(value, key2) + stringifiedAttributes;
+  }
+  function get(key2) {
+    if (typeof document === "undefined" || arguments.length && !key2) {
+      return;
+    }
+    var cookies = document.cookie ? document.cookie.split("; ") : [];
+    var jar = {};
+    for (var i = 0; i < cookies.length; i++) {
+      var parts = cookies[i].split("=");
+      var value = parts.slice(1).join("=");
+      try {
+        var foundKey = decodeURIComponent(parts[0]);
+        jar[foundKey] = converter.read(value, foundKey);
+        if (key2 === foundKey) {
+          break;
+        }
+      } catch (e3) {
+      }
+    }
+    return key2 ? jar[key2] : jar;
+  }
+  return Object.create(
+    {
+      set,
+      get,
+      remove: function(key2, attributes) {
+        set(
+          key2,
+          "",
+          assign({}, attributes, {
+            expires: -1
+          })
+        );
+      },
+      withAttributes: function(attributes) {
+        return init2(this.converter, assign({}, this.attributes, attributes));
+      },
+      withConverter: function(converter2) {
+        return init2(assign({}, this.converter, converter2), this.attributes);
+      }
+    },
+    {
+      attributes: { value: Object.freeze(defaultAttributes) },
+      converter: { value: Object.freeze(converter) }
+    }
+  );
+}
+var defaultConverter, api, js_cookie_default;
+var init_js_cookie = __esm({
+  "node_modules/js-cookie/dist/js.cookie.mjs"() {
+    defaultConverter = {
+      read: function(value) {
+        if (value[0] === '"') {
+          value = value.slice(1, -1);
+        }
+        return value.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
+      },
+      write: function(value) {
+        return encodeURIComponent(value).replace(
+          /%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g,
+          decodeURIComponent
+        );
+      }
+    };
+    api = init2(defaultConverter, { path: "/" });
+    js_cookie_default = api;
+  }
+});
+
 // .svelte-kit/output/server/entries/pages/(auth)/auth/login/_page.svelte.js
 var page_svelte_exports10 = {};
 __export(page_svelte_exports10, {
@@ -6692,6 +6794,7 @@ var init_page_svelte10 = __esm({
     init_netders_logo_blue();
     init_Input();
     import_toastify_js5 = __toESM(require_toastify(), 1);
+    init_js_cookie();
     init_userStore();
     LoginScreenImage = "/_app/immutable/assets/login-screen-14c430ce.png";
     Page10 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -6796,8 +6899,8 @@ var init__15 = __esm({
     init_page11();
     index15 = 14;
     component14 = async () => (await Promise.resolve().then(() => (init_page_svelte10(), page_svelte_exports10))).default;
-    file14 = "_app/immutable/components/pages/(auth)/auth/login/_page.svelte-bf709042.js";
-    imports15 = ["_app/immutable/components/pages/(auth)/auth/login/_page.svelte-bf709042.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/Input-44b40e20.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/SvelteCookie-6ae7a851.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/modules/pages/(auth)/auth/login/_page.js-014bafbd.js", "_app/immutable/chunks/_page-3362f046.js"];
+    file14 = "_app/immutable/components/pages/(auth)/auth/login/_page.svelte-a6a28cf2.js";
+    imports15 = ["_app/immutable/components/pages/(auth)/auth/login/_page.svelte-a6a28cf2.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/Input-44b40e20.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/js.cookie-6fa27514.js", "_app/immutable/chunks/user-f0822e94.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/navigation-635edcd3.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/modules/pages/(auth)/auth/login/_page.js-014bafbd.js", "_app/immutable/chunks/_page-3362f046.js"];
     stylesheets15 = [];
     fonts15 = [];
   }
@@ -6809,23 +6912,19 @@ __export(page_exports12, {
   load: () => load11,
   prerender: () => prerender12
 });
-function deleteCookie(name) {
-  document.cookie = name + "=; Max-Age=-99999999;";
-}
 async function load11({ url }) {
+  js_cookie_default.remove("token");
+  userStore.set(null);
   let redirectPath = url.searchParams.get("to") ? url.searchParams.get("to") : "/";
   throw redirect(307, redirectPath);
 }
 var prerender12;
 var init_page12 = __esm({
   ".svelte-kit/output/server/entries/pages/(auth)/auth/logout/_page.js"() {
-    init_chunks();
-    init_userStore();
     init_index2();
+    init_js_cookie();
+    init_userStore();
     prerender12 = false;
-    deleteCookie("token");
-    userStore.set(null);
-    console.log("logout page.js called");
   }
 });
 
@@ -6840,7 +6939,6 @@ var init_page_svelte11 = __esm({
     init_chunks();
     Bye = "/_app/immutable/assets/bye-688e24e7.png";
     Page11 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      console.log("logout page.svelte called");
       return `<div class="${"flex text-center h-screen my-auto items-center justify-center"}"><div><div class="${"mt-2 text-7xl font-bold"}">Good bye!</div>
         <img${add_attribute("src", Bye, 0)} width="${"300"}" class="${"mx-auto my-12"}">
         <div class="${"text-2xl font-bold"}">Hesab\u0131ndan ba\u015Far\u0131yla \xE7\u0131k\u0131\u015F yapt\u0131n.</div>
@@ -6870,8 +6968,8 @@ var init__16 = __esm({
     init_page12();
     index16 = 15;
     component15 = async () => (await Promise.resolve().then(() => (init_page_svelte11(), page_svelte_exports11))).default;
-    file15 = "_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-d458d87c.js";
-    imports16 = ["_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-d458d87c.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/modules/pages/(auth)/auth/logout/_page.js-5e11db66.js", "_app/immutable/chunks/SvelteCookie-6ae7a851.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/_page-081a3dbf.js"];
+    file15 = "_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-b8f5f71f.js";
+    imports16 = ["_app/immutable/components/pages/(auth)/auth/logout/_page.svelte-b8f5f71f.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/modules/pages/(auth)/auth/logout/_page.js-ccd5a42e.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/js.cookie-6fa27514.js", "_app/immutable/chunks/userStore-6d41f702.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/_page-13ddc2bd.js"];
     stylesheets16 = [];
     fonts16 = [];
   }
@@ -7679,8 +7777,8 @@ async function handle_action_json_request(event, options, server2) {
 function check_incorrect_invalid_use(error2) {
   return error2 instanceof ValidationError ? new Error(`Cannot "throw invalid()". Use "return invalid()"`) : error2;
 }
-function action_json(data, init2) {
-  return json(data, init2);
+function action_json(data, init22) {
+  return json(data, init22);
 }
 function is_action_request(event, leaf_node) {
   return leaf_node.server && event.request.method !== "GET" && event.request.method !== "HEAD";
@@ -7865,9 +7963,9 @@ async function load_data({
     params: event.params,
     data: (server_data_node == null ? void 0 : server_data_node.data) ?? null,
     route: event.route,
-    fetch: async (input, init2) => {
+    fetch: async (input, init22) => {
       const cloned_body = input instanceof Request && input.body ? input.clone().body : null;
-      const response = await event.fetch(input, init2);
+      const response = await event.fetch(input, init22);
       const url = new URL(input instanceof Request ? input.url : input, event.url);
       const same_origin = url.origin === event.url.origin;
       let dependency;
@@ -7877,7 +7975,7 @@ async function load_data({
           state.prerendering.dependencies.set(url.pathname, dependency);
         }
       } else {
-        const mode = input instanceof Request ? input.mode : (init2 == null ? void 0 : init2.mode) ?? "cors";
+        const mode = input instanceof Request ? input.mode : (init22 == null ? void 0 : init22.mode) ?? "cors";
         if (mode !== "no-cors") {
           const acao = response.headers.get("access-control-allow-origin");
           if (!acao || acao !== event.url.origin && acao !== "*") {
@@ -7901,7 +7999,7 @@ async function load_data({
               fetched.push({
                 url: same_origin ? url.href.slice(event.url.origin.length) : url.href,
                 method: event.request.method,
-                request_body: input instanceof Request && cloned_body ? await stream_to_string(cloned_body) : init2 == null ? void 0 : init2.body,
+                request_body: input instanceof Request && cloned_body ? await stream_to_string(cloned_body) : init22 == null ? void 0 : init22.body,
                 response_body: body,
                 response: response2
               });
@@ -9181,11 +9279,11 @@ function add_cookies_to_headers(headers, cookies) {
   }
 }
 function create_fetch({ event, options, state, get_cookie_header }) {
-  return async (info, init2) => {
-    const original_request = normalize_fetch_input(info, init2, event.url);
-    const request_body = init2 == null ? void 0 : init2.body;
-    let mode = (info instanceof Request ? info.mode : init2 == null ? void 0 : init2.mode) ?? "cors";
-    let credentials = (info instanceof Request ? info.credentials : init2 == null ? void 0 : init2.credentials) ?? "same-origin";
+  return async (info, init22) => {
+    const original_request = normalize_fetch_input(info, init22, event.url);
+    const request_body = init22 == null ? void 0 : init22.body;
+    let mode = (info instanceof Request ? info.mode : init22 == null ? void 0 : init22.mode) ?? "cors";
+    let credentials = (info instanceof Request ? info.credentials : init22 == null ? void 0 : init22.credentials) ?? "same-origin";
     return await options.hooks.handleFetch({
       event,
       request: original_request,
@@ -9274,11 +9372,11 @@ function create_fetch({ event, options, state, get_cookie_header }) {
     });
   };
 }
-function normalize_fetch_input(info, init2, url) {
+function normalize_fetch_input(info, init22, url) {
   if (info instanceof Request) {
     return info;
   }
-  return new Request(typeof info === "string" ? new URL(info, url) : info, init2);
+  return new Request(typeof info === "string" ? new URL(info, url) : info, init22);
 }
 var default_transform = ({ html }) => html;
 var default_filter = () => false;
@@ -9641,7 +9739,7 @@ var Server = class {
       app_template,
       app_template_contains_nonce: false,
       error_template,
-      version: "1670359172036"
+      version: "1670361007262"
     };
   }
   async init({ env }) {
@@ -9676,7 +9774,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set([".DS_Store", "favicon.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-a518906c.js", "imports": ["_app/immutable/start-a518906c.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/control-ba37bfb4.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-95b3675e.js", "imports": ["_app/immutable/start-95b3675e.js", "_app/immutable/chunks/index-90af3250.js", "_app/immutable/chunks/singletons-ca9df9cf.js", "_app/immutable/chunks/index-89f006b4.js", "_app/immutable/chunks/control-ba37bfb4.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -9885,4 +9983,5 @@ export {
  * Copyright(c) 2015 Douglas Christopher Wilson
  * MIT Licensed
  */
+/*! js-cookie v3.0.1 | MIT */
 //# sourceMappingURL=_worker.js.map

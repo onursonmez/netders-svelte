@@ -11,7 +11,6 @@ import { userStore } from '/src/stores/userStore'
 export const prerender = false;
 
 export const load = async ({ parent }) => {
-    console.log("hop")
     const { user } = await parent();
 
     if(Object.entries(user).length > 0){

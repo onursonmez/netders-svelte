@@ -1,4 +1,4 @@
-import { c as create_ssr_component, b as subscribe, d as add_attribute, e as escape, h as add_classes } from "./index.js";
+import { c as create_ssr_component, b as subscribe, d as add_attribute, h as add_classes } from "./index.js";
 import { L as Logo } from "./netders-logo-blue.js";
 import { I as IconUser } from "./icon-user.js";
 import { p as page } from "./stores.js";
@@ -17,8 +17,7 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 						<svg class="${["h-6 w-6", ""].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}"></path></svg>
 
 						<svg class="${["h-6 w-6", "hidden"].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M6 18L18 6M6 6l12 12"}"></path></svg></button></div>
-				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", Logo, 0)} alt="${"Netders.com"}">
-							${escape($userStore.username)}</a></div>
+				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}"${add_attribute("src", Logo, 0)} alt="${"Netders.com"}"></a></div>
 					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders-ilanlari-verenler"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
 							\xD6\u011Fretmen Ara
 						</a>
@@ -27,7 +26,7 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 							Ders Talepleri
 						</a>
 
-						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
+						<a href="${"/member/account"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
 
 						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
 
