@@ -1,1 +1,0 @@
-import{d as a}from"./environment-b04a8a58.js";const r=a,o=!1;async function s({url:e}){return{email:e.searchParams.get("email"),code:e.searchParams.get("code")}}const c=Object.freeze(Object.defineProperty({__proto__:null,csr:r,prerender:o,load:s},Symbol.toStringTag,{value:"Module"}));export{c as _,r as c,s as l,o as p};

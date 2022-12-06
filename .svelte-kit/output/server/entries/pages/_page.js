@@ -1,5 +1,5 @@
 import { u as userStore } from "../../chunks/userStore.js";
-const prerender = true;
+const prerender = false;
 const load = async ({ parent }) => {
   const { user } = await parent();
   if (Object.entries(user).length > 0) {

@@ -4,7 +4,7 @@ export const manifest = {
 	assets: new Set([".DS_Store","favicon.png","images/turkiye-white.svg","robots.txt"]),
 	mimeTypes: {".png":"image/png",".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		entry: {"file":"_app/immutable/start-e1256abc.js","imports":["_app/immutable/start-e1256abc.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/singletons-d0258cb4.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/control-03134885.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-50be9b7b.js","imports":["_app/immutable/start-50be9b7b.js","_app/immutable/chunks/index-95fd0b09.js","_app/immutable/chunks/singletons-254c656d.js","_app/immutable/chunks/index-ba476fff.js","_app/immutable/chunks/control-03134885.js"],"stylesheets":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
