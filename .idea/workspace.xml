@@ -1,101 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="test">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="js-cookie">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/build/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/build/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/assets/app-217da9ee.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/0-fd77be23.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/10-0276176f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/12-734acc6c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/13-f20c8c68.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/3-90fd1b4d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/Input-c1aeede8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/Modal-a9efb2e7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/SvelteCookie-ba5917f9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/_page-2994d4ae.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/_page-48836291.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/_page-666bdb0b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/_page-6c441749.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/_page-773e8c46.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/_page-ad7cafa8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/_page-c0767ab4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/control-03134885.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/index-95fd0b09.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/index-b593c33b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/index-ba476fff.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/lesson-f97c8aea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/user-5e4a8908.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/userStore-7d0e6609.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-19711159.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/components/pages/(auth)/_layout.svelte-3f7a1bb2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-57a4cd4e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-d861b123.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/components/pages/_layout.svelte-58aa172d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/modules/pages/(app)/_...catchall_/_page.js-73dcf3e0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-c4b844f6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/modules/pages/(app)/member/account/_page.js-524457b8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/modules/pages/(app)/member/requests/_page.js-53ca5c21.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-da2a4b0d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/modules/pages/(app)/ozel-ders-talebi-olustur/_page.js-af7fb968.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/modules/pages/_page.js-02cb9d76.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/prerendered.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/prerendered.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/assets/app-217da9ee.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/0-fd77be23.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/10-0276176f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/12-734acc6c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/13-f20c8c68.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/3-90fd1b4d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/Input-c1aeede8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/Modal-a9efb2e7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/SvelteCookie-ba5917f9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/_page-2994d4ae.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/_page-48836291.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/_page-666bdb0b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/_page-6c441749.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/_page-773e8c46.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/_page-ad7cafa8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/_page-c0767ab4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/control-03134885.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/index-95fd0b09.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/index-b593c33b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/index-ba476fff.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/lesson-f97c8aea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/user-5e4a8908.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/userStore-7d0e6609.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/components/pages/(app)/ozel-ders-talebi-olustur/_page.svelte-19711159.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/components/pages/(auth)/_layout.svelte-3f7a1bb2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/components/pages/(auth)/auth/activation/_page.svelte-57a4cd4e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/components/pages/(auth)/auth/forgot/_page.svelte-d861b123.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/components/pages/_layout.svelte-58aa172d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/modules/pages/(app)/_...catchall_/_page.js-73dcf3e0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-c4b844f6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/modules/pages/(app)/member/account/_page.js-524457b8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/modules/pages/(app)/member/requests/_page.js-53ca5c21.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-da2a4b0d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/modules/pages/(app)/ozel-ders-talebi-olustur/_page.js-af7fb968.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/modules/pages/_page.js-02cb9d76.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/colored-bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/colored-bar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/index2.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/index2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/entries/pages/(app)/member/account/_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/entries/pages/(app)/member/account/_page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/10.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/11.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/12.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/13.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/13.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/(auth)/auth/logout/$types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/(auth)/auth/logout/$types.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/(auth)/auth/logout/proxy+page.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/(auth)/auth/logout/proxy+page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(app)/ozel-ders-ilanlari-verenler/[...catchall]/+page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/(auth)/auth/login/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(auth)/auth/login/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/(auth)/auth/logout/+page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(auth)/auth/logout/+page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/(auth)/auth/logout/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(auth)/auth/logout/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/userModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/userModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/(app)/member/account/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/(app)/member/account/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670359187717</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="js-cookie">
+      <created>1670361049658</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1670361049658</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +427,8 @@
     <MESSAGE value="reverted" />
     <MESSAGE value="csr disabled" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="js-cookie" />
+    <option name="LAST_COMMIT_MESSAGE" value="js-cookie" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

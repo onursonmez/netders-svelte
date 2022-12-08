@@ -467,7 +467,6 @@ const RangeSlider = create_ssr_component(($$result, $$props, $$bindings, slots) 
 `;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let currentStep = 4;
   let lessons = { items: [], total: 0 };
   let locations = { items: [], total: 0 };
   let requestData = {
@@ -507,10 +506,10 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     }
     $$rendered = `${$$result.head += `<!-- HEAD_svelte-juqmny_START -->${$$result.title = `<title>\xD6zel Ders Talebi Olu\u015Ftur</title>`, ""}<!-- HEAD_svelte-juqmny_END -->`, ""}
 
-<div class="${["max-w-2xl w-full mx-auto mt-8 mb-4", ""].join(" ").trim()}"><h2 class="${"sr-only"}">Ad\u0131mlar</h2>
+<div class="${["max-w-2xl w-full mx-auto mt-8 mb-4", "hidden"].join(" ").trim()}"><h2 class="${"sr-only"}">Ad\u0131mlar</h2>
 	<div><div class="${"overflow-hidden rounded-full bg-white"}"><div class="${[
-      "h-2 rounded-full bg-blue-500 " + escape("w-" + (currentStep - 1) + "/5", true),
-      ""
+      "h-2 rounded-full bg-blue-500 " + escape("", true),
+      "w-0"
     ].join(" ").trim()}"></div></div>
 
 		<ol class="${"mt-4 grid grid-cols-5 text-sm font-medium"}"><li class="${[
@@ -542,7 +541,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 				<span class="${"hidden md:block ml-1"}">Bitti</span></li></ol></div></div>
 
-<div class="${["bg-white rounded-lg shadow-md mt-4", "hidden"].join(" ").trim()}"><div class="${"p-6"}"><div class="${"grid md:grid-cols-4"}"><div class="${"hidden md:block"}"><img${add_attribute("src", Student2, 0)} alt="${""}"></div>
+<div class="${["bg-white rounded-lg shadow-md mt-4", ""].join(" ").trim()}"><div class="${"p-6"}"><div class="${"grid md:grid-cols-4"}"><div class="${"hidden md:block"}"><img${add_attribute("src", Student2, 0)} alt="${""}"></div>
 			<div class="${"md:col-span-3"}"><h5 class="${"font-semibold text-2xl"}">Do\u011Fru \xF6\u011Fretmene ula\u015Fman\u0131n en kolay kolu</h5>
 				<p class="${"mt-1"}">Almak istedi\u011Fin \xF6zel dersle ilgili do\u011Fru \xF6\u011Fretmeni bulam\u0131yor veya buldu\u011Fun \xF6\u011Fretmenlerden emin olam\u0131yorsan, \xF6zel ders talebi b\u0131rakarak kriterlerine en uygun \xF6\u011Fretmenin sana ula\u015Fmas\u0131n\u0131 sa\u011Flayabilirsin.</p>
 				<p class="${"font-semibold mt-4"}">Ders talebi b\u0131rakman\u0131n avantajlar\u0131</p>
@@ -597,7 +596,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 			Daha fazla lokasyon
 		</button></div>` : ``}</div>
 
-<div class="${["bg-white rounded-lg shadow-md mt-2", ""].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Nerede ders almak istersin?</div>
+<div class="${["bg-white rounded-lg shadow-md mt-2", "hidden"].join(" ").trim()}"><div class="${"p-6 max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Nerede ders almak istersin?</div>
 		<p class="${"text-xs text-gray-400"}">Birden fazla se\xE7im yapabilirsin.</p>
 		<div class="${"grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 mt-2"}"><div><input type="${"checkbox"}" id="${"location-own"}" class="${"hidden peer"}" required${add_attribute("value", requestData.placeOwn, 0)}>
 				<label for="${"location-own"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Kendi evimde</div></label></div>

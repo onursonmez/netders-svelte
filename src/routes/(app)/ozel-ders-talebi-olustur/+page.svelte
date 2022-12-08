@@ -5,7 +5,7 @@
 	import RangeSlider from 'svelte-range-slider-pips'
 	import Toastify from 'toastify-js'
 
-	let currentStep = 4
+	let currentStep = 1
 	let lessons = {items: [], total: 0}
 	let lessonsPage = 1
 	let locations = {items: [], total: 0}

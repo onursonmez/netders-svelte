@@ -7,7 +7,8 @@ async function getUsers(params = {}) {
     "http://api.nd.io/user/teachers",
     {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       },
       method: "POST",
       body: JSON.stringify({
@@ -28,6 +29,9 @@ async function getUsers(params = {}) {
   return body.result;
 }
 async function getUserByToken(token) {
+  if (!token) {
+    return {};
+  }
   const response = await fetch(
     "http://api.nd.io/user/get_user_by_token",
     {

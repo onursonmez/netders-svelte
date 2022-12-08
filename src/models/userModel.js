@@ -4,6 +4,7 @@ export const userModel = {
     firstName: '',
     lastName: '',
     phone: '',
+    genderId: '',
     token: '',
     roles: []
 }

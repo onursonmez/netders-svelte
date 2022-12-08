@@ -1,5 +1,5 @@
 import { get } from 'svelte/store'
-import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, viewedTeacherStore } from '/src/stores/userStore'
+import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, viewedTeacherStore, userStore } from '/src/stores/userStore'
 
 export async function getUsers(params = {})
 {
@@ -9,6 +9,7 @@ export async function getUsers(params = {})
         {
             headers:{
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
             method: 'POST',
             body: JSON.stringify({
@@ -52,6 +53,10 @@ export async function login(params = [])
 
 export async function getUserByToken(token)
 {
+    if(!token){
+        return {}
+    }
+
     const response = await fetch(import.meta.env.VITE_API_URL + 'user/get_user_by_token',
         {
             headers:{
@@ -172,4 +177,28 @@ export async function getUserLocations(username)
     const body = await response.json()
 
     return body
+}
+
+export async function updateUser(params = [])
+{
+    const userStoreData = get(userStore)
+
+    const response = await fetch(import.meta.env.VITE_API_URL + 'member/user/update',
+        {
+            headers:{
+                'Content-Type': 'application/json',
+                'X-AUTH-TOKEN': userStoreData?.token
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                'firstName' : params?.firstName,
+                'lastName' : params?.lastName,
+                'email' : params?.email,
+                'phone' : params?.phone,
+                'genderId' : params?.genderId,
+            })
+        },
+    );
+
+    return await response.json()
 }

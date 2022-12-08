@@ -6,7 +6,6 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $gendersStore, $$unsubscribe_gendersStore;
   $$unsubscribe_userStore = subscribe(userStore, (value) => $userStore = value);
   $$unsubscribe_gendersStore = subscribe(gendersStore, (value) => $gendersStore = value);
-  let lastName, phone;
   let { data } = $$props;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
@@ -21,12 +20,12 @@ ${validate_component(MemberHorizontalNavigation, "MemberHorizontalNavigation").$
 		<div class="${"grid grid-cols-2 gap-4 mt-4"}"><div><span class="${"text-sm mb-1 block text-gray-500"}">Ad\u0131n</span>
 				<input type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", $userStore.firstName, 0)}></div>
 			<div><span class="${"text-sm mb-1 block text-gray-500"}">Soyad\u0131n</span>
-				<input type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", lastName, 0)}></div>
+				<input type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", $userStore.lastName, 0)}></div>
 			<div><span class="${"text-sm mb-1 block text-gray-500"}">Telefon numaran</span>
-				<input type="${"number"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", phone, 0)}></div>
+				<input type="${"number"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", $userStore.phone, 0)}></div>
 			<div><span class="${"text-sm mb-1 block text-gray-500"}">Cinsiyetin</span>
-				<select class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"><option value="${""}">L\xFCtfen Se\xE7</option>${each($gendersStore, (gender) => {
-    return `<option${add_attribute("value", gender, 0)}>${escape(gender.title)}</option>`;
+				<select class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"><option value="${""}">Se\xE7im yapmad\u0131n</option>${each($gendersStore, (gender) => {
+    return `<option${add_attribute("value", gender.id, 0)}>${escape(gender.title)}</option>`;
   })}</select></div></div>
 
 		<button class="${"bg-blue-700 hover:bg-blue-900 px-6 py-2 rounded-full text-white mt-4"}"><span>Kaydet</span></button></div></div>`;
