@@ -14,7 +14,9 @@ export const load = async ({ parent }) => {
 
     const { user } = await parent();
 
-    if(!user?.username){
+    if(Object.entries(user).length > 0){
+        userStore.set(user)
+    } else {
         throw redirect(307, '/auth/login')
     }
 
