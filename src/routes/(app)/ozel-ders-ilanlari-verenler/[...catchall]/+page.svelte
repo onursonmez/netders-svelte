@@ -4,147 +4,69 @@
 	import { getUsers } from '/src/repository/user'
 	import { getCities, getCounties } from '/src/repository/location'
 	import { getLevels, getSubjects } from '/src/repository/lesson'
-	import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, gendersStore } from '/src/stores/userStore'
+	import { gendersStore } from '/src/stores/userStore'
 	import { citiesStore, countiesStore } from '/src/stores/locationStore'
 	import { subjectsStore, levelsStore, lessonTypesStore } from '/src/stores/lessonStore'
+	import { searchParamsModel } from '/src/models/searchModel'
+	import { changeSearchPageStateFunction } from '/src/functions/changeSearchPageStateFunction'
 	import { onMount } from 'svelte'
 	import { page } from '$app/stores'
 
-	onMount(async () => {
-
-		teacherSearchParams = {...$teacherSearchParamsStore}
-
-		if($page.url.searchParams.has('keyword')){
-			teacherSearchParams.keyword = $page.url.searchParams.get('keyword')
-			$teacherSearchParamsStore.keyword = $page.url.searchParams.get('keyword')
-		}
-
-		if($page.url.searchParams.has('budget')){
-			teacherSearchParams.budget = $page.url.searchParams.get('budget')
-			$teacherSearchParamsStore.budget = $page.url.searchParams.get('budget')
-		}
-
-		if($page.url.searchParams.has('lesson_type')){
-			teacherSearchParams.lessonTypeObject = $lessonTypesStore.find(lts => lts.id === $page.url.searchParams.get('lesson_type'))
-			$teacherSearchParamsStore.lessonTypeObject = $lessonTypesStore.find(lts => lts.id === $page.url.searchParams.get('lesson_type'))
-		}
-
-		if($page.url.searchParams.has('gender')){
-			teacherSearchParams.genderObject = $gendersStore.find(lts => lts.id === $page.url.searchParams.get('gender'))
-			$teacherSearchParamsStore.genderObject = $gendersStore.find(lts => lts.id === $page.url.searchParams.get('gender'))
-		}
-
-
-		if(Array.from($page.url.searchParams).length > 0){
-			await onSearch()
-		}
-
-		await getCities()
-		await getSubjects()
-
-	})
+	export let data
 
 	let loading = false
 	let showMoreLoading = false
 	let showSearchModal = false
+	let pageData = {...searchParamsModel, ...data.teacherSearchParams}
 
-	let teacherSearchParams = {
-		'keyword': '',
-		'budget': '',
-		'cityObject': undefined,
-		'countyObject': undefined,
-		'subjectObject': undefined,
-		'levelObject': undefined,
-		'lessonTypeObject': undefined,
-		'genderObject': undefined,
-	}
+	onMount(async () => {
+		await getCities()
+		await getSubjects()
+	})
 
 	let showMore = async () => {
 		showMoreLoading = true
-		$teacherSearchParamsStore.page += 1
-		const users = await getUsers()
-		$teacherItemsStore = [...$teacherItemsStore, ...users.items]
+		pageData.page += 1
+		const users = await getUsers(pageData)
+		data.users.items = [...data.users.items, ...users.items]
 		showMoreLoading = false
 	}
 
 	const onSearch = async () => {
 		loading = true
-		$teacherSearchParamsStore.page = 1
-		$teacherSearchParamsStore = {...$teacherSearchParamsStore, ...teacherSearchParams}
-		const users = await getUsers()
-		$teacherItemsStore = [...users.items]
-		$teacherTotalStore = users.total
+		pageData.page = 1
+		const users = await getUsers(pageData)
+		data.users.items = [...users.items]
+		data.users.total = users.total
 		loading = false
 		showSearchModal = false
-
-		changeState()
+		changeSearchPageStateFunction(pageData, $page)
 	}
 
 	const updateCounties = async () => {
-		if(teacherSearchParams.cityObject?.id){
-			const counties = await getCounties({cityId: teacherSearchParams.cityObject.id})
-			$countiesStore = counties.items
+		if(pageData.cityObject?.id){
+			$countiesStore = await getCounties({cityId: pageData.cityObject.id})
 		} else {
-			$teacherSearchParamsStore.countyObject = undefined
-			teacherSearchParams.countyObject = undefined
+			pageData.countyObject = undefined
+			pageData.countyObject = undefined
 			$countiesStore = []
 		}
 	}
 
 	const updateLevels = async () => {
-		if(teacherSearchParams.subjectObject?.id){
-			const levels = await getLevels({subjectId: teacherSearchParams.subjectObject.id})
+		if(pageData.subjectObject?.id){
+			const levels = await getLevels({subjectId: pageData.subjectObject.id})
 			$levelsStore = levels.items
 		} else {
-			$teacherSearchParamsStore.levelObject = undefined
-			teacherSearchParams.levelObject = undefined
+			pageData.levelObject = undefined
+			pageData.levelObject = undefined
 			$levelsStore = []
 		}
 	}
-
-	const changeState = () => {
-
-		if(teacherSearchParams.keyword)
-			$page.url.searchParams.set('keyword', teacherSearchParams.keyword)
-		else
-			$page.url.searchParams.delete('keyword')
-
-		if(teacherSearchParams.budget){
-			$page.url.searchParams.set('budget', teacherSearchParams.budget)
-		} else {
-			$page.url.searchParams.delete('budget')
-		}
-
-		if(teacherSearchParams.lessonTypeObject)
-			$page.url.searchParams.set('lesson_type', teacherSearchParams.lessonTypeObject.id)
-		else
-			$page.url.searchParams.delete('lesson_type')
-
-		if(teacherSearchParams.genderObject)
-			$page.url.searchParams.set('gender', teacherSearchParams.genderObject.id)
-		else
-			$page.url.searchParams.delete('gender')
-
-		let finalState = []
-		let queryParams = Array.from($page.url.searchParams).length > 0 ? '?' + $page.url.searchParams.toString() : ''
-
-		if(teacherSearchParams.cityObject?.slug || teacherSearchParams.countyObject?.slug)
-		finalState.push(teacherSearchParams.countyObject?.slug ? teacherSearchParams.countyObject?.slug : teacherSearchParams.cityObject?.slug)
-
-		if(teacherSearchParams.subjectObject?.slug || teacherSearchParams.levelObject?.slug)
-		finalState.push(teacherSearchParams.levelObject?.slug ? teacherSearchParams.levelObject?.slug : teacherSearchParams.subjectObject?.slug)
-
-		if(finalState.length > 0){
-			window.history.pushState('', '', '/ozel-ders-ilanlari-verenler/' + finalState.join('/') + queryParams);
-		} else {
-			window.history.pushState('', '', '/ozel-ders-ilanlari-verenler' + queryParams);
-		}
-	}
-
 </script>
 
 <svelte:head>
-	<title>{$teacherSearchParamsStore.cityObject ? $teacherSearchParamsStore.cityObject?.title + ' ' : ''}{$teacherSearchParamsStore.countyObject ? $teacherSearchParamsStore.countyObject?.title + ' ' : ''}{$teacherSearchParamsStore.subjectObject ? $teacherSearchParamsStore.subjectObject?.title + ' ' : ''}{$teacherSearchParamsStore.levelObject ? $teacherSearchParamsStore.levelObject?.title + ' ' : ''}Özel Ders Veren Öğretmenler</title>
+	<title>{pageData.cityObject ? pageData.cityObject?.title + ' ' : ''}{pageData.countyObject ? pageData.countyObject?.title + ' ' : ''}{pageData.subjectObject ? pageData.subjectObject?.title + ' ' : ''}{pageData.levelObject ? pageData.levelObject?.title + ' ' : ''}Özel Ders Veren Öğretmenler</title>
 	<meta name="description" content="" />
 </svelte:head>
 
@@ -155,16 +77,16 @@
 		<div class="grid gap-3 md:grid-cols-2 text-sm">
 			<label>
 				<div class="pb-1">Anahtar Kelime</div>
-				<input type="text" name="keyword" bind:value={teacherSearchParams.keyword} class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
+				<input type="text" name="keyword" bind:value={pageData.keyword} class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
 			</label>
 			<label>
 				<div class="pb-1">Maksimum Bütçe (₺)</div>
-				<input type="text" name="budget" bind:value={teacherSearchParams.budget} placeholder="200" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
+				<input type="text" name="budget" bind:value={pageData.budget} placeholder="200" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
 			</label>
 
 			<div>
 				<span class="pb-1 block">Şehir</span>
-				<select name="city" bind:value={teacherSearchParams.cityObject} on:change={updateCounties} class="w-full border border-gray-300 rounded-md">
+				<select name="city" bind:value={pageData.cityObject} on:change={updateCounties} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seç</option>
 					{#each $citiesStore as city}
 						<option value="{city}">{city.title}</option>
@@ -174,7 +96,7 @@
 
 			<div>
 				<span class="pb-1 block">İlçe</span>
-				<select name="county" bind:value={teacherSearchParams.countyObject} class="w-full border border-gray-300 rounded-md">
+				<select name="county" bind:value={pageData.countyObject} class="w-full border border-gray-300 rounded-md">
 					{#if ($countiesStore.length > 0)}
 						<option value="">Lütfen Seç</option>
 						{#each $countiesStore as county}
@@ -188,7 +110,7 @@
 
 			<div>
 				<span class="pb-1 block">Ders</span>
-				<select name="subject" bind:value={teacherSearchParams.subjectObject} on:change={updateLevels} class="w-full border border-gray-300 rounded-md">
+				<select name="subject" bind:value={pageData.subjectObject} on:change={updateLevels} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seç</option>
 					{#each $subjectsStore as subject}
 						<option value="{subject}">{subject.title}</option>
@@ -198,7 +120,7 @@
 
 			<div>
 				<span class="pb-1 block">Konu</span>
-				<select name="level" bind:value={teacherSearchParams.levelObject} class="w-full border border-gray-300 rounded-md">
+				<select name="level" bind:value={pageData.levelObject} class="w-full border border-gray-300 rounded-md">
 					{#if ($levelsStore.length > 0)}
 						<option value="">Lütfen Seç</option>
 						{#each $levelsStore as level}
@@ -212,7 +134,7 @@
 
 			<div>
 				<span class="pb-1 block">Ders Tipi</span>
-				<select name="lesson_type" bind:value={teacherSearchParams.lessonTypeObject} class="w-full border border-gray-300 rounded-md">
+				<select name="lesson_type" bind:value={pageData.lessonTypeObject} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seç</option>
 					{#each $lessonTypesStore as lessonType}
 						<option value="{lessonType}">{lessonType.title}</option>
@@ -222,7 +144,7 @@
 
 			<div>
 				<span class="pb-1 block">Öğretmen</span>
-				<select name="gender" bind:value={teacherSearchParams.genderObject} class="w-full border border-gray-300 rounded-md">
+				<select name="gender" bind:value={pageData.genderObject} class="w-full border border-gray-300 rounded-md">
 					<option value="">Lütfen Seç</option>
 					{#each $gendersStore as gender}
 						<option value="{gender}">{gender.title}</option>
@@ -241,8 +163,8 @@
 <section class="dark:bg-gray-900 text-center">
 	<div class="flex py-6">
 		<div class="mx-auto">
-			<h1 class="mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white">{$teacherSearchParamsStore.cityObject ? $teacherSearchParamsStore.cityObject?.title : ''} {$teacherSearchParamsStore.countyObject ? $teacherSearchParamsStore.countyObject?.title : ''} {$teacherSearchParamsStore.subjectObject ? $teacherSearchParamsStore.subjectObject?.title : ''} {$teacherSearchParamsStore.levelObject ? $teacherSearchParamsStore.levelObject?.title : ''} <span class="text-gray-800">Özel Ders Veren Öğretmenler</span></h1>
-			<p class="mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{$teacherSearchParamsStore.cityObject ? $teacherSearchParamsStore.cityObject?.title : ''} {$teacherSearchParamsStore.countyObject ? $teacherSearchParamsStore.countyObject?.title : ''} özel ders veren öğretmenler tarafından oluşturulan {$teacherSearchParamsStore.subjectObject ? $teacherSearchParamsStore.subjectObject?.title : ''} {$teacherSearchParamsStore.levelObject ? $teacherSearchParamsStore.levelObject?.title : ''} özel ders ilanları.</p>
+			<h1 class="mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white">{pageData.cityObject ? pageData.cityObject?.title : ''} {pageData.countyObject ? pageData.countyObject?.title : ''} {pageData.subjectObject ? pageData.subjectObject?.title : ''} {pageData.levelObject ? pageData.levelObject?.title : ''} <span class="text-gray-800">Özel Ders Veren Öğretmenler</span></h1>
+			<p class="mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{pageData.cityObject ? pageData.cityObject?.title : ''} {pageData.countyObject ? pageData.countyObject?.title : ''} özel ders veren öğretmenler tarafından oluşturulan {pageData.subjectObject ? pageData.subjectObject?.title : ''} {pageData.levelObject ? pageData.levelObject?.title : ''} özel ders ilanları.</p>
 
 			<form on:submit|preventDefault={onSearch} autocomplete="off">
 				<label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Arama</label>
@@ -250,7 +172,7 @@
 					<div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
 						<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
 					</div>
-					<input name="keyword" bind:value={teacherSearchParams.keyword} type="text" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0" placeholder="Aradığınız özel ders nedir?">
+					<input name="keyword" bind:value={pageData.keyword} type="text" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0" placeholder="Aradığınız özel ders nedir?">
 
 					{#if (loading)}
 						<div role="status" class="absolute right-2.5 bottom-2.5">
@@ -271,13 +193,13 @@
 
 			<div class="flex justify-center flex-wrap gap-2">
 
-				{#if $teacherSearchParamsStore.keyword}
+				{#if pageData.keyword}
 					<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
-                        <span>{$teacherSearchParamsStore.keyword}</span>
-						<button on:click={() => {teacherSearchParams.keyword = ''; onSearch();}}>
+                        <span>{pageData.keyword}</span>
+						<button on:click={() => {pageData.keyword = ''; onSearch();}}>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
@@ -285,13 +207,13 @@
 					</div>
 				{/if}
 
-				{#if $teacherSearchParamsStore.budget}
+				{#if pageData.budget}
 					<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
 						</svg>
-						<span>{$teacherSearchParamsStore.budget} ₺</span>
-						<button on:click={() => {teacherSearchParams.budget = ''; onSearch();}}>
+						<span>{pageData.budget} ₺</span>
+						<button on:click={() => {pageData.budget = ''; onSearch();}}>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
@@ -299,14 +221,14 @@
 					</div>
 				{/if}
 
-				{#if $teacherSearchParamsStore.cityObject}
+				{#if pageData.cityObject}
 				<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
 						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
 					</svg>
-					<span>{$teacherSearchParamsStore.cityObject?.title}</span>
-					<button on:click={() => {teacherSearchParams.cityObject = undefined; $teacherSearchParamsStore.cityObject = undefined; teacherSearchParams.countyObject = undefined; $teacherSearchParamsStore.countyObject = undefined; $countiesStore = []; onSearch();}}>
+					<span>{pageData.cityObject?.title}</span>
+					<button on:click={() => {pageData.cityObject = undefined; pageData.cityObject = undefined; pageData.countyObject = undefined; pageData.countyObject = undefined; $countiesStore = []; onSearch();}}>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 						</svg>
@@ -314,14 +236,14 @@
 				</div>
 				{/if}
 
-				{#if $teacherSearchParamsStore.countyObject}
+				{#if pageData.countyObject}
 					<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
 							<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
 						</svg>
-						<span>{$teacherSearchParamsStore.countyObject?.title}</span>
-						<button on:click={() => {teacherSearchParams.countyObject = undefined; $teacherSearchParamsStore.countyObject = undefined; onSearch();}}>
+						<span>{pageData.countyObject?.title}</span>
+						<button on:click={() => {pageData.countyObject = undefined; pageData.countyObject = undefined; onSearch();}}>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
@@ -329,13 +251,13 @@
 					</div>
 				{/if}
 
-				{#if $teacherSearchParamsStore.subjectObject}
+				{#if pageData.subjectObject}
 					<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
 						</svg>
-						<span>{$teacherSearchParamsStore.subjectObject?.title}</span>
-						<button on:click={() => {teacherSearchParams.subjectObject = undefined; $teacherSearchParamsStore.subjectObject = undefined; teacherSearchParams.levelObject = undefined; $teacherSearchParamsStore.levelObject = undefined; $levelsStore = []; onSearch();}}>
+						<span>{pageData.subjectObject?.title}</span>
+						<button on:click={() => {pageData.subjectObject = undefined; pageData.subjectObject = undefined; pageData.levelObject = undefined; pageData.levelObject = undefined; $levelsStore = []; onSearch();}}>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
@@ -343,13 +265,13 @@
 					</div>
 				{/if}
 
-				{#if $teacherSearchParamsStore.levelObject}
+				{#if pageData.levelObject}
 					<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
 						</svg>
-						<span>{$teacherSearchParamsStore.levelObject?.title}</span>
-						<button on:click={() => {teacherSearchParams.levelObject = undefined; $teacherSearchParamsStore.levelObject = undefined; onSearch();}}>
+						<span>{pageData.levelObject?.title}</span>
+						<button on:click={() => {pageData.levelObject = undefined; pageData.levelObject = undefined; onSearch();}}>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
@@ -357,13 +279,13 @@
 					</div>
 				{/if}
 
-				{#if $teacherSearchParamsStore.lessonTypeObject}
+				{#if pageData.lessonTypeObject}
 					<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
 						</svg>
-						<span>{$teacherSearchParamsStore.lessonTypeObject?.title}</span>
-						<button on:click={() => {teacherSearchParams.lessonTypeObject = undefined; onSearch();}}>
+						<span>{pageData.lessonTypeObject?.title}</span>
+						<button on:click={() => {pageData.lessonTypeObject = undefined; onSearch();}}>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
@@ -371,13 +293,13 @@
 					</div>
 				{/if}
 
-				{#if $teacherSearchParamsStore.genderObject}
+				{#if pageData.genderObject}
 				<div class="bg-white p-2 pl-3 rounded-full text-xs font-bold mt-4">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block text-gray-400">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
 					</svg>
-					<span>{$teacherSearchParamsStore.genderObject?.title}</span>
-					<button on:click={() => {teacherSearchParams.genderObject = undefined; onSearch();}}>
+					<span>{pageData.genderObject?.title}</span>
+					<button on:click={() => {pageData.genderObject = undefined; onSearch();}}>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block text-blue-700">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 						</svg>
@@ -391,7 +313,7 @@
 </section>
 
 {#if (!loading)}
-<div class="py-4 text-sm">Arama sonuçlarına uygun <strong>{$teacherTotalStore}</strong> eğitmen bulundu.</div>
+<div class="py-4 text-sm">Arama sonuçlarına uygun <strong>{data.users.total}</strong> eğitmen bulundu.</div>
 {/if}
 
 <div class="grid grid-cols-1 gap-4">
@@ -413,14 +335,14 @@
 		</div>
 	</div>
 	{:else}
-	{#each $teacherItemsStore as user}
+	{#each data.users.items as user}
 		<UserHorizontal {...user} />
 	{/each}
 	{/if}
 
 </div>
 
-{#if ($teacherTotalStore > 0 && !loading)}
+{#if (data.users.total > 0 && !loading)}
 {#if (showMoreLoading)}
 <div role="status" class="py-4 flex justify-center">
 	<svg aria-hidden="true" class="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

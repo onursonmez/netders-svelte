@@ -1,4 +1,6 @@
 <script>
+    import '/src/routes/styles.css'
+    import '/src/app.css'
     import { page } from '$app/stores'
     import errorImage from '$lib/images/error.svg'
 </script>

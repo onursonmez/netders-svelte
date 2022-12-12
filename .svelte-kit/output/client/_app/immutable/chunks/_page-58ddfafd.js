@@ -1,0 +1,1 @@
+import{r as t}from"./index-ae603ba0.js";import"./index-249ed9df.js";const o=!1,a=async({parent:r})=>{const{user:e}=await r();if(!(e!=null&&e.username))throw t(307,"/auth/login");return{user:e}},l=Object.freeze(Object.defineProperty({__proto__:null,prerender:o,load:a},Symbol.toStringTag,{value:"Module"}));export{l as _,a as l,o as p};

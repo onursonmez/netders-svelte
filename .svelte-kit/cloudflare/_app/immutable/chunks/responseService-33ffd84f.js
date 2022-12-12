@@ -1,0 +1,1 @@
+import{T as r}from"./toastify-3cd1641d.js";function a(e,t,s="bottom"){r({text:e,className:t,gravity:s}).showToast()}function n(e){if(Object.entries(e).length>0)if(Object.values(e.errors).length>0)Object.values(e.errors).forEach(t=>{a(t,"danger")});else return e.result.items?e.result.items:e.result}export{n as r,a as t};

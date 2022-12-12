@@ -1,10 +1,10 @@
 export const manifest = {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set([".DS_Store","favicon.png","images/turkiye-white.svg","robots.txt"]),
+	assets: new Set([".DS_Store","favicon.png","images/icon-female.png","images/icon-male.png","images/icon-user.png","images/turkiye-white.svg","robots.txt"]),
 	mimeTypes: {".png":"image/png",".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		entry: {"file":"_app/immutable/start-ac64c98e.js","imports":["_app/immutable/start-ac64c98e.js","_app/immutable/chunks/index-b886aca0.js","_app/immutable/chunks/singletons-4b4e7a42.js","_app/immutable/chunks/index-e50d72bf.js","_app/immutable/chunks/control-ba37bfb4.js"],"stylesheets":[],"fonts":[]},
+		entry: {"file":"_app/immutable/start-a20fabc5.js","imports":["_app/immutable/start-a20fabc5.js","_app/immutable/chunks/index-249ed9df.js","_app/immutable/chunks/singletons-a0fc4b73.js","_app/immutable/chunks/index-5c699cbe.js","_app/immutable/chunks/control-ba37bfb4.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			() => import('../output/server/nodes/0.js'),
 			() => import('../output/server/nodes/1.js'),
@@ -21,7 +21,8 @@ export const manifest = {
 			() => import('../output/server/nodes/12.js'),
 			() => import('../output/server/nodes/13.js'),
 			() => import('../output/server/nodes/14.js'),
-			() => import('../output/server/nodes/15.js')
+			() => import('../output/server/nodes/15.js'),
+			() => import('../output/server/nodes/16.js')
 		],
 		routes: [
 			{
@@ -35,35 +36,35 @@ export const manifest = {
 				id: "/(auth)/auth",
 				pattern: /^\/auth\/?$/,
 				params: [],
-				page: { layouts: [0,3], errors: [1,,], leaf: 11 },
+				page: { layouts: [0,3], errors: [1,,], leaf: 12 },
 				endpoint: null
 			},
 			{
 				id: "/(auth)/auth/activation",
 				pattern: /^\/auth\/activation\/?$/,
 				params: [],
-				page: { layouts: [0,3], errors: [1,,], leaf: 12 },
+				page: { layouts: [0,3], errors: [1,,], leaf: 13 },
 				endpoint: null
 			},
 			{
 				id: "/(auth)/auth/forgot",
 				pattern: /^\/auth\/forgot\/?$/,
 				params: [],
-				page: { layouts: [0,3], errors: [1,,], leaf: 13 },
+				page: { layouts: [0,3], errors: [1,,], leaf: 14 },
 				endpoint: null
 			},
 			{
 				id: "/(auth)/auth/login",
 				pattern: /^\/auth\/login\/?$/,
 				params: [],
-				page: { layouts: [0,3], errors: [1,,], leaf: 14 },
+				page: { layouts: [0,3], errors: [1,,], leaf: 15 },
 				endpoint: null
 			},
 			{
 				id: "/(auth)/auth/logout",
 				pattern: /^\/auth\/logout\/?$/,
 				params: [],
-				page: { layouts: [0,3], errors: [1,,], leaf: 15 },
+				page: { layouts: [0,3], errors: [1,,], leaf: 16 },
 				endpoint: null
 			},
 			{
@@ -74,31 +75,38 @@ export const manifest = {
 				endpoint: null
 			},
 			{
+				id: "/(app)/member/about",
+				pattern: /^\/member\/about\/?$/,
+				params: [],
+				page: { layouts: [0,2], errors: [1,,], leaf: 7 },
+				endpoint: null
+			},
+			{
 				id: "/(app)/member/account",
 				pattern: /^\/member\/account\/?$/,
 				params: [],
-				page: { layouts: [0,2], errors: [1,,], leaf: 7 },
+				page: { layouts: [0,2], errors: [1,,], leaf: 8 },
 				endpoint: null
 			},
 			{
 				id: "/(app)/member/requests",
 				pattern: /^\/member\/requests\/?$/,
 				params: [],
-				page: { layouts: [0,2], errors: [1,,], leaf: 8 },
+				page: { layouts: [0,2], errors: [1,,], leaf: 9 },
 				endpoint: null
 			},
 			{
 				id: "/(app)/ozel-ders-ilanlari-verenler/[...catchall]",
 				pattern: /^\/ozel-ders-ilanlari-verenler(?:\/(.*))?\/?$/,
 				params: [{"name":"catchall","optional":false,"rest":true,"chained":true}],
-				page: { layouts: [0,2], errors: [1,,], leaf: 9 },
+				page: { layouts: [0,2], errors: [1,,], leaf: 10 },
 				endpoint: null
 			},
 			{
 				id: "/(app)/ozel-ders-talebi-olustur",
 				pattern: /^\/ozel-ders-talebi-olustur\/?$/,
 				params: [],
-				page: { layouts: [0,2], errors: [1,,], leaf: 10 },
+				page: { layouts: [0,2], errors: [1,,], leaf: 11 },
 				endpoint: null
 			},
 			{

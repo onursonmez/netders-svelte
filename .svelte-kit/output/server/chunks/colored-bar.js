@@ -3,6 +3,7 @@ import { L as Logo } from "./netders-logo-blue.js";
 import { I as IconUser } from "./icon-user.js";
 import { p as page } from "./stores.js";
 import { u as userStore } from "./userStore.js";
+import "toastify-js";
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $userStore, $$unsubscribe_userStore;
   let $$unsubscribe_page;
@@ -28,7 +29,7 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 						<a href="${"/member/account"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131rr?</a>
 
-						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
+						<a href="${"/test"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
 
 						<a href="${"/detail"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">\u0130leti\u015Fim</a></div></div>
 				<div class="${"absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0"}"><button type="${"button"}" class="${"hidden rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"}"><span class="${"sr-only"}">View notifications</span>

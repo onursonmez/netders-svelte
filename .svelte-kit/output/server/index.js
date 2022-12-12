@@ -1,7 +1,7 @@
 import { c as create_ssr_component, s as setContext, v as validate_component, m as missing_component } from "./chunks/index.js";
 import { H as HttpError, R as Redirect, V as ValidationError, j as json, e as error } from "./chunks/index2.js";
 import * as devalue from "devalue";
-import { r as readable, w as writable } from "./chunks/index3.js";
+import { w as writable, r as readable } from "./chunks/index3.js";
 import { parse, serialize } from "cookie";
 import * as set_cookie_parser from "set-cookie-parser";
 function afterUpdate() {
@@ -2356,7 +2356,7 @@ class Server {
       app_template,
       app_template_contains_nonce: false,
       error_template,
-      version: "1670682737838"
+      version: "1670866489978"
     };
   }
   async init({ env }) {

@@ -1,6 +1,6 @@
-import { A as now, B as loop, c as create_ssr_component, e as escape, f as each, j as createEventDispatcher, d as add_attribute, v as validate_component, b as subscribe, n as noop } from "../../../../chunks/index.js";
-import { w as writable } from "../../../../chunks/index3.js";
+import { w as now, x as loop, c as create_ssr_component, e as escape, f as each, j as createEventDispatcher, d as add_attribute, v as validate_component, b as subscribe, n as noop } from "../../../../chunks/index.js";
 import "toastify-js";
+import { w as writable } from "../../../../chunks/index3.js";
 const Student2 = "/_app/immutable/assets/student2-ef62a23a.png";
 function is_date(obj) {
   return Object.prototype.toString.call(obj) === "[object Date]";
@@ -466,30 +466,31 @@ const RangeSlider = create_ssr_component(($$result, $$props, $$bindings, slots) 
 
 `;
 });
+const requestModel = {
+  keywordLesson: "",
+  keywordLocation: "",
+  outsideTurkey: false,
+  levelId: "",
+  countryId: "",
+  countyId: "",
+  placeOwn: false,
+  placeTeacher: false,
+  placeRemote: false,
+  budget: [50, 200],
+  budgetSecret: false,
+  genderId: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  message: "",
+  responseTypeId: "",
+  isAgreementChecked: false
+};
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let lessons = { items: [], total: 0 };
   let locations = { items: [], total: 0 };
-  let requestData = {
-    keywordLesson: "",
-    keywordLocation: "",
-    outsideTurkey: false,
-    levelId: "",
-    countryId: "",
-    countyId: "",
-    placeOwn: false,
-    placeTeacher: false,
-    placeRemote: false,
-    budget: [50, 200],
-    budgetSecret: false,
-    genderId: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    message: "",
-    responseTypeId: "",
-    isAgreementChecked: false
-  };
+  let requestData = requestModel;
   let $$settled;
   let $$rendered;
   do {
@@ -542,10 +543,10 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 				<span class="${"hidden md:block ml-1"}">Bitti</span></li></ol></div></div>
 
 <div class="${["bg-white rounded-lg shadow-md mt-4", ""].join(" ").trim()}"><div class="${"p-6"}"><div class="${"grid md:grid-cols-4"}"><div class="${"hidden md:block"}"><img${add_attribute("src", Student2, 0)} alt="${""}"></div>
-			<div class="${"md:col-span-3"}"><h5 class="${"font-semibold text-2xl"}">Do\u011Fru \xF6\u011Fretmene ula\u015Fman\u0131n en kolay kolu</h5>
-				<p class="${"mt-1"}">Almak istedi\u011Fin \xF6zel dersle ilgili do\u011Fru \xF6\u011Fretmeni bulam\u0131yor veya buldu\u011Fun \xF6\u011Fretmenlerden emin olam\u0131yorsan, \xF6zel ders talebi b\u0131rakarak kriterlerine en uygun \xF6\u011Fretmenin sana ula\u015Fmas\u0131n\u0131 sa\u011Flayabilirsin.</p>
+			<div class="${"md:col-span-3"}"><h5 class="${"font-semibold text-2xl"}">Ders talebi olu\u015Ftur</h5>
+				<p>Almak istedi\u011Fin \xF6zel dersle ilgili do\u011Fru \xF6\u011Fretmeni bulam\u0131yor veya buldu\u011Fun \xF6\u011Fretmenlerden emin olam\u0131yorsan, \xF6zel ders talebi b\u0131rakarak kriterlerine en uygun \xF6\u011Fretmenlerin sana ula\u015Fmas\u0131n\u0131 sa\u011Flayabilirsin.</p>
 				<p class="${"font-semibold mt-4"}">Ders talebi b\u0131rakman\u0131n avantajlar\u0131</p>
-				<ul class="${"list-none mt-1"}"><li>\u2B50 \xDCcretsizdir. Ders talebi b\u0131rakmak i\xE7in herhangi bir \xFCcret \xF6demezsin.</li>
+				<ul class="${"list-none"}"><li>\u2B50 \xDCcretsizdir. Ders talebi b\u0131rakmak i\xE7in herhangi bir \xFCcret \xF6demezsin.</li>
 					<li>\u2B50 Kolayd\u0131r. Sen \xF6\u011Fretmen aramazs\u0131n, \xF6\u011Fretmen sana ula\u015F\u0131r.</li>
 					<li>\u2B50 Se\xE7me hakk\u0131n olur. Yaln\u0131zca be\u011Fendi\u011Fin \xF6\u011Fretmenle devam edersin.</li>
 					<li>\u2B50 H\u0131zl\u0131d\u0131r. Yakla\u015F\u0131k 1-2 saat i\xE7erisinde arad\u0131\u011F\u0131n \xF6\u011Fretmeni bulursun.</li>

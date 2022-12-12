@@ -1,3 +1,4 @@
+import "toastify-js";
 import { e as error } from "../../../../../chunks/index2.js";
 import { u as userStore } from "../../../../../chunks/userStore.js";
 async function getUserPriceDetail(slug) {

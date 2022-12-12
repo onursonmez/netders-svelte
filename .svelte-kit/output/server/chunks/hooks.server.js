@@ -1,5 +1,5 @@
-import { c as getUserByToken } from "./user.js";
-function handleError({ error, event }) {
+import { d as getUserByToken } from "./user.js";
+async function handleError({ error }) {
   return {
     message: error == null ? void 0 : error.message,
     code: (error == null ? void 0 : error.code) ?? "UNKNOWN"

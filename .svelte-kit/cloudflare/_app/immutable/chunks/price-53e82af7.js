@@ -1,1 +1,0 @@
-async function n(e){return await(await fetch("http://api.nd.io/price/"+e,{headers:{"Content-Type":"application/json"},method:"GET"})).json()}async function a(e){return await(await fetch("http://api.nd.io/price/detail/"+e,{headers:{"Content-Type":"application/json"},method:"GET"})).json()}export{a,n as g};

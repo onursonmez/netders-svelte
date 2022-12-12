@@ -1,9 +1,8 @@
-import { c as create_ssr_component, d as add_attribute, v as validate_component, b as subscribe, e as escape, f as each } from "../../../../chunks/index.js";
-import { v as viewedTeacherStore } from "../../../../chunks/userStore.js";
+import { c as create_ssr_component, d as add_attribute, v as validate_component, e as escape, f as each } from "../../../../chunks/index.js";
 import "toastify-js";
 import "classnames";
-import { T as Tooltip } from "../../../../chunks/UserVertical.js";
-import { U as UserCard } from "../../../../chunks/UserCard.js";
+import { T as Tooltip } from "../../../../chunks/Clipboard.svelte_svelte_type_style_lang.js";
+import { m as mediaCardModel, M as MediaCardContainer } from "../../../../chunks/commonModel.js";
 const Emotion1 = "/_app/immutable/assets/emotion-1-89aceced.svg";
 const Emotion2 = "/_app/immutable/assets/emotion-2-c456d9cd.svg";
 const Emotion3 = "/_app/immutable/assets/emotion-3-efb3156f.svg";
@@ -20,7 +19,7 @@ const UserComment = create_ssr_component(($$result, $$props, $$bindings, slots) 
   };
   if ($$props.username === void 0 && $$bindings.username && username !== void 0)
     $$bindings.username(username);
-  return `<form class="${"grid grid-cols-2 gap-4"}"><div class="${"col-span-2 mx-auto emotionRatings flex gap-4"}"><img${add_attribute("src", Emotion1, 0)} class="${[
+  return `<form class="${"grid grid-cols-2 gap-4 max-w-2xl mx-auto"}"><div class="${"col-span-2 mx-auto emotionRatings flex gap-4"}"><img${add_attribute("src", Emotion1, 0)} class="${[
     "w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block",
     "opacity-40"
   ].join(" ").trim()}" alt="${"\xC7ok k\xF6t\xFC"}">
@@ -33,7 +32,7 @@ const UserComment = create_ssr_component(($$result, $$props, $$bindings, slots) 
     {},
     {
       default: () => {
-        return `Berbat`;
+        return `\xC7ok K\xF6t\xFC`;
       }
     }
   )}
@@ -69,7 +68,7 @@ const UserComment = create_ssr_component(($$result, $$props, $$bindings, slots) 
     {},
     {
       default: () => {
-        return `Normal`;
+        return `\u0130yi`;
       }
     }
   )}
@@ -87,7 +86,7 @@ const UserComment = create_ssr_component(($$result, $$props, $$bindings, slots) 
     {},
     {
       default: () => {
-        return `\u0130yi`;
+        return `\xC7ok \u0130yi`;
       }
     }
   )}
@@ -120,66 +119,64 @@ const UserComment = create_ssr_component(($$result, $$props, $$bindings, slots) 
         </button></div></form>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $viewedTeacherStore, $$unsubscribe_viewedTeacherStore;
-  $$unsubscribe_viewedTeacherStore = subscribe(viewedTeacherStore, (value) => $viewedTeacherStore = value);
-  let userData = {
-    username: $viewedTeacherStore.username,
-    firstName: $viewedTeacherStore.firstName,
-    lastName: $viewedTeacherStore.lastName,
-    genderName: $viewedTeacherStore.genderName,
-    isOnline: $viewedTeacherStore.isOnline,
-    createdAt: $viewedTeacherStore.createdAt,
-    title: $viewedTeacherStore.title,
-    about: $viewedTeacherStore.about,
-    isTeachPhysically: $viewedTeacherStore.isTeachPhysically,
-    isTeachRemotely: $viewedTeacherStore.isTeachRemotely,
-    minimumPrice: $viewedTeacherStore.minimumPrice,
-    totalComment: $viewedTeacherStore.totalComment,
-    cityName: $viewedTeacherStore.cityName,
-    countyName: $viewedTeacherStore.countyName
-  };
+  let { data } = $$props;
   let prices = [];
   let locations = [];
   let comments = [];
-  $$unsubscribe_viewedTeacherStore();
-  return `${$$result.head += `<!-- HEAD_svelte-8y1598_START -->${$$result.title = `<title>${escape($viewedTeacherStore.firstName)} ${escape($viewedTeacherStore.lastName)} \xD6zel Ders Profil Sayfas\u0131 ${escape($viewedTeacherStore.cityName)}</title>`, ""}<!-- HEAD_svelte-8y1598_END -->`, ""}
+  mediaCardModel.isTeachPhysically = data.teacher.isTeachPhysically;
+  mediaCardModel.isTeachRemotely = data.teacher.isTeachRemotely;
+  mediaCardModel.isOnline = data.teacher.isOnline;
+  mediaCardModel.shareUrl = "https://netders.com/" + data.teacher.username;
+  mediaCardModel.username = data.teacher.username;
+  mediaCardModel.genderName = data.teacher.genderName;
+  mediaCardModel.shareText = `${data.teacher.firstName} ${data.teacher.lastName}`;
+  mediaCardModel.title = `${data.teacher.firstName} ${data.teacher.lastName}`;
+  mediaCardModel.subTitle = data.teacher.title;
+  mediaCardModel.description = data.teacher.about;
+  mediaCardModel.price = data.teacher.minimumPrice;
+  mediaCardModel.locationName = `${data.teacher.cityName}, ${data.teacher.countyName}`;
+  mediaCardModel.totalComment = data.teacher.totalComment;
+  mediaCardModel.createdAt = data.teacher.createdAt;
+  if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+    $$bindings.data(data);
+  return `${$$result.head += `<!-- HEAD_svelte-1fbcwto_START -->${$$result.title = `<title>${escape(data.teacher.firstName)} ${escape(data.teacher.lastName)} \xD6zel Ders Profil Sayfas\u0131 ${escape(data.teacher.cityName)}</title>`, ""}<!-- HEAD_svelte-1fbcwto_END -->`, ""}
 
-<div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(UserCard, "UserCard").$$render($$result, { userData }, {}, {})}</div>
+<div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(MediaCardContainer, "MediaCardContainer").$$render($$result, { data: mediaCardModel }, {}, {})}</div>
 
 ${prices.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Ders \xDCcretleri</div>
-	<div class="${"p-6"}"><table class="${"table-fixed w-full text-left text-sm lg:text-base"}"><thead><tr><th class="${"pb-2 font-semibold"}">Ders Ad\u0131</th>
-				<th align="${"right"}" class="${"font-semibold"}">Y\xFCz Y\xFCze</th>
-				<th align="${"right"}" class="${"font-semibold"}">Uzaktan (Webcam)</th></tr></thead>
-			<tbody>${each(prices, (price) => {
+        <div class="${"p-6"}"><table class="${"table-fixed w-full text-left text-sm lg:text-base"}"><thead><tr><th class="${"pb-2 font-semibold"}">Ders Ad\u0131</th>
+                    <th align="${"right"}" class="${"font-semibold"}">Y\xFCz Y\xFCze</th>
+                    <th align="${"right"}" class="${"font-semibold"}">Uzaktan (Webcam)</th></tr></thead>
+                <tbody>${each(prices, (price) => {
     return `<tr class="${"border-t border-gray-200"}"><td class="${"py-2"}">${price.slug ? `<a href="${"/ders/" + escape(price.slug, true)}" target="${"_blank"}" rel="${"noreferrer"}">${escape(price.subject.title)} - ${escape(price.level.title)}</a>` : `${escape(price.subject.title)} - ${escape(price.level.title)}`}</td>
-				<td align="${"right"}">${price.pricePrivate > 0 ? `${escape(price.pricePrivate)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
-				<td align="${"right"}">${price.priceLive > 0 ? `${escape(price.priceLive)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
-			</tr>`;
+                        <td align="${"right"}">${price.pricePrivate > 0 ? `${escape(price.pricePrivate)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
+                        <td align="${"right"}">${price.priceLive > 0 ? `${escape(price.priceLive)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
+                    </tr>`;
   })}</tbody></table></div></div>` : ``}
 
 ${locations.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Y\xFCz Y\xFCze Ders Verdi\u011Fi Lokasyonlar</div>
-	<div class="${"flex flex-col gap-4 p-6"}">${each(locations, (location) => {
+        <div class="${"flex flex-col gap-4 p-6"}">${each(locations, (location) => {
     return `<div><span class="${"font-semibold"}">${escape(location.city.title)}</span>
-			<ul class="${"grid grid-cols-1 md:grid-cols-3"}">${each(location.counties, (county) => {
+                    <ul class="${"grid grid-cols-1 md:grid-cols-3"}">${each(location.counties, (county) => {
       return `<li>${escape(county.title)}</li>`;
     })}</ul>
-		</div>`;
+                </div>`;
   })}</div></div>` : ``}
 
 ${comments.length > 0 ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Yorumlar</div>
-		<div class="${"p-6"}">${each(comments, (comment, index) => {
+        <div class="${"p-6"}">${each(comments, (comment, index) => {
     return `<div class="${["flex", index > 0 ? "mt-6" : ""].join(" ").trim()}"><div class="${"flex-none w-12 h-12 rounded-full border border-orange-100 bg-orange-50"}"><div class="${"flex justify-center items-center w-12 h-12"}">${escape(comment.fullName.charAt(0))}</div></div>
 
-				<div class="${"ml-4 grow"}"><h2 class="${"font-semibold"}">${escape(comment.fullName)}</h2>
-					<p class="${"mt-2 text-sm text-gray-500"}">${each(Array(comment.rate), (_, index2) => {
+                    <div class="${"ml-4 grow"}"><h2 class="${"font-semibold"}">${escape(comment.fullName)}</h2>
+                        <p class="${"mt-2 text-sm text-gray-500"}">${each(Array(comment.rate), (_, index2) => {
       return `<span class="${"mr-1"}">\u2B50</span>`;
     })}</p>
-					<p class="${"mt-2 text-sm text-gray-500"}">${escape(comment.comment)}</p></div>
-			</div>`;
+                        <p class="${"mt-2 text-sm text-gray-500"}">${escape(comment.comment)}</p></div>
+                </div>`;
   })}</div></div>` : ``}
 
 <div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Yorum Yap</div>
-	<div class="${"p-6"}">${validate_component(UserComment, "UserComment").$$render($$result, { username: $viewedTeacherStore.username }, {}, {})}</div></div>`;
+    <div class="${"p-6"}">${validate_component(UserComment, "UserComment").$$render($$result, { username: data.teacher.username }, {}, {})}</div></div>`;
 });
 export {
   Page as default

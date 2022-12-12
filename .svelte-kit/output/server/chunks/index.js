@@ -22,11 +22,6 @@ function subscribe(store, ...callbacks) {
   const unsub = store.subscribe(...callbacks);
   return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
-function get_store_value(store) {
-  let value;
-  subscribe(store, (_) => value = _)();
-  return value;
-}
 function compute_rest_props(props, keys) {
   const rest = {};
   keys = new Set(keys);
@@ -34,13 +29,6 @@ function compute_rest_props(props, keys) {
     if (!keys.has(k) && k[0] !== "$")
       rest[k] = props[k];
   return rest;
-}
-function null_to_empty(value) {
-  return value == null ? "" : value;
-}
-function set_store_value(store, ret, value) {
-  store.set(value);
-  return ret;
 }
 const is_client = typeof window !== "undefined";
 let now = is_client ? () => window.performance.now() : () => Date.now();
@@ -82,9 +70,6 @@ function get_current_component() {
   if (!current_component)
     throw new Error("Function called outside component initialization");
   return current_component;
-}
-function onDestroy(fn) {
-  get_current_component().$$.on_destroy.push(fn);
 }
 function createEventDispatcher() {
   const component = get_current_component();
@@ -351,8 +336,6 @@ function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key) => style_object[key]).map((key) => `${key}: ${escape_attribute_value(style_object[key])};`).join(" ");
 }
 export {
-  now as A,
-  loop as B,
   safe_not_equal as a,
   subscribe as b,
   create_ssr_component as c,
@@ -369,14 +352,12 @@ export {
   noop as n,
   escape_object as o,
   is_promise as p,
-  get_store_value as q,
-  is_void as r,
+  is_void as q,
+  get_current_component as r,
   setContext as s,
-  get_current_component as t,
-  globals as u,
+  globals as t,
+  tick as u,
   validate_component as v,
-  set_store_value as w,
-  onDestroy as x,
-  tick as y,
-  null_to_empty as z
+  now as w,
+  loop as x
 };

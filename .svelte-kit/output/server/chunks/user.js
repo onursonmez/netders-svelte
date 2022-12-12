@@ -1,8 +1,27 @@
-import { q as get_store_value } from "./index.js";
-import { t as teacherSearchParamsStore, v as viewedTeacherStore } from "./userStore.js";
+import "./index.js";
+import { s as searchParamsModel } from "./searchModel.js";
+import Toastify from "toastify-js";
+function toast(message, type, gravity = "bottom") {
+  Toastify({
+    text: message,
+    className: type,
+    gravity
+  }).showToast();
+}
+function responseService(body) {
+  if (Object.entries(body).length > 0) {
+    if (Object.values(body.errors).length > 0) {
+      Object.values(body.errors).forEach((i) => {
+        toast(i, "danger");
+      });
+    } else {
+      return body.result.items ? body.result.items : body.result;
+    }
+  }
+}
 async function getUsers(params = {}) {
   var _a, _b, _c, _d, _e, _f;
-  const searchParams = Object.entries(params).length > 0 ? params : get_store_value(teacherSearchParamsStore);
+  let searchParams = { ...searchParamsModel, ...params };
   const result = await fetch(
     "http://api.nd.io/user/teachers",
     {
@@ -47,7 +66,7 @@ async function getUserByToken(token) {
   let result = await response.json();
   return result.result;
 }
-async function photo(username) {
+async function getUserPhoto(username) {
   const response = await fetch(
     "http://api.nd.io/user/photo/" + username,
     {
@@ -57,8 +76,8 @@ async function photo(username) {
       method: "GET"
     }
   );
-  const body = await response.json();
-  return body.result;
+  const result = await response.json();
+  return responseService(result);
 }
 async function getTeacherSearchStoreParamsBySearchParams(params = []) {
   const response = await fetch(
@@ -73,9 +92,8 @@ async function getTeacherSearchStoreParamsBySearchParams(params = []) {
       })
     }
   );
-  const body = await response.json();
-  teacherSearchParamsStore.set(body.result);
-  return body.result;
+  const result = await response.json();
+  return responseService(result);
 }
 async function getTeacher(username) {
   const response = await fetch(
@@ -87,14 +105,13 @@ async function getTeacher(username) {
       method: "GET"
     }
   );
-  const body = await response.json();
-  viewedTeacherStore.set(body.result);
-  return body;
+  const result = await response.json();
+  return responseService(result);
 }
 export {
-  getTeacher as a,
-  getTeacherSearchStoreParamsBySearchParams as b,
-  getUserByToken as c,
-  getUsers as g,
-  photo as p
+  getUserPhoto as a,
+  getTeacher as b,
+  getTeacherSearchStoreParamsBySearchParams as c,
+  getUserByToken as d,
+  getUsers as g
 };

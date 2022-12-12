@@ -1,12 +1,12 @@
 import { get } from 'svelte/store'
 import { teacherSearchParamsStore, viewedTeacherStore, userStore } from '/src/stores/userStore'
 import { accountModel } from '/src/models/userModel'
+import { searchParamsModel } from '/src/models/searchModel'
 import { responseService } from '/src/utils/responseService'
 
 export async function getUsers(params = {})
 {
-    const searchParams = Object.entries(params).length > 0 ? params : get(teacherSearchParamsStore)
-
+    let searchParams = {...searchParamsModel, ...params}
     const result = await fetch(import.meta.env.VITE_API_URL + '/user/teachers',
         {
             headers:{
@@ -106,11 +106,9 @@ export async function getTeacherSearchStoreParamsBySearchParams(params = [])
         },
     );
 
-    const body = await response.json()
+    const result = await response.json()
 
-    teacherSearchParamsStore.set(body.result)
-
-    return body.result
+    return responseService(result)
 }
 
 export async function getUser(username)
