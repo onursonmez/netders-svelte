@@ -1,8 +1,9 @@
 import { c as create_ssr_component, j as createEventDispatcher, d as add_attribute, e as escape, u as tick, v as validate_component } from "./index.js";
-import "toastify-js";
+import { a as getUserPhoto } from "./user.js";
 import "classnames";
 import { T as Tooltip } from "./Clipboard.svelte_svelte_type_style_lang.js";
-/* empty css                                     */import dayjs from "dayjs";
+import "toastify-js";
+import dayjs from "dayjs";
 import tr from "dayjs/locale/tr.js";
 import relativeTime from "dayjs/plugin/relativeTime.js";
 const css$1 = {
@@ -46,11 +47,32 @@ const Clipboard = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   return `${slots.default ? slots.default({ copy }) : ``}
 <textarea class="${"svelte-1rsvwj9"}"${add_attribute("this", textarea, 0)}>${escape(text, true)}</textarea>`;
 });
+let photoUrl = "/images/icon-user.png";
+async function getUserPhotoFunction(username, genderName) {
+  const response = await getUserPhoto(username);
+  if (response.url) {
+    photoUrl = "https://netders.com/" + response.url;
+  } else {
+    if (genderName === "Erkek") {
+      photoUrl = "/images/icon-male.png";
+    }
+    if (genderName === "Kad\u0131n") {
+      photoUrl = "/images/icon-female.png";
+    }
+  }
+  return photoUrl;
+}
 dayjs.extend(relativeTime);
 dayjs.locale(tr);
 const MediaCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   let pageData = data;
+  const getUserPhotos = async () => {
+    if (pageData.showUserPhoto && pageData.username && pageData.genderName) {
+      pageData.photoUrl = await getUserPhotoFunction(pageData.username, pageData.genderName);
+    }
+  };
+  getUserPhotos();
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
   return `${pageData.shareModal ? `${validate_component(Modal, "Modal").$$render($$result, {}, {}, {
@@ -77,8 +99,10 @@ const MediaCard = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     }
   })}` : ``}
 
-<a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}"><img class="${"h-32 rounded-full mx-auto"}"${add_attribute("src", pageData.photoUrl, 0)} alt="${""}"></a>
+<a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}"><img class="${"rounded-full mx-auto w-48 h-48"}"${add_attribute("src", pageData.photoUrl, 0)} alt="${""}"></a>
 <div class="${"flex flex-col w-full justify-between pl-4 leading-normal mt-2"}">${pageData.title ? `<a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}" class="${"block lg:hidden"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape(pageData.title)}</h5></a>` : ``}
+
+	${pageData.subTitle ? `<p class="${"mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400 text-center block lg:hidden"}">${escape(pageData.subTitle)}</p>` : ``}
 
 	${pageData.price || pageData.locationName || pageData.totalComment ? `<div class="${"flex flex-row gap-2 justify-between text-gray-500 text-sm mt-1 block lg:hidden"}">${pageData.price ? `<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
 			${escape(pageData.price)}\u20BA
@@ -90,6 +114,8 @@ const MediaCard = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 		<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
 			${escape(pageData.totalComment ?? 0)} yorum
 		</div></div>` : ``}
+
+	${pageData.description ? `<p class="${"text-sm text-justify leading-relaxed mt-4 block lg:hidden"}">${escape(pageData.description)}</p>` : ``}
 
 	${pageData.showApprovedBadge || pageData.createdAt || pageData.showIsOnlineBadge || pageData.shareUrl ? `<div class="${"flex items-center justify-center gap-2 mt-4"}">${pageData.showApprovedBadge ? `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 outline-none"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
 			${validate_component(Tooltip, "Tooltip").$$render(
@@ -163,7 +189,7 @@ const MediaCardContainer = create_ssr_component(($$result, $$props, $$bindings, 
     $$bindings.data(data);
   return `<div class="${"lg:basis-3/12 xl:basis-2/12"}">${validate_component(MediaCard, "MediaCard").$$render($$result, { data: pageData }, {}, {})}</div>
 
-<div class="${"lg:lg:basis-9/12 xl:basis-10/12 hidden lg:block"}"><h1 class="${"mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl"}">${escape(pageData.title)}</h1>
+<div class="${"lg:lg:basis-9/12 xl:basis-10/12 hidden lg:block"}"><a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}"><h1 class="${"mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl"}">${escape(pageData.title)}</h1></a>
     <p class="${"mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape(pageData.subTitle)}</p>
 
     ${pageData.isTeachPhysically ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
@@ -176,9 +202,11 @@ const MediaCardContainer = create_ssr_component(($$result, $$props, $$bindings, 
 
     ${pageData.price || pageData.totalComment || pageData.locationName ? `<div class="${"lg:flex lg:flex-row lg:justify-between mb-3 text-gray-500 text-sm mt-4"}">${pageData.price ? `<p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
             <span>${escape(pageData.price)}<span class="${"text-xs"}">\u20BA</span></span></p>` : ``}
-        ${pageData.totalComment ? `<p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
+
+        <p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
             ${escape(pageData.totalComment)} yorum
-        </p>` : ``}
+        </p>
+
         ${pageData.locationName ? `<p class="${"flex"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
             ${escape(pageData.locationName)}</p>` : ``}</div>` : ``}
 
@@ -196,14 +224,14 @@ const mediaCardModel = {
   shareText: "",
   cardLink: "",
   username: "",
-  genderName: "Erkek",
+  genderName: "",
   photoUrl: "/images/icon-user.png",
-  title: "Bahad\u0131r \xD6\u011Fretmen",
-  subTitle: "Her seviyeye \xF6zel matematik ve geometri dersi",
-  description: "Orta okul ve Lise Takviye-LGS-\xDCniversite S\u0131navlar\u0131na Haz\u0131rl\u0131k(TYT-AYT)-KPSS-DGS-ALES ve di\u011Fer merkezi s\u0131nav seviyelerine \xF6zel olarak Matematik-Geometri dersleri ve E\u011Fitim Ko\xE7lu\u011Fu hizmeti verilir. Kaliteli bir MATEMAT\u0130K- GEOMETR\u0130 ve dersi egitimi ile rakiplerinizden herzaman bir ad\u0131m \xF6nde olmak elinizde...",
-  price: "30 - 40",
-  locationName: "\u0130stanbul, Maltepe",
-  totalComment: "10",
+  title: "",
+  subTitle: "",
+  description: "",
+  price: "",
+  locationName: "",
+  totalComment: "",
   createdAt: "",
   requestButtonUrl: ""
 };

@@ -1,91 +1,13 @@
-import { c as create_ssr_component, e as escape, b as subscribe, d as add_attribute, f as each, v as validate_component } from "../../../../../chunks/index.js";
-import "toastify-js";
-/* empty css                                                         */import { g as gendersStore } from "../../../../../chunks/userStore.js";
+import { c as create_ssr_component, b as subscribe, e as escape, d as add_attribute, f as each, v as validate_component } from "../../../../../chunks/index.js";
+import { g as gendersStore } from "../../../../../chunks/userStore.js";
 import { s as searchParamsModel } from "../../../../../chunks/searchModel.js";
+import "toastify-js";
+import "../../../../../chunks/Clipboard.svelte_svelte_type_style_lang.js";
 import { w as writable } from "../../../../../chunks/index3.js";
 import { p as page } from "../../../../../chunks/stores.js";
+import { M as MediaCardContainer, m as mediaCardModel } from "../../../../../chunks/commonModel.js";
 const citiesStore = writable([]);
 const countiesStore = writable([]);
-const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { firstName } = $$props;
-  let { genderName } = $$props;
-  let { lastName } = $$props;
-  let { about } = $$props;
-  let { cityName } = $$props;
-  let { countyName } = $$props;
-  let { minimumPrice } = $$props;
-  let { isOnline } = $$props;
-  let { title } = $$props;
-  let { username } = $$props;
-  let { isTeachPhysically } = $$props;
-  let { isTeachRemotely } = $$props;
-  let { totalComment } = $$props;
-  const getPhotoEmptyUserAvatar = (genderName2) => {
-    if (genderName2 == "Erkek")
-      return "img/icon-male.png";
-    if (genderName2 == "Kad\u0131n")
-      return "img/icon-female.png";
-    return "img/icon-male.png";
-  };
-  const truncateString = (str, num) => {
-    if (str == null)
-      return "";
-    if (str.length > num) {
-      return str.slice(0, num) + "...";
-    } else {
-      return str;
-    }
-  };
-  if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
-    $$bindings.firstName(firstName);
-  if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
-    $$bindings.genderName(genderName);
-  if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
-    $$bindings.lastName(lastName);
-  if ($$props.about === void 0 && $$bindings.about && about !== void 0)
-    $$bindings.about(about);
-  if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
-    $$bindings.cityName(cityName);
-  if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
-    $$bindings.countyName(countyName);
-  if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
-    $$bindings.minimumPrice(minimumPrice);
-  if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
-    $$bindings.isOnline(isOnline);
-  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-    $$bindings.title(title);
-  if ($$props.username === void 0 && $$bindings.username && username !== void 0)
-    $$bindings.username(username);
-  if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
-    $$bindings.isTeachPhysically(isTeachPhysically);
-  if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
-    $$bindings.isTeachRemotely(isTeachRemotely);
-  if ($$props.totalComment === void 0 && $$bindings.totalComment && totalComment !== void 0)
-    $$bindings.totalComment(totalComment);
-  return `<a href="${"/" + escape(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape("https://netders.com", true) + escape(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
-	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape(firstName)} ${escape(lastName)}</h5>
-		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape(title)}</p>
-
-		<div class="${"flex flex-col gap-2 md:flex-row mb-3"}">${isTeachPhysically ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
-			Y\xFCz y\xFCze ders veriyor
-		</div>` : ``}
-
-		${isTeachRemotely ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"}"></path></svg>
-			Uzaktan, webcam ile ders veriyor
-		</div>` : ``}</div>
-
-		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-				${escape(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
-				${escape(totalComment)} yorum
-			</div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-				${escape(cityName)}, ${escape(countyName)}</div></div>
-
-		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
-});
 const subjectsStore = writable([]);
 const levelsStore = writable([]);
 const lessonTypesStore = writable([
@@ -113,6 +35,26 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let pageData = {
     ...searchParamsModel,
     ...data.teacherSearchParams
+  };
+  let mediaCardData = mediaCardModel;
+  let convertUserDataToMediaCardData = (user) => {
+    mediaCardData = mediaCardModel;
+    mediaCardData.isTeachPhysically = user.isTeachPhysically;
+    mediaCardData.isTeachRemotely = user.isTeachRemotely;
+    mediaCardData.isOnline = user.isOnline;
+    mediaCardData.username = user.username;
+    mediaCardData.genderName = user.genderName;
+    mediaCardData.title = `${user.firstName} ${user.lastName}`;
+    mediaCardData.subTitle = user.title;
+    mediaCardData.description = user.about ? user.about.substring(0, 200) + "..." : "";
+    mediaCardData.price = user.minimumPrice;
+    mediaCardData.locationName = `${user.cityName}, ${user.countyName}`;
+    mediaCardData.totalComment = user.totalComment;
+    mediaCardData.showIsOnlineBadge = false;
+    mediaCardData.showApprovedBadge = false;
+    mediaCardData.photoUrl = "/images/icon-user.png";
+    mediaCardData.cardLink = "/" + user.username;
+    return { ...mediaCardData };
   };
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
@@ -173,7 +115,15 @@ ${``}
 ${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape(data.users.total)}</strong> e\u011Fitmen bulundu.</div>`}
 
 <div class="${"grid grid-cols-1 gap-4"}">${`${each(data.users.items, (user) => {
-    return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, Object.assign(user), {}, {})}`;
+    return `<div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(MediaCardContainer, "MediaCardContainer").$$render(
+      $$result,
+      {
+        data: convertUserDataToMediaCardData(user)
+      },
+      {},
+      {}
+    )}
+		</div>`;
   })}`}</div>
 
 ${data.users.total > 0 && !loading ? `${`<div class="${"pt-4 text-sm text-center"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>

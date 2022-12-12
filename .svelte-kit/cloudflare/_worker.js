@@ -1462,7 +1462,7 @@ var init__2 = __esm({
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
     file2 = "_app/immutable/components/pages/_error.svelte-b5d770dc.js";
     imports2 = ["_app/immutable/components/pages/_error.svelte-b5d770dc.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/index-5c699cbe.js"];
-    stylesheets2 = ["_app/immutable/assets/app-79bab28a.css"];
+    stylesheets2 = ["_app/immutable/assets/app-e6e4a903.css"];
     fonts2 = [];
   }
 });
@@ -1498,7 +1498,7 @@ var init_colored_bar = __esm({
       let $$unsubscribe_page;
       $$unsubscribe_userStore = subscribe(userStore, (value) => $userStore = value);
       $$unsubscribe_page = subscribe(page, (value) => value);
-      let photoUrl = IconUser;
+      let photoUrl2 = IconUser;
       $$unsubscribe_userStore();
       $$unsubscribe_page();
       return `<header><nav class="${"shadow-md bg-white"}"><div class="${"mx-auto max-w-[90%]"}"><div class="${"relative flex h-16 items-center justify-between"}"><div class="${"absolute inset-y-0 left-0 flex items-center lg:hidden"}">
@@ -1527,7 +1527,7 @@ var init_colored_bar = __esm({
 
 					
 					<div class="${"relative ml-3"}"><div>${($userStore == null ? void 0 : $userStore.username) ? `<button type="${"button"}" class="${"flex rounded-full text-sm"}" id="${"user-menu-button"}" aria-expanded="${"false"}" aria-haspopup="${"true"}"><span class="${"sr-only"}">Open user menu</span>
-									<img class="${"h-8 w-8 rounded-full"}"${add_attribute("src", photoUrl, 0)} alt="${""}"></button>` : `<button class="${"bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
+									<img class="${"h-8 w-8 rounded-full"}"${add_attribute("src", photoUrl2, 0)} alt="${""}"></button>` : `<button class="${"bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
 
 									Giri\u015F
 								</button>`}</div>
@@ -1613,7 +1613,7 @@ var init__3 = __esm({
     component3 = async () => (await Promise.resolve().then(() => (init_layout_svelte2(), layout_svelte_exports2))).default;
     file3 = "_app/immutable/components/pages/(app)/_layout.svelte-076de82f.js";
     imports3 = ["_app/immutable/components/pages/(app)/_layout.svelte-076de82f.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/colored-bar-99c1dbfe.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/navigation-27bb5329.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js"];
-    stylesheets3 = ["_app/immutable/assets/_layout-a95766cb.css", "_app/immutable/assets/app-79bab28a.css"];
+    stylesheets3 = ["_app/immutable/assets/_layout-a95766cb.css", "_app/immutable/assets/app-e6e4a903.css"];
     fonts3 = [];
   }
 });
@@ -1656,7 +1656,7 @@ var init__4 = __esm({
     component4 = async () => (await Promise.resolve().then(() => (init_layout_svelte3(), layout_svelte_exports3))).default;
     file4 = "_app/immutable/components/pages/(auth)/_layout.svelte-13c6a6d0.js";
     imports4 = ["_app/immutable/components/pages/(auth)/_layout.svelte-13c6a6d0.js", "_app/immutable/chunks/index-249ed9df.js"];
-    stylesheets4 = ["_app/immutable/assets/_layout-a715ccf6.css", "_app/immutable/assets/app-79bab28a.css"];
+    stylesheets4 = ["_app/immutable/assets/_layout-a715ccf6.css", "_app/immutable/assets/app-e6e4a903.css"];
     fonts4 = [];
   }
 });
@@ -4280,17 +4280,17 @@ var init_UserVertical = __esm({
       import_dayjs.default.extend(import_relativeTime.default);
       import_dayjs.default.locale(import_tr.default);
       let { userData } = $$props;
-      let photoUrl = IconUser;
+      let photoUrl2 = IconUser;
       const getUserPhotoInternal = async (userData2) => {
         const res = await getUserPhoto(userData2.username);
         if (res.url) {
-          photoUrl = "https://netders.com/" + res.url;
+          photoUrl2 = "https://netders.com/" + res.url;
         } else {
           if (userData2.genderName === "Erkek") {
-            photoUrl = IconMale;
+            photoUrl2 = IconMale;
           }
           if (userData2.genderName === "Kad\u0131n") {
-            photoUrl = IconFemale;
+            photoUrl2 = IconFemale;
           }
         }
       };
@@ -4304,7 +4304,7 @@ var init_UserVertical = __esm({
       $$unsubscribe_page();
       return `${``}
 
-${Object.entries(userData).length > 0 ? `<a href="${"/" + escape2(userData.username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><img class="${"h-32 rounded-full mx-auto"}"${add_attribute("src", photoUrl, 0)} alt="${""}"></a>
+${Object.entries(userData).length > 0 ? `<a href="${"/" + escape2(userData.username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><img class="${"h-32 rounded-full mx-auto"}"${add_attribute("src", photoUrl2, 0)} alt="${""}"></a>
 <div class="${"flex flex-col w-full justify-between pl-4 leading-normal mt-2"}">${userData.firstName ? `<a href="${"/" + escape2(userData.username, true)}" target="${"_blank"}" rel="${"noreferrer"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape2(userData.firstName)} ${escape2(userData.lastName)}</h5></a>` : ``}
 
 	${userData.minimumPrice || userData.cityName || userData.countyName || userData.totalComment ? `<div class="${"flex flex-col gap-2 justify-between text-gray-500 text-sm mt-1"}">${userData.minimumPrice ? `<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
@@ -4927,9 +4927,9 @@ var init__5 = __esm({
     init_page();
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file5 = "_app/immutable/components/pages/_page.svelte-2391a526.js";
-    imports5 = ["_app/immutable/components/pages/_page.svelte-2391a526.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/navigation-27bb5329.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-0a0ef7b3.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/relativeTime-a540c2f9.js", "_app/immutable/chunks/Modal-04fe3db5.js", "_app/immutable/chunks/colored-bar-99c1dbfe.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/_page.js-30733702.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/_page-346feac8.js"];
-    stylesheets5 = ["_app/immutable/assets/_page-12598ed9.css", "_app/immutable/assets/app-79bab28a.css", "_app/immutable/assets/relativeTime-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    file5 = "_app/immutable/components/pages/_page.svelte-5984b5d4.js";
+    imports5 = ["_app/immutable/components/pages/_page.svelte-5984b5d4.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/navigation-27bb5329.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/UserVertical-12728b6b.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/relativeTime-f39b58d3.js", "_app/immutable/chunks/colored-bar-99c1dbfe.js", "_app/immutable/chunks/netders-logo-blue-db0f3a17.js", "_app/immutable/modules/pages/_page.js-30733702.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/_page-346feac8.js"];
+    stylesheets5 = ["_app/immutable/assets/_page-12598ed9.css", "_app/immutable/assets/app-e6e4a903.css", "_app/immutable/assets/relativeTime-8be3e30f.css"];
     fonts5 = [];
   }
 });
@@ -4962,13 +4962,28 @@ var init_page2 = __esm({
 });
 
 // .svelte-kit/output/server/chunks/commonModel.js
-var import_toastify_js4, import_classnames3, import_dayjs2, import_tr2, import_relativeTime2, css$12, Modal, css4, Clipboard, MediaCard, MediaCardContainer, mediaCardModel;
+async function getUserPhotoFunction(username, genderName) {
+  const response = await getUserPhoto(username);
+  if (response.url) {
+    photoUrl = "https://netders.com/" + response.url;
+  } else {
+    if (genderName === "Erkek") {
+      photoUrl = "/images/icon-male.png";
+    }
+    if (genderName === "Kad\u0131n") {
+      photoUrl = "/images/icon-female.png";
+    }
+  }
+  return photoUrl;
+}
+var import_classnames3, import_toastify_js4, import_dayjs2, import_tr2, import_relativeTime2, css$12, Modal, css4, Clipboard, photoUrl, MediaCard, MediaCardContainer, mediaCardModel;
 var init_commonModel = __esm({
   ".svelte-kit/output/server/chunks/commonModel.js"() {
     init_chunks();
-    import_toastify_js4 = __toESM(require_toastify(), 1);
+    init_user();
     import_classnames3 = __toESM(require_classnames(), 1);
     init_Clipboard_svelte_svelte_type_style_lang();
+    import_toastify_js4 = __toESM(require_toastify(), 1);
     import_dayjs2 = __toESM(require_dayjs_min(), 1);
     import_tr2 = __toESM(require_tr(), 1);
     import_relativeTime2 = __toESM(require_relativeTime(), 1);
@@ -5013,11 +5028,18 @@ var init_commonModel = __esm({
       return `${slots.default ? slots.default({ copy }) : ``}
 <textarea class="${"svelte-1rsvwj9"}"${add_attribute("this", textarea, 0)}>${escape2(text, true)}</textarea>`;
     });
+    photoUrl = "/images/icon-user.png";
     import_dayjs2.default.extend(import_relativeTime2.default);
     import_dayjs2.default.locale(import_tr2.default);
     MediaCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
       let pageData = data;
+      const getUserPhotos = async () => {
+        if (pageData.showUserPhoto && pageData.username && pageData.genderName) {
+          pageData.photoUrl = await getUserPhotoFunction(pageData.username, pageData.genderName);
+        }
+      };
+      getUserPhotos();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       return `${pageData.shareModal ? `${validate_component(Modal, "Modal").$$render($$result, {}, {}, {
@@ -5044,8 +5066,10 @@ var init_commonModel = __esm({
         }
       })}` : ``}
 
-<a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}"><img class="${"h-32 rounded-full mx-auto"}"${add_attribute("src", pageData.photoUrl, 0)} alt="${""}"></a>
+<a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}"><img class="${"rounded-full mx-auto w-48 h-48"}"${add_attribute("src", pageData.photoUrl, 0)} alt="${""}"></a>
 <div class="${"flex flex-col w-full justify-between pl-4 leading-normal mt-2"}">${pageData.title ? `<a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}" class="${"block lg:hidden"}"><h5 class="${"mb-2 text-xl font-bold tracking-tight text-blue-700 text-center"}">${escape2(pageData.title)}</h5></a>` : ``}
+
+	${pageData.subTitle ? `<p class="${"mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400 text-center block lg:hidden"}">${escape2(pageData.subTitle)}</p>` : ``}
 
 	${pageData.price || pageData.locationName || pageData.totalComment ? `<div class="${"flex flex-row gap-2 justify-between text-gray-500 text-sm mt-1 block lg:hidden"}">${pageData.price ? `<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
 			${escape2(pageData.price)}\u20BA
@@ -5057,6 +5081,8 @@ var init_commonModel = __esm({
 		<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
 			${escape2(pageData.totalComment ?? 0)} yorum
 		</div></div>` : ``}
+
+	${pageData.description ? `<p class="${"text-sm text-justify leading-relaxed mt-4 block lg:hidden"}">${escape2(pageData.description)}</p>` : ``}
 
 	${pageData.showApprovedBadge || pageData.createdAt || pageData.showIsOnlineBadge || pageData.shareUrl ? `<div class="${"flex items-center justify-center gap-2 mt-4"}">${pageData.showApprovedBadge ? `<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 outline-none"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
 			${validate_component(Tooltip, "Tooltip").$$render(
@@ -5130,7 +5156,7 @@ var init_commonModel = __esm({
         $$bindings.data(data);
       return `<div class="${"lg:basis-3/12 xl:basis-2/12"}">${validate_component(MediaCard, "MediaCard").$$render($$result, { data: pageData }, {}, {})}</div>
 
-<div class="${"lg:lg:basis-9/12 xl:basis-10/12 hidden lg:block"}"><h1 class="${"mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl"}">${escape2(pageData.title)}</h1>
+<div class="${"lg:lg:basis-9/12 xl:basis-10/12 hidden lg:block"}"><a${add_attribute("href", pageData.cardLink, 0)} target="${"_blank"}" rel="${"noreferrer"}"><h1 class="${"mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl"}">${escape2(pageData.title)}</h1></a>
     <p class="${"mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400"}">${escape2(pageData.subTitle)}</p>
 
     ${pageData.isTeachPhysically ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
@@ -5143,9 +5169,11 @@ var init_commonModel = __esm({
 
     ${pageData.price || pageData.totalComment || pageData.locationName ? `<div class="${"lg:flex lg:flex-row lg:justify-between mb-3 text-gray-500 text-sm mt-4"}">${pageData.price ? `<p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
             <span>${escape2(pageData.price)}<span class="${"text-xs"}">\u20BA</span></span></p>` : ``}
-        ${pageData.totalComment ? `<p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
+
+        <p class="${"flex mb-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
             ${escape2(pageData.totalComment)} yorum
-        </p>` : ``}
+        </p>
+
         ${pageData.locationName ? `<p class="${"flex"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
             ${escape2(pageData.locationName)}</p>` : ``}</div>` : ``}
 
@@ -5163,14 +5191,14 @@ var init_commonModel = __esm({
       shareText: "",
       cardLink: "",
       username: "",
-      genderName: "Erkek",
+      genderName: "",
       photoUrl: "/images/icon-user.png",
-      title: "Bahad\u0131r \xD6\u011Fretmen",
-      subTitle: "Her seviyeye \xF6zel matematik ve geometri dersi",
-      description: "Orta okul ve Lise Takviye-LGS-\xDCniversite S\u0131navlar\u0131na Haz\u0131rl\u0131k(TYT-AYT)-KPSS-DGS-ALES ve di\u011Fer merkezi s\u0131nav seviyelerine \xF6zel olarak Matematik-Geometri dersleri ve E\u011Fitim Ko\xE7lu\u011Fu hizmeti verilir. Kaliteli bir MATEMAT\u0130K- GEOMETR\u0130 ve dersi egitimi ile rakiplerinizden herzaman bir ad\u0131m \xF6nde olmak elinizde...",
-      price: "30 - 40",
-      locationName: "\u0130stanbul, Maltepe",
-      totalComment: "10",
+      title: "",
+      subTitle: "",
+      description: "",
+      price: "",
+      locationName: "",
+      totalComment: "",
       createdAt: "",
       requestButtonUrl: ""
     };
@@ -5324,6 +5352,7 @@ var init_page_svelte2 = __esm({
       mediaCardModel.locationName = `${data.teacher.cityName}, ${data.teacher.countyName}`;
       mediaCardModel.totalComment = data.teacher.totalComment;
       mediaCardModel.createdAt = data.teacher.createdAt;
+      mediaCardModel.photoUrl = "/images/icon-user.png";
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       return `${$$result.head += `<!-- HEAD_svelte-1fbcwto_START -->${$$result.title = `<title>${escape2(data.teacher.firstName)} ${escape2(data.teacher.lastName)} \xD6zel Ders Profil Sayfas\u0131 ${escape2(data.teacher.cityName)}</title>`, ""}<!-- HEAD_svelte-1fbcwto_END -->`, ""}
@@ -5385,9 +5414,9 @@ var init__6 = __esm({
     init_page2();
     index6 = 5;
     component6 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
-    file6 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-1c5c59a3.js";
-    imports6 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-1c5c59a3.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/price-0dd8e3cf.js", "_app/immutable/chunks/relativeTime-a540c2f9.js", "_app/immutable/chunks/commonModel-62b88d12.js", "_app/immutable/chunks/Modal-04fe3db5.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-0aead535.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/_page-84830648.js"];
-    stylesheets6 = ["_app/immutable/assets/relativeTime-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    file6 = "_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-19e5fbfb.js";
+    imports6 = ["_app/immutable/components/pages/(app)/_...catchall_/_page.svelte-19e5fbfb.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/price-0dd8e3cf.js", "_app/immutable/chunks/relativeTime-f39b58d3.js", "_app/immutable/chunks/commonModel-46e71b1c.js", "_app/immutable/modules/pages/(app)/_...catchall_/_page.js-0aead535.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/_page-84830648.js"];
+    stylesheets6 = ["_app/immutable/assets/relativeTime-8be3e30f.css"];
     fonts6 = [];
   }
 });
@@ -5519,9 +5548,9 @@ var init__7 = __esm({
     init_page3();
     index7 = 6;
     component7 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file7 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-2701f4f4.js";
-    imports7 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-2701f4f4.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/UserVertical-0a0ef7b3.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/relativeTime-a540c2f9.js", "_app/immutable/chunks/Modal-04fe3db5.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-93b8c173.js", "_app/immutable/chunks/price-0dd8e3cf.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/_page-7aff3b14.js"];
-    stylesheets7 = ["_app/immutable/assets/relativeTime-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    file7 = "_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-0b2d7552.js";
+    imports7 = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-0b2d7552.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/UserVertical-12728b6b.js", "_app/immutable/chunks/icon-user-b12ae194.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/relativeTime-f39b58d3.js", "_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-93b8c173.js", "_app/immutable/chunks/price-0dd8e3cf.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/_page-7aff3b14.js"];
+    stylesheets7 = ["_app/immutable/assets/relativeTime-8be3e30f.css"];
     fonts7 = [];
   }
 });
@@ -6887,9 +6916,9 @@ var init__10 = __esm({
     init_page6();
     index10 = 9;
     component10 = async () => (await Promise.resolve().then(() => (init_page_svelte6(), page_svelte_exports6))).default;
-    file10 = "_app/immutable/components/pages/(app)/member/requests/_page.svelte-fea6c6c2.js";
-    imports10 = ["_app/immutable/components/pages/(app)/member/requests/_page.svelte-fea6c6c2.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/commonModel-62b88d12.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/relativeTime-a540c2f9.js", "_app/immutable/chunks/Modal-04fe3db5.js", "_app/immutable/chunks/location-f5eedbd8.js", "_app/immutable/chunks/MemberVerticalNavigation-6d18a22a.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/modules/pages/(app)/member/requests/_page.js-223d7214.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/_page-95c564cc.js"];
-    stylesheets10 = ["_app/immutable/assets/Select-8865ee52.css", "_app/immutable/assets/relativeTime-31ccae35.css", "_app/immutable/assets/Modal-7e1b958a.css"];
+    file10 = "_app/immutable/components/pages/(app)/member/requests/_page.svelte-aeddf9d2.js";
+    imports10 = ["_app/immutable/components/pages/(app)/member/requests/_page.svelte-aeddf9d2.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/commonModel-46e71b1c.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/relativeTime-f39b58d3.js", "_app/immutable/chunks/location-f5eedbd8.js", "_app/immutable/chunks/MemberVerticalNavigation-6d18a22a.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/modules/pages/(app)/member/requests/_page.js-223d7214.js", "_app/immutable/chunks/index-ae603ba0.js", "_app/immutable/chunks/control-ba37bfb4.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/_page-95c564cc.js"];
+    stylesheets10 = ["_app/immutable/assets/Select-8865ee52.css", "_app/immutable/assets/relativeTime-8be3e30f.css"];
     fonts10 = [];
   }
 });
@@ -6929,97 +6958,19 @@ var page_svelte_exports7 = {};
 __export(page_svelte_exports7, {
   default: () => Page7
 });
-var import_toastify_js11, citiesStore, countiesStore, UserHorizontal, subjectsStore, levelsStore, lessonTypesStore, Page7;
+var import_toastify_js11, citiesStore, countiesStore, subjectsStore, levelsStore, lessonTypesStore, Page7;
 var init_page_svelte7 = __esm({
   ".svelte-kit/output/server/entries/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js"() {
     init_chunks();
-    import_toastify_js11 = __toESM(require_toastify(), 1);
     init_userStore();
     init_searchModel();
+    import_toastify_js11 = __toESM(require_toastify(), 1);
+    init_Clipboard_svelte_svelte_type_style_lang();
     init_index3();
     init_stores();
+    init_commonModel();
     citiesStore = writable([]);
     countiesStore = writable([]);
-    UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { firstName } = $$props;
-      let { genderName } = $$props;
-      let { lastName } = $$props;
-      let { about } = $$props;
-      let { cityName } = $$props;
-      let { countyName } = $$props;
-      let { minimumPrice } = $$props;
-      let { isOnline } = $$props;
-      let { title } = $$props;
-      let { username } = $$props;
-      let { isTeachPhysically } = $$props;
-      let { isTeachRemotely } = $$props;
-      let { totalComment } = $$props;
-      const getPhotoEmptyUserAvatar = (genderName2) => {
-        if (genderName2 == "Erkek")
-          return "img/icon-male.png";
-        if (genderName2 == "Kad\u0131n")
-          return "img/icon-female.png";
-        return "img/icon-male.png";
-      };
-      const truncateString = (str, num) => {
-        if (str == null)
-          return "";
-        if (str.length > num) {
-          return str.slice(0, num) + "...";
-        } else {
-          return str;
-        }
-      };
-      if ($$props.firstName === void 0 && $$bindings.firstName && firstName !== void 0)
-        $$bindings.firstName(firstName);
-      if ($$props.genderName === void 0 && $$bindings.genderName && genderName !== void 0)
-        $$bindings.genderName(genderName);
-      if ($$props.lastName === void 0 && $$bindings.lastName && lastName !== void 0)
-        $$bindings.lastName(lastName);
-      if ($$props.about === void 0 && $$bindings.about && about !== void 0)
-        $$bindings.about(about);
-      if ($$props.cityName === void 0 && $$bindings.cityName && cityName !== void 0)
-        $$bindings.cityName(cityName);
-      if ($$props.countyName === void 0 && $$bindings.countyName && countyName !== void 0)
-        $$bindings.countyName(countyName);
-      if ($$props.minimumPrice === void 0 && $$bindings.minimumPrice && minimumPrice !== void 0)
-        $$bindings.minimumPrice(minimumPrice);
-      if ($$props.isOnline === void 0 && $$bindings.isOnline && isOnline !== void 0)
-        $$bindings.isOnline(isOnline);
-      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-        $$bindings.title(title);
-      if ($$props.username === void 0 && $$bindings.username && username !== void 0)
-        $$bindings.username(username);
-      if ($$props.isTeachPhysically === void 0 && $$bindings.isTeachPhysically && isTeachPhysically !== void 0)
-        $$bindings.isTeachPhysically(isTeachPhysically);
-      if ($$props.isTeachRemotely === void 0 && $$bindings.isTeachRemotely && isTeachRemotely !== void 0)
-        $$bindings.isTeachRemotely(isTeachRemotely);
-      if ($$props.totalComment === void 0 && $$bindings.totalComment && totalComment !== void 0)
-        $$bindings.totalComment(totalComment);
-      return `<a href="${"/" + escape2(username, true)}" target="${"_blank"}" rel="${"noreferrer"}" class="${"flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4"}"><img class="${"md:w-48 md:h-48 md:rounded-lg rounded-full h-48"}" src="${escape2("https://netders.com", true) + escape2(getPhotoEmptyUserAvatar(genderName), true)}" alt="${""}">
-	<div class="${"flex flex-col w-full justify-between pl-4 leading-normal"}"><h5 class="${"mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center"}">${escape2(firstName)} ${escape2(lastName)}</h5>
-		<p class="${"mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center"}">${escape2(title)}</p>
-
-		<div class="${"flex flex-col gap-2 md:flex-row mb-3"}">${isTeachPhysically ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"}"></path></svg>
-			Y\xFCz y\xFCze ders veriyor
-		</div>` : ``}
-
-		${isTeachRemotely ? `<div class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"mr-1 w-3 h-3"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"}"></path></svg>
-			Uzaktan, webcam ile ders veriyor
-		</div>` : ``}</div>
-
-		<div class="${"lg:flex lg:gap-2 justify-between text-gray-500 text-sm"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
-				${escape2(minimumPrice)}<span class="${"text-xs"}">\u20BA</span></div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"}"></path></svg>
-				${escape2(totalComment)} yorum
-			</div>
-
-			<div><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-				${escape2(cityName)}, ${escape2(countyName)}</div></div>
-
-		<div class="${"mb-3 font-normal mt-4"}">${escape2(truncateString(about, 230))}</div></div></a>`;
-    });
     subjectsStore = writable([]);
     levelsStore = writable([]);
     lessonTypesStore = writable([
@@ -7047,6 +6998,26 @@ var init_page_svelte7 = __esm({
       let pageData = {
         ...searchParamsModel,
         ...data.teacherSearchParams
+      };
+      let mediaCardData = mediaCardModel;
+      let convertUserDataToMediaCardData = (user) => {
+        mediaCardData = mediaCardModel;
+        mediaCardData.isTeachPhysically = user.isTeachPhysically;
+        mediaCardData.isTeachRemotely = user.isTeachRemotely;
+        mediaCardData.isOnline = user.isOnline;
+        mediaCardData.username = user.username;
+        mediaCardData.genderName = user.genderName;
+        mediaCardData.title = `${user.firstName} ${user.lastName}`;
+        mediaCardData.subTitle = user.title;
+        mediaCardData.description = user.about ? user.about.substring(0, 200) + "..." : "";
+        mediaCardData.price = user.minimumPrice;
+        mediaCardData.locationName = `${user.cityName}, ${user.countyName}`;
+        mediaCardData.totalComment = user.totalComment;
+        mediaCardData.showIsOnlineBadge = false;
+        mediaCardData.showApprovedBadge = false;
+        mediaCardData.photoUrl = "/images/icon-user.png";
+        mediaCardData.cardLink = "/" + user.username;
+        return { ...mediaCardData };
       };
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -7107,7 +7078,15 @@ ${``}
 ${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape2(data.users.total)}</strong> e\u011Fitmen bulundu.</div>`}
 
 <div class="${"grid grid-cols-1 gap-4"}">${`${each(data.users.items, (user) => {
-        return `${validate_component(UserHorizontal, "UserHorizontal").$$render($$result, Object.assign(user), {}, {})}`;
+        return `<div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(MediaCardContainer, "MediaCardContainer").$$render(
+          $$result,
+          {
+            data: convertUserDataToMediaCardData(user)
+          },
+          {},
+          {}
+        )}
+		</div>`;
       })}`}</div>
 
 ${data.users.total > 0 && !loading ? `${`<div class="${"pt-4 text-sm text-center"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
@@ -7134,9 +7113,9 @@ var init__11 = __esm({
     init_page7();
     index11 = 10;
     component11 = async () => (await Promise.resolve().then(() => (init_page_svelte7(), page_svelte_exports7))).default;
-    file11 = "_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-43350424.js";
-    imports11 = ["_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-43350424.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/Modal-04fe3db5.js", "_app/immutable/chunks/location-f5eedbd8.js", "_app/immutable/chunks/lesson-4a01a36d.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-b6bd542e.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/_page-0b7d435a.js"];
-    stylesheets11 = ["_app/immutable/assets/Modal-7e1b958a.css"];
+    file11 = "_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-08bc6092.js";
+    imports11 = ["_app/immutable/components/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-08bc6092.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/relativeTime-f39b58d3.js", "_app/immutable/chunks/location-f5eedbd8.js", "_app/immutable/chunks/lesson-4a01a36d.js", "_app/immutable/chunks/stores-726c4885.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/commonModel-46e71b1c.js", "_app/immutable/modules/pages/(app)/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-b6bd542e.js", "_app/immutable/chunks/user-e7291bdd.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/userStore-62a8c3c2.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/responseService-33ffd84f.js", "_app/immutable/chunks/toastify-3cd1641d.js", "_app/immutable/chunks/_page-0b7d435a.js"];
+    stylesheets11 = ["_app/immutable/assets/relativeTime-8be3e30f.css"];
     fonts11 = [];
   }
 });
@@ -11230,7 +11209,7 @@ var Server = class {
       app_template,
       app_template_contains_nonce: false,
       error_template,
-      version: "1670866489978"
+      version: "1670877242186"
     };
   }
   async init({ env }) {
@@ -11265,7 +11244,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set([".DS_Store", "favicon.png", "images/icon-female.png", "images/icon-male.png", "images/icon-user.png", "images/turkiye-white.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-a20fabc5.js", "imports": ["_app/immutable/start-a20fabc5.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/control-ba37bfb4.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-22cddce8.js", "imports": ["_app/immutable/start-22cddce8.js", "_app/immutable/chunks/index-249ed9df.js", "_app/immutable/chunks/singletons-a0fc4b73.js", "_app/immutable/chunks/index-5c699cbe.js", "_app/immutable/chunks/control-ba37bfb4.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

@@ -137,6 +137,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   mediaCardModel.locationName = `${data.teacher.cityName}, ${data.teacher.countyName}`;
   mediaCardModel.totalComment = data.teacher.totalComment;
   mediaCardModel.createdAt = data.teacher.createdAt;
+  mediaCardModel.photoUrl = "/images/icon-user.png";
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
   return `${$$result.head += `<!-- HEAD_svelte-1fbcwto_START -->${$$result.title = `<title>${escape(data.teacher.firstName)} ${escape(data.teacher.lastName)} \xD6zel Ders Profil Sayfas\u0131 ${escape(data.teacher.cityName)}</title>`, ""}<!-- HEAD_svelte-1fbcwto_END -->`, ""}

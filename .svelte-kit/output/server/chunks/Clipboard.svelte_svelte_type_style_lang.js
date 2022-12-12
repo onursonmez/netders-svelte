@@ -252,6 +252,7 @@ const Tooltip = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     }
   })}`;
 });
+const Modal_svelte_svelte_type_style_lang = "";
 const Clipboard_svelte_svelte_type_style_lang = "";
 export {
   Tooltip as T

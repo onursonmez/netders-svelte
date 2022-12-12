@@ -42,7 +42,7 @@
 </script>
 
 <a href="/{ username }" target="_blank" rel="noreferrer" class="flex flex-col gap-2 items-center bg-white rounded-lg shadow-md md:flex-row md:w-full p-4">
-	<img class="md:w-48 md:h-48 md:rounded-lg rounded-full h-48" src="{import.meta.env.VITE_BASE_URL}{ photoUrl || getPhotoEmptyUserAvatar(genderName) }" alt="">
+	<img class="md:w-48 md:h-48 md:rounded-lg rounded-full h-48" src="{import.meta.env.VITE_BASE_URL}/{ photoUrl || getPhotoEmptyUserAvatar(genderName) }" alt="">
 	<div class="flex flex-col w-full justify-between pl-4 leading-normal">
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white md:text-left text-center">{ firstName } { lastName }</h5>
 		<p class="mb-3 font-semibold text-gray-700 dark:text-gray-400 md:text-left text-center">{ title }</p>

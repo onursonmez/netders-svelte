@@ -27,6 +27,7 @@
     mediaCardModel.locationName = `${data.teacher.cityName}, ${data.teacher.countyName}`
     mediaCardModel.totalComment = data.teacher.totalComment
     mediaCardModel.createdAt = data.teacher.createdAt
+    mediaCardModel.photoUrl = '/images/icon-user.png'
 
     onMount(async () => {
         prices = await getUserPrices(data.teacher.username)

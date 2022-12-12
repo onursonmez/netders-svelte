@@ -10,11 +10,13 @@
 	export let data;
 	let pageData = data;
 
-	onMount(async () => {
+	const getUserPhotos = async () => {
 		if(pageData.showUserPhoto && pageData.username && pageData.genderName){
-			pageData.photoUrl = await getUserPhotoFunction(pageData.username, pageData.genderName);
+			pageData.photoUrl = await getUserPhotoFunction(pageData.username, pageData.genderName)
 		}
-	})
+	}
+
+	getUserPhotos()
 </script>
 
 {#if pageData.shareModal}
@@ -62,13 +64,17 @@
 {/if}
 
 <a href="{ pageData.cardLink }" target="_blank" rel="noreferrer">
-	<img class="h-32 rounded-full mx-auto" src="{pageData.photoUrl}" alt="">
+	<img class="rounded-full mx-auto w-48 h-48" src="{pageData.photoUrl}" alt="">
 </a>
 <div class="flex flex-col w-full justify-between pl-4 leading-normal mt-2">
 	{#if pageData.title}
 	<a href="{ pageData.cardLink }" target="_blank" rel="noreferrer" class="block lg:hidden">
 		<h5 class="mb-2 text-xl font-bold tracking-tight text-blue-700 text-center">{ pageData.title }</h5>
 	</a>
+	{/if}
+
+	{#if pageData.subTitle}
+	<p class="mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400 text-center block lg:hidden">{pageData.subTitle}</p>
 	{/if}
 
 	{#if (pageData.price || pageData.locationName || pageData.totalComment) }
@@ -99,6 +105,10 @@
 			{ pageData.totalComment ?? 0 } yorum
 		</div>
 	</div>
+	{/if}
+
+	{#if pageData.description}
+		<p class="text-sm text-justify leading-relaxed mt-4 block lg:hidden">{pageData.description}</p>
 	{/if}
 
 	{#if (pageData.showApprovedBadge || pageData.createdAt || pageData.showIsOnlineBadge || pageData.shareUrl) }

@@ -4,7 +4,7 @@ import { a as getUserPhoto } from "./user.js";
 import { p as page } from "./stores.js";
 import "classnames";
 import { T as Tooltip } from "./Clipboard.svelte_svelte_type_style_lang.js";
-/* empty css                                     */import "toastify-js";
+import "toastify-js";
 import dayjs from "dayjs";
 import tr from "dayjs/locale/tr.js";
 import relativeTime from "dayjs/plugin/relativeTime.js";
