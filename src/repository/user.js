@@ -1,11 +1,13 @@
 import { get } from 'svelte/store'
-import { teacherSearchParamsStore, teacherItemsStore, teacherTotalStore, viewedTeacherStore, userStore } from '/src/stores/userStore'
+import { teacherSearchParamsStore, viewedTeacherStore, userStore } from '/src/stores/userStore'
+import { accountModel } from '/src/models/userModel'
+import { responseService } from '/src/utils/responseService'
 
 export async function getUsers(params = {})
 {
     const searchParams = Object.entries(params).length > 0 ? params : get(teacherSearchParamsStore)
 
-    const result = await fetch(import.meta.env.VITE_API_URL + 'user/teachers',
+    const result = await fetch(import.meta.env.VITE_API_URL + '/user/teachers',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -34,7 +36,7 @@ export async function getUsers(params = {})
 
 export async function login(params = [])
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/login',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/login',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -57,7 +59,7 @@ export async function getUserByToken(token)
         return {}
     }
 
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/get_user_by_token',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/get_user_by_token',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -74,9 +76,9 @@ export async function getUserByToken(token)
     return result.result
 }
 
-export async function photo(username)
+export async function getUserPhoto(username)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/photo/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/photo/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -85,14 +87,14 @@ export async function photo(username)
         },
     );
 
-    const body = await response.json()
+    const result = await response.json()
 
-    return body.result
+    return responseService(result)
 }
 
 export async function getTeacherSearchStoreParamsBySearchParams(params = [])
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/gtsspbsp',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/gtsspbsp',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -113,7 +115,7 @@ export async function getTeacherSearchStoreParamsBySearchParams(params = [])
 
 export async function getUser(username)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/one_user/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/one_user/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -122,16 +124,14 @@ export async function getUser(username)
         },
     )
 
-    const body = await response.json()
+    const result = await response.json()
 
-    viewedTeacherStore.set(body.result)
-
-    return body
+    return responseService(result)
 }
 
 export async function getTeacher(username)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/one_teacher/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/one_teacher/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -140,32 +140,14 @@ export async function getTeacher(username)
         },
     )
 
-    const body = await response.json()
+    const result = await response.json()
 
-    viewedTeacherStore.set(body.result)
-
-    return body
-}
-
-export async function getUserPrices(username)
-{
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/prices/' + username,
-        {
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-        },
-    )
-
-    const body = await response.json()
-
-    return body
+    return responseService(result)
 }
 
 export async function getUserLocations(username)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'user/locations/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/locations/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -174,31 +156,28 @@ export async function getUserLocations(username)
         },
     )
 
-    const body = await response.json()
+    const result = await response.json()
 
-    return body
+    return responseService(result)
 }
 
 export async function updateUser(params = [])
 {
+    const bodyParams = Object.entries(params).length > 0 ? params : accountModel
     const userStoreData = get(userStore)
 
-    const response = await fetch(import.meta.env.VITE_API_URL + 'member/user/update',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/member/user/update',
         {
             headers:{
                 'Content-Type': 'application/json',
                 'X-AUTH-TOKEN': userStoreData?.token
             },
             method: 'POST',
-            body: JSON.stringify({
-                'firstName' : params?.firstName,
-                'lastName' : params?.lastName,
-                'email' : params?.email,
-                'phone' : params?.phone,
-                'genderId' : params?.genderId,
-            })
+            body: JSON.stringify(bodyParams)
         },
     );
 
-    return await response.json()
+    const result = await response.json()
+
+    return responseService(result)
 }

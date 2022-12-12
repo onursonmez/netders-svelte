@@ -1,5 +1,6 @@
 import { c as create_ssr_component, e as escape, b as subscribe, d as add_attribute, f as each, v as validate_component } from "../../../../../chunks/index.js";
 /* empty css                                                         */import { t as teacherSearchParamsStore, a as teacherTotalStore, b as teacherItemsStore, g as gendersStore } from "../../../../../chunks/userStore.js";
+import { a as countiesStore, c as citiesStore } from "../../../../../chunks/locationStore.js";
 import { w as writable } from "../../../../../chunks/index3.js";
 import { p as page } from "../../../../../chunks/stores.js";
 const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -82,8 +83,6 @@ const UserHorizontal = create_ssr_component(($$result, $$props, $$bindings, slot
 
 		<div class="${"mb-3 font-normal mt-4"}">${escape(truncateString(about, 230))}</div></div></a>`;
 });
-const citiesStore = writable([]);
-const countiesStore = writable([]);
 const subjectsStore = writable([]);
 const levelsStore = writable([]);
 const lessonTypesStore = writable([

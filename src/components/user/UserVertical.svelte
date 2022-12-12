@@ -3,7 +3,7 @@
 	import IconMale from '$lib/images/icon-male.png'
 	import IconFemale from '$lib/images/icon-female.png'
 
-	import { photo } from '/src/repository/user'
+	import { getUserPhoto } from '/src/repository/user'
 	import { page } from '$app/stores'
 
 	import { Tooltip } from 'flowbite-svelte'
@@ -22,10 +22,10 @@
 	let photoUrl = IconUser
 	let shareModal = false
 
-	const getUserPhoto = async (userData) => {
-		const res = await photo(userData.username);
+	const getUserPhotoInternal = async (userData) => {
+		const res = await getUserPhoto(userData.username);
 		if(res.url){
-			photoUrl = import.meta.env.VITE_BASE_URL + res.url
+			photoUrl = import.meta.env.VITE_BASE_URL + '/' + res.url
 		} else {
 			if(userData.genderName === 'Erkek'){
 				photoUrl = IconMale
@@ -37,7 +37,7 @@
 	}
 
 	$: if(Object.entries(userData).length > 0) {
-		getUserPhoto(userData)
+		getUserPhotoInternal(userData)
 	}
 
 </script>
@@ -119,14 +119,12 @@
 		</div>
 		{/if}
 
-		{#if userData.totalComment}
 		<div>
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline-block mr-1">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
 			</svg>
-			{ userData.totalComment } yorum
+			{ userData.totalComment ?? 0 } yorum
 		</div>
-		{/if}
 	</div>
 	{/if}
 

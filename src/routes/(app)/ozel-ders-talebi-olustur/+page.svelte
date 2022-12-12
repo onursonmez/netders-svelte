@@ -4,33 +4,15 @@
 	import { searchLocation } from '/src/repository/location'
 	import RangeSlider from 'svelte-range-slider-pips'
 	import Toastify from 'toastify-js'
+	import { requestModel } from '/src/models/requestModel'
 
-	let currentStep = 1
 	let lessons = {items: [], total: 0}
-	let lessonsPage = 1
 	let locations = {items: [], total: 0}
+	let lessonsPage = 1
 	let locationsPage = 1
-	let requestData = {
-		keywordLesson: '',
-		keywordLocation: '',
-		outsideTurkey: false,
-		levelId: '',
-		countryId: '',
-		countyId: '',
-		placeOwn: false,
-		placeTeacher: false,
-		placeRemote: false,
-		budget: [50,200],
-		budgetSecret: false,
-		genderId: '',
-		firstName: '',
-		lastName: '',
-		email: '',
-		phone: '',
-		message: '',
-		responseTypeId: '',
-		isAgreementChecked: false
-	}
+	let currentStep = 1
+
+	let requestData = requestModel
 
 	const getLessons = async () => {
 		const moreLessonArea = document.getElementById("moreLessonArea");
@@ -171,10 +153,10 @@
 				<img src="{Student2}" alt="" />
 			</div>
 			<div class="md:col-span-3">
-				<h5 class="font-semibold text-2xl">Doğru öğretmene ulaşmanın en kolay kolu</h5>
-				<p class="mt-1">Almak istediğin özel dersle ilgili doğru öğretmeni bulamıyor veya bulduğun öğretmenlerden emin olamıyorsan, özel ders talebi bırakarak kriterlerine en uygun öğretmenin sana ulaşmasını sağlayabilirsin.</p>
+				<h5 class="font-semibold text-2xl">Ders talebi oluştur</h5>
+				<p>Almak istediğin özel dersle ilgili doğru öğretmeni bulamıyor veya bulduğun öğretmenlerden emin olamıyorsan, özel ders talebi bırakarak kriterlerine en uygun öğretmenlerin sana ulaşmasını sağlayabilirsin.</p>
 				<p class="font-semibold mt-4">Ders talebi bırakmanın avantajları</p>
-				<ul class="list-none mt-1">
+				<ul class="list-none">
 					<li>⭐ Ücretsizdir. Ders talebi bırakmak için herhangi bir ücret ödemezsin.</li>
 					<li>⭐ Kolaydır. Sen öğretmen aramazsın, öğretmen sana ulaşır.</li>
 					<li>⭐ Seçme hakkın olur. Yalnızca beğendiğin öğretmenle devam edersin.</li>

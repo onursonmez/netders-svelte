@@ -1,8 +1,7 @@
 import { getUserByToken } from '/src/repository/user'
 
 /** @type {import('@sveltejs/kit').HandleServerError} */
-export function handleError({ error, event }) {
-
+export async function handleError({ error }) {
     return {
         message: error?.message,
         code: error?.code ?? 'UNKNOWN'

@@ -23,10 +23,10 @@ export async function load({ params, parent })
 
     if(params && params.catchall)
     {
-        let response = await getTeacher(params.catchall)
+        const teacher = await getTeacher(params.catchall)
 
-        if(Object.entries(response.errors).length){
-            throw error(response.code, response.errors);
+        return {
+            teacher: teacher
         }
     }
 }

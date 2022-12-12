@@ -1,6 +1,8 @@
+import { responseService } from '/src/utils/responseService'
+
 export async function getUserPrices(username)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'price/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/price/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -9,12 +11,14 @@ export async function getUserPrices(username)
         },
     )
 
-    return await response.json()
+    const result = await response.json()
+
+    return responseService(result)
 }
 
 export async function getUserPriceDetail(slug)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'price/detail/' + slug,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/price/detail/' + slug,
         {
             headers:{
                 'Content-Type': 'application/json',

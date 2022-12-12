@@ -1,5 +1,5 @@
 <script>
-	import { photo } from '/src/repository/user'
+	import { getUserPhoto } from '/src/repository/user'
 	import { onMount } from 'svelte'
 
 	export let firstName;
@@ -19,7 +19,7 @@
 	let photoUrl;
 
 	onMount(async () => {
-		const res = await photo(username);
+		const res = await getUserPhoto(username);
 		photoUrl = res.url;
 	});
 

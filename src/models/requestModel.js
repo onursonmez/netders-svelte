@@ -1,0 +1,21 @@
+export const requestModel = {
+    keywordLesson: '',
+    keywordLocation: '',
+    outsideTurkey: false,
+    levelId: '',
+    countryId: '',
+    countyId: '',
+    placeOwn: false,
+    placeTeacher: false,
+    placeRemote: false,
+    budget: [50,200],
+    budgetSecret: false,
+    genderId: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: '',
+    responseTypeId: '',
+    isAgreementChecked: false
+}

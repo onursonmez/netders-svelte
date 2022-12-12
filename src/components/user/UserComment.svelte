@@ -49,19 +49,20 @@
     }
 </script>
 
-<form on:submit|preventDefault={onComment} class="grid grid-cols-2 gap-4">
+<form on:submit|preventDefault={onComment} class="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+
     <div class="col-span-2 mx-auto emotionRatings flex gap-4">
         <img on:click={() => commentData.rate = 1} src="{Emotion1}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 1} alt="Çok kötü" />
-        <Tooltip style="custom" class="text-xs bg-red-700 border-red-700 text-white transition-opacity ease-in duration-700 opacity-100">Berbat</Tooltip>
+        <Tooltip style="custom" class="text-xs bg-red-700 border-red-700 text-white transition-opacity ease-in duration-700 opacity-100">Çok Kötü</Tooltip>
 
         <img on:click={() => commentData.rate = 2} src="{Emotion2}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 2} alt="Kötü" />
         <Tooltip style="custom" class="text-xs bg-orange-500 border-orange-500 text-white transition-opacity ease-in duration-700 opacity-100">Kötü</Tooltip>
 
         <img on:click={() => commentData.rate = 3} src="{Emotion3}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 3} alt="Normal" />
-        <Tooltip style="custom" class="text-xs bg-gray-500 border-gray-500 text-white transition-opacity ease-in duration-700 opacity-100">Normal</Tooltip>
+        <Tooltip style="custom" class="text-xs bg-gray-500 border-gray-500 text-white transition-opacity ease-in duration-700 opacity-100">İyi</Tooltip>
 
         <img on:click={() => commentData.rate = 4} src="{Emotion4}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 4} alt="İyi" />
-        <Tooltip style="custom" class="text-xs bg-blue-500 border-blue-500 text-white transition-opacity ease-in duration-700 opacity-100">İyi</Tooltip>
+        <Tooltip style="custom" class="text-xs bg-blue-500 border-blue-500 text-white transition-opacity ease-in duration-700 opacity-100">Çok İyi</Tooltip>
 
         <img on:click={() => commentData.rate = 5} src="{Emotion5}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 5} alt="Mükemmel" />
         <Tooltip style="custom" class="text-xs bg-blue-700 border-blue-700 text-white transition-opacity ease-in duration-700 opacity-100">Mükemmel</Tooltip>

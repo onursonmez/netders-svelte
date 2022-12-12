@@ -1,3 +1,2 @@
-import * as shared from "../../../src/routes/(auth)/auth/activation/+page.js";
+import * as shared from "../../../src/routes/(auth)/auth/+page.js";
 export { shared };
-export { default as component } from "../../../src/routes/(auth)/auth/activation/+page.svelte";

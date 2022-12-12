@@ -1,9 +1,10 @@
 import { citiesStore, locationSearchParamsStore } from '/src/stores/locationStore'
 import { get } from 'svelte/store'
+import { responseService } from "/src/utils/responseService"
 
-export async function getCities()
+export async function getCountries()
 {
-    const result = await fetch(import.meta.env.VITE_API_URL + 'location/cities',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/location/countries',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -12,16 +13,30 @@ export async function getCities()
         },
     );
 
-    const body = await result.json()
+    const result = await response.json()
 
-    citiesStore.set(body.result.items)
+    return responseService(result)
+}
 
-    return body.result
+export async function getCities()
+{
+    const response = await fetch(import.meta.env.VITE_API_URL + '/location/cities',
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        },
+    );
+
+    const result = await response.json()
+
+    return responseService(result)
 }
 
 export async function getCounties(params = [])
 {
-    const result = await fetch(import.meta.env.VITE_API_URL + 'location/counties/' + params?.cityId,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/location/counties/' + params?.cityId,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -30,14 +45,14 @@ export async function getCounties(params = [])
         },
     );
 
-    const body = await result.json()
+    const result = await response.json()
 
-    return body.result
+    return responseService(result)
 }
 
 export async function getOneCityBy(params = [])
 {
-    const result = await fetch(import.meta.env.VITE_API_URL + 'location/city',
+    const result = await fetch(import.meta.env.VITE_API_URL + '/location/city',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -57,7 +72,7 @@ export async function getOneCityBy(params = [])
 
 export async function getOneCountyBy(params = [])
 {
-    const result = await fetch(import.meta.env.VITE_API_URL + 'location/county',
+    const result = await fetch(import.meta.env.VITE_API_URL + '/location/county',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -79,7 +94,7 @@ export async function searchLocation(params = {})
 {
     const searchParams = Object.entries(params).length > 0 ? params : get(locationSearchParamsStore)
 
-    const result = await fetch(import.meta.env.VITE_API_URL + 'location/search',
+    const result = await fetch(import.meta.env.VITE_API_URL + '/location/search',
         {
             headers:{
                 'Content-Type': 'application/json',

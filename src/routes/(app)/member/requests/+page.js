@@ -11,11 +11,14 @@ import { userStore } from '/src/stores/userStore'
 export const prerender = false;
 
 export const load = async ({ parent }) => {
+
     const { user } = await parent();
 
-    if(Object.entries(user).length > 0){
-        userStore.set(user)
-    } else {
+    if(!user?.username){
         throw redirect(307, '/auth/login')
+    }
+
+    return {
+        user: user
     }
 };

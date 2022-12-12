@@ -1,6 +1,5 @@
 <script>
     import UserVertical from '/src/components/user/UserVertical.svelte'
-    import {viewedTeacherStore} from "../../stores/userStore";
     export let userData
 
     let userProfileData = {

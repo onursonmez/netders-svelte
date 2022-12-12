@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte'
 
 	import { userStore } from '/src/stores/userStore'
-	import { photo } from '/src/repository/user'
+	import { getUserPhoto } from '/src/repository/user'
 
 	let hiddenMobileMenu = true
 	let hiddenProfileMenu = true
@@ -23,9 +23,9 @@
 		};
 
 		if($userStore?.username){
-			const res = await photo($userStore.username);
+			const res = await getUserPhoto($userStore.username);
 			if (res.url) {
-				photoUrl = import.meta.env.VITE_BASE_URL + res.url
+				photoUrl = import.meta.env.VITE_BASE_URL + '/' + res.url
 			}
 		}
 	})
@@ -101,7 +101,7 @@
 
 						<a href="/member/account" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Nasıl Çalışırr?</a>
 
-						<a href="/detail" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Yardım</a>
+						<a href="/test" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Yardım</a>
 
 						<a href="/detail" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">İletişim</a>
 					</div>

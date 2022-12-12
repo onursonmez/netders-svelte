@@ -171,5 +171,17 @@
 	"/(app)/member": [
 		"src/routes/(app)/member/+page.server.js",
 		"src/routes/+layout.server.js"
+	],
+	"/api": [
+		"src/routes/api/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(app)/test": [
+		"src/routes/(app)/test/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/(app)/member/about": [
+		"src/routes/(app)/member/about/+page.js",
+		"src/routes/+layout.server.js"
 	]
 }

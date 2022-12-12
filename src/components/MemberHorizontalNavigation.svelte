@@ -2,7 +2,7 @@
     import { page } from '$app/stores';
 </script>
 
-<div class="max-w-3xl w-full mx-auto mt-8 mb-4">
+<div class="max-w-3xl w-full mx-auto mt-8 mb-4 hidden">
     <h2 class="sr-only">Hesabım</h2>
     <ol class="flex justify-between text-sm">
          <li class:text-blue-600={$page.url.pathname === '/member/account'}>

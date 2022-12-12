@@ -1,6 +1,8 @@
+import { responseService } from '/src/utils/responseService'
+
 export async function getUserComments(username)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'comment/list/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/comment/list/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -9,12 +11,14 @@ export async function getUserComments(username)
         },
     );
 
-    return await response.json()
+    const result = await response.json()
+
+    return responseService(result)
 }
 
 export async function addComment(params = [])
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + 'comment/add',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/comment/add',
         {
             headers:{
                 'Content-Type': 'application/json',

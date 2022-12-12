@@ -1,4 +1,4 @@
-import { w as now, x as loop, c as create_ssr_component, e as escape, f as each, j as createEventDispatcher, d as add_attribute, v as validate_component, b as subscribe, n as noop } from "../../../../chunks/index.js";
+import { A as now, B as loop, c as create_ssr_component, e as escape, f as each, j as createEventDispatcher, d as add_attribute, v as validate_component, b as subscribe, n as noop } from "../../../../chunks/index.js";
 import { w as writable } from "../../../../chunks/index3.js";
 import "toastify-js";
 const Student2 = "/_app/immutable/assets/student2-ef62a23a.png";
