@@ -5,10 +5,10 @@
     import errorImage from '$lib/images/error.svg'
 </script>
 
-<div class="flex text-center h-screen my-auto items-center justify-center">
+<div class="flex justify-center text-center py-8">
     <div>
     <div class="mt-2 text-7xl font-bold">{$page.status}</div>
-    <img src="{errorImage}" width="300" class="mx-auto my-12">
+    <img src="{errorImage}" width="300" class="mx-auto my-12" alt="">
 
     {#if ($page.error.message)}
     <div class="text-2xl font-bold">Hay aksi! Teknik bir hata oluştu.</div>

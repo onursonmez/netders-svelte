@@ -4,6 +4,7 @@
     const dispatch = createEventDispatcher();
 
     export let label;
+    export let name = '';
     export let id = '';
     export let type = 'text';
     export let placeholder = '';
@@ -22,6 +23,7 @@
     <label class="block text-sm font-medium leading-8 text-gray-700" for={id}>{label}</label>
 {/if}
 <input
+        {name}
         {id}
         {type}
         {placeholder}

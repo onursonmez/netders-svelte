@@ -1,4 +1,4 @@
-import { c as create_ssr_component, b as subscribe, h as add_classes, e as escape } from "./index.js";
+import { c as create_ssr_component, b as subscribe, e as add_classes, f as escape } from "./index.js";
 import { p as page } from "./stores.js";
 const MemberHorizontalNavigation = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $page, $$unsubscribe_page;

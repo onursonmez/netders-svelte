@@ -36,11 +36,18 @@ const page = {
     return store.subscribe(fn);
   }
 };
+const navigating = {
+  subscribe(fn) {
+    const store = getStores().navigating;
+    return store.subscribe(fn);
+  }
+};
 function removed_session() {
   throw new Error(
     "stores.session is no longer available. See https://github.com/sveltejs/kit/discussions/5883"
   );
 }
 export {
+  navigating as n,
   page as p
 };

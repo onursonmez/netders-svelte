@@ -1,7 +1,7 @@
 <script>
 	import student from '$lib/images/student.png?format=webp&srcset'
 	import {teacherSearchParamsStore} from "../../stores/userStore"
-	import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation'
 
 	let keyword
 

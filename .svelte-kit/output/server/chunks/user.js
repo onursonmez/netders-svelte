@@ -1,13 +1,6 @@
 import "./index.js";
 import { s as searchParamsModel } from "./searchModel.js";
-import Toastify from "toastify-js";
-function toast(message, type, gravity = "bottom") {
-  Toastify({
-    text: message,
-    className: type,
-    gravity
-  }).showToast();
-}
+import { t as toast } from "./toast.js";
 function responseService(body) {
   if (Object.entries(body).length > 0) {
     if (Object.values(body.errors).length > 0) {
@@ -46,25 +39,6 @@ async function getUsers(params = {}) {
   );
   const body = await result.json();
   return body.result;
-}
-async function getUserByToken(token) {
-  if (!token) {
-    return {};
-  }
-  const response = await fetch(
-    "http://api.nd.io/user/get_user_by_token",
-    {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify({
-        "token": token
-      })
-    }
-  );
-  let result = await response.json();
-  return result.result;
 }
 async function getUserPhoto(username) {
   const response = await fetch(
@@ -112,6 +86,5 @@ export {
   getUserPhoto as a,
   getTeacher as b,
   getTeacherSearchStoreParamsBySearchParams as c,
-  getUserByToken as d,
   getUsers as g
 };

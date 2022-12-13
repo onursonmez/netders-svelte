@@ -1,4 +1,6 @@
 <script>
+	import { enhance } from '$app/forms';
+
 	import logo from '$lib/images/netders-logo-blue.svg'
 	import IconUser from '$lib/images/icon-user.png'
 
@@ -8,12 +10,21 @@
 
 	import { userStore } from '/src/stores/userStore'
 	import { getUserPhoto } from '/src/repository/user'
+	import { isAuthenticated, hasRole } from '/src/functions/authFunction'
 
 	let hiddenMobileMenu = true
 	let hiddenProfileMenu = true
 	let photoUrl = IconUser
 
 	onMount(async () => {
+
+		if($page.data.user){
+			const res = await getUserPhoto($page.data.user);
+			if (res.url) {
+				photoUrl = import.meta.env.VITE_BASE_URL + '/' + res.url
+			}
+		}
+
 		document.onkeydown = function(evt) {
 			evt = evt || window.event;
 			if (evt.keyCode === 27) {
@@ -21,13 +32,6 @@
 				hiddenProfileMenu = true
 			}
 		};
-
-		if($userStore?.username){
-			const res = await getUserPhoto($userStore.username);
-			if (res.url) {
-				photoUrl = import.meta.env.VITE_BASE_URL + '/' + res.url
-			}
-		}
 	})
 
 	function clickOutside(node) {
@@ -101,7 +105,7 @@
 
 						<a href="/member/account" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Nasıl Çalışırr?</a>
 
-						<a href="/test" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Yardım</a>
+						<a href="/" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Yardım</a>
 
 						<a href="/detail" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">İletişim</a>
 					</div>
@@ -118,7 +122,7 @@
 					<!-- Profile dropdown -->
 					<div class="relative ml-3">
 						<div>
-							{#if $userStore?.username}
+							{#if $page.data.user}
 								<button type="button" use:clickOutside on:click_outside={handleClickProfileMenuOutside} on:click={() => hiddenProfileMenu = !hiddenProfileMenu} class="flex rounded-full text-sm" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
 									<span class="sr-only">Open user menu</span>
 									<img class="h-8 w-8 rounded-full" src="{photoUrl}" alt="">
@@ -133,10 +137,12 @@
 								</button>
 							{/if}
 						</div>
-						{#if $userStore?.username}
+						{#if $page.data.user}
 							<div class:hidden={hiddenProfileMenu} class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
 								<a href="/member/account" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Hesabım</a>
-								<a data-sveltekit-prefetch="off" href="/auth/logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Güvenli Çıkış</a>
+								<form use:enhance method="POST" action="/?/logout">
+									<button class="block px-4 py-2 text-sm text-gray-700">Güvenli Çıkış</button>
+								</form>
 							</div>
 						{/if}
 					</div>
@@ -147,14 +153,10 @@
 		<!-- Mobile menu, show/hide based on menu state. -->
 		<div id="mobile-menu" class:hidden="{hiddenMobileMenu}">
 			<div class="space-y-1 px-2 pt-2 pb-3">
-				<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-				<a href="/detail" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-
-				<a href="/detail" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-				<a href="/detail" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-				<a href="/detail" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+				<a href="/member/account" class="hover:text-blue-700 block px-3 py-2 rounded-md text-base">Hesabım</a>
+				<form use:enhance method="POST" action="/?/logout">
+					<button class="hover:text-blue-700 block px-3 py-2 rounded-md text-base">Güvenli Çıkış</button>
+				</form>
 			</div>
 		</div>
 	</nav>

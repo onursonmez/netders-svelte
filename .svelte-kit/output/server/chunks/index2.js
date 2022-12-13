@@ -47,11 +47,15 @@ function json(data, init) {
     headers
   });
 }
+function invalid(status, data) {
+  return new ValidationError(status, data);
+}
 export {
   HttpError as H,
   Redirect as R,
   ValidationError as V,
   error as e,
+  invalid as i,
   json as j,
   redirect as r
 };

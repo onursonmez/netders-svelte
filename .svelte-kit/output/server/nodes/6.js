@@ -1,9 +1,9 @@
-import * as shared from '../entries/pages/(app)/ders/_slug_/_page.js';
+import * as server from '../entries/pages/auth/login/_page.server.js';
 
 export const index = 6;
-export const component = async () => (await import('../entries/pages/(app)/ders/_slug_/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-0b2d7552.js';
-export { shared };
-export const imports = ["_app/immutable/components/pages/(app)/ders/_slug_/_page.svelte-0b2d7552.js","_app/immutable/chunks/index-249ed9df.js","_app/immutable/chunks/UserVertical-12728b6b.js","_app/immutable/chunks/icon-user-b12ae194.js","_app/immutable/chunks/user-e7291bdd.js","_app/immutable/chunks/userStore-62a8c3c2.js","_app/immutable/chunks/index-5c699cbe.js","_app/immutable/chunks/responseService-33ffd84f.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/chunks/stores-726c4885.js","_app/immutable/chunks/singletons-a0fc4b73.js","_app/immutable/chunks/relativeTime-f39b58d3.js","_app/immutable/modules/pages/(app)/ders/_slug_/_page.js-93b8c173.js","_app/immutable/chunks/price-0dd8e3cf.js","_app/immutable/chunks/responseService-33ffd84f.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/chunks/index-ae603ba0.js","_app/immutable/chunks/control-ba37bfb4.js","_app/immutable/chunks/userStore-62a8c3c2.js","_app/immutable/chunks/index-5c699cbe.js","_app/immutable/chunks/index-249ed9df.js","_app/immutable/chunks/_page-7aff3b14.js"];
-export const stylesheets = ["_app/immutable/assets/relativeTime-8be3e30f.css"];
+export const component = async () => (await import('../entries/pages/auth/login/_page.svelte.js')).default;
+export const file = '_app/immutable/components/pages/auth/login/_page.svelte-ca81b8af.js';
+export { server };
+export const imports = ["_app/immutable/components/pages/auth/login/_page.svelte-ca81b8af.js","_app/immutable/chunks/index-92be8ef9.js","_app/immutable/chunks/Input-0bd0009b.js","_app/immutable/chunks/toast-8e25dd66.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/chunks/forms-2351cc14.js","_app/immutable/chunks/parse-c28c2630.js","_app/immutable/chunks/singletons-cb3d801d.js","_app/immutable/chunks/index-ee933d9b.js","_app/immutable/chunks/navigation-70c1025f.js"];
+export const stylesheets = [];
 export const fonts = [];

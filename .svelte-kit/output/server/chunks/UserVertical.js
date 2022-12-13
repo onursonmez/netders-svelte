@@ -1,4 +1,4 @@
-import { c as create_ssr_component, b as subscribe, e as escape, d as add_attribute, v as validate_component } from "./index.js";
+import { c as create_ssr_component, b as subscribe, f as escape, d as add_attribute, v as validate_component } from "./index.js";
 import { I as IconUser } from "./icon-user.js";
 import { a as getUserPhoto } from "./user.js";
 import { p as page } from "./stores.js";

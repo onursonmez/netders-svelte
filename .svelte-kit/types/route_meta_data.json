@@ -1,6 +1,6 @@
 {
 	"/": [
-		"src/routes/+page.js",
+		"src/routes/+page.server.js",
 		"src/routes/+layout.server.js",
 		"src/routes/+layout.server.js"
 	],
@@ -18,12 +18,10 @@
 	],
 	"/ozel-ders-ilanlari-verenler/[...catchall]": [
 		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.js",
-		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
 	"/[...catchall]": [
 		"src/routes/[...catchall]/+page.js",
-		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
 	"/ozel-ders-ilanlari-verenler/[location]/[lesson]": [
@@ -37,7 +35,6 @@
 	],
 	"/ders/[slug]": [
 		"src/routes/ders/[slug]/+page.js",
-		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
 	"/ozel-ders-talebi-olustur/[slug]": [
@@ -45,15 +42,14 @@
 	],
 	"/ozel-ders-talebi-olustur": [
 		"src/routes/ozel-ders-talebi-olustur/+page.js",
-		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
 	"/auth/login": [
-		"src/routes/auth/login/+page.js",
-		"src/routes/+layout.js",
+		"src/routes/auth/login/+page.server.js",
 		"src/routes/+layout.server.js"
 	],
 	"/auth": [
+		"src/routes/auth/+page.js",
 		"src/routes/+layout.server.js"
 	],
 	"/(auth)/login": [
@@ -103,17 +99,14 @@
 	],
 	"/auth/activation": [
 		"src/routes/auth/activation/+page.js",
-		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
 	"/auth/forgot": [
 		"src/routes/auth/forgot/+page.js",
-		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
 	"/auth/logout": [
 		"src/routes/auth/logout/+page.js",
-		"src/routes/+layout.js",
 		"src/routes/+layout.server.js"
 	],
 	"/member/dashboard": [
@@ -182,6 +175,18 @@
 	],
 	"/(app)/member/about": [
 		"src/routes/(app)/member/about/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member/about": [
+		"src/routes/member/about/+page.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member/account": [
+		"src/routes/member/account/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member/requests": [
+		"src/routes/member/requests/+page.js",
 		"src/routes/+layout.server.js"
 	]
 }

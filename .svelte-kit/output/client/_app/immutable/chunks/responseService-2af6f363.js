@@ -1,0 +1,1 @@
+import{t}from"./toast-8e25dd66.js";function i(e){if(Object.entries(e).length>0)if(Object.values(e.errors).length>0)Object.values(e.errors).forEach(r=>{t(r,"danger")});else return e.result.items?e.result.items:e.result}export{i as r};
