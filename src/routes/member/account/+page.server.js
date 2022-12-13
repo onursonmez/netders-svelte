@@ -12,7 +12,7 @@ export const actions = {
 
         const data = await request.formData();
 
-        const personal = {
+        const formData = {
             firstName: data.get('firstName'),
             lastName: data.get('lastName'),
             phone: data.get('phone'),
@@ -22,7 +22,7 @@ export const actions = {
             countryId: data.get('countryId'),
         };
 
-        const body = await api.put('member/user/update', { personal }, locals.user.token);
+        const body = await api.put('member/user/update', formData, locals.user.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 
         const value = btoa(JSON.stringify(body.result));

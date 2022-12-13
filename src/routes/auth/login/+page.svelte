@@ -5,6 +5,7 @@
 
 	import { enhance } from '$app/forms';
 
+	/** @type {import('./$types').ActionData} */
 	export let form;
 
 	$: if(form?.errors) {

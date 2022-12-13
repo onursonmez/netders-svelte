@@ -2,10 +2,10 @@
     import MemberHorizontalNavigation from '/src/components/MemberHorizontalNavigation.svelte'
     import MemberVerticalNavigation from '/src/components/MemberVerticalNavigation.svelte'
     import { gendersStore } from '/src/stores/userStore'
+    import { accountModel } from '/src/models/userModel'
     import { onMount } from 'svelte'
     import { getUser } from '/src/repository/user'
     import { getCountries, getCities, getCounties } from '/src/repository/location'
-    import { accountModel } from '/src/models/userModel'
     import { toast } from '/src/functions/toast'
 
     import Select from 'svelte-select';
@@ -55,7 +55,7 @@
         countries = await getCountries()
         cities = await getCities()
 
-        if(accountModel.county !== null){
+        if(accountModel.city?.id){
             counties = await getCounties({cityId: accountModel.city.id})
         }
 
@@ -75,30 +75,43 @@
     </div>
 
     <div class="grow bg-white rounded-lg shadow-md">
-        <form use:enhance={() => {
-            return ({ update }) => {
+        <form use:enhance={({ data }) => {
+            if(accountModel.country?.id && accountModel.outsideTurkey)
+            data.set("countryId", accountModel.country?.id)
+
+            if(accountModel.city?.id && !accountModel.outsideTurkey)
+            data.set("cityId", accountModel.city?.id)
+
+            if(accountModel.county?.id && !accountModel.outsideTurkey)
+            data.set("countyId", accountModel.county?.id)
+
+            if(accountModel.gender?.id)
+            data.set("genderId", accountModel.gender?.id)
+
+            return ({ update, result }) => {
+                if (result.type === 'success') {
+				    toast("Bilgilerin başarıyla kaydedildi!", "success")
+			    }
                 update({ reset: false });
             };
         }}
-              method="POST"
-              action="?/save"
+          method="POST"
+          action="?/save"
         >
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Kişisel Bilgiler</div>
         <div class="p-6">
-
-
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <span class="text-sm mb-1 block text-gray-500">Ad</span>
-                    <input type="text" bind:value="{accountModel.firstName}" class="ring-0 w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
+                    <input name="firstName" type="text" bind:value="{accountModel.firstName}" class="ring-0 w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
                 </div>
                 <div>
                     <span class="text-sm mb-1 block text-gray-500">Soyad</span>
-                    <input type="text" bind:value="{accountModel.lastName}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
+                    <input name="lastName" type="text" bind:value="{accountModel.lastName}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
                 </div>
                 <div>
                     <span class="text-sm mb-1 block text-gray-500">Telefon</span>
-                    <input type="number" bind:value="{accountModel.phone}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
+                    <input name="phone" type="number" bind:value="{accountModel.phone}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
                 </div>
                 <div>
                     <span class="text-sm mb-1 block text-gray-500">Cinsiyet</span>

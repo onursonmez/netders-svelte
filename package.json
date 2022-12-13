@@ -1,5 +1,5 @@
 {
-	"name": "my-app",
+	"name": "netders-app",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
@@ -30,7 +30,6 @@
 	"dependencies": {
 		"@splidejs/svelte-splide": "^0.2.9",
 		"dayjs": "^1.11.6",
-		"js-cookie": "^3.0.1",
 		"svelte-select": "^4.4.7",
 		"toastify-js": "^1.12.0"
 	}
