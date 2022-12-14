@@ -1,6 +1,5 @@
 <script>
 	import Input from '/src/components/form/Input.svelte'
-	import Logo from '$lib/images/netders-logo-blue.svg'
 
 	let login
 	let password
@@ -15,12 +14,7 @@
 	<title>Şifremi Unuttum</title>
 </svelte:head>
 
-<div class="mx-auto my-8">
-	<a href="/">
-		<img src="{Logo}" width="200" height="200" />
-	</a>
-</div>
-<div class="max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300">
+<div class="max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300 mt-4">
 	<div class="sm:w-full text-left m-auto lg:m-0">
 		<h1 class="text-3xl md:text-4xl font-bold mb-4">Şifremi unuttum</h1>
 		<p class="mb-4">Şifre hatırlatma e-postası almak için aşağıdaki alana e-posta adresini gir.</p>

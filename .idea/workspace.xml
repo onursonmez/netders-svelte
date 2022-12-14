@@ -1,69 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="account update">
-      <change afterPath="$PROJECT_DIR$/src/components/UserImageUpload.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="account photo upload">
       <change beforePath="$PROJECT_DIR$/src/components/home/Categories.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Categories.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Greeting.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Greeting.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/UserComment.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserComment.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/UserVertical.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserVertical.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/userPhotoFunction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/userPhotoFunction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/bg.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/bye.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-bilgisayar.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-dans.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-direksiyon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-ilkogretim.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-kisiselgelisim.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-lise.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-muzik.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-oyunhobi.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-ozelegitim.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-sanat.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-sinavhazirlik.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-spor.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-universite.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/category/home-icon-yabancidil.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/colored-bar.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/emotion-1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/emotion-2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/emotion-3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/emotion-4.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/emotion-5.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/error.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/icon-female.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/icon-male.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/icon-user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/login-screen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/netders-logo-blue.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/student.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/images/student2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/commonModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/commonModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+error.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+error.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[...catchall]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/auth/activation/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth/activation/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/auth/forgot/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth/forgot/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/auth/login/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth/login/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/about/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/about/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/icon-female.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/icon-male.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/icon-user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/turkiye-white.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/svelte.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/svelte.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +106,7 @@
       <workItem from="1670638646378" duration="15431000" />
       <workItem from="1670680169343" duration="24275000" />
       <workItem from="1670755232072" duration="109103000" />
-      <workItem from="1671011476855" duration="11386000" />
+      <workItem from="1671011476855" duration="11834000" />
     </task>
     <task id="LOCAL-00001" summary="some updates">
       <created>1666998924079</created>
@@ -496,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670972660110</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="account photo upload">
+      <created>1671042894475</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1671042894475</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,7 +463,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="search page prerender" />
     <MESSAGE value="csr test" />
     <MESSAGE value="ssr" />
     <MESSAGE value="keyword problem" />
@@ -540,7 +487,8 @@
     <MESSAGE value="auth problem fixed" />
     <MESSAGE value="auth mechanism re-developed" />
     <MESSAGE value="account update" />
-    <option name="LAST_COMMIT_MESSAGE" value="account update" />
+    <MESSAGE value="account photo upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="account photo upload" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

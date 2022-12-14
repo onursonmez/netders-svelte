@@ -38,7 +38,7 @@
 			  } } aria-label="Kategoriler">
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/yabanci-dil" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-yabancidil.svg" alt="Yabancı Dil"/>
+						<img src=""{import.meta.env.VITE_CDN_URL}"/home-icon-yabancidil.svg" alt="Yabancı Dil"/>
 						<span>Yabancı Dil</span>
 					</a>
 				</SplideSlide>

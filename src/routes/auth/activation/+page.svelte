@@ -1,6 +1,5 @@
 <script>
 	import Input from '/src/components/form/Input.svelte'
-	import Logo from '$lib/images/netders-logo-blue.svg'
 	import Toastify from 'toastify-js'
 
 	export let data
@@ -35,12 +34,7 @@
 	<title>E-posta Aktivasyonu</title>
 </svelte:head>
 
-<div class="mx-auto my-8">
-	<a href="/">
-		<img src="{Logo}" width="200" height="200" />
-	</a>
-</div>
-<div class="max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300" class:hidden={!showSuccessPage}>
+<div class="max-w-2xl bg-white rounded-lg p-10 mx-auto border border-gray-300 mt-4" class:hidden={!showSuccessPage}>
 	<div class="sm:w-full text-left m-auto lg:m-0">
 		<div class="p-6 max-w-2xl text-center mx-auto">
 			<div class="font-semibold text-lg">Aktivasyon başarılı!</div>
