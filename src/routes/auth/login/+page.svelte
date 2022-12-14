@@ -1,6 +1,5 @@
 <script>
 	import Input from '/src/components/form/Input.svelte'
-	import LoginScreenImage from '$lib/images/login-screen.png'
 	import { toast } from '/src/functions/toast'
 
 	import { enhance } from '$app/forms';
@@ -109,6 +108,6 @@
 
 	</div>
 	<div class="flex-none ml-1 hidden lg:block">
-		<img style="height: 524px;" src="{LoginScreenImage}" alt="">
+		<img style="height: 524px;" src="{import.meta.env.VITE_CDN_URL}/login-screen.png" alt="">
 	</div>
 </div>

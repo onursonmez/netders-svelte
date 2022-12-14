@@ -82,7 +82,7 @@
 		mediaCardData.totalComment = user.totalComment
 		mediaCardData.showIsOnlineBadge = false
 		mediaCardData.showApprovedBadge = false
-        mediaCardData.photoUrl = '/images/icon-user.png'
+        mediaCardData.photoUrl = import.meta.env.VITE_CDN_URL + '/images/icon-user.png'
 		mediaCardData.cardLink = '/' + user.username
 		return {...mediaCardData}
 	}

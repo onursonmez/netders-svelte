@@ -1,9 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
 
-	import logo from '$lib/images/netders-logo-blue.svg'
-	import IconUser from '$lib/images/icon-user.png'
-
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation'
 	import { onMount } from 'svelte'
@@ -14,12 +11,12 @@
 
 	let hiddenMobileMenu = true
 	let hiddenProfileMenu = true
-	let photoUrl = IconUser
+	let photoUrl = import.meta.env.VITE_CDN_URL + '/icon-user.png'
 
 	onMount(async () => {
 
 		if($page.data.user){
-			const res = await getUserPhoto($page.data.user);
+			const res = await getUserPhoto($page.data.user.username);
 			if (res.url) {
 				photoUrl = import.meta.env.VITE_BASE_URL + '/' + res.url
 			}
@@ -84,7 +81,7 @@
 				<div class="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
 					<div class="flex flex-shrink-0 items-center">
 						<a href="/">
-							<img class="h-8 w-auto" src="{logo}" alt="Netders.com">
+							<img class="h-8 w-auto" src="{import.meta.env.VITE_CDN_URL}/netders-logo-blue.svg" alt="Netders.com">
 						</a>
 					</div>
 					<div class="flex space-x-4 hidden lg:ml-6 lg:block w-full text-center">

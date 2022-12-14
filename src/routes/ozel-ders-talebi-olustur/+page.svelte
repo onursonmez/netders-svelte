@@ -1,5 +1,4 @@
 <script>
-	import Student2 from '$lib/images/student2.png'
 	import { searchLesson } from '/src/repository/lesson'
 	import { searchLocation } from '/src/repository/location'
 	import RangeSlider from 'svelte-range-slider-pips'
@@ -150,7 +149,7 @@
 	<div class="p-6">
 		<div class="grid md:grid-cols-4">
 			<div class="hidden md:block">
-				<img src="{Student2}" alt="" />
+				<img src="{import.meta.env.VITE_CDN_URL}/student2.png" alt="" />
 			</div>
 			<div class="md:col-span-3">
 				<h5 class="font-semibold text-2xl">Ders talebi oluştur</h5>

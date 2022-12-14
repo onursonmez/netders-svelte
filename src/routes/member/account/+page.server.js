@@ -29,5 +29,19 @@ export const actions = {
         cookies.set('jwt', value, { path: '/' });
 
         locals.user = body.user;
+    },
+
+    upload: async ({ cookies, locals, request }) => {
+        if (!locals.user) throw error(401);
+
+        const data = await request.formData();
+
+        const formData = {
+            photo: data.get('photo'),
+            photoType: data.get('photoType'),
+        };
+
+        const body = await api.post('member/user/upload', formData, locals.user.token);
+        if (Object.entries(body.errors).length) return invalid(body.code, body);
     }
 };

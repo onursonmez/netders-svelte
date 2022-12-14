@@ -1,8 +1,4 @@
 <script>
-	import IconUser from '$lib/images/icon-user.png'
-	import IconMale from '$lib/images/icon-male.png'
-	import IconFemale from '$lib/images/icon-female.png'
-
 	import { getUserPhoto } from '/src/repository/user'
 	import { page } from '$app/stores'
 
@@ -19,7 +15,7 @@
 
 	export let userData;
 
-	let photoUrl = IconUser
+	let photoUrl = import.meta.env.VITE_CDN_URL + '/icon-user.png'
 	let shareModal = false
 
 	const getUserPhotoInternal = async (userData) => {
@@ -28,10 +24,10 @@
 			photoUrl = import.meta.env.VITE_BASE_URL + '/' + res.url
 		} else {
 			if(userData.genderName === 'Erkek'){
-				photoUrl = IconMale
+				photoUrl = import.meta.env.VITE_CDN_URL + '/icon-male.png'
 			}
 			if(userData.genderName === 'Kadın'){
-				photoUrl = IconFemale
+				photoUrl = import.meta.env.VITE_CDN_URL + '/icon-female.png'
 			}
 		}
 	}

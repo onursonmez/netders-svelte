@@ -46,7 +46,7 @@
     <div class="min-w-[190px]">
         <MemberVerticalNavigation />
     </div>
-    <div class="grow bg-white rounded-lg shadow-md">
+    <div class="grow bg-white rounded-lg shadow-md h-full">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Hakkında</div>
         <div class="p-6">
             <div class="grid grid-cols-1 gap-4">

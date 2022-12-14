@@ -1,6 +1,12 @@
 <script>
     import { page } from '$app/stores';
+    import UserImageUpload from '/src/components/UserImageUpload.svelte'
 </script>
+
+<div class="mb-4">
+    <UserImageUpload />
+    <p class="text-center mt-2 font-semibold">{$page.data.user.firstName} {$page.data.user.lastName}</p>
+</div>
 
 <ul class="flex flex-col gap-1 text-sm">
     <li>

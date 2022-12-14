@@ -7,6 +7,7 @@
     import { getUser } from '/src/repository/user'
     import { getCountries, getCities, getCounties } from '/src/repository/location'
     import { toast } from '/src/functions/toast'
+    import { page } from '$app/stores';
 
     import Select from 'svelte-select';
     import { itemFilter } from '/src/utils/selectUtil'
@@ -37,7 +38,7 @@
 
     onMount( async () => {
 
-        const userResponse = await getUser(data.user.username)
+        const userResponse = await getUser($page.data.user.username)
 
         accountModel.firstName = userResponse.firstName
         accountModel.lastName = userResponse.lastName
@@ -51,12 +52,12 @@
         if(userResponse.country){
             accountModel.outsideTurkey = true
         }
-
         countries = await getCountries()
         cities = await getCities()
 
         if(accountModel.city?.id){
             counties = await getCounties({cityId: accountModel.city.id})
+            accountModel.county = userResponse.county
         }
 
     })
@@ -74,7 +75,7 @@
         <MemberVerticalNavigation />
     </div>
 
-    <div class="grow bg-white rounded-lg shadow-md">
+    <div class="grow bg-white rounded-lg shadow-md h-full">
         <form use:enhance={({ data }) => {
             if(accountModel.country?.id && accountModel.outsideTurkey)
             data.set("countryId", accountModel.country?.id)
@@ -142,7 +143,6 @@
                         <input type="checkbox" bind:checked={accountModel.outsideTurkey} class="border-gray-500 mr-1 rounded-sm ring-0 outline-none" /> Türkiye'de yaşamıyorum
                     </label>
                 </div>
-
             </div>
         </div>
 

@@ -1,21 +1,5 @@
 <script>
 	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
-
-	import bilgisayar from '$lib/images/category/home-icon-bilgisayar.svg'
-	import dans from '$lib/images/category/home-icon-dans.svg'
-	import direksiyon from '$lib/images/category/home-icon-direksiyon.svg'
-	import ilkogretim from '$lib/images/category/home-icon-ilkogretim.svg'
-	import kisiselgelisim from '$lib/images/category/home-icon-kisiselgelisim.svg'
-	import lise from '$lib/images/category/home-icon-lise.svg'
-	import muzik from '$lib/images/category/home-icon-muzik.svg'
-	import oyunhobi from '$lib/images/category/home-icon-oyunhobi.svg'
-	import ozelegitim from '$lib/images/category/home-icon-ozelegitim.svg'
-	import sanat from '$lib/images/category/home-icon-sanat.svg'
-	import sinavhazirlik from '$lib/images/category/home-icon-sinavhazirlik.svg'
-	import spor from '$lib/images/category/home-icon-spor.svg'
-	import universite from '$lib/images/category/home-icon-universite.svg'
-	import yabancidil from '$lib/images/category/home-icon-yabancidil.svg'
-
 </script>
 
 
@@ -53,87 +37,87 @@
 				pagination: false,
 			  } } aria-label="Kategoriler">
 				<SplideSlide class="text-center">
+					<a href="/ozel-ders-ilanlari-verenler/yabanci-dil" class="text-blue-700 hover:text-blue-900">
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-yabancidil.svg" alt="Yabancı Dil"/>
+						<span>Yabancı Dil</span>
+					</a>
+				</SplideSlide>
+				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/bilgisayar" class="text-blue-700 hover:text-blue-900">
-						<img src="{bilgisayar}" alt="Bilgisayar"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-bilgisayar.svg" alt="Bilgisayar"/>
 						<span>Bilgisayar</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/dans" class="text-blue-700 hover:text-blue-900">
-						<img src="{dans}" alt="Dans"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-dans.svg" alt="Dans"/>
 						<span>Dans</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/direksiyon" class="text-blue-700 hover:text-blue-900">
-						<img src="{direksiyon}" alt="Direksiyon"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-direksiyon.svg" alt="Direksiyon"/>
 						<span>Direksiyon</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/ilkogretim-takviye" class="text-blue-700 hover:text-blue-900">
-						<img src="{ilkogretim}" alt="İlköğretim Takviye"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-ilkogretim.svg" alt="İlköğretim Takviye"/>
 						<span>İlköğretim Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/kisisel-gelisim" class="text-blue-700 hover:text-blue-900">
-						<img src="{kisiselgelisim}" alt="Kişisel Gelişim"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-kisiselgelisim.svg" alt="Kişisel Gelişim"/>
 						<span>Kişisel Gelişim</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/lise-takviye" class="text-blue-700 hover:text-blue-900">
-						<img src="{lise}" alt="Lise Takviye"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-lise.svg" alt="Lise Takviye"/>
 						<span>Lise Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
+					<a href="/ozel-ders-ilanlari-verenler/universite-takviye" class="text-blue-700 hover:text-blue-900">
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-universite.svg" alt="Üniversite Takviye"/>
+						<span>Üniversite Takviye</span>
+					</a>
+				</SplideSlide>
+				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/muzik" class="text-blue-700 hover:text-blue-900">
-						<img src="{muzik}" alt="Müzik"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-muzik.svg" alt="Müzik"/>
 						<span>Müzik</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/oyun-ve-hobi" class="text-blue-700 hover:text-blue-900">
-						<img src="{oyunhobi}" alt="Oyun & Hobi"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-oyunhobi.svg" alt="Oyun & Hobi"/>
 						<span>Oyun & Hobi</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/ozel-egitim" class="text-blue-700 hover:text-blue-900">
-						<img src="{ozelegitim}" alt="Özel Eğitim"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-ozelegitim.svg" alt="Özel Eğitim"/>
 						<span>Özel Eğitim</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/sanat" class="text-blue-700 hover:text-blue-900">
-						<img src="{sanat}" alt="Sanat"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-sanat.svg" alt="Sanat"/>
 						<span>Sanat</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/sinav-hazirlik" class="text-blue-700 hover:text-blue-900">
-						<img src="{sinavhazirlik}" alt="Sınav Hazırlık"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-sinavhazirlik.svg" alt="Sınav Hazırlık"/>
 						<span>Sınav Hazırlık</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/spor" class="text-blue-700 hover:text-blue-900">
-						<img src="{spor}" alt="Spor"/>
+						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-spor.svg" alt="Spor"/>
 						<span>Spor</span>
-					</a>
-				</SplideSlide>
-				<SplideSlide class="text-center">
-					<a href="/ozel-ders-ilanlari-verenler/universite-takviye" class="text-blue-700 hover:text-blue-900">
-						<img src="{universite}" alt="Üniversite Takviye"/>
-						<span>Üniversite Takviye</span>
-					</a>
-				</SplideSlide>
-				<SplideSlide class="text-center">
-					<a href="/ozel-ders-ilanlari-verenler/yabanci-dil" class="text-blue-700 hover:text-blue-900">
-						<img src="{yabancidil}" alt="Yabancı Dil"/>
-						<span>Yabancı Dil</span>
 					</a>
 				</SplideSlide>
 			</Splide>

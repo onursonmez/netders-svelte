@@ -2,13 +2,12 @@
     import '/src/routes/styles.css'
     import '/src/app.css'
     import { page } from '$app/stores'
-    import errorImage from '$lib/images/error.svg'
 </script>
 
 <div class="flex justify-center text-center py-8">
     <div>
     <div class="mt-2 text-7xl font-bold">{$page.status}</div>
-    <img src="{errorImage}" width="300" class="mx-auto my-12" alt="">
+    <img src="{import.meta.env.VITE_CDN_URL}/error.svg" width="300" class="mx-auto my-12" alt="">
 
     {#if ($page.error.message)}
     <div class="text-2xl font-bold">Hay aksi! Teknik bir hata oluştu.</div>

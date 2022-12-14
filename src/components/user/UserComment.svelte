@@ -3,12 +3,6 @@
     import { onMount } from "svelte";
     import { addComment } from '/src/repository/comment'
 
-    import Emotion1 from '$lib/images/emotion-1.svg'
-    import Emotion2 from '$lib/images/emotion-2.svg'
-    import Emotion3 from '$lib/images/emotion-3.svg'
-    import Emotion4 from '$lib/images/emotion-4.svg'
-    import Emotion5 from '$lib/images/emotion-5.svg'
-
     import Toastify from 'toastify-js'
     import { Tooltip } from 'flowbite-svelte'
 
@@ -52,19 +46,19 @@
 <form on:submit|preventDefault={onComment} class="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
 
     <div class="col-span-2 mx-auto emotionRatings flex gap-4">
-        <img on:click={() => commentData.rate = 1} src="{Emotion1}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 1} alt="Çok kötü" />
+        <img on:click={() => commentData.rate = 1} src="{import.meta.env.VITE_CDN_URL}/emotion-1.svg" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 1} alt="Çok kötü" />
         <Tooltip style="custom" class="text-xs bg-red-700 border-red-700 text-white transition-opacity ease-in duration-700 opacity-100">Çok Kötü</Tooltip>
 
-        <img on:click={() => commentData.rate = 2} src="{Emotion2}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 2} alt="Kötü" />
+        <img on:click={() => commentData.rate = 2} src="{import.meta.env.VITE_CDN_URL}/emotion-2.svg" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 2} alt="Kötü" />
         <Tooltip style="custom" class="text-xs bg-orange-500 border-orange-500 text-white transition-opacity ease-in duration-700 opacity-100">Kötü</Tooltip>
 
-        <img on:click={() => commentData.rate = 3} src="{Emotion3}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 3} alt="Normal" />
+        <img on:click={() => commentData.rate = 3} src="{import.meta.env.VITE_CDN_URL}/emotion-3.svg" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 3} alt="Normal" />
         <Tooltip style="custom" class="text-xs bg-gray-500 border-gray-500 text-white transition-opacity ease-in duration-700 opacity-100">İyi</Tooltip>
 
-        <img on:click={() => commentData.rate = 4} src="{Emotion4}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 4} alt="İyi" />
+        <img on:click={() => commentData.rate = 4} src="{import.meta.env.VITE_CDN_URL}/emotion-4.svg" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 4} alt="İyi" />
         <Tooltip style="custom" class="text-xs bg-blue-500 border-blue-500 text-white transition-opacity ease-in duration-700 opacity-100">Çok İyi</Tooltip>
 
-        <img on:click={() => commentData.rate = 5} src="{Emotion5}" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 5} alt="Mükemmel" />
+        <img on:click={() => commentData.rate = 5} src="{import.meta.env.VITE_CDN_URL}/emotion-5.svg" class="w-12 h-12 opacity-40 hover:opacity-100 cursor-pointer inline-block" class:opacity-40={commentData.rate !== 5} alt="Mükemmel" />
         <Tooltip style="custom" class="text-xs bg-blue-700 border-blue-700 text-white transition-opacity ease-in duration-700 opacity-100">Mükemmel</Tooltip>
     </div>
     <div>

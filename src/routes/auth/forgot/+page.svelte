@@ -1,7 +1,6 @@
 <script>
 	import Input from '/src/components/form/Input.svelte'
 	import Logo from '$lib/images/netders-logo-blue.svg'
-	import LoginScreenImage from '$lib/images/login-screen.png'
 
 	let login
 	let password

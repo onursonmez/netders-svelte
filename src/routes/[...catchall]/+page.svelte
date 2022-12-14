@@ -27,7 +27,7 @@
     mediaCardModel.locationName = `${data.teacher.cityName}, ${data.teacher.countyName}`
     mediaCardModel.totalComment = data.teacher.totalComment
     mediaCardModel.createdAt = data.teacher.createdAt
-    mediaCardModel.photoUrl = '/images/icon-user.png'
+    mediaCardModel.photoUrl = import.meta.env.VITE_CDN_URL + '/images/icon-user.png'
 
     onMount(async () => {
         prices = await getUserPrices(data.teacher.username)
