@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="account photo upload">
-      <change beforePath="$PROJECT_DIR$/src/components/home/Categories.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Categories.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/auth/activation/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth/activation/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/auth/forgot/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth/forgot/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/user/UserEmailVerify.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,21 +111,9 @@
       <workItem from="1670638646378" duration="15431000" />
       <workItem from="1670680169343" duration="24275000" />
       <workItem from="1670755232072" duration="109103000" />
-      <workItem from="1671011476855" duration="11834000" />
-    </task>
-    <task id="LOCAL-00001" summary="some updates">
-      <created>1666998924079</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1666998924079</updated>
-    </task>
-    <task id="LOCAL-00002" summary="svelte cloudflare adapter">
-      <created>1666999326329</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1666999326330</updated>
+      <workItem from="1671011476855" duration="12326000" />
+      <workItem from="1671135108422" duration="11302000" />
+      <workItem from="1671206801264" duration="19766000" />
     </task>
     <task id="LOCAL-00003" summary="şehir to ilçe test">
       <created>1667000221703</created>
@@ -444,7 +437,28 @@
       <option name="project" value="LOCAL" />
       <updated>1671042894475</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="account photo upload">
+      <created>1671043095727</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1671043095727</updated>
+    </task>
+    <task id="LOCAL-00050" summary="account photo upload">
+      <created>1671043176274</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1671043176276</updated>
+    </task>
+    <task id="LOCAL-00051" summary="account photo upload">
+      <created>1671043250360</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1671043250360</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

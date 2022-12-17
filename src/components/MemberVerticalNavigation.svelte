@@ -1,14 +1,8 @@
 <script>
     import { page } from '$app/stores';
-    import UserImageUpload from '/src/components/UserImageUpload.svelte'
 </script>
 
-<div class="mb-4">
-    <UserImageUpload />
-    <p class="text-center mt-2 font-semibold">{$page.data.user.firstName} {$page.data.user.lastName}</p>
-</div>
-
-<ul class="flex flex-col gap-1 text-sm">
+<ul class="flex flex-col gap-1 text-sm mt-4">
     <li>
         <a href="/member/account" class="block p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/account' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block">
