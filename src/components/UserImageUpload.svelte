@@ -11,6 +11,10 @@
     let submitButton;
     let waitingApproval = false;
 
+    if($page.data.user.photoUrl){
+        avatar = import.meta.env.VITE_CDN_URL + $page.data.user.photoUrl
+    }
+
     function getBase64(image) {
         const reader = new FileReader();
         reader.readAsDataURL(image);

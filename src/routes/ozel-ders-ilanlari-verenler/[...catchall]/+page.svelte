@@ -1,5 +1,4 @@
 <script>
-	import UserHorizontal from '/src/components/user/UserHorizontal.svelte'
 	import Modal from '/src/components/Modal.svelte'
 	import { getUsers } from '/src/repository/user'
 	import { getCities, getCounties } from '/src/repository/location'
@@ -82,7 +81,7 @@
 		mediaCardData.totalComment = user.totalComment
 		mediaCardData.showIsOnlineBadge = false
 		mediaCardData.showApprovedBadge = false
-        mediaCardData.photoUrl = import.meta.env.VITE_CDN_URL + '/images/icon-user.png'
+        mediaCardData.photoUrl = import.meta.env.VITE_CDN_URL + user.photoUrl
 		mediaCardData.cardLink = '/' + user.username
 		return {...mediaCardData}
 	}

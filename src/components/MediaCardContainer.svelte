@@ -8,7 +8,7 @@
     <MediaCard data="{pageData}" />
 </div>
 
-<div class="lg:lg:basis-9/12 xl:basis-10/12 hidden lg:block">
+<div class="lg:basis-9/12 xl:basis-10/12 hidden lg:block">
     <a href="{ pageData.cardLink }" target="_blank" rel="noreferrer">
         <h1 class="mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl">{pageData.title}</h1>
     </a>

@@ -1,5 +1,5 @@
 import { get } from 'svelte/store'
-import { teacherSearchParamsStore, viewedTeacherStore, userStore } from '/src/stores/userStore'
+import { userStore } from '/src/stores/userStore'
 import { accountModel } from '/src/models/userModel'
 import { searchParamsModel } from '/src/models/searchModel'
 import { responseService } from '/src/utils/responseService'
@@ -18,7 +18,7 @@ export async function getUsers(params = {})
                 'page' : searchParams?.page,
                 'pageSize' : searchParams?.pageSize,
                 'keyword' : searchParams?.keyword,
-                'budget' : searchParams?.budget,
+                'budget' : parseInt(searchParams?.budget),
                 'cityId' : searchParams?.cityObject?.id,
                 'countyId' : searchParams?.countyObject?.id,
                 'subjectId' : searchParams?.subjectObject?.id,
@@ -113,7 +113,7 @@ export async function getTeacherSearchStoreParamsBySearchParams(params = [])
 
 export async function getUser(username)
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + '/user/one_user/' + username,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/detail/' + username,
         {
             headers:{
                 'Content-Type': 'application/json',

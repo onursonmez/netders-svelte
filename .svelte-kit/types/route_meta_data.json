@@ -17,11 +17,11 @@
 		"src/routes/ozel-ders-ilanlari-verenler/+page.js"
 	],
 	"/ozel-ders-ilanlari-verenler/[...catchall]": [
-		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.js",
+		"src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.server.js",
 		"src/routes/+layout.server.js"
 	],
 	"/[...catchall]": [
-		"src/routes/[...catchall]/+page.js",
+		"src/routes/[...catchall]/+page.server.js",
 		"src/routes/+layout.server.js"
 	],
 	"/ozel-ders-ilanlari-verenler/[location]/[lesson]": [
@@ -38,10 +38,11 @@
 		"src/routes/+layout.server.js"
 	],
 	"/ozel-ders-talebi-olustur/[slug]": [
-		"src/routes/ozel-ders-talebi-olustur/[slug]/+page.js"
+		"src/routes/ozel-ders-talebi-olustur/[slug]/+page.server.js",
+		"src/routes/+layout.server.js"
 	],
 	"/ozel-ders-talebi-olustur": [
-		"src/routes/ozel-ders-talebi-olustur/+page.js",
+		"src/routes/ozel-ders-talebi-olustur/+page.server.js",
 		"src/routes/+layout.server.js"
 	],
 	"/auth/login": [
@@ -178,7 +179,7 @@
 		"src/routes/+layout.server.js"
 	],
 	"/member/about": [
-		"src/routes/member/about/+page.js",
+		"src/routes/member/about/+page.server.js",
 		"src/routes/+layout.server.js"
 	],
 	"/member/account": [
@@ -186,7 +187,38 @@
 		"src/routes/+layout.server.js"
 	],
 	"/member/requests": [
-		"src/routes/member/requests/+page.js",
+		"src/routes/member/requests/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member/request": [
+		"src/routes/member/request/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member": [
+		"src/routes/+layout.server.js"
+	],
+	"/member/request/[id]": [
+		"src/routes/member/request/[id]/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member/request/[slug]": [
+		"src/routes/member/request/[slug]/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/member/request/[uuid]": [
+		"src/routes/member/request/[uuid]/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/ozel-ders-talepleri": [
+		"src/routes/ozel-ders-talepleri/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/ozel-ders-talebi-olustur/[...catchall]": [
+		"src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/ozel-ders-talebi-olustur/[...slug]": [
+		"src/routes/ozel-ders-talebi-olustur/[...slug]/+page.server.js",
 		"src/routes/+layout.server.js"
 	]
 }

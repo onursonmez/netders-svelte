@@ -108,6 +108,6 @@
 
 	</div>
 	<div class="flex-none ml-1 hidden lg:block">
-		<img style="height: 524px;" src="{import.meta.env.VITE_CDN_URL}/login-screen.png" alt="">
+		<img style="height: 524px;" src="{import.meta.env.VITE_CDN_URL}login-screen.png" alt="">
 	</div>
 </div>

@@ -10,8 +10,8 @@ type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 type PageServerParentData = EnsureDefined<LayoutServerData>;
 type PageParentData = EnsureDefined<LayoutData>;
-type LayoutRouteId = RouteId | "/" | "/[...catchall]" | "/auth/activation" | "/auth/forgot" | "/auth/login" | "/ders/[slug]" | "/member/about" | "/member/account" | "/member/requests" | "/ozel-ders-ilanlari-verenler/[...catchall]" | "/ozel-ders-talebi-olustur" | null
-type LayoutParams = RouteParams & { catchall?: string,slug?: string }
+type LayoutRouteId = RouteId | "/" | "/[...catchall]" | "/auth/activation" | "/auth/forgot" | "/auth/login" | "/ders/[slug]" | "/member/about" | "/member/account" | "/member/request" | "/member/request/[uuid]" | "/ozel-ders-ilanlari-verenler/[...catchall]" | "/ozel-ders-talebi-olustur/[...catchall]" | null
+type LayoutParams = RouteParams & { catchall?: string,slug?: string,uuid?: string }
 type LayoutServerParentData = EnsureDefined<{}>;
 type LayoutParentData = EnsureDefined<{}>;
 

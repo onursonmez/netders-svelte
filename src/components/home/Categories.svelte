@@ -38,85 +38,85 @@
 			  } } aria-label="Kategoriler">
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/yabanci-dil" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-yabancidil.svg" alt="Yabancı Dil"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-yabancidil.svg" alt="Yabancı Dil"/>
 						<span>Yabancı Dil</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/bilgisayar" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-bilgisayar.svg" alt="Bilgisayar"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-bilgisayar.svg" alt="Bilgisayar"/>
 						<span>Bilgisayar</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/dans" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-dans.svg" alt="Dans"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-dans.svg" alt="Dans"/>
 						<span>Dans</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/direksiyon" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-direksiyon.svg" alt="Direksiyon"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-direksiyon.svg" alt="Direksiyon"/>
 						<span>Direksiyon</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/ilkogretim-takviye" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-ilkogretim.svg" alt="İlköğretim Takviye"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-ilkogretim.svg" alt="İlköğretim Takviye"/>
 						<span>İlköğretim Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/kisisel-gelisim" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-kisiselgelisim.svg" alt="Kişisel Gelişim"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-kisiselgelisim.svg" alt="Kişisel Gelişim"/>
 						<span>Kişisel Gelişim</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/lise-takviye" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-lise.svg" alt="Lise Takviye"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-lise.svg" alt="Lise Takviye"/>
 						<span>Lise Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/universite-takviye" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-universite.svg" alt="Üniversite Takviye"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-universite.svg" alt="Üniversite Takviye"/>
 						<span>Üniversite Takviye</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/muzik" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-muzik.svg" alt="Müzik"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-muzik.svg" alt="Müzik"/>
 						<span>Müzik</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/oyun-ve-hobi" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-oyunhobi.svg" alt="Oyun & Hobi"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-oyunhobi.svg" alt="Oyun & Hobi"/>
 						<span>Oyun & Hobi</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/ozel-egitim" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-ozelegitim.svg" alt="Özel Eğitim"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-ozelegitim.svg" alt="Özel Eğitim"/>
 						<span>Özel Eğitim</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/sanat" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-sanat.svg" alt="Sanat"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-sanat.svg" alt="Sanat"/>
 						<span>Sanat</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/sinav-hazirlik" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-sinavhazirlik.svg" alt="Sınav Hazırlık"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-sinavhazirlik.svg" alt="Sınav Hazırlık"/>
 						<span>Sınav Hazırlık</span>
 					</a>
 				</SplideSlide>
 				<SplideSlide class="text-center">
 					<a href="/ozel-ders-ilanlari-verenler/spor" class="text-blue-700 hover:text-blue-900">
-						<img src="{import.meta.env.VITE_CDN_URL}/home-icon-spor.svg" alt="Spor"/>
+						<img src="{import.meta.env.VITE_CDN_URL}home-icon-spor.svg" alt="Spor"/>
 						<span>Spor</span>
 					</a>
 				</SplideSlide>

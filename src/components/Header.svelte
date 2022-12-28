@@ -5,23 +5,14 @@
 	import { goto } from '$app/navigation'
 	import { onMount } from 'svelte'
 
-	import { userStore } from '/src/stores/userStore'
-	import { getUserPhoto } from '/src/repository/user'
-	import { isAuthenticated, hasRole } from '/src/functions/authFunction'
-
 	let hiddenMobileMenu = true
 	let hiddenProfileMenu = true
-	let photoUrl = import.meta.env.VITE_CDN_URL + '/icon-user.png'
+	let photoUrl = $page.data.user?.photoUrl ? import.meta.env.VITE_CDN_URL + $page.data.user.photoUrl : import.meta.env.VITE_CDN_URL + 'icon-user.png'
 
+	$: if($page.data.user?.photoUrl) {
+		photoUrl = import.meta.env.VITE_CDN_URL + $page.data.user.photoUrl
+	}
 	onMount(async () => {
-
-		if($page.data.user){
-			const res = await getUserPhoto($page.data.user.username);
-			if (res.url) {
-				photoUrl = import.meta.env.VITE_BASE_URL + '/' + res.url
-			}
-		}
-
 		document.onkeydown = function(evt) {
 			evt = evt || window.event;
 			if (evt.keyCode === 27) {
@@ -81,7 +72,7 @@
 				<div class="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
 					<div class="flex flex-shrink-0 items-center">
 						<a href="/">
-							<img class="h-8 w-auto" src="{import.meta.env.VITE_CDN_URL}/netders-logo-blue.svg" alt="Netders.com">
+							<img class="h-8 w-auto" src="{import.meta.env.VITE_CDN_URL}netders-logo-blue.svg" alt="Netders.com">
 						</a>
 					</div>
 					<div class="flex space-x-4 hidden lg:ml-6 lg:block w-full text-center">
@@ -93,18 +84,18 @@
 							Öğretmen Ara
 						</a>
 
-						<a href="/ozel-ders-talebi-olustur" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">
+						<a href="/ozel-ders-talebi-olustur" class="hidden px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 inline-block">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
 							</svg>
 							Ders Talepleri
 						</a>
 
-						<a href="/member/account" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Nasıl Çalışırr?</a>
+						<a href="/" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Nasıl Çalışır?</a>
 
 						<a href="/" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Yardım</a>
 
-						<a href="/detail" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">İletişim</a>
+						<a href="/" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">İletişim</a>
 					</div>
 				</div>
 				<div class="absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0">
@@ -122,7 +113,7 @@
 							{#if $page.data.user}
 								<button type="button" use:clickOutside on:click_outside={handleClickProfileMenuOutside} on:click={() => hiddenProfileMenu = !hiddenProfileMenu} class="flex rounded-full text-sm" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
 									<span class="sr-only">Open user menu</span>
-									<img class="h-8 w-8 rounded-full" src="{photoUrl}" alt="">
+									<span class="h-8 w-8 bg-cover rounded-full border border-gray-200" style="background-image: url({photoUrl})"></span>
 								</button>
 							{:else}
 								<button on:click={() => goto('/auth/login?to=' + $page.url.pathname)} class="bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white">

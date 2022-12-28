@@ -11,7 +11,7 @@ export const mediaCardModel = {
     cardLink: '',
     username: '',
     genderName: '',
-    photoUrl: import.meta.env.VITE_CDN_URL + '/images/icon-user.png',
+    photoUrl: import.meta.env.VITE_CDN_URL + 'icon-user.png',
     title: '',
     subTitle: '',
     description: '',

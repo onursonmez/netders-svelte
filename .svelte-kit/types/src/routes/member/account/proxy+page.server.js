@@ -47,6 +47,13 @@ export const actions = {
 
         const body = await api.post('member/user/upload', formData, locals.user.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
+
+        locals.user.photoUrl = body.result
+        cookies.delete('jwt', {path: '/'});
+        const value = btoa(JSON.stringify(locals.user));
+        cookies.set('jwt', value, { path: '/' });
+
+        return body.result;
     },
 
     updatePassword:/** @param {import('./$types').RequestEvent} event */  async ({ cookies, locals, request }) => {

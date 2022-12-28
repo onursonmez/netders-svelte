@@ -6,7 +6,8 @@ export const userModel = {
     phone: '',
     genderId: '',
     token: '',
-    roles: []
+    roles: [],
+    emailVerified: '',
 }
 
 export const gendersModel = [
