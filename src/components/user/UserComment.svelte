@@ -10,8 +10,8 @@
     let commentData = {
         username: username,
         rate: 5,
-        fullName: $page.data.user.firstName + ' ' + $page.data.user.lastName,
-        email: $page.data.user.email,
+        fullName: $page.data.user?.id ? $page.data.user?.firstName + ' ' + $page.data.user.lastName : '',
+        email: $page.data.user?.id ? $page.data.user.email : '',
         comment: '',
     }
 
@@ -30,8 +30,8 @@
             commentData = {
                 username: username,
                 rate: 5,
-                fullName: $page.data.user.firstName + ' ' + $page.data.user.lastName,
-                email: $page.data.user.email,
+                fullName: $page.data.user?.id ? $page.data.user?.firstName + ' ' + $page.data.user.lastName : '',
+                email: $page.data.user?.id ? $page.data.user.email : '',
                 comment: '',
             }
         }
