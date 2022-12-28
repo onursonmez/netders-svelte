@@ -13,32 +13,32 @@
     let locations = []
     let comments = []
 
-    mediaCardModel.isTeachPhysically = data.user.isTeachPhysically
-    mediaCardModel.isTeachRemotely = data.user.isTeachRemotely
-    mediaCardModel.isOnline = data.user.isOnline
-    mediaCardModel.shareUrl = import.meta.env.VITE_BASE_URL + '/' + data.user.username
-    mediaCardModel.username = data.user.username
-    mediaCardModel.genderName = data.user.genderName
-    mediaCardModel.shareText = `${data.user.firstName} ${data.user.lastName}`
-    mediaCardModel.title = `${data.user.firstName} ${data.user.lastName}`
-    mediaCardModel.subTitle = data.user.title
-    mediaCardModel.description = data.user.about
-    mediaCardModel.price = data.user.minimumPrice
-    mediaCardModel.locationName = data.user.county?.id ? `${data.user.county?.title}, ${data.user.city?.title}` : data.user.country?.title
-    mediaCardModel.totalComment = data.user.totalComment
-    mediaCardModel.createdAt = data.user.createdAt
-    mediaCardModel.photoUrl = import.meta.env.VITE_CDN_URL + data.user.photoUrl
-    mediaCardModel.requestButtonUrl = '/ozel-ders-talebi-olustur/' + data.user.username
+    mediaCardModel.isTeachPhysically = data.teacher.isTeachPhysically
+    mediaCardModel.isTeachRemotely = data.teacher.isTeachRemotely
+    mediaCardModel.isOnline = data.teacher.isOnline
+    mediaCardModel.shareUrl = import.meta.env.VITE_BASE_URL + '/' + data.teacher.username
+    mediaCardModel.username = data.teacher.username
+    mediaCardModel.genderName = data.teacher.genderName
+    mediaCardModel.shareText = `${data.teacher.firstName} ${data.teacher.lastName}`
+    mediaCardModel.title = `${data.teacher.firstName} ${data.teacher.lastName}`
+    mediaCardModel.subTitle = data.teacher.title
+    mediaCardModel.description = data.teacher.about
+    mediaCardModel.price = data.teacher.minimumPrice
+    mediaCardModel.locationName = data.teacher.county?.id ? `${data.teacher.county?.title}, ${data.teacher.city?.title}` : data.teacher.country?.title
+    mediaCardModel.totalComment = data.teacher.totalComment
+    mediaCardModel.createdAt = data.teacher.createdAt
+    mediaCardModel.photoUrl = import.meta.env.VITE_CDN_URL + data.teacher.photoUrl
+    mediaCardModel.requestButtonUrl = '/ozel-ders-talebi-olustur/' + data.teacher.username
 
     onMount(async () => {
-        prices = await getUserPrices(data.user.username)
-        locations = await getUserLocations(data.user.username)
-        comments = await getUserComments(data.user.username)
+        prices = await getUserPrices(data.teacher.username)
+        locations = await getUserLocations(data.teacher.username)
+        comments = await getUserComments(data.teacher.username)
     })
 </script>
 
 <svelte:head>
-    <title>{data.user.firstName} {data.user.lastName} Özel Ders Profil Sayfası {data.user.cityName}</title>
+    <title>{data.teacher.firstName} {data.teacher.lastName} Özel Ders Profil Sayfası {data.teacher.cityName}</title>
 </svelte:head>
 
 <div class="lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4">
@@ -113,6 +113,6 @@
 <div class="bg-white rounded-lg shadow-md mt-4">
     <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Yorum Yap</div>
     <div class="p-6">
-        <UserComment username="{data.user.username}" />
+        <UserComment username="{data.teacher.username}" />
     </div>
 </div>

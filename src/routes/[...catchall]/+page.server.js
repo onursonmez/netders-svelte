@@ -5,7 +5,7 @@ export async function load({ params })
 {
     if(params && params.catchall)
     {
-        const user = await getUser(params.catchall)
-        return { user }
+        const teacher = await getUser(params.catchall)
+        return { teacher }
     }
 }

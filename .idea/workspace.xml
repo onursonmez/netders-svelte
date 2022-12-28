@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="changes" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="cdn url slash" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,14 +108,7 @@
       <workItem from="1671395226239" duration="18835000" />
       <workItem from="1671737135828" duration="7000" />
       <workItem from="1671737197171" duration="2836000" />
-      <workItem from="1671887388487" duration="37661000" />
-    </task>
-    <task id="LOCAL-00005" summary="some updates">
-      <created>1668512879809</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1668512879809</updated>
+      <workItem from="1671887388487" duration="38037000" />
     </task>
     <task id="LOCAL-00006" summary="some updates">
       <created>1668513119086</created>
@@ -453,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672268248231</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="cdn url slash">
+      <created>1672268644176</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1672268644176</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +472,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="keyword problem" />
     <MESSAGE value="home page same teachers problem" />
     <MESSAGE value="webp" />
     <MESSAGE value="detail page" />
@@ -497,7 +496,8 @@
     <MESSAGE value="account photo upload" />
     <MESSAGE value="email change" />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="cdn url slash" />
+    <option name="LAST_COMMIT_MESSAGE" value="cdn url slash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
