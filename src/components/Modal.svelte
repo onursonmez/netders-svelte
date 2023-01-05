@@ -49,15 +49,15 @@
         max-height: calc(100vh - 4em);
         overflow: auto;
         transform: translate(-50%,-50%);
-        padding: 1em;
+        padding: 0;
         border-radius: 0.6em;
         background: white;
     }
 
     .modalCloseButton {
         position: absolute;
-        top: 15px;
-        right: 10px;
+        top: 20px;
+        right: 20px;
         width: 32px;
         height: 32px;
         cursor: pointer;

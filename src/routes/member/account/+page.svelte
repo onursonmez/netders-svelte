@@ -1,6 +1,7 @@
 <script>
     import Modal from '/src/components/Modal.svelte'
     import UserEmailVerify from '/src/components/user/UserEmailVerify.svelte'
+
     import { gendersStore } from '/src/stores/userStore'
     import {aboutModel, accountModel} from '/src/models/userModel'
     import { onMount } from 'svelte'

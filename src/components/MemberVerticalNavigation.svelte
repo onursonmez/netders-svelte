@@ -1,8 +1,23 @@
 <script>
+    import UserImageUpload from '/src/components/UserImageUpload.svelte'
     import { page } from '$app/stores';
+    import { enhance } from '$app/forms';
 </script>
 
-<ul class="flex flex-col gap-1 text-sm mt-4">
+<ul class="flex flex-col gap-1 text-sm">
+    <li class="pb-2">
+        <div>
+            <UserImageUpload />
+        </div>
+        <div class="text-center font-semibold mt-2">
+            Hoşgeldin, {$page.data.user.firstName}
+        </div>
+        <div class="text-center mt-1 text-xs">
+            <form use:enhance method="POST" action="/?/logout">
+                <button class="text-blue-700">Güvenli Çıkış</button>
+            </form>
+        </div>
+    </li>
     <li>
         <a href="/member/account" class="block p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/account' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block">

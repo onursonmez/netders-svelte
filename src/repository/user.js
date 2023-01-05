@@ -17,6 +17,8 @@ export async function getUsers(params = {})
             body: JSON.stringify({
                 'page' : searchParams?.page,
                 'pageSize' : searchParams?.pageSize,
+                'field': searchParams?.field,
+                'order': searchParams?.order,
                 'keyword' : searchParams?.keyword,
                 'budget' : parseInt(searchParams?.budget),
                 'cityId' : searchParams?.cityObject?.id,

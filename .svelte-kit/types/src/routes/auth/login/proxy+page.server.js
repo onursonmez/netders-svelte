@@ -21,7 +21,7 @@ export const actions = {
 
         if (Object.entries(body.errors).length) return invalid(body.code, body)
 
-        const value = btoa(JSON.stringify(body.result));
+        const value = btoa(unescape(encodeURIComponent(JSON.stringify(body.result))));
 
         cookies.set('jwt', value, { path: '/' });
 
