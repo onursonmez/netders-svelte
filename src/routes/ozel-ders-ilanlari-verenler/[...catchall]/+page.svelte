@@ -342,7 +342,7 @@
 	{:else}
 	{#each data.users.items as user}
 		<div class="lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4">
-			<MediaCardContainer data="{convertUserDataToMediaCardData(user)}" />
+			<MediaCardContainer user="{{...user, showApprovedBadge: true, showIsOnlineBadge: true, showRequest: true}}" />
 		</div>
 	{/each}
 	{/if}

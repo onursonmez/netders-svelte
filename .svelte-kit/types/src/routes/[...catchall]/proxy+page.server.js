@@ -1,13 +1,11 @@
 // @ts-nocheck
-import { getUser } from '/src/repository/user'
-import {error} from "@sveltejs/kit";
+import * as api from '$lib/api';
 
 /** @param {Parameters<import('./$types').PageLoad>[0]} event */
-export async function load({ params })
+export async function load({ locals, params })
 {
-    if(params && params.catchall)
-    {
-        const teacher = await getUser(params.catchall)
-        return { teacher }
+    const user = await api.get('user/detail?uuid=' + params.slug, locals.user?.token)
+    return {
+        user : user.result,
     }
 }

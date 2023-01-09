@@ -1,3 +1,2 @@
-import * as shared from "../../../src/routes/auth/forgot/+page.js";
-export { shared };
-export { default as component } from "../../../src/routes/auth/forgot/+page.svelte";
+export { default as component } from "../../../src/routes/auth/login/+page.svelte";
+export const server = true;
