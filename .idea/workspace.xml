@@ -1,28 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="detail page problem">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="requests module">
+      <change afterPath="$PROJECT_DIR$/src/routes/member/location/+page.server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/member/location/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/member/preference/+page.server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/member/preference/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/member/price/+page.server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/member/price/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/11.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/13.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/13.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/14.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/14.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/15.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/15.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/16.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/16.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/17.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/17.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/8.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/[...catchall]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/[...catchall]/proxy+page.server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/auth/login/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/auth/login/proxy+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/$types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/$types.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/[uuid]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/[uuid]/proxy+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/proxy+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MediaCard.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MediaCard.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders-talebi-olustur/[...slug]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders-talebi-olustur/[...slug]/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MemberHorizontalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberHorizontalNavigation.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/UserEmailVerify.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserEmailVerify.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/searchModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/searchModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/userModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/userModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/lesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/location.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/location.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repository/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[...catchall]/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[...catchall]/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/auth/login/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth/login/+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/+layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/request/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/request/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ders/[slug]/+page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[slug]-ozel-ders-[id]/+page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ders/[slug]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[slug]-ozel-ders-[id]/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/member/request/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/request/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/request/[uuid]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/request/[uuid]/+page.server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/member/request/[uuid]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/request/[uuid]/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/test.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/responseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/responseService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +84,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/routes/ozel-ders-talepleri" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/routes/member/preference" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
@@ -71,18 +93,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/member/preference" />
+      <recent name="$PROJECT_DIR$/src/routes/member/locations" />
+      <recent name="$PROJECT_DIR$/src/routes/member/prices" />
       <recent name="$PROJECT_DIR$/src/routes/ozel-ders-talepleri" />
       <recent name="$PROJECT_DIR$/src/routes/member/request/[id]" />
-      <recent name="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur" />
-      <recent name="$PROJECT_DIR$/src/routes/member/requests" />
-      <recent name="$PROJECT_DIR$/src/routes/member/about" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/[slug]-ozel-ders-[id]" />
       <recent name="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[slug]" />
       <recent name="$PROJECT_DIR$/src/routes" />
       <recent name="$PROJECT_DIR$/src/routes/(app)/test" />
       <recent name="$PROJECT_DIR$/src/functions" />
-      <recent name="$PROJECT_DIR$/src/routes/(app)/member" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -131,14 +153,7 @@
       <workItem from="1671737135828" duration="7000" />
       <workItem from="1671737197171" duration="2836000" />
       <workItem from="1671887388487" duration="51384000" />
-      <workItem from="1672679990978" duration="44609000" />
-    </task>
-    <task id="LOCAL-00008" summary="some updates">
-      <created>1668515872123</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1668515872123</updated>
+      <workItem from="1672679990978" duration="92585000" />
     </task>
     <task id="LOCAL-00009" summary="vite env">
       <created>1668528896307</created>
@@ -476,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672269269138</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="requests module">
+      <created>1672908588388</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1672908588388</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +517,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="detail page" />
     <MESSAGE value="comment" />
     <MESSAGE value="auth pages" />
     <MESSAGE value="login bugs fixed" />
@@ -520,19 +541,20 @@
     <MESSAGE value="cdn url slash" />
     <MESSAGE value="session problem" />
     <MESSAGE value="detail page problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="detail page problem" />
+    <MESSAGE value="requests module" />
+    <option name="LAST_COMMIT_MESSAGE" value="requests module" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/repository/lesson.js</url>
-          <line>31</line>
+          <line>30</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.svelte</url>
-          <line>401</line>
+          <line>400</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

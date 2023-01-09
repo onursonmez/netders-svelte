@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { dev } from '$app/environment'
 import { getUserPriceDetail } from '/src/repository/price'
 import { error } from '@sveltejs/kit'
@@ -11,7 +12,7 @@ import { userStore } from '/src/stores/userStore'
 // it so that it gets served as a static asset in production
 export const prerender = false;
 
-/** @type {import('./$types').PageLoad} */
+/** @param {Parameters<import('./$types').PageLoad>[0]} event */
 export async function load({ params, parent })
 {
     const { user } = await parent();
@@ -20,9 +21,9 @@ export async function load({ params, parent })
         userStore.set(user)
     }
 
-    if(params && params.slug)
+    if(params && params.slug && params.id)
     {
-        let response = await getUserPriceDetail(params.slug)
+        let response = await getUserPriceDetail(params.slug + '-ozel-ders-' + params.id)
 
         if(Object.entries(response.errors).length){
             throw error(response.code, response.errors);

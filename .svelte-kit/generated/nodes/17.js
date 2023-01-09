@@ -1,3 +1,2 @@
-import * as shared from "../../../src/routes/api/+page.js";
-export { shared };
-export { default as component } from "../../../src/routes/api/+page.svelte";
+export { default as component } from "../../../src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.svelte";
+export const server = true;

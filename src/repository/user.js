@@ -145,22 +145,6 @@ export async function getTeacher(username)
     return responseService(result)
 }
 
-export async function getUserLocations(username)
-{
-    const response = await fetch(import.meta.env.VITE_API_URL + '/user/locations/' + username,
-        {
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-        },
-    )
-
-    const result = await response.json()
-
-    return responseService(result)
-}
-
 export async function updateUser(params = [])
 {
     const bodyParams = Object.entries(params).length > 0 ? params : accountModel

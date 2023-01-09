@@ -1,10 +1,11 @@
 import { env } from '$env/dynamic/public'
 import { subjectsStore, lessonSearchParamsStore } from '/src/stores/lessonStore'
 import { get } from 'svelte/store'
+import { responseService } from "/src/utils/responseService"
 
 export async function getSubjects()
 {
-    const result = await fetch(import.meta.env.VITE_API_URL + '/lesson/subjects',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/lesson/subjects',
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -13,16 +14,14 @@ export async function getSubjects()
         },
     );
 
-    const body = await result.json()
+    const result = await response.json()
 
-    subjectsStore.set(body.result.items)
-
-    return body.result
+    return responseService(result)
 }
 
 export async function getLevels(params = [])
 {
-    const result = await fetch(import.meta.env.VITE_API_URL + '/lesson/levels/' + params.subjectId,
+    const response = await fetch(import.meta.env.VITE_API_URL + '/lesson/levels/' + params.subjectId,
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -31,8 +30,9 @@ export async function getLevels(params = [])
         },
     );
 
-    const body = await result.json()
-    return body.result
+    const result = await response.json()
+
+    return responseService(result)
 }
 
 export async function searchLesson(params = {})

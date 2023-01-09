@@ -15,7 +15,6 @@
 	export let form;
 
 	$: if(form?.errors) {
-		console.log(form?.errors)
 		Object.entries(form?.errors).forEach(i => {
 			toast(i[1], 'warning')
 		})
@@ -450,7 +449,7 @@
 			<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 		</svg>
 		<p>Talebin editörlerimiz tarafından incelenme aşamasındadır.</p>
-		<p class="text-gray-400 text-sm">En kısa süre içerisinde bizden alacaksın 😃</p>
+		<p class="text-gray-400 text-sm">En kısa süre içerisinde bizden haber alacaksın 😃</p>
 
 		<a href="/" class="bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1 inline-block">

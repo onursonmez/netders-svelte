@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte'
-    import { getUserLocations } from '/src/repository/user'
+    import { getUserLocations } from '/src/repository/location'
     import { getUserPrices } from '/src/repository/price'
     import { getUserComments } from '/src/repository/comment'
     import UserComment from '/src/components/user/UserComment.svelte'

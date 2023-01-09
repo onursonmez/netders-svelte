@@ -31,3 +31,6 @@ export const aboutModel = {
     title: '',
     about: '',
 }
+
+
+export const pricesModel = []

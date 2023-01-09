@@ -4,14 +4,9 @@ import { error, redirect } from '@sveltejs/kit';
 
 /** @param {Parameters<import('./$types').PageServerLoad>[0]} event */
 export async function load({ locals, params }) {
-
-	console.log(params)
-
 	const [{ teacher }] = await Promise.all([
 		api.get(`user/one_teacher/${params.slug}`, locals.user?.token),
 	]);
-
-console.log(teacher)
 
 	return { teacher };
 

@@ -253,7 +253,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                             </svg>
-                            Maalesef öğrenci başka bir öğretmen ile devam etme kararı aldı
+                            Maalesef öğrenci başka bir öğretmen ile anlaşma sağladı
                         </span>
                         </div>
                     {/if}
@@ -375,7 +375,7 @@
                 Bu ders talebiyle ilgileniyorsan, öğrenciye iletmek istediğin mesajını yaz ve <strong>Ders Vermeyi Kabul Et</strong> tuşuna bas. Eğer taleple ilgilenmiyorsan herhangi bir işlem yapmana gerek yok.
             </div>
             <div>
-                <textarea name="actionMessage" class="p-2 px-4 border-gray-200 rounded-lg w-full" placeholder="Buraya vereceğin ders ile ilgili öğrencide ilgi uyandıracak bir mesaj yaz"></textarea>
+                <textarea name="actionMessage" class="p-2 px-4 border-gray-200 rounded-lg w-full" placeholder="Buraya, vereceğin ders ile ilgili öğrencide ilgi uyandıracak bir mesaj yaz"></textarea>
             </div>
 
             <div class="flex justify-end">
