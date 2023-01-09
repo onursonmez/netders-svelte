@@ -33,7 +33,7 @@
 		<div class="hidden lg:col-span-1 lg:flex">
 		</div>
 		<div class="hidden lg:col-span-3 lg:flex">
-			<img srcset="{import.meta.env.VITE_CDN_URL}student.png" type="image/webp" alt="">
+			<img srcset="{import.meta.env.VITE_CDN_URL}student.png" alt="">
 		</div>
 	</div>
 </section>
