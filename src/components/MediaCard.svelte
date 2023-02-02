@@ -61,7 +61,7 @@
 {/if}
 
 <a href="/{user.username}" target="_blank" rel="noreferrer">
-	<img class="rounded-full mx-auto w-48 h-48" src="{user.photoUrl}" alt="">
+	<img class="rounded-full mx-auto w-48 h-48" src="{import.meta.env.VITE_CDN_URL}{user.photoUrl}" alt="">
 </a>
 <div class="flex flex-col w-full justify-between pl-4 leading-normal mt-2">
 	<a href="/{user.username}" target="_blank" rel="noreferrer" class="block lg:hidden">
@@ -103,7 +103,11 @@
 	</div>
 
 	{#if user.about}
-		<p class="text-sm text-justify leading-relaxed mt-4 block lg:hidden">{user.about}</p>
+		{#if user.truncateAbout === true}
+			<p class="text-sm text-justify leading-relaxed mt-4 block lg:hidden">{user.about ? (user.about.length > 100 ? user.about.substr(0,100) + '...' : user.about) : ''}</p>
+		{:else}
+			<p class="text-sm text-justify leading-relaxed mt-4 block lg:hidden">{user.about}</p>
+		{/if}
 	{/if}
 
 	{#if (user.showApprovedBadge || user.createdAt || user.showIsOnlineBadge || shareUrl) }

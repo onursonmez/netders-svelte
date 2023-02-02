@@ -63,5 +63,9 @@
         {/if}
     </div>
 
-    <p class="text-sm text-justify leading-relaxed">{user.about}</p>
+    {#if user.truncateAbout === true}
+        <p class="text-sm text-justify leading-relaxed">{user.about ? (user.about.length > 300 ? user.about.substr(0,300) + '...' : user.about) : ''}</p>
+    {:else}
+        <p class="text-sm text-justify leading-relaxed">{user.about}</p>
+    {/if}
 </div>

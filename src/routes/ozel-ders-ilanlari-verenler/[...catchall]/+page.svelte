@@ -40,8 +40,8 @@
 		pageData = {...pageData, ...searchData}
 		pageData.page = 1
 		const users = await getUsers(pageData)
-		data.users.items = [...users.items]
-		data.users.total = users.total
+		data.users.items = users?.items ? [...users.items] : []
+		data.users.total = users?.total ?? 0
 		loading = false
 		showSearchModal = false
 		changeSearchPageStateFunction(pageData, $page)
@@ -340,11 +340,13 @@
 		</div>
 	</div>
 	{:else}
+	{#if data.users?.items}
 	{#each data.users.items as user}
 		<div class="lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4">
-			<MediaCardContainer user="{{...user, showApprovedBadge: true, showIsOnlineBadge: true, showRequest: true}}" />
+			<MediaCardContainer user="{{...user, showApprovedBadge: true, showIsOnlineBadge: true, showRequest: true, truncateAbout: true}}" />
 		</div>
 	{/each}
+	{/if}
 	{/if}
 
 </div>
