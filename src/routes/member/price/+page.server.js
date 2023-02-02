@@ -5,7 +5,7 @@ export async function load({ locals }) {
     if (!locals.user) throw redirect(302, '/auth/login');
 
     const subjects = await api.get('lesson/subjects', locals.user.token)
-    const prices = await api.get('price/' + locals.user.username, locals.user.token)
+    const prices = await api.get('price/' + locals.user.uuid, locals.user.token)
     return {
         prices : prices.result,
         subjects: subjects.result
@@ -40,6 +40,11 @@ export const actions = {
 
         const body = await api.post('member/price/new', formData, locals.user.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
+
+        const user = await api.get('member/user/verify', locals.user.token);
+        locals.user = user.result
+
+        return body.result
     },
 
     update_multi: async ({ cookies, locals, request }) => {

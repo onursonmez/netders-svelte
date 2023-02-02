@@ -235,6 +235,12 @@
 				    toast("Talebin başarıyla alındı!", "success")
 				    formData = requestModel
 			    }
+
+				if (result.type === 'invalid') {
+					Object.values(result.data).forEach(item => {
+                        toast(item, 'warning')
+                    })
+			    }
             };
         }}
 	  method="POST"

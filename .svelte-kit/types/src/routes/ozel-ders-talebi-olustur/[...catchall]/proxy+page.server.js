@@ -36,7 +36,7 @@ export const actions = {
 
 		const body = await api.post('request/new', formData, locals.user?.token);
 
-		if (Object.entries(body.errors).length) return invalid(body.code, body);
+		if (Object.entries(body.errors).length) return invalid(body.code, body.errors);
 
 		return body.result
 	},

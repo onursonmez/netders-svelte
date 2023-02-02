@@ -1,8 +1,15 @@
 import { invalid, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
-export function load({ locals }) {
+export async function load({ locals }) {
     if (!locals.user) throw redirect(302, '/auth/login');
+
+    const user = await api.get('member/user/detail?username=' + locals.user?.username, locals.user?.token)
+
+    return {
+        user : user.result,
+        account: locals.user,
+    }
 }
 
 /** @type {import('./$types').Actions} */
@@ -121,7 +128,7 @@ export const actions = {
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 
         cookies.delete('jwt', {path: '/'});
-        const value = btoa(JSON.stringify(body.result));
+        const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
         cookies.set('jwt', value, { path: '/' });
 
         locals.user = body.user;

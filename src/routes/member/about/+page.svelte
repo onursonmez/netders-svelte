@@ -1,9 +1,7 @@
 <script>
     import { onMount } from 'svelte'
-    import { updateUser, getUser } from '/src/repository/user'
     import { toast } from '/src/functions/toast'
     import { aboutModel } from '/src/models/userModel'
-    import { page } from "$app/stores";
 
     import { enhance } from '$app/forms';
 
@@ -23,9 +21,8 @@
     let pageData = aboutModel
 
     onMount( async () => {
-        const userResponse = await getUser($page.data.user.username)
-        pageData.title = userResponse.title
-        pageData.about = userResponse.about
+        pageData.title = data.user.title
+        pageData.about = data.user.about
     })
 
 </script>
@@ -34,8 +31,8 @@
     <title>Hesabım • Hakkında</title>
 </svelte:head>
 
-<div class="w-full h-full">
-    <div class="grow bg-white rounded-lg shadow-md h-full">
+<div>
+    <div class="grow bg-white rounded-lg shadow-md">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Hakkında</div>
 
         <form use:enhance={({ data }) => {

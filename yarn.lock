@@ -12,6 +12,13 @@
   "resolved" "https://registry.npmjs.org/@fontsource/fira-mono/-/fira-mono-4.5.10.tgz"
   "version" "4.5.10"
 
+"@imask/svelte@^6.4.3":
+  "integrity" "sha512-Ztn4yLg0F/Bm+iyRgvzrXG7XikbTwpKXADqyAhHD5CnWUfqPn4YeKdMIUfavLhnyzqCwMV9Oq0ujgLCKwNDkTw=="
+  "resolved" "https://registry.npmjs.org/@imask/svelte/-/svelte-6.4.3.tgz"
+  "version" "6.4.3"
+  dependencies:
+    "imask" "^6.4.3"
+
 "@jridgewell/sourcemap-codec@^1.4.13":
   "integrity" "sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw=="
   "resolved" "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.14.tgz"
@@ -328,6 +335,13 @@
   "resolved" "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   "version" "0.0.1"
 
+"context@^3.0.4":
+  "integrity" "sha512-kjRlThxjda9o3L4lFXO7dOmxVXfO+v8q8A9dCyJxZ07XudYq6/TAFmF2bV5Plb4afi+oLSox2rXkJtI/nFB9Aw=="
+  "resolved" "https://registry.npmjs.org/context/-/context-3.0.4.tgz"
+  "version" "3.0.4"
+  dependencies:
+    "vest-utils" "^0.0.4"
+
 "cookie@^0.5.0":
   "integrity" "sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw=="
   "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.5.0.tgz"
@@ -610,6 +624,11 @@
   dependencies:
     "sharp" "^0.31.0"
 
+"imask@^6.4.3":
+  "integrity" "sha512-aH2GHemGkr3cbRBfhogHMIx05eUxdHrZNlKTTLmz8VxpSopuHHJ8+85FsDlBVQqxPlDLhZuwj4lpHHWbLOdBSw=="
+  "resolved" "https://registry.npmjs.org/imask/-/imask-6.4.3.tgz"
+  "version" "6.4.3"
+
 "import-meta-resolve@^2.2.0":
   "integrity" "sha512-CpPOtiCHxP9HdtDM5F45tNiAe66Cqlv3f5uHoJjt+KlaLrUh9/Wz9vepADZ78SlqEo62aDWZtj9ydMGXV+CPnw=="
   "resolved" "https://registry.npmjs.org/import-meta-resolve/-/import-meta-resolve-2.2.0.tgz"
@@ -778,6 +797,14 @@
   "integrity" "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   "version" "2.1.2"
+
+"n4s@^4.3.4":
+  "integrity" "sha512-g/kWJkB6WszbA9Pfe3dV/lw/Z8cRjidFtSFbTLyQdsQum5SHC+SKEL2bukpm4chyfbP9WBpTC0gxQCegtjAa2A=="
+  "resolved" "https://registry.npmjs.org/n4s/-/n4s-4.3.4.tgz"
+  "version" "4.3.4"
+  dependencies:
+    "context" "^3.0.4"
+    "vest-utils" "^0.0.4"
 
 "nanoid@^3.3.4":
   "integrity" "sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw=="
@@ -1174,7 +1201,7 @@
   "resolved" "https://registry.npmjs.org/svelte-select/-/svelte-select-4.4.7.tgz"
   "version" "4.4.7"
 
-"svelte@^3.23.0", "svelte@^3.44.0", "svelte@^3.46.0", "svelte@>=3.19.0":
+"svelte@^3.23.0", "svelte@^3.44.0", "svelte@^3.46.0", "svelte@>=3.0.0", "svelte@>=3.19.0":
   "integrity" "sha512-tdrgeJU0hob0ZWAMoKXkhcxXA7dpTg6lZGxUeko5YqvPdJBiyRspGsCwV27kIrbrqPP2WUoSV9ca0gnLlw8YzQ=="
   "resolved" "https://registry.npmjs.org/svelte/-/svelte-3.54.0.tgz"
   "version" "3.54.0"
@@ -1285,6 +1312,33 @@
   "integrity" "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
   "resolved" "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   "version" "1.0.2"
+
+"vast@^1.0.14":
+  "integrity" "sha512-w3iCRS3G+qOR/wkGpLz6b5/kdVQU3w/SHKZ8S9f0UTEwIZ3cE/IXuEZYZrFJkxL9AotyUk7b1WPxkA0cxq1fPA=="
+  "resolved" "https://registry.npmjs.org/vast/-/vast-1.0.14.tgz"
+  "version" "1.0.14"
+  dependencies:
+    "vest-utils" "^0.0.3"
+
+"vest-utils@^0.0.3":
+  "integrity" "sha512-ZVeNgF0CSf+35/jFd639savGiYiH8FO5PAOGKeUbyd6PwfiPkqm84XwAnErq5qcXoCZT3N9cw94YevduFTUTjg=="
+  "resolved" "https://registry.npmjs.org/vest-utils/-/vest-utils-0.0.3.tgz"
+  "version" "0.0.3"
+
+"vest-utils@^0.0.4":
+  "integrity" "sha512-H9YiK3yjg2CG+0KF5BzoFJYW38fFnfC+Z/5xDvJpRmGBe7J3X2Y29iHihgp1iQJl93JmEv/Kch8cjIQ+H3ilyg=="
+  "resolved" "https://registry.npmjs.org/vest-utils/-/vest-utils-0.0.4.tgz"
+  "version" "0.0.4"
+
+"vest@^4.6.8":
+  "integrity" "sha512-5DOq2O9n30Ty/4wyf4e/ZdZMXYVNzRznJ/jJEhEnI3Eyf50o6sQqCirHcT3QxQNV+4Y7ih6P6LtPqgcBV6AkhQ=="
+  "resolved" "https://registry.npmjs.org/vest/-/vest-4.6.8.tgz"
+  "version" "4.6.8"
+  dependencies:
+    "context" "^3.0.4"
+    "n4s" "^4.3.4"
+    "vast" "^1.0.14"
+    "vest-utils" "^0.0.4"
 
 "vite-imagetools@^4.0.11":
   "integrity" "sha512-S6+vzsd/6kSBdPIdjJFGeZ4+UV/aIK09V7oLb/Z9soV3jNwKh60WBi6jF+RnKtY7F9FMU3W6xPbln+VPHI0icA=="

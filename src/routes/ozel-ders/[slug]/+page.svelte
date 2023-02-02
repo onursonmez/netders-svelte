@@ -2,7 +2,6 @@
 	import MediaCardContainer from '/src/components/MediaCardContainer.svelte'
 
 	export let data;
-	console.log(data)
 </script>
 
 <svelte:head>

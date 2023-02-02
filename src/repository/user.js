@@ -70,3 +70,20 @@ export async function getUser(username)
 
     return responseService(result)
 }
+
+export async function getUserIsExists(param)
+{
+    const q = new URLSearchParams(param).toString()
+    const response = await fetch(import.meta.env.VITE_API_URL + '/user/is_exists?' + q,
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        },
+    )
+
+    const result = await response.json()
+
+    return responseService(result)
+}

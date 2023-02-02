@@ -1,11 +1,9 @@
 <script>
     import Modal from '/src/components/Modal.svelte'
     import UserEmailVerify from '/src/components/user/UserEmailVerify.svelte'
-
     import { gendersStore } from '/src/stores/userStore'
     import {aboutModel, accountModel} from '/src/models/userModel'
     import { onMount } from 'svelte'
-    import { getUser } from '/src/repository/user'
     import { getCountries, getCities, getCounties } from '/src/repository/location'
     import { toast } from '/src/functions/toast'
     import { page } from '$app/stores';
@@ -41,23 +39,20 @@
     }
 
     onMount( async () => {
+        pageData.firstName = data.account.firstName
+        pageData.lastName = data.account.lastName
+        pageData.email = data.account.email
+        pageData.phone = data.account.phone
+        pageData.gender = data.user.gender
+        pageData.country = data.user.country
+        pageData.city = data.user.city
+        pageData.county = data.user.county
 
-        const userResponse = await getUser($page.data.user.username)
-
-        pageData.firstName = userResponse.firstName
-        pageData.lastName = userResponse.lastName
-        pageData.email = userResponse.email
-        pageData.phone = userResponse.phone
-        pageData.gender = userResponse.gender
-        pageData.country = userResponse.country
-        pageData.city = userResponse.city
-        pageData.county = userResponse.county
-
-        if(userResponse.country){
+        if(data.user.country){
             pageData.outsideTurkey = true
         }
 
-        if($page.data.user.emailVerified === false){
+        if(data.account.emailVerified === false){
             showEmailConfirmationModal = true
         }
 
@@ -66,7 +61,7 @@
 
         if(pageData.city?.id){
             counties = await getCounties({cityId: pageData.city.id})
-            pageData.county = userResponse.county
+            pageData.county = data.user.county
         }
     })
 
@@ -89,7 +84,7 @@
 </Modal>
 {/if}
 
-<div class="w-full">
+<div>
     <div class="grow bg-white rounded-lg shadow-md">
         <form use:enhance={({ data }) => {
             if(pageData.country?.id && pageData.outsideTurkey)

@@ -71,7 +71,7 @@
                         </div>
 
                         <div>
-                            <span class="text-sm mb-1 block text-gray-500">Başlık</span>
+                            <span class="text-sm mb-1 block text-gray-500">İçerik</span>
                             <textarea name="content" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0">{priceData?.content}</textarea>
                         </div>
 
@@ -87,7 +87,7 @@
     </Modal>
 {/if}
 
-<div class="w-full h-full">
+<div>
     <div class="grow bg-white rounded-lg shadow-md">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Yeni Ders Ücreti</div>
 
@@ -102,6 +102,7 @@
 
                 if (result.type === 'success') {
                     levels = []
+                    pricesData = result.data
 				    toast("İşlem başarıyla tamamlandı 👏", "success")
 			    }
                 update({ reset: true });
@@ -115,8 +116,7 @@
 
             <div class="p-6">
                 <div class="flex flex-col gap-4">
-                    <p>Ders ücreti tanımlamak için lütfen aşağıdan önce konu seçimi yap ve daha sonra açılan derslerden verdiğin dersleri seçerek ücretlerini gir ve ekle tuşuna bas.</p>
-                    <p>Aynı konu ve ücretteki birden fazla dersi seçerek tek seferde bu derslerin ücret bilgisi girişini tek seferde yapabilirsin. Ders ücreti farklı olan derslerin ücret tanımlamasını ayrı ayrı yapman gerekir.</p>
+                    <p>Verdiğin derslerin ücretlerini bu sayfadan belirleyebilirsin. Ders ücreti belirlemek için konu seçimi, ders seçimi ve ücret bilgisi girişini yaparak Ekle tuşuna basmalısın.</p>
 
                     <div>
                         <span class="text-sm mb-1 block text-gray-500">Konu</span>
@@ -137,12 +137,12 @@
 
                         <div class="grid lg:grid-cols-2 gap-4 mt-4">
                             <div>
-                                <span class="text-sm mb-1 block text-gray-500">Yüzyüze Bir Ders Ücreti</span>
+                                <span class="text-sm mb-1 block text-gray-500">Yüzyüze Ders Ücreti</span>
                                 <input type="number" name="pricePrivate" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
                             </div>
 
                             <div>
-                                <span class="text-sm mb-1 block text-gray-500">Uzaktan (Webcam) Bir Ders Ücreti</span>
+                                <span class="text-sm mb-1 block text-gray-500">Uzaktan (Webcam) Ders Ücreti</span>
                                 <input type="number" name="priceLive" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
                             </div>
                         </div>
@@ -178,7 +178,7 @@
 
                 if (result.type === 'success') {
                     levels = []
-                    prices = result.data
+                    pricesData = result.data
 				    toast("İşlem başarıyla tamamlandı 👏", "success")
 			    }
                 update({ reset: false });
@@ -191,6 +191,7 @@
         >
 
             <div class="p-6">
+                {#if pricesData.items}
                 <div class="flex flex-col gap-4">
                     <p>Ücret belirlediğin derslere tanıtım yazısı yazarak profilini ziyaret eden öğrencilerin sayısını arttırabilirsin. Tanıtım yazısı yazdığın dersler için özel sayfalar oluşturuyoruz ve profilini daha fazla öğrencinin ziyaret etmesini sağlıyoruz.</p>
                     <p>Tanıtım yazısı yazmak istediğin dersin ismine tıklayarak o ders için tanıtım yazısı ekleyebilir veya daha önceden eklemiş olduğun tanıtım yazısını değiştirebilirsin.</p>
@@ -214,6 +215,7 @@
                         ders tanıtımı yapıldı ve onaylandı
                     </p>
 
+
                     <div class="w-full overflow-x-auto">
                     <table class="table-auto">
                         <thead>
@@ -229,7 +231,7 @@
                         {#each pricesData.items as price}
                         <tr>
                             <td>
-                                <button type="button" on:click={() => {
+                                <button type="button" class="text-blue-700" on:click={() => {
                                     priceData = price
                                     showPriceTextModal = true
                                 }}
@@ -273,10 +275,13 @@
                     </table>
                     </div>
 
-
                 </div>
+                {:else}
+                    Tanımlı ders ücreti bulunamadı.
+                {/if}
             </div>
 
+            {#if pricesData.items}
             <div class="bg-[#fbfcff] border-t border-gray-100 p-6 rounded-b-lg text-right">
                 {#if loading}
                     <div class="py-1 flex justify-end pr-8">
@@ -291,6 +296,7 @@
                     </button>
                 {/if}
             </div>
+            {/if}
         </form>
     </div>
 </div>

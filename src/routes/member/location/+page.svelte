@@ -37,7 +37,7 @@
 </svelte:head>
 
 
-<div class="w-full h-full">
+<div>
     <div class="grow bg-white rounded-lg shadow-md">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Yeni Ders Verilen Lokasyon</div>
 
@@ -65,7 +65,7 @@
 
             <div class="p-6">
                 <div class="flex flex-col gap-4">
-                    <p>Ders verdiğin bölgeleri tanımlamak için lütfen aşağıdan şehir seçerek görünür duruma gelen ilçelerin hangilerinde yüz yüze ders veriyorsan seçip, ekle tuşununa bas.</p>
+                    <p>Yüz yüze ders vermek için gidebileceğin lokasyonları bu alandan belirleyebilirsin. Eklemek için önce şehir sonra ilçe seçip Ekle tuşuna basmalısın. Yalnızca Uzaktan (Webcam) ile ders veriyorsan herhangi bir lokasyon seçmene gerek yoktur.</p>
                     <div>
                         <span class="text-sm mb-1 block text-gray-500">Şehir</span>
                         <Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." bind:value={pageData.city} items="{data.cities.items}" optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={updateCounties} />
@@ -106,61 +106,63 @@
 
     <div class="grow bg-white rounded-lg shadow-md mt-4">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Tanımlı Ders Verilen Lokasyonlar</div>
+        <div class="p-6">
+            {#if pageData.locations?.items}
+            <div class="flex flex-col gap-4">
+                <div class="w-full overflow-x-auto">
+                <table class="table-auto">
+                    <thead>
+                    <tr class="font-semibold">
+                        <td>Lokasyon Adı</td>
+                        <td>Sil</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {#each pageData.locations?.items as location}
+                    <tr>
+                        <td>
+                            {location.city.title} > {location.county.title}
+                        </td>
+                        <td>
+                            <form use:enhance={({ data }) => {
 
-            <div class="p-6">
-                <div class="flex flex-col gap-4">
-                    <div class="w-full overflow-x-auto">
-                    <table class="table-auto">
-                        <thead>
-                        <tr class="font-semibold">
-                            <td>Lokasyon Adı</td>
-                            <td>Sil</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {#each pageData.locations?.items as location}
-                        <tr>
-                            <td>
-                                {location.city.title} > {location.county.title}
-                            </td>
-                            <td>
-                                <form use:enhance={({ data }) => {
+                                data.set("id", location.id)
 
-                                    data.set("id", location.id)
+                                return ({ update, result }) => {
 
-                                    return ({ update, result }) => {
+                                        loading = false
 
-                                            loading = false
-
-                                            if (result.type === 'success') {
-                                                pageData.locations = result.data
-                                                toast("İşlem başarıyla tamamlandı 👏", "success")
-                                            }
-                                            update({ reset: false });
-                                        };
-                                    }}
-                                  action="?/delete"
-                                  on:submit={() => {
-                                      loading = true
-                                  }}
-                                >
-                                    <button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mx-auto">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                        </svg>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        {/each}
-                        </tbody>
-                    </table>
-                    </div>
-
-
+                                        if (result.type === 'success') {
+                                            pageData.locations = result.data
+                                            toast("İşlem başarıyla tamamlandı 👏", "success")
+                                        }
+                                        update({ reset: false });
+                                    };
+                                }}
+                              action="?/delete"
+                              on:submit={() => {
+                                  loading = true
+                              }}
+                            >
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mx-auto">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {/each}
+                    </tbody>
+                </table>
                 </div>
-            </div>
 
+
+            </div>
+            {:else}
+                Tanımlı ders verilen lokasyon bulunamadı.
+            {/if}
+        </div>
     </div>
 </div>
 <style>

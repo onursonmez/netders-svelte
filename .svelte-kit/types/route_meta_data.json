@@ -264,5 +264,9 @@
 	"/[slug]": [
 		"src/routes/[slug]/+page.server.js",
 		"src/routes/+layout.server.js"
+	],
+	"/member/requirement": [
+		"src/routes/member/requirement/+page.server.js",
+		"src/routes/+layout.server.js"
 	]
 }

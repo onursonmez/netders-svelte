@@ -1,7 +1,6 @@
 <script>
     import MediaCard from '/src/components/MediaCard.svelte'
     export let user
-    console.log(user)
 </script>
 
 <div class="lg:basis-3/12 xl:basis-2/12">

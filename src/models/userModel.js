@@ -14,6 +14,10 @@ export const gendersModel = [
     {id: 1, title: "Erkek"},
     {id: 2, title: "Kadın"},
 ]
+export const lastNamePrivacyModel = [
+    {id: 1, title: "Soyadım gözüksün"},
+    {id: 2, title: "Soyadım yerine Öğretmen yazsın"},
+]
 
 export const accountModel = {
     lastName: '',

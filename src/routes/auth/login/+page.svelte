@@ -33,7 +33,7 @@
 		<div class="bg-white rounded-lg p-10 sm:m-auto md:m-auto lg:m-0" style="border: solid 1px #CACED0; min-height: 524px;">
 			<div class="sm:w-full text-left m-auto lg:m-0">
 				<h1 class="text-3xl md:text-4xl font-bold mb-4">Hesabına giriş yap</h1>
-				<p class="mb-4">Henüz üye değil misin? Özel ders almak için <a class="text-blue-700 hover:text-blue-900" href="/">buraya</a>, öğretmen olmak için <a class="text-blue-700 hover:text-blue-900" href="/">buraya</a> tıklayın.</p>
+				<p class="mb-4">Henüz üye değil misin? Özel ders almak için <a class="text-blue-700 hover:text-blue-900" href="/ozel-ders-talebi-olustur">buraya</a>, öğretmen olmak için <a class="text-blue-700 hover:text-blue-900" href="/ogretmen-ol">buraya</a> tıklayın.</p>
 				<div class="mb-4">
 					<ul class="flex flex-row justify-center gap-4 font-semibold cursor-pointer">
 						<li on:click={() => emailLogin = !emailLogin} on:click={() => loginData.login = ''} class="{emailLogin ? 'border-b-2 border-blue-700 text-blue-700' : ''}">E-posta</li>

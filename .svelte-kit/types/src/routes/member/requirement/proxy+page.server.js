@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { invalid, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
@@ -10,18 +11,19 @@ export async function load({ locals }) {
     }
 }
 
-/** @type {import('./$types').Actions} */
+/** */
 export const actions = {
-    default: async ({ cookies, locals, request }) => {
+    default:/** @param {import('./$types').RequestEvent} event */  async ({ cookies, locals, request }) => {
         if (!locals.user) throw error(401);
 
         const data = await request.formData();
 
         const formData = {
-            privacyLastName: (data.get('privacyLastName') === "true"),
+            title: data.get('title'),
+            about: data.get('about'),
         };
 
-        const body = await api.put('member/user/update_preference', formData, locals.user.token);
+        const body = await api.put('member/user/update_about', formData, locals.user.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
     },
 };

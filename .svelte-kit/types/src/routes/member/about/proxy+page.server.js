@@ -2,8 +2,13 @@
 import { invalid, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
-export function load({ locals }) {
+export async function load({ locals }) {
     if (!locals.user) throw redirect(302, '/auth/login');
+
+    const user = await api.get('member/user/detail?username=' + locals.user?.username, locals.user?.token)
+    return {
+        user : user.result,
+    }
 }
 
 /** */
@@ -20,5 +25,8 @@ export const actions = {
 
         const body = await api.put('member/user/update_about', formData, locals.user.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
+
+        const user = await api.get('member/user/verify', locals.user.token);
+        locals.user = user.result
     },
 };

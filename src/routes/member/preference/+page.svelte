@@ -1,9 +1,7 @@
 <script>
     import { Toggle } from 'flowbite-svelte'
     import { onMount } from 'svelte'
-    import { getUser } from '/src/repository/user'
     import { toast } from '/src/functions/toast'
-    import { page } from "$app/stores";
 
     import { enhance } from '$app/forms';
 
@@ -25,7 +23,7 @@
     pageData.selectedPrivacyLastName = false
 
     onMount( async () => {
-        pageData = await getUser($page.data.user.username)
+        pageData = data.user
         if(pageData.privacyLastName?.id === 1){
             pageData.selectedPrivacyLastName = true
         }
@@ -37,8 +35,8 @@
     <title>Hesabım • Hakkında</title>
 </svelte:head>
 
-<div class="w-full h-full">
-    <div class="grow bg-white rounded-lg shadow-md h-full">
+<div>
+    <div class="grow bg-white rounded-lg shadow-md">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Tercihler</div>
 
         <form use:enhance={({ data }) => {

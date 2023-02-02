@@ -2,45 +2,43 @@
 import { invalid, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
-/** @param {Parameters<import('./$types').PageServerLoad>[0]} event */
-export async function load({ locals, params }) {
-
-	const cities = await api.get('location/cities')
-	const subjects = await api.get('lesson/subjects')
-	return {
-		cities : cities.result,
-		subjects : subjects.result
-	}
+export async function load({ locals }) {
+	if (locals.user) throw redirect(307, '/');
 }
 
 /** */
 export const actions = {
-	save:/** @param {import('./$types').RequestEvent} event */  async ({ locals, request }) => {
+	default:/** @param {import('./$types').RequestEvent} event */  async ({ cookies, locals, request, url }) => {
+		if (locals.user) throw redirect(307, '/');
+		const to = url.searchParams.get('to') ? url.searchParams.get('to') : '/member/account'
 
 		const data = await request.formData();
 
 		const formData = {
-			teacherId: data.get('teacherId'),
-			levelId: data.get('levelId'),
-			countyId: data.get('countyId'),
-			countryId: data.get('countryId'),
-			placeOwn: (data.get('placeOwn') === "true"),
-			placeRemote: (data.get('placeRemote') === "true"),
-			placeTeacher: (data.get('placeTeacher') === "true"),
-			genderId: data.get('genderId'),
 			firstName: data.get('firstName'),
 			lastName: data.get('lastName'),
 			email: data.get('email'),
 			phone: data.get('phone'),
-			message: data.get('message'),
-			budgetSecret: (data.get('budgetSecret') === "true"),
-			budget: data.get('budget'),
+			genderId: data.get('gender'),
+			cityId: data.get('city'),
+			countyId: data.get('county'),
+			countryId: data.get('country'),
+			privacyLastNameId: data.get('privacyLastName'),
+			outsideTurkey: (data.get('outsideTurkey') === "true"),
+			title: data.get('title'),
+			about: data.get('about'),
+			username: data.get('username'),
+			statusId: 2,
 		}
 
-		const body = await api.post('request/new', formData, locals.user?.token);
+		const body = await api.post('user/new_teacher', formData, locals.user?.token);
 
 		if (Object.entries(body.errors).length) return invalid(body.code, body);
 
-		return body.result
+		const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
+
+		cookies.set('jwt', value, { path: '/' });
+
+		throw redirect(307, to);
 	},
 };

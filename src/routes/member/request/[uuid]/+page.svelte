@@ -82,7 +82,7 @@
     </Modal>
 {/if}
 
-<div class="w-full flex flex-col h-full gap-4">
+<div class="w-full flex flex-col gap-4">
     <div class="grow bg-white rounded-lg shadow-md" bind:this={requestDetailDiv}>
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Talep Detayı</div>
 
