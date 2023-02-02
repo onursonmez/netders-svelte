@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="teacher registration">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="env">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MediaCard.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MediaCard.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MediaCardContainer.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MediaCardContainer.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SliderCard.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SliderCard.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,21 +124,7 @@
       <workItem from="1673333542046" duration="6380000" />
       <workItem from="1674757476981" duration="33556000" />
       <workItem from="1675245586223" duration="597000" />
-      <workItem from="1675275015794" duration="19111000" />
-    </task>
-    <task id="LOCAL-00013" summary="searchparams">
-      <created>1668582851512</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1668582851512</updated>
-    </task>
-    <task id="LOCAL-00014" summary="search page final">
-      <created>1668600171556</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1668600171556</updated>
+      <workItem from="1675275015794" duration="20996000" />
     </task>
     <task id="LOCAL-00015" summary="search page prerender">
       <created>1668604043124</created>
@@ -472,7 +455,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675366858388</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="search problem and images">
+      <created>1675375929046</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1675375929046</updated>
+    </task>
+    <task id="LOCAL-00063" summary="env">
+      <created>1675378276358</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1675378276358</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,8 +488,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="preload lohout tap" />
-    <MESSAGE value="login page no header no footer" />
     <MESSAGE value="login" />
     <MESSAGE value="reverted" />
     <MESSAGE value="csr disabled" />
@@ -516,7 +511,9 @@
     <MESSAGE value="code refactored" />
     <MESSAGE value="student" />
     <MESSAGE value="teacher registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="teacher registration" />
+    <MESSAGE value="search problem and images" />
+    <MESSAGE value="env" />
+    <option name="LAST_COMMIT_MESSAGE" value="env" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

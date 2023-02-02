@@ -4,6 +4,11 @@ import Categories from '/src/components/home/Categories.svelte'
 import UserSlider from '/src/components/user/UserSlider.svelte'
 </script>
 
+<svelte:head>
+    <title>Özel Ders İlanları İle Özel Ders Al Veya Özel Ders Ver</title>
+    <meta name="description" content="Özel ders ilanları ile kolayca özel ders alın veya özel ders verin." />
+</svelte:head>
+
 <Greeting />
 
 <Categories />
