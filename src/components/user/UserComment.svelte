@@ -10,8 +10,8 @@
     let commentData = {
         username: username,
         rate: 5,
-        fullName: $page.data.user?.id ? $page.data.user?.firstName + ' ' + $page.data.user.lastName : '',
-        email: $page.data.user?.id ? $page.data.user.email : '',
+        fullName: '',
+        email: '',
         comment: '',
     }
 
@@ -58,11 +58,11 @@
     </div>
     <div>
         <span class="text-sm mb-1 block text-gray-500">Adın soyadın</span>
-        <input type="text" bind:value="{commentData.fullName}" disabled={$page.data.user?.id} class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
+        <input type="text" bind:value="{commentData.fullName}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
     </div>
     <div>
         <span class="text-sm mb-1 block text-gray-500">E-posta adresin</span>
-        <input type="text" bind:value="{commentData.email}" disabled={$page.data.user?.id} class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
+        <input type="text" bind:value="{commentData.email}" class="w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0" />
     </div>
     <div class="col-span-2">
         <span class="text-sm mb-1 block text-gray-500">Yorumun</span>
