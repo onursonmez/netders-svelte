@@ -6,13 +6,13 @@
 
 <ul class="flex flex-col gap-1 text-sm">
     <li class="pb-2">
-        {#if $page.data.user.roles.includes('ROLE_TEACHER')}
+        {#if $page.data.auth.roles.includes('ROLE_TEACHER')}
         <div>
             <UserImageUpload />
         </div>
         {/if}
         <div class="text-center font-semibold mt-2">
-            Hoşgeldin, {$page.data.user.firstName}
+            Hoşgeldin, {$page.data.auth.firstName}
         </div>
         <div class="text-center mt-1 text-xs">
             <form use:enhance method="POST" action="/?/logout">
@@ -29,7 +29,7 @@
             Kişisel Bilgiler
         </a>
     </li>
-    {#if $page.data.user.roles.includes('ROLE_TEACHER')}
+    {#if $page.data.auth.roles.includes('ROLE_TEACHER')}
     <li>
         <a href="/member/about" class="block p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/about' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block">
@@ -49,7 +49,7 @@
             Ders Talepleri
         </a>
     </li>
-    {#if $page.data.user.roles.includes('ROLE_TEACHER')}
+    {#if $page.data.auth.roles.includes('ROLE_TEACHER')}
     <li>
         <a href="/member/price" class="block p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/price' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block">

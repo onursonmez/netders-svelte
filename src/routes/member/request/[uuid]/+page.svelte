@@ -291,7 +291,7 @@
         {/if}
     </div>
 
-    {#if ![6].includes(request.status.id) && ($page.data.user.roles.includes('ROLE_SUPER_ADMIN') || $page.data.user.roles.includes('ROLE_MANAGER'))}
+    {#if ![6].includes(request.status.id) && ($page.data.auth.roles.includes('ROLE_SUPER_ADMIN') || $page.data.auth.roles.includes('ROLE_MANAGER'))}
     <form use:enhance={() => {
                 return ({ update, result }) => {
                     if (result.type === 'success') {
@@ -354,7 +354,7 @@
 
 
 
-    {#if ![1,6].includes(request.status.id) && $page.data.user.roles.includes('ROLE_TEACHER') && request.showAcceptable}
+    {#if ![1,6].includes(request.status.id) && $page.data.auth.roles.includes('ROLE_TEACHER') && request.showAcceptable}
     <form use:enhance={() => {
                 return ({ update, result }) => {
                     if (result.type === 'success') {
@@ -399,7 +399,7 @@
 
 
 
-    {#if request.isRequestOwner || ($page.data.user.roles.includes('ROLE_SUPER_ADMIN') || $page.data.user.roles.includes('ROLE_MANAGER'))}
+    {#if request.isRequestOwner || ($page.data.auth.roles.includes('ROLE_SUPER_ADMIN') || $page.data.auth.roles.includes('ROLE_MANAGER'))}
     <div class="grow bg-white rounded-lg shadow-md">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Ders Vermeyi Kabul Eden Öğretmenler</div>
         <div class="flex flex-col gap-6 p-6">
@@ -448,7 +448,7 @@
                             </div>
                         </div>
                     {:else}
-                        {#if request.status.id === 4 && !($page.data.user.roles.includes('ROLE_SUPER_ADMIN') || $page.data.user.roles.includes('ROLE_MANAGER'))}
+                        {#if request.status.id === 4 && !($page.data.auth.roles.includes('ROLE_SUPER_ADMIN') || $page.data.auth.roles.includes('ROLE_MANAGER'))}
                             <div class="p-4 border border-gray-100 rounded-b-lg text-sm flex gap-2 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -676,7 +676,7 @@
 
 
 
-    {#if request.requestActions?.length > 0 && ($page.data.user.roles.includes('ROLE_SUPER_ADMIN') || $page.data.user.roles.includes('ROLE_MANAGER'))}
+    {#if request.requestActions?.length > 0 && ($page.data.auth.roles.includes('ROLE_SUPER_ADMIN') || $page.data.auth.roles.includes('ROLE_MANAGER'))}
         <div class="grow bg-white rounded-lg shadow-md">
             <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">İşlem Geçmişi</div>
 
