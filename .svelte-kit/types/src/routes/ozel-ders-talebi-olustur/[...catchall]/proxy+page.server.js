@@ -5,7 +5,7 @@ import * as api from '$lib/api';
 /** @param {Parameters<import('./$types').PageServerLoad>[0]} event */
 export async function load({ locals, params }) {
 
-	const teacher = await api.get(`user/detail/${params.catchall}`, locals.auth?.token)
+	const teacher = await api.get('user/detail?username=' + params.catchall, locals.auth?.token)
 	return { teacher : teacher.result }
 
 }
