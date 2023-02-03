@@ -275,5 +275,8 @@
 	"/iletisim": [
 		"src/routes/iletisim/+page.server.js",
 		"src/routes/+layout.server.js"
+	],
+	"/nasil-calisir": [
+		"src/routes/+layout.server.js"
 	]
 }

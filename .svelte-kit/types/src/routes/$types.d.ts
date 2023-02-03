@@ -10,7 +10,7 @@ type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 type PageServerParentData = EnsureDefined<LayoutServerData>;
 type PageParentData = EnsureDefined<LayoutData>;
-type LayoutRouteId = RouteId | "/" | "/[slug]" | "/auth/activation" | "/auth/forgot" | "/auth/login" | "/iletisim" | "/member/about" | "/member/account" | "/member/location" | "/member/preference" | "/member/price" | "/member/request" | "/member/request/[uuid]" | "/member/requirement" | "/ogretmen-ol" | "/ozel-ders/[slug]" | "/ozel-ders-ilanlari-verenler/[...catchall]" | "/ozel-ders-talebi-olustur/[...catchall]" | "/yardim" | null
+type LayoutRouteId = RouteId | "/" | "/[slug]" | "/auth/activation" | "/auth/forgot" | "/auth/login" | "/iletisim" | "/member/about" | "/member/account" | "/member/location" | "/member/preference" | "/member/price" | "/member/request" | "/member/request/[uuid]" | "/member/requirement" | "/nasil-calisir" | "/ogretmen-ol" | "/ozel-ders/[slug]" | "/ozel-ders-ilanlari-verenler/[...catchall]" | "/ozel-ders-talebi-olustur/[...catchall]" | "/yardim" | null
 type LayoutParams = RouteParams & { slug?: string,uuid?: string,catchall?: string }
 type LayoutServerParentData = EnsureDefined<{}>;
 type LayoutParentData = EnsureDefined<{}>;

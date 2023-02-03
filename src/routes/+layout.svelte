@@ -43,7 +43,7 @@
 				<ul class="lg:flex justify-center mt-4 text-blue-300">
 					<li class="mx-2 hover:text-white"><a href="/" class="">Ana Sayfa</a></li>
 					<li class="mx-2 hover:text-white"><a href="/ozel-ders-ilanlari-verenler">Öğretmen Ara</a></li>
-					<li class="mx-2 hover:text-white"><a href="/">Nasıl Çalışır?</a></li>
+					<li class="mx-2 hover:text-white"><a href="/nasil-calisir">Nasıl Çalışır?</a></li>
 					<li class="mx-2 hover:text-white"><a href="/yardim">Yardım</a></li>
 					<li class="mx-2 hover:text-white"><a href="/iletisim">İletişim</a></li>
 				</ul>

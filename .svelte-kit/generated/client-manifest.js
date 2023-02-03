@@ -21,7 +21,8 @@ export const nodes = [() => import('./nodes/0'),
 	() => import('./nodes/18'),
 	() => import('./nodes/19'),
 	() => import('./nodes/20'),
-	() => import('./nodes/21')];
+	() => import('./nodes/21'),
+	() => import('./nodes/22')];
 
 export const server_loads = [0];
 
@@ -39,11 +40,12 @@ export const dictionary = {
 	"/member/request": [~14,[2]],
 	"/member/request/[uuid]": [~15,[2]],
 	"/member/requirement": [~16,[2]],
-	"/ogretmen-ol": [~17],
-	"/ozel-ders-ilanlari-verenler/[...catchall]": [~19],
-	"/ozel-ders-talebi-olustur/[...catchall]": [~20],
-	"/ozel-ders/[slug]": [~18],
-	"/yardim": [21],
+	"/nasil-calisir": [17],
+	"/ogretmen-ol": [~18],
+	"/ozel-ders-ilanlari-verenler/[...catchall]": [~20],
+	"/ozel-ders-talebi-olustur/[...catchall]": [~21],
+	"/ozel-ders/[slug]": [~19],
+	"/yardim": [22],
 	"/[slug]": [~4]
 };
 
