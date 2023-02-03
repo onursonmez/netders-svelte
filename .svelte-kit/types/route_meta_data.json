@@ -268,5 +268,8 @@
 	"/member/requirement": [
 		"src/routes/member/requirement/+page.server.js",
 		"src/routes/+layout.server.js"
+	],
+	"/yardim": [
+		"src/routes/+layout.server.js"
 	]
 }

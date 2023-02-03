@@ -19,7 +19,8 @@ export const nodes = [() => import('./nodes/0'),
 	() => import('./nodes/16'),
 	() => import('./nodes/17'),
 	() => import('./nodes/18'),
-	() => import('./nodes/19')];
+	() => import('./nodes/19'),
+	() => import('./nodes/20')];
 
 export const server_loads = [0];
 
@@ -40,6 +41,7 @@ export const dictionary = {
 	"/ozel-ders-ilanlari-verenler/[...catchall]": [~18],
 	"/ozel-ders-talebi-olustur/[...catchall]": [~19],
 	"/ozel-ders/[slug]": [~17],
+	"/yardim": [20],
 	"/[slug]": [~4]
 };
 

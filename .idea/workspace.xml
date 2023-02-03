@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="photo">
-      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="request new teacher photo url">
+      <change afterPath="$PROJECT_DIR$/src/routes/yardim/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/routes/member" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/routes" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
@@ -57,11 +60,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes" />
       <recent name="$PROJECT_DIR$/src/routes/member" />
       <recent name="$PROJECT_DIR$/src/validation" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/routes/ogretmen-ol" />
-      <recent name="$PROJECT_DIR$/src/routes/member/preference" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/routes/ozel-ders/[slug]" />
@@ -123,14 +126,7 @@
       <workItem from="1673333542046" duration="6380000" />
       <workItem from="1674757476981" duration="33556000" />
       <workItem from="1675245586223" duration="597000" />
-      <workItem from="1675275015794" duration="33930000" />
-    </task>
-    <task id="LOCAL-00024" summary="webp">
-      <created>1668707672382</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1668707672382</updated>
+      <workItem from="1675275015794" duration="39344000" />
     </task>
     <task id="LOCAL-00025" summary="webp">
       <created>1668708511118</created>
@@ -468,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675428720205</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="request new teacher photo url">
+      <created>1675428927780</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1675428927780</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +490,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="search page improving" />
     <MESSAGE value="auth problem fixed" />
     <MESSAGE value="auth mechanism re-developed" />
     <MESSAGE value="account update" />
@@ -512,7 +514,8 @@
     <MESSAGE value="detail 404" />
     <MESSAGE value="photo upload" />
     <MESSAGE value="photo" />
-    <option name="LAST_COMMIT_MESSAGE" value="photo" />
+    <MESSAGE value="request new teacher photo url" />
+    <option name="LAST_COMMIT_MESSAGE" value="request new teacher photo url" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
