@@ -278,5 +278,14 @@
 	],
 	"/nasil-calisir": [
 		"src/routes/+layout.server.js"
+	],
+	"/kullanim-kosullari": [
+		"src/routes/+layout.server.js"
+	],
+	"/gizlilik-ilkeleri": [
+		"src/routes/+layout.server.js"
+	],
+	"/mesafeli-satis-sozlesmesi": [
+		"src/routes/+layout.server.js"
 	]
 }

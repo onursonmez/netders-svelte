@@ -50,8 +50,8 @@
 				<p class="pt-4 text-sm">Netders.com'a üye olarak <a href="/" class="text-blue-300 hover:text-white">Kullanım Koşulları</a>'nı kabul etmiş sayılırsın.</p>
 				<img src="{import.meta.env.VITE_CDN_URL}turkiye-white.svg" class="w-36 mx-auto py-4" alt="" />
 				<ul class="flex justify-center text-blue-300">
-					<li class="mx-2 hover:text-white"><a href="/">Kullanım Koşulları</a></li>
-					<li class="mx-2 hover:text-white"><a href="/">Gizlilik İlkeleri</a></li>
+					<li class="mx-2 hover:text-white"><a href="/kullanim-kosullari">Kullanım Koşulları</a></li>
+					<li class="mx-2 hover:text-white"><a href="/gizlilik-ilkeleri">Gizlilik İlkeleri</a></li>
 				</ul>
 			</div>
 		</section>

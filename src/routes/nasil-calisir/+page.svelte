@@ -1,6 +1,3 @@
-<script>
-	let opened = 1
-</script>
 <svelte:head>
 	<title>Nasıl Çalışır?</title>
 </svelte:head>
