@@ -107,7 +107,7 @@
     <div class="grow bg-white rounded-lg shadow-md mt-4">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Tanımlı Ders Verilen Lokasyonlar</div>
         <div class="p-6">
-            {#if pageData.locations?.items}
+            {#if pageData.locations?.items !== null}
             <div class="flex flex-col gap-4">
                 <div class="w-full overflow-x-auto">
                 <table class="table-auto">
@@ -118,7 +118,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {#each pageData.locations?.items as location}
+                    {#each pageData.locations.items as location}
                     <tr>
                         <td>
                             {location.city.title} > {location.county.title}
