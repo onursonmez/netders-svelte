@@ -13,7 +13,7 @@
 		<h5 class="mb-2 text-xl font-bold tracking-tight text-blue-700 text-center">{user.firstName} {user.lastName}</h5>
 	</a>
 
-	<p class="mb-2 font-semibold text-gray-800 text-center min-h-[60px]">{user.title.substring(0, 50)}</p>
+	<p class="mb-2 font-semibold text-gray-800 text-center min-h-[60px]">{user.title?.substring(0, 50)}</p>
 
 	<div class="flex flex-col gap-2 justify-between text-gray-500 text-sm mt-1">
 		{#if user.minimumPrice > 0}
