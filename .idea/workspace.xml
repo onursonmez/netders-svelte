@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="detail 404">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="photo upload">
+      <change beforePath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserImageUpload.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserImageUpload.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,14 +124,7 @@
       <workItem from="1673333542046" duration="6380000" />
       <workItem from="1674757476981" duration="33556000" />
       <workItem from="1675245586223" duration="597000" />
-      <workItem from="1675275015794" duration="31921000" />
-    </task>
-    <task id="LOCAL-00021" summary="ssr">
-      <created>1668621951415</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1668621951415</updated>
+      <workItem from="1675275015794" duration="32232000" />
     </task>
     <task id="LOCAL-00022" summary="keyword problem">
       <created>1668634974761</created>
@@ -468,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675424901954</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="photo upload">
+      <created>1675426126044</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1675426126044</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +488,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="account and detail page improve developments" />
     <MESSAGE value="developments" />
     <MESSAGE value="search page improving" />
     <MESSAGE value="auth problem fixed" />
@@ -512,7 +512,8 @@
     <MESSAGE value="price update" />
     <MESSAGE value="auth" />
     <MESSAGE value="detail 404" />
-    <option name="LAST_COMMIT_MESSAGE" value="detail 404" />
+    <MESSAGE value="photo upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="photo upload" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
