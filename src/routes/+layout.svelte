@@ -45,7 +45,7 @@
 					<li class="mx-2 hover:text-white"><a href="/ozel-ders-ilanlari-verenler">Öğretmen Ara</a></li>
 					<li class="mx-2 hover:text-white"><a href="/">Nasıl Çalışır?</a></li>
 					<li class="mx-2 hover:text-white"><a href="/yardim">Yardım</a></li>
-					<li class="mx-2 hover:text-white"><a href="/">İletişim</a></li>
+					<li class="mx-2 hover:text-white"><a href="/iletisim">İletişim</a></li>
 				</ul>
 				<p class="pt-4 text-sm">Netders.com'a üye olarak <a href="/" class="text-blue-300 hover:text-white">Kullanım Koşulları</a>'nı kabul etmiş sayılırsın.</p>
 				<img src="{import.meta.env.VITE_CDN_URL}turkiye-white.svg" class="w-36 mx-auto py-4" alt="" />

@@ -95,7 +95,7 @@
 
 						<a href="/yardim" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">Yardım</a>
 
-						<a href="/" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">İletişim</a>
+						<a href="/iletisim" class="px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700" aria-current="page">İletişim</a>
 					</div>
 				</div>
 				<div class="absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0">

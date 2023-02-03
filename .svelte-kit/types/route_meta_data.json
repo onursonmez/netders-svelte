@@ -271,5 +271,9 @@
 	],
 	"/yardim": [
 		"src/routes/+layout.server.js"
+	],
+	"/iletisim": [
+		"src/routes/iletisim/+page.server.js",
+		"src/routes/+layout.server.js"
 	]
 }

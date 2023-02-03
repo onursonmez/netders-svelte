@@ -20,7 +20,8 @@ export const nodes = [() => import('./nodes/0'),
 	() => import('./nodes/17'),
 	() => import('./nodes/18'),
 	() => import('./nodes/19'),
-	() => import('./nodes/20')];
+	() => import('./nodes/20'),
+	() => import('./nodes/21')];
 
 export const server_loads = [0];
 
@@ -29,19 +30,20 @@ export const dictionary = {
 	"/auth/activation": [5],
 	"/auth/forgot": [6],
 	"/auth/login": [~7],
-	"/member/about": [~8,[2]],
-	"/member/account": [~9,[2]],
-	"/member/location": [~10,[2]],
-	"/member/preference": [~11,[2]],
-	"/member/price": [~12,[2]],
-	"/member/request": [~13,[2]],
-	"/member/request/[uuid]": [~14,[2]],
-	"/member/requirement": [~15,[2]],
-	"/ogretmen-ol": [~16],
-	"/ozel-ders-ilanlari-verenler/[...catchall]": [~18],
-	"/ozel-ders-talebi-olustur/[...catchall]": [~19],
-	"/ozel-ders/[slug]": [~17],
-	"/yardim": [20],
+	"/iletisim": [~8],
+	"/member/about": [~9,[2]],
+	"/member/account": [~10,[2]],
+	"/member/location": [~11,[2]],
+	"/member/preference": [~12,[2]],
+	"/member/price": [~13,[2]],
+	"/member/request": [~14,[2]],
+	"/member/request/[uuid]": [~15,[2]],
+	"/member/requirement": [~16,[2]],
+	"/ogretmen-ol": [~17],
+	"/ozel-ders-ilanlari-verenler/[...catchall]": [~19],
+	"/ozel-ders-talebi-olustur/[...catchall]": [~20],
+	"/ozel-ders/[slug]": [~18],
+	"/yardim": [21],
 	"/[slug]": [~4]
 };
 
