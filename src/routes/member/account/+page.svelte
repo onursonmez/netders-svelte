@@ -39,10 +39,10 @@
     }
 
     onMount( async () => {
-        pageData.firstName = data.account.firstName
-        pageData.lastName = data.account.lastName
-        pageData.email = data.account.email
-        pageData.phone = data.account.phone
+        pageData.firstName = data.user.firstName
+        pageData.lastName = $page.data.auth.lastName
+        pageData.email = data.user.email
+        pageData.phone = data.user.phone
         pageData.gender = data.user.gender
         pageData.country = data.user.country
         pageData.city = data.user.city
@@ -52,7 +52,7 @@
             pageData.outsideTurkey = true
         }
 
-        if(data.account.emailVerified === false){
+        if($page.data.auth.emailVerified === false){
             showEmailConfirmationModal = true
         }
 

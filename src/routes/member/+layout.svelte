@@ -18,7 +18,7 @@
     </div>
 
     <div class="w-full">
-        {#if data.user.roles.includes('ROLE_TEACHER') && data.user.status.id === 2 && data.user.requirement === true}
+        {#if data.auth.roles.includes('ROLE_TEACHER') && data.auth.status.id === 2 && data.auth.requirement === true}
         <div class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 shadow-md flex lg:flex-row flex-col gap-2 justify-between items-center" role="alert">
             <div class="text-center lg:text-left">
                 Profilin arama sonuçlarında yer almıyor!
@@ -32,7 +32,7 @@
         </div>
         {/if}
 
-        {#if data.user.roles.includes('ROLE_TEACHER') && data.user.status.id === 2 && data.user.requirement === false}
+        {#if data.auth.roles.includes('ROLE_TEACHER') && data.auth.status.id === 2 && data.auth.requirement === false}
         <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 shadow-md flex lg:flex-row flex-col gap-2 justify-between items-center" role="alert">
             <div class="text-center lg:text-left">
                 Profilinin zorunlu eksiklerini tamamlandın. Hazır olduğunda incelemeye gönderebilirsin.
@@ -49,7 +49,7 @@
         </div>
         {/if}
 
-        {#if data.user.status.id === 3}
+        {#if data.auth.status.id === 3}
         <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 shadow-md" role="alert">
             Profilinin incelenme aşamasındadır. En kısa süre içerisinde e-posta ile bilgilendirileceksin.
         </div>

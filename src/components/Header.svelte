@@ -7,10 +7,10 @@
 
 	let hiddenMobileMenu = true
 	let hiddenProfileMenu = true
-	let photoUrl = $page.data.user?.photoUrl ? import.meta.env.VITE_CDN_URL + $page.data.user.photoUrl : import.meta.env.VITE_CDN_URL + 'icon-user.png'
+	let photoUrl = $page.data.auth?.photoUrl ? import.meta.env.VITE_CDN_URL + $page.data.auth.photoUrl : import.meta.env.VITE_CDN_URL + 'icon-user.png'
 
-	$: if($page.data.user?.photoUrl) {
-		photoUrl = import.meta.env.VITE_CDN_URL + $page.data.user.photoUrl
+	$: if($page.data.auth?.photoUrl) {
+		photoUrl = import.meta.env.VITE_CDN_URL + $page.data.auth.photoUrl
 	}
 	onMount(async () => {
 		document.onkeydown = function(evt) {
@@ -110,7 +110,7 @@
 					<!-- Profile dropdown -->
 					<div class="relative ml-3">
 						<div>
-							{#if $page.data.user}
+							{#if $page.data.auth}
 								<button type="button" use:clickOutside on:click_outside={handleClickProfileMenuOutside} on:click={() => hiddenProfileMenu = !hiddenProfileMenu} class="flex rounded-full text-sm" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
 									<span class="sr-only">Open user menu</span>
 									<span class="h-8 w-8 bg-cover rounded-full border border-gray-200" style="background-image: url({photoUrl})"></span>
@@ -125,7 +125,7 @@
 								</button>
 							{/if}
 						</div>
-						{#if $page.data.user}
+						{#if $page.data.auth}
 							<div class:hidden={hiddenProfileMenu} class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
 								<a href="/member/account" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Hesabım</a>
 								<form use:enhance method="POST" action="/?/logout">

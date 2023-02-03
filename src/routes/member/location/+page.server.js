@@ -2,10 +2,10 @@ import { invalid, redirect, error } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
-    if (!locals.user) throw redirect(302, '/auth/login');
+    if (!locals.auth) throw redirect(302, '/auth/login');
 
-    const cities = await api.get('location/cities', locals.user.token)
-    const locations = await api.get('member/location', locals.user.token)
+    const cities = await api.get('location/cities', locals.auth.token)
+    const locations = await api.get('member/location', locals.auth.token)
     return {
         cities : cities.result,
         locations: locations.result
@@ -15,7 +15,7 @@ export async function load({ locals }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
     new: async ({ cookies, locals, request }) => {
-        if (!locals.user) throw error(401);
+        if (!locals.auth) throw error(401);
 
         const data = await request.formData();
 
@@ -32,18 +32,18 @@ export const actions = {
             return invalid(400, {'errors': {'badRequest': 'İlçe alanı boş bırakılamaz!'}});
         }
 
-        const body = await api.post('member/location/new', formData, locals.user.token);
+        const body = await api.post('member/location/new', formData, locals.auth.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 
         return body.result
     },
 
     delete: async ({ cookies, locals, request }) => {
-        if (!locals.user) throw error(401);
+        if (!locals.auth) throw error(401);
 
         const data = await request.formData();
 
-        let body = await api.del('member/location/delete/' + data.get('id'), locals.user.token);
+        let body = await api.del('member/location/delete/' + data.get('id'), locals.auth.token);
 
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 

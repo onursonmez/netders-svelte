@@ -2,13 +2,13 @@ import { invalid, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
-	if (locals.user) throw redirect(307, '/');
+	if (locals.auth) throw redirect(307, '/');
 }
 
 /** @type {import('./$types').Actions} */
 export const actions = {
 	default: async ({ cookies, locals, request, url }) => {
-		if (locals.user) throw redirect(307, '/');
+		if (locals.auth) throw redirect(307, '/');
 		const to = url.searchParams.get('to') ? url.searchParams.get('to') : '/member/account'
 
 		const data = await request.formData();
@@ -30,7 +30,7 @@ export const actions = {
 			statusId: 2,
 		}
 
-		const body = await api.post('user/new_teacher', formData, locals.user?.token);
+		const body = await api.post('user/new_teacher', formData, locals.auth?.token);
 
 		if (Object.entries(body.errors).length) return invalid(body.code, body);
 

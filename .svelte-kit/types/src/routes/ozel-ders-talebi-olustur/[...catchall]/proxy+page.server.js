@@ -5,7 +5,7 @@ import * as api from '$lib/api';
 /** @param {Parameters<import('./$types').PageServerLoad>[0]} event */
 export async function load({ locals, params }) {
 
-	const teacher = await api.get(`user/detail/${params.catchall}`, locals.user?.token)
+	const teacher = await api.get(`user/detail/${params.catchall}`, locals.auth?.token)
 	return { teacher : teacher.result }
 
 }
@@ -34,7 +34,7 @@ export const actions = {
 			budget: data.get('budget'),
 		}
 
-		const body = await api.post('request/new', formData, locals.user?.token);
+		const body = await api.post('request/new', formData, locals.auth?.token);
 
 		if (Object.entries(body.errors).length) return invalid(body.code, body.errors);
 

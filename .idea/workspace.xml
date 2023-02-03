@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="hook">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="price update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/[slug]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/[slug]/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/auth/login/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/auth/login/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/about/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/about/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/location/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/location/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/preference/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/preference/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/price/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/price/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/[uuid]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/[uuid]/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/request/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ogretmen-ol/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ogretmen-ol/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders-talebi-olustur/[...catchall]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders-talebi-olustur/[...catchall]/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders/[slug]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/ozel-ders/[slug]/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+layout.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/auth/login/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth/login/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/+layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/about/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/about/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/location/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/location/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/preference/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/preference/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/price/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/price/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/request/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/request/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/request/[uuid]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/request/[uuid]/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/requirement/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/requirement/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ogretmen-ol/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ogretmen-ol/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders/[slug]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders/[slug]/+page.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,14 +155,7 @@
       <workItem from="1673333542046" duration="6380000" />
       <workItem from="1674757476981" duration="33556000" />
       <workItem from="1675245586223" duration="597000" />
-      <workItem from="1675275015794" duration="25913000" />
-    </task>
-    <task id="LOCAL-00018" summary="csr test">
-      <created>1668609430194</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1668609430194</updated>
+      <workItem from="1675275015794" duration="29788000" />
     </task>
     <task id="LOCAL-00019" summary="csr test">
       <created>1668610241901</created>
@@ -468,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675383954381</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="price update">
+      <created>1675418488110</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1675418488110</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +519,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
     <MESSAGE value="js-cookie" />
     <MESSAGE value="request" />
     <MESSAGE value="account and detail page improve developments" />
@@ -512,7 +543,8 @@
     <MESSAGE value="home meta" />
     <MESSAGE value="comment problem" />
     <MESSAGE value="hook" />
-    <option name="LAST_COMMIT_MESSAGE" value="hook" />
+    <MESSAGE value="price update" />
+    <option name="LAST_COMMIT_MESSAGE" value="price update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

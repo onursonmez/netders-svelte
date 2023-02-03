@@ -2,10 +2,10 @@ import { invalid, redirect, error } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
-    if (!locals.user) throw redirect(302, '/auth/login');
+    if (!locals.auth) throw redirect(302, '/auth/login');
 
-    const subjects = await api.get('lesson/subjects', locals.user.token)
-    const prices = await api.get('price/' + locals.user.uuid, locals.user.token)
+    const subjects = await api.get('lesson/subjects', locals.auth.token)
+    const prices = await api.get('price/' + locals.auth.uuid, locals.auth.token)
     return {
         prices : prices.result,
         subjects: subjects.result
@@ -15,7 +15,7 @@ export async function load({ locals }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
     new: async ({ cookies, locals, request }) => {
-        if (!locals.user) throw error(401);
+        if (!locals.auth) throw error(401);
 
         const data = await request.formData();
 
@@ -38,23 +38,23 @@ export const actions = {
             return invalid(400, {'errors': {'badRequest': 'Ders ücreti boş bırakılamaz!'}});
         }
 
-        const body = await api.post('member/price/new', formData, locals.user.token);
+        const body = await api.post('member/price/new', formData, locals.auth.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 
-        const user = await api.get('member/user/verify', locals.user.token);
-        locals.user = user.result
+        const user = await api.get('member/user/verify', locals.auth.token);
+        locals.auth = user.result
 
         return body.result
     },
 
     update_multi: async ({ cookies, locals, request }) => {
-        if (!locals.user) throw error(401);
+        if (!locals.auth) throw error(401);
 
         const data = await request.formData();
 
         if(data.get('delete')){
             let id = parseInt(data.get('delete'))
-            let body = await api.del('member/price/delete/' + id, locals.user.token);
+            let body = await api.del('member/price/delete/' + id, locals.auth.token);
             if (Object.entries(body.errors).length) return invalid(body.code, body);
             return body.result
         }
@@ -76,7 +76,7 @@ export const actions = {
         })
 
 
-        let body = await api.put('member/price/update', priceData, locals.user.token);
+        let body = await api.put('member/price/update', priceData, locals.auth.token);
 
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 
@@ -84,7 +84,7 @@ export const actions = {
     },
 
     update: async ({ cookies, locals, request }) => {
-        if (!locals.user) throw error(401);
+        if (!locals.auth) throw error(401);
 
         const data = await request.formData();
 
@@ -96,7 +96,7 @@ export const actions = {
             priceLive: data.get('priceLive'),
         }
 
-        let body = await api.put('member/price/update', formData, locals.user.token);
+        let body = await api.put('member/price/update', formData, locals.auth.token);
 
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 

@@ -4,7 +4,7 @@ import * as api from '$lib/api';
 
 /** @param {Parameters<import('./$types').PageServerLoad>[0]} event */
 export async function load({ locals }) {
-    if (locals.user) throw redirect(307, '/');
+    if (locals.auth) throw redirect(307, '/');
 }
 
 /** */
