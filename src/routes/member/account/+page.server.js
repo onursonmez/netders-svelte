@@ -54,9 +54,6 @@ export const actions = {
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 
         locals.auth.photoUrl = body.result
-        cookies.delete('jwt', {path: '/'});
-        const value = btoa(JSON.stringify(locals.auth));
-        cookies.set('jwt', value, { path: '/' });
 
         return body.result;
     },

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="auth">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="detail 404">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/[slug]/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/[slug]/proxy+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,14 +123,7 @@
       <workItem from="1673333542046" duration="6380000" />
       <workItem from="1674757476981" duration="33556000" />
       <workItem from="1675245586223" duration="597000" />
-      <workItem from="1675275015794" duration="31066000" />
-    </task>
-    <task id="LOCAL-00020" summary="csr test">
-      <created>1668618990906</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1668618990906</updated>
+      <workItem from="1675275015794" duration="31921000" />
     </task>
     <task id="LOCAL-00021" summary="ssr">
       <created>1668621951415</created>
@@ -470,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675423743458</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="detail 404">
+      <created>1675424901954</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1675424901954</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +487,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="request" />
     <MESSAGE value="account and detail page improve developments" />
     <MESSAGE value="developments" />
     <MESSAGE value="search page improving" />
@@ -514,7 +511,8 @@
     <MESSAGE value="hook" />
     <MESSAGE value="price update" />
     <MESSAGE value="auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth" />
+    <MESSAGE value="detail 404" />
+    <option name="LAST_COMMIT_MESSAGE" value="detail 404" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
