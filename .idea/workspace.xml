@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="comment problem">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="hook">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,14 +123,7 @@
       <workItem from="1673333542046" duration="6380000" />
       <workItem from="1674757476981" duration="33556000" />
       <workItem from="1675245586223" duration="597000" />
-      <workItem from="1675275015794" duration="24182000" />
-    </task>
-    <task id="LOCAL-00017" summary="search page prerender">
-      <created>1668605072815</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1668605072815</updated>
+      <workItem from="1675275015794" duration="25913000" />
     </task>
     <task id="LOCAL-00018" summary="csr test">
       <created>1668609430194</created>
@@ -470,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675379487322</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="hook">
+      <created>1675383954381</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1675383954381</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +487,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="csr disabled" />
     <MESSAGE value="test" />
     <MESSAGE value="js-cookie" />
     <MESSAGE value="request" />
@@ -514,7 +511,8 @@
     <MESSAGE value="env" />
     <MESSAGE value="home meta" />
     <MESSAGE value="comment problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="comment problem" />
+    <MESSAGE value="hook" />
+    <option name="LAST_COMMIT_MESSAGE" value="hook" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

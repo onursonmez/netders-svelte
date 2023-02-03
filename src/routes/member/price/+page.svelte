@@ -56,6 +56,7 @@
                             loading = false
 
                             if (result.type === 'success') {
+                                pricesData = result.data
                                 showPriceTextModal = false
                                 toast("İşlem başarıyla tamamlandı 👏", "success")
                             }
