@@ -7,10 +7,10 @@
 
 	let hiddenMobileMenu = true
 	let hiddenProfileMenu = true
-	let photoUrl = $page.data.auth?.photoUrl ? import.meta.env.VITE_CDN_URL + $page.data.auth.photoUrl : import.meta.env.VITE_CDN_URL + 'icon-user.png'
+	let photoUrl = $page.data.auth?.photo?.url ? import.meta.env.VITE_CDN_URL + $page.data.auth.photo.url : import.meta.env.VITE_CDN_URL + 'icon-user.png'
 
-	$: if($page.data.auth?.photoUrl) {
-		photoUrl = import.meta.env.VITE_CDN_URL + $page.data.auth.photoUrl
+	$: if($page.data.auth?.photo?.url) {
+		photoUrl = import.meta.env.VITE_CDN_URL + $page.data.auth.photo.url
 	}
 	onMount(async () => {
 		document.onkeydown = function(evt) {

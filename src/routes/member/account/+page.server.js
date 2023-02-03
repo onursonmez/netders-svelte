@@ -53,7 +53,7 @@ export const actions = {
         const body = await api.post('member/user/upload', formData, locals.auth.token);
         if (Object.entries(body.errors).length) return invalid(body.code, body);
 
-        locals.auth.photoUrl = body.result
+        locals.auth.photo.url = body.result
 
         return body.result;
     },

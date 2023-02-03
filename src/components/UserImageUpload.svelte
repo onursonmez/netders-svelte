@@ -11,8 +11,9 @@
     let submitButton;
     let waitingApproval = false;
 
-    if($page.data.auth.photoUrl){
-        avatar = import.meta.env.VITE_CDN_URL + $page.data.auth.photoUrl
+    if($page.data.auth.photo.url){
+        avatar = import.meta.env.VITE_CDN_URL + $page.data.auth.photo.url
+        waitingApproval = !$page.data.auth.photo.isApproved
     }
 
     function getBase64(image) {

@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="photo upload">
-      <change beforePath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/account/proxy+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/src/routes/member/requirement/proxy+page.server.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/UserImageUpload.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserImageUpload.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,14 +127,7 @@
       <workItem from="1673333542046" duration="6380000" />
       <workItem from="1674757476981" duration="33556000" />
       <workItem from="1675245586223" duration="597000" />
-      <workItem from="1675275015794" duration="32232000" />
-    </task>
-    <task id="LOCAL-00022" summary="keyword problem">
-      <created>1668634974761</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1668634974761</updated>
+      <workItem from="1675275015794" duration="33616000" />
     </task>
     <task id="LOCAL-00023" summary="home page same teachers problem">
       <created>1668635371760</created>
@@ -469,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675426126044</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="photo upload">
+      <created>1675426463656</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1675426463656</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
