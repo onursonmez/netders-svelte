@@ -25,9 +25,10 @@ export const nodes = [() => import('./nodes/0'),
 	() => import('./nodes/22'),
 	() => import('./nodes/23'),
 	() => import('./nodes/24'),
-	() => import('./nodes/25')];
+	() => import('./nodes/25'),
+	() => import('./nodes/26')];
 
-export const server_loads = [0];
+export const server_loads = [0,2];
 
 export const dictionary = {
 	"/": [~3],
@@ -40,18 +41,19 @@ export const dictionary = {
 	"/member/about": [~11,[2]],
 	"/member/account": [~12,[2]],
 	"/member/location": [~13,[2]],
-	"/member/preference": [~14,[2]],
-	"/member/price": [~15,[2]],
-	"/member/request": [~16,[2]],
-	"/member/request/[uuid]": [~17,[2]],
-	"/member/requirement": [~18,[2]],
-	"/mesafeli-satis-sozlesmesi": [19],
-	"/nasil-calisir": [20],
-	"/ogretmen-ol": [~21],
-	"/ozel-ders-ilanlari-verenler/[...catchall]": [~23],
-	"/ozel-ders-talebi-olustur/[...catchall]": [~24],
-	"/ozel-ders/[slug]": [~22],
-	"/yardim": [25],
+	"/member/photo": [~14,[2]],
+	"/member/preference": [~15,[2]],
+	"/member/price": [~16,[2]],
+	"/member/request": [~17,[2]],
+	"/member/request/[uuid]": [~18,[2]],
+	"/member/requirement": [~19,[2]],
+	"/mesafeli-satis-sozlesmesi": [20],
+	"/nasil-calisir": [21],
+	"/ogretmen-ol": [~22],
+	"/ozel-ders-ilanlari-verenler/[...catchall]": [~24],
+	"/ozel-ders-talebi-olustur/[...catchall]": [~25],
+	"/ozel-ders/[slug]": [~23],
+	"/yardim": [26],
 	"/[slug]": [~4]
 };
 

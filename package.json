@@ -1,6 +1,7 @@
 {
 	"name": "netders-app",
-	"version": "0.0.1",
+	"version": "1.0.0",
+	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -32,6 +33,7 @@
 		"@splidejs/svelte-splide": "^0.2.9",
 		"dayjs": "^1.11.6",
 		"imask": "^6.4.3",
+		"svelte-easy-crop": "^2.0.1",
 		"svelte-select": "^4.4.7",
 		"toastify-js": "^1.12.0",
 		"vest": "^4.6.8"

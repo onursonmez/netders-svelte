@@ -8,7 +8,7 @@ export const actions = {
     },
 
     sendApprove: async ({cookies, locals}) => {
-        const user = await api.get('member/user/send_approve', locals.auth.token);
+        const user = await api.get('member/user/set_approval', locals.auth.token);
         locals.auth = user.result
     },
 }
