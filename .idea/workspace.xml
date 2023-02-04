@@ -1,34 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="home categories and how it works">
-      <change afterPath="$PROJECT_DIR$/src/functions/cropImage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/member/+layout.server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/member/photo/+page.server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/member/photo/+page.svelte" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="photo approval">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/client-manifest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/14.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/14.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/15.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/15.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/16.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/16.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/17.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/17.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/18.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/18.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/19.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/19.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/20.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/20.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/21.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/21.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/22.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/22.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/23.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/23.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/24.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/24.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/nodes/25.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/nodes/25.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/types/route_meta_data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberVerticalNavigation.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/+layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/account/+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,14 +125,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="23288000" />
-    </task>
-    <task id="LOCAL-00033" summary="preload lohout tap">
-      <created>1670277162898</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1670277162898</updated>
+      <workItem from="1675498520090" duration="25158000" />
     </task>
     <task id="LOCAL-00034" summary="login page no header no footer">
       <created>1670311917636</created>
@@ -496,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675500762390</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="photo approval">
+      <created>1675545625590</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1675545625590</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,7 +489,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="detail page problem" />
     <MESSAGE value="requests module" />
     <MESSAGE value="price, location, preference modules" />
     <MESSAGE value="code refactored" />
@@ -540,7 +513,8 @@
     <MESSAGE value="auth problems" />
     <MESSAGE value="substring" />
     <MESSAGE value="home categories and how it works" />
-    <option name="LAST_COMMIT_MESSAGE" value="home categories and how it works" />
+    <MESSAGE value="photo approval" />
+    <option name="LAST_COMMIT_MESSAGE" value="photo approval" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

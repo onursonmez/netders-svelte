@@ -113,7 +113,7 @@
         </a>
     </li>
     {/if}
-    {#if $page.data.auth.roles.includes('ROLE_SUPER_ADMIN')}
+    {#if $page.data.auth.roles.includes('ROLE_SUPER_ADMIN') && $page.data.photo?.total !== undefined}
         <li>
             <a href="/member/photo" class="flex items-center w-full p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/photo' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
