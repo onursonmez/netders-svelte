@@ -130,5 +130,22 @@ export const actions = {
         locals.auth = body.user;
 
         return body.result
-    }
+    },
+
+    cancel: async ({ cookies, locals, request }) => {
+        if (!locals.auth) throw error(401);
+
+        const data = await request.formData();
+
+        const formData = {
+            password: data.get('password'),
+            reason: data.get('reason'),
+        };
+
+        const body = await api.put('member/user/cancel', formData, locals.auth.token);
+        if (Object.entries(body.errors).length) return invalid(body.code, body);
+
+        cookies.delete('jwt', {path: '/'});
+        throw redirect(302, '/auth/login');
+    },
 };
