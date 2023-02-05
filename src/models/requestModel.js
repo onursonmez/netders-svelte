@@ -1,5 +1,5 @@
 export const requestModel = {
-    teacherId: '',
+    teacherUuid: '',
     keywordLesson: '',
     keywordLocation: '',
     outsideTurkey: false,

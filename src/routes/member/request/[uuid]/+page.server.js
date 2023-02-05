@@ -36,8 +36,8 @@ export const actions = {
         const data = await request.formData();
 
         const formData = {
-            requestId: data.get('requestId'),
-            teacherId: data.get('teacherId'),
+            requestUuid: data.get('requestUuid'),
+            teacherUuid: data.get('teacherUuid'),
         };
 
         const body = await api.post('member/request_invite/new', formData, locals.auth.token);
@@ -107,8 +107,8 @@ export const actions = {
         const data = await request.formData();
 
         const formData = {
-            requestId: data.get('requestId'),
-            teacherId: data.get('teacherId'),
+            requestUuid: data.get('requestUuid'),
+            teacherUuid: data.get('teacherUuid'),
             isSelected: 1,
         };
 

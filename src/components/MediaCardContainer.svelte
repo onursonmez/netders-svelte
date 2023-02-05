@@ -3,7 +3,7 @@
     export let user
 </script>
 
-<div class="lg:basis-3/12 xl:basis-2/12">
+<div class="lg:basis-3/12 xl:basis-2/12 min-w-[200px]">
     <MediaCard user="{user}" />
 </div>
 

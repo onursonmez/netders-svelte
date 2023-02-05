@@ -213,8 +213,8 @@
 </div>
 
 <form use:enhance={({ data }) => {
-            if(teacher?.id)
-            data.set("teacherId", teacher?.id)
+            if(teacher?.uuid)
+            data.set("teacherUuid", teacher?.uuid)
 
             if(formData.countryId && formData.outsideTurkey)
             data.set("countryId", formData.countryId)

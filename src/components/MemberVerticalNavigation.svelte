@@ -113,11 +113,11 @@
         </a>
     </li>
     {/if}
-    {#if $page.data.auth.roles.includes('ROLE_SUPER_ADMIN') && $page.data.photo?.total !== undefined}
+    {#if $page.data.auth.roles.includes('ROLE_SUPER_ADMIN') && $page.data.photoApproval?.total !== undefined}
         <li>
-            <a href="/member/photo" class="flex items-center w-full p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/photo' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
+            <a href="/member/photo-approval" class="flex items-center w-full p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/photo-approval' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
 
                 <span class="grow">
@@ -125,7 +125,25 @@
                 </span>
 
                 <span class="text-xs text-white bg-orange-400 rounded-lg px-2">
-                    {$page.data.photo?.total}
+                    {$page.data.photoApproval?.total}
+                </span>
+            </a>
+        </li>
+    {/if}
+
+    {#if $page.data.auth.roles.includes('ROLE_SUPER_ADMIN') && $page.data.userApproval?.total !== undefined}
+        <li>
+            <a href="/member/user-approval" class="flex items-center w-full p-2 hover:bg-white w-full rounded-md {$page.url.pathname === '/member/user-approval' ? 'text-blue-700 bg-white hover:bg-white shadow-md' : ''}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+
+                <span class="grow">
+                    Öğretmen Onayı
+                </span>
+
+                <span class="text-xs text-white bg-orange-400 rounded-lg px-2">
+                    {$page.data.userApproval?.total}
                 </span>
             </a>
         </li>

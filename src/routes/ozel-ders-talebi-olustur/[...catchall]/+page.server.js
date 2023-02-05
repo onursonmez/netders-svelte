@@ -16,7 +16,7 @@ export const actions = {
 		const data = await request.formData();
 
 		const formData = {
-			teacherId: data.get('teacherId'),
+			teacherUuid: data.get('teacherUuid'),
 			levelId: data.get('levelId'),
 			countyId: data.get('countyId'),
 			countryId: data.get('countryId'),

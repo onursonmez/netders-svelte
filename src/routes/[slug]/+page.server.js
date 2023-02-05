@@ -8,9 +8,9 @@ export async function load({ locals, params })
     if(user.code !== 200){
         throw error(404);
     }
-    const prices = await api.get('price/' + user.result.id, locals.auth?.token)
-    const locations = await api.get('location/' + user.result.id, locals.auth?.token)
-    const comments = await api.get('comment/' + user.result.id, locals.auth?.token)
+    const prices = await api.get('price/' + user.result.uuid, locals.auth?.token)
+    const locations = await api.get('location/' + user.result.uuid, locals.auth?.token)
+    const comments = await api.get('comment/' + user.result.uuid, locals.auth?.token)
     return {
         user : user.result,
         prices : prices.result,

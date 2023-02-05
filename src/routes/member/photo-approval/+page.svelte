@@ -39,8 +39,8 @@
         zoom = rangeSlider[0]
     }
 
-    $: id = data.photo.id
-    $: image = import.meta.env.VITE_CDN_URL + data.photo.url
+    $: id = data.photoApproval.id
+    $: image = import.meta.env.VITE_CDN_URL + data.photoApproval.url
 
 </script>
 
@@ -63,8 +63,8 @@
             </div>
             <div><RangeSlider min={1} max={10} step={0.01} bind:values={rangeSlider} /></div>
             <div>{pixels?.width} x {pixels?.height}</div>
-            <div class="font-semibold text-blue-700">{data.photo?.fullName}</div>
-            <div>{data.photo?.genderName}</div>
+            <div class="font-semibold text-blue-700">{data.photoApproval?.fullName}</div>
+            <div>{data.photoApproval?.genderName}</div>
             <div class="flex gap-4 justify-center">
                 <button on:click={handleCrop} class="bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1 inline-block">
@@ -79,7 +79,7 @@
 
                     return ({ update, result }) => {
                         if (result.type === 'success') {
-                            data.photo = result.data
+                            data.photoApproval = result.data
                             toast("İşlem başarıyla tamamlandı!", "success")
                         }
 
@@ -114,7 +114,7 @@
 
             return ({ update, result }) => {
                 if (result.type === 'success') {
-                    data.photo = result.data
+                    data.photoApproval = result.data
 				    toast("İşlem başarıyla tamamlandı!", "success")
 			    }
 
