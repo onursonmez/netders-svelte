@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="redirects">
-      <change afterPath="$PROJECT_DIR$/src/lib/redirects.js" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="robots.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/_redirects" beforeDir="false" afterPath="$PROJECT_DIR$/static/_redirects" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/redirects.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/redirects.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,21 +126,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="48981000" />
-    </task>
-    <task id="LOCAL-00048" summary="account photo upload">
-      <created>1671042894475</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1671042894475</updated>
-    </task>
-    <task id="LOCAL-00049" summary="account photo upload">
-      <created>1671043095727</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1671043095727</updated>
+      <workItem from="1675498520090" duration="51511000" />
     </task>
     <task id="LOCAL-00050" summary="account photo upload">
       <created>1671043176274</created>
@@ -474,7 +457,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675683574648</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="301">
+      <created>1675685505968</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1675685505968</updated>
+    </task>
+    <task id="LOCAL-00098" summary="robots.txt">
+      <created>1675686104439</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1675686104439</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,8 +490,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="home meta" />
-    <MESSAGE value="comment problem" />
     <MESSAGE value="hook" />
     <MESSAGE value="price update" />
     <MESSAGE value="auth" />
@@ -518,7 +513,9 @@
     <MESSAGE value="redirects code added" />
     <MESSAGE value="headers" />
     <MESSAGE value="redirects" />
-    <option name="LAST_COMMIT_MESSAGE" value="redirects" />
+    <MESSAGE value="301" />
+    <MESSAGE value="robots.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="robots.txt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
