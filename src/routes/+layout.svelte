@@ -13,6 +13,11 @@
 {/if}
 
 <div class="app">
+	<div class="bg-black text-white text-center py-4 flex items-center justify-center gap-4">
+        <img src="{import.meta.env.VITE_CDN_URL}black-ribbon.png" width="20" height="20" />
+		<span>Ülkemize yaşanan depremde hayatını kaybedenlere Allah'tan rahmet, yaralılara acil şifalar dileriz.</span>
+		<img src="{import.meta.env.VITE_CDN_URL}black-ribbon.png" width="20" height="20" />
+	</div>
 	<Header />
 
 	<main>

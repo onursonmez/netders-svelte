@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="detail error">
-      <change afterPath="$PROJECT_DIR$/src/lib/analytics.svelte" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="analytics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
     </list>
@@ -127,14 +126,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="54258000" />
-    </task>
-    <task id="LOCAL-00053" summary="changes">
-      <created>1672268248231</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1672268248231</updated>
+      <workItem from="1675498520090" duration="55398000" />
     </task>
     <task id="LOCAL-00054" summary="cdn url slash">
       <created>1672268644176</created>
@@ -472,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675696009046</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="analytics">
+      <created>1675697062984</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1675697062984</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +490,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="price update" />
     <MESSAGE value="auth" />
     <MESSAGE value="detail 404" />
     <MESSAGE value="photo upload" />
@@ -516,7 +514,8 @@
     <MESSAGE value="robots.txt" />
     <MESSAGE value="redirects" />
     <MESSAGE value="detail error" />
-    <option name="LAST_COMMIT_MESSAGE" value="detail error" />
+    <MESSAGE value="analytics" />
+    <option name="LAST_COMMIT_MESSAGE" value="analytics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
