@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="earthquake">
-      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="request empty teacher error fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/redirects.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/redirects.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +35,6 @@
     <setting file="file://$PROJECT_DIR$/src/routes/auth/login/+page.server.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/routes/ogretmen-ol/+page.server.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/routes/ogretmen-ol/+page.svelte" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="2GGdUtIju8B2f2VtPTBJYQvMhTe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -125,14 +123,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="56185000" />
-    </task>
-    <task id="LOCAL-00055" summary="session problem">
-      <created>1672268968715</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1672268968715</updated>
+      <workItem from="1675498520090" duration="57617000" />
     </task>
     <task id="LOCAL-00056" summary="detail page problem">
       <created>1672269269138</created>
@@ -470,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675701252153</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="request empty teacher error fix">
+      <created>1675708807301</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1675708807301</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +487,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="detail 404" />
     <MESSAGE value="photo upload" />
     <MESSAGE value="photo" />
     <MESSAGE value="request new teacher photo url" />
@@ -514,7 +511,8 @@
     <MESSAGE value="detail error" />
     <MESSAGE value="analytics" />
     <MESSAGE value="earthquake" />
-    <option name="LAST_COMMIT_MESSAGE" value="earthquake" />
+    <MESSAGE value="request empty teacher error fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="request empty teacher error fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
