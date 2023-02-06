@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="redirects">
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
-    </list>
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="build" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,8 +62,8 @@
       <recent name="$PROJECT_DIR$/src/validation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/.svelte-kit/cloudflare" />
       <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/.svelte-kit/cloudflare" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/routes/ozel-ders/[slug]" />
       <recent name="$PROJECT_DIR$/src/routes/[slug]-ozel-ders-[id]" />
@@ -125,21 +123,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="42778000" />
-    </task>
-    <task id="LOCAL-00041" summary="request">
-      <created>1670524599063</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1670524599063</updated>
-    </task>
-    <task id="LOCAL-00042" summary="account and detail page improve developments">
-      <created>1670861368968</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1670861368968</updated>
+      <workItem from="1675498520090" duration="43473000" />
     </task>
     <task id="LOCAL-00043" summary="developments">
       <created>1670866806406</created>
@@ -470,7 +454,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675643622710</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="redirects">
+      <created>1675643948728</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1675643948728</updated>
+    </task>
+    <task id="LOCAL-00091" summary="build">
+      <created>1675644093264</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1675644093264</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,9 +510,9 @@
     <MESSAGE value="member photo" />
     <MESSAGE value="user approval" />
     <MESSAGE value="user cancel" />
-    <MESSAGE value="build" />
     <MESSAGE value="redirects" />
-    <option name="LAST_COMMIT_MESSAGE" value="redirects" />
+    <MESSAGE value="build" />
+    <option name="LAST_COMMIT_MESSAGE" value="build" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
