@@ -4,13 +4,14 @@ import * as api from '$lib/api';
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, params }) {
 
-	let teacher
+	let teacherResponse = {}
 
 	if(params.catchall){
-		teacher = await api.get('user/detail?username=' + params.catchall, locals.auth?.token)
+		let teacher = await api.get('user/detail?username=' + params.catchall, locals.auth?.token)
+		teacherResponse = teacher.result
 	}
 
-	return { teacher : teacher.result }
+	return { teacher : teacherResponse }
 
 }
 

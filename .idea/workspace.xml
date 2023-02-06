@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="analytics">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="earthquake">
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-talebi-olustur/[...catchall]/+page.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,14 +125,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="55398000" />
-    </task>
-    <task id="LOCAL-00054" summary="cdn url slash">
-      <created>1672268644176</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1672268644176</updated>
+      <workItem from="1675498520090" duration="56185000" />
     </task>
     <task id="LOCAL-00055" summary="session problem">
       <created>1672268968715</created>
@@ -471,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675697062984</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="earthquake">
+      <created>1675701252152</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1675701252153</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +489,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="auth" />
     <MESSAGE value="detail 404" />
     <MESSAGE value="photo upload" />
     <MESSAGE value="photo" />
@@ -515,7 +513,8 @@
     <MESSAGE value="redirects" />
     <MESSAGE value="detail error" />
     <MESSAGE value="analytics" />
-    <option name="LAST_COMMIT_MESSAGE" value="analytics" />
+    <MESSAGE value="earthquake" />
+    <option name="LAST_COMMIT_MESSAGE" value="earthquake" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
