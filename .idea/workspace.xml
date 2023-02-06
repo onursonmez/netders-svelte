@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="redirects">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="redirects code added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,14 +123,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="45678000" />
-    </task>
-    <task id="LOCAL-00044" summary="search page improving">
-      <created>1670877290909</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1670877290909</updated>
+      <workItem from="1675498520090" duration="45985000" />
     </task>
     <task id="LOCAL-00045" summary="auth problem fixed">
       <created>1670878316562</created>
@@ -470,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675644766183</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="redirects code added">
+      <created>1675681091802</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1675681091802</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +487,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="search problem and images" />
     <MESSAGE value="env" />
     <MESSAGE value="home meta" />
     <MESSAGE value="comment problem" />
@@ -514,7 +511,8 @@
     <MESSAGE value="user cancel" />
     <MESSAGE value="build" />
     <MESSAGE value="redirects" />
-    <option name="LAST_COMMIT_MESSAGE" value="redirects" />
+    <MESSAGE value="redirects code added" />
+    <option name="LAST_COMMIT_MESSAGE" value="redirects code added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
