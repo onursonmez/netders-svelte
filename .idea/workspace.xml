@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="redirects" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="redirects">
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,9 +64,9 @@
       <recent name="$PROJECT_DIR$/src/validation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.svelte-kit/cloudflare" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/.svelte-kit/cloudflare" />
       <recent name="$PROJECT_DIR$/src/routes/ozel-ders/[slug]" />
       <recent name="$PROJECT_DIR$/src/routes/[slug]-ozel-ders-[id]" />
     </key>
@@ -123,14 +125,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="42441000" />
-    </task>
-    <task id="LOCAL-00040" summary="js-cookie">
-      <created>1670361049658</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1670361049658</updated>
+      <workItem from="1675498520090" duration="42778000" />
     </task>
     <task id="LOCAL-00041" summary="request">
       <created>1670524599063</created>
@@ -468,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675643102677</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="redirects">
+      <created>1675643622710</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1675643622710</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
