@@ -81,7 +81,6 @@ declare module '$env/static/private' {
 	export const HOMEBREW_CELLAR: string;
 	export const npm_node_execpath: string;
 	export const npm_config_prefix: string;
-	export const NODE_ENV: string;
 	export const VIPSHOME: string;
 }
 
@@ -167,7 +166,6 @@ declare module '$env/dynamic/private' {
 		HOMEBREW_CELLAR: string;
 		npm_node_execpath: string;
 		npm_config_prefix: string;
-		NODE_ENV: string;
 		VIPSHOME: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: string]: string | undefined;

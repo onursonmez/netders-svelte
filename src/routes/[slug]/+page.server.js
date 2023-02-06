@@ -1,9 +1,14 @@
 import * as api from '$lib/api';
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
+import { redirects } from '/src/lib/redirects'
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ locals, params })
 {
+    if(redirects[params.slug]){
+        throw redirect(301, redirects[params.slug]);
+    }
+
     const user = await api.get('user/detail?username=' + params.slug, locals.auth?.token)
     if(user.code !== 200){
         throw error(404);
