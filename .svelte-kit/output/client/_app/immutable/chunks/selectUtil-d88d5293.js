@@ -1,1 +1,0 @@
-String.prototype.turkishToLower=function(){let e=this,t={\u0130:"i",I:"\u0131",\u015E:"\u015F",\u011E:"\u011F",\u00DC:"\xFC",\u00D6:"\xF6",\u00C7:"\xE7"};return e=e.replace(/(([İIŞĞÜÇÖ]))/g,function(l){return t[l]}),e.toLowerCase()};let s=(e,t,l)=>e.turkishToLower().includes(t.turkishToLower());export{s as i};

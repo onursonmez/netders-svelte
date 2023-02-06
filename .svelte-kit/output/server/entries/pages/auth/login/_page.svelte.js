@@ -1,13 +1,12 @@
-import { c as create_ssr_component, d as add_attribute, v as validate_component } from "../../../../chunks/index.js";
+import { c as create_ssr_component, h as add_attribute, v as validate_component, e as escape } from "../../../../chunks/index.js";
 import { I as Input } from "../../../../chunks/Input.js";
 import { t as toast } from "../../../../chunks/toast.js";
 import "devalue";
-const LoginScreenImage = "/_app/immutable/assets/login-screen-14c430ce.png";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { form } = $$props;
   let loginData = {
-    login: "onursonmez@destechhasar.com",
-    password: "Muglayagittik1",
+    login: "tavhane@gmail.com",
+    password: "deneme123*",
     rememberMe: false
   };
   if ($$props.form === void 0 && $$bindings.form && form !== void 0)
@@ -26,7 +25,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$rendered = `${$$result.head += `<!-- HEAD_svelte-qnxa8i_START -->${$$result.title = `<title>Giri\u015F</title>`, ""}<!-- HEAD_svelte-qnxa8i_END -->`, ""}
 
 <div class="${"flex max-w-6xl mx-auto mt-4"}"><div class="${"grow"}"><div class="${"bg-white rounded-lg p-10 sm:m-auto md:m-auto lg:m-0"}" style="${"border: solid 1px #CACED0; min-height: 524px;"}"><div class="${"sm:w-full text-left m-auto lg:m-0"}"><h1 class="${"text-3xl md:text-4xl font-bold mb-4"}">Hesab\u0131na giri\u015F yap</h1>
-				<p class="${"mb-4"}">Hen\xFCz \xFCye de\u011Fil misin? \xD6zel ders almak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/"}">buraya</a>, \xF6\u011Fretmen olmak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/"}">buraya</a> t\u0131klay\u0131n.</p>
+				<p class="${"mb-4"}">Hen\xFCz \xFCye de\u011Fil misin? \xD6zel ders almak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/ozel-ders-talebi-olustur"}">buraya</a>, \xF6\u011Fretmen olmak i\xE7in <a class="${"text-blue-700 hover:text-blue-900"}" href="${"/ogretmen-ol"}">buraya</a> t\u0131klay\u0131n.</p>
 				<div class="${"mb-4"}"><ul class="${"flex flex-row justify-center gap-4 font-semibold cursor-pointer"}"><li${add_attribute(
       "class",
       "border-b-2 border-blue-700 text-blue-700",
@@ -85,7 +84,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 						<div class="${"mt-10"}"><button type="${"submit"}" class="${"w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-blue-700 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out"}">Giri\u015F
 							</button></div></form></div></div></div></div>
-	<div class="${"flex-none ml-1 hidden lg:block"}"><img style="${"height: 524px;"}"${add_attribute("src", LoginScreenImage, 0)} alt="${""}"></div></div>`;
+	<div class="${"flex-none ml-1 hidden lg:block"}"><img style="${"height: 524px;"}" src="${escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + "login-screen.png"}" alt="${""}"></div></div>`;
   } while (!$$settled);
   return $$rendered;
 });

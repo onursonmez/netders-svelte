@@ -1,6 +1,8 @@
 const searchParamsModel = {
   "page": 1,
   "pageSize": 12,
+  "field": "searchPoint",
+  "order": "desc",
   "keyword": "",
   "budget": "",
   "cityObject": null,

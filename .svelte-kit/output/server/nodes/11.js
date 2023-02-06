@@ -1,9 +1,9 @@
-import * as shared from '../entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js';
+import * as server from '../entries/pages/member/about/_page.server.js';
 
 export const index = 11;
-export const component = async () => (await import('../entries/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-74e664a0.js';
-export { shared };
-export const imports = ["_app/immutable/components/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.svelte-74e664a0.js","_app/immutable/chunks/index-92be8ef9.js","_app/immutable/chunks/user-4b314e4f.js","_app/immutable/chunks/userStore-e4851281.js","_app/immutable/chunks/index-ee933d9b.js","_app/immutable/chunks/responseService-2af6f363.js","_app/immutable/chunks/toast-8e25dd66.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/chunks/relativeTime-7563ee3b.js","_app/immutable/chunks/location-c72b9dbf.js","_app/immutable/chunks/lesson-3f6482d8.js","_app/immutable/chunks/stores-714507ef.js","_app/immutable/chunks/singletons-cb3d801d.js","_app/immutable/chunks/commonModel-50e9376a.js","_app/immutable/modules/pages/ozel-ders-ilanlari-verenler/_...catchall_/_page.js-289ce706.js","_app/immutable/chunks/user-4b314e4f.js","_app/immutable/chunks/index-92be8ef9.js","_app/immutable/chunks/userStore-e4851281.js","_app/immutable/chunks/index-ee933d9b.js","_app/immutable/chunks/responseService-2af6f363.js","_app/immutable/chunks/toast-8e25dd66.js","_app/immutable/chunks/toastify-3cd1641d.js","_app/immutable/chunks/_page-05b6992a.js"];
-export const stylesheets = ["_app/immutable/assets/relativeTime-8be3e30f.css"];
+export const component = async () => (await import('../entries/pages/member/about/_page.svelte.js')).default;
+export const file = '_app/immutable/components/pages/member/about/_page.svelte-5d0201e6.js';
+export { server };
+export const imports = ["_app/immutable/components/pages/member/about/_page.svelte-5d0201e6.js","_app/immutable/chunks/index-a92439aa.js","_app/immutable/chunks/toast-641a2893.js","_app/immutable/chunks/toastify-de695de9.js","_app/immutable/chunks/userModel-864e2965.js","_app/immutable/chunks/forms-c2af5638.js","_app/immutable/chunks/parse-c28c2630.js","_app/immutable/chunks/singletons-f9f2b139.js","_app/immutable/chunks/navigation-f3377072.js"];
+export const stylesheets = [];
 export const fonts = [];

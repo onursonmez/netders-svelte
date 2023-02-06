@@ -1,1 +1,0 @@
-import{r as s}from"./responseService-2af6f363.js";async function a(e){const n=await(await fetch("http://api.nd.io/price/"+e,{headers:{"Content-Type":"application/json"},method:"GET"})).json();return s(n)}async function r(e){return await(await fetch("http://api.nd.io/price/detail/"+e,{headers:{"Content-Type":"application/json"},method:"GET"})).json()}export{r as a,a as g};

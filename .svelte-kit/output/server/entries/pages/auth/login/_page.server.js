@@ -1,7 +1,7 @@
 import { r as redirect, i as invalid } from "../../../../chunks/index2.js";
 import { p as post } from "../../../../chunks/api.js";
 async function load({ locals }) {
-  if (locals.user)
+  if (locals.auth)
     throw redirect(307, "/");
 }
 const actions = {
@@ -15,7 +15,7 @@ const actions = {
     });
     if (Object.entries(body.errors).length)
       return invalid(body.code, body);
-    const value = btoa(JSON.stringify(body.result));
+    const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
     cookies.set("jwt", value, { path: "/" });
     throw redirect(307, to);
   }

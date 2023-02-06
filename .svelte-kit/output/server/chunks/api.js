@@ -15,6 +15,12 @@ async function send({ method, path, data, token }) {
   }
   throw error(res.status);
 }
+function get(path, token) {
+  return send({ method: "GET", path, token });
+}
+function del(path, token) {
+  return send({ method: "DELETE", path, token });
+}
 function post(path, data, token) {
   return send({ method: "POST", path, data, token });
 }
@@ -23,5 +29,7 @@ function put(path, data, token) {
 }
 export {
   put as a,
+  del as d,
+  get as g,
   post as p
 };

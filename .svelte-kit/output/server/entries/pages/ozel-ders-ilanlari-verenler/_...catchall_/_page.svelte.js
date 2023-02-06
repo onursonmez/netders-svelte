@@ -1,11 +1,11 @@
-import { c as create_ssr_component, b as subscribe, f as escape, d as add_attribute, h as each, v as validate_component } from "../../../../chunks/index.js";
-import { g as gendersStore } from "../../../../chunks/userStore.js";
+import { c as create_ssr_component, b as subscribe, e as escape, h as add_attribute, f as each, v as validate_component } from "../../../../chunks/index.js";
+/* empty css                                                      */import { g as gendersStore } from "../../../../chunks/userStore.js";
 import { s as searchParamsModel } from "../../../../chunks/searchModel.js";
 import "toastify-js";
-import "../../../../chunks/Clipboard.svelte_svelte_type_style_lang.js";
 import { w as writable } from "../../../../chunks/index3.js";
 import { p as page } from "../../../../chunks/stores.js";
-import { M as MediaCardContainer, m as mediaCardModel } from "../../../../chunks/commonModel.js";
+import { M as MediaCardContainer } from "../../../../chunks/MediaCardContainer.js";
+import "../../../../chunks/selectUtil.js";
 const citiesStore = writable([]);
 const countiesStore = writable([]);
 const subjectsStore = writable([]);
@@ -15,19 +15,19 @@ const lessonTypesStore = writable([
   { id: 2, title: "Uzaktan (Webcam)" }
 ]);
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r;
+  var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s;
   let $$unsubscribe_levelsStore;
   let $$unsubscribe_countiesStore;
   let $$unsubscribe_page;
-  let $$unsubscribe_citiesStore;
   let $$unsubscribe_subjectsStore;
+  let $$unsubscribe_citiesStore;
   let $$unsubscribe_lessonTypesStore;
   let $$unsubscribe_gendersStore;
   $$unsubscribe_levelsStore = subscribe(levelsStore, (value) => value);
   $$unsubscribe_countiesStore = subscribe(countiesStore, (value) => value);
   $$unsubscribe_page = subscribe(page, (value) => value);
-  $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
   $$unsubscribe_subjectsStore = subscribe(subjectsStore, (value) => value);
+  $$unsubscribe_citiesStore = subscribe(citiesStore, (value) => value);
   $$unsubscribe_lessonTypesStore = subscribe(lessonTypesStore, (value) => value);
   $$unsubscribe_gendersStore = subscribe(gendersStore, (value) => value);
   let { data } = $$props;
@@ -36,36 +36,17 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     ...searchParamsModel,
     ...data.teacherSearchParams
   };
-  let mediaCardData = mediaCardModel;
-  let convertUserDataToMediaCardData = (user) => {
-    mediaCardData = mediaCardModel;
-    mediaCardData.isTeachPhysically = user.isTeachPhysically;
-    mediaCardData.isTeachRemotely = user.isTeachRemotely;
-    mediaCardData.isOnline = user.isOnline;
-    mediaCardData.username = user.username;
-    mediaCardData.genderName = user.genderName;
-    mediaCardData.title = `${user.firstName} ${user.lastName}`;
-    mediaCardData.subTitle = user.title;
-    mediaCardData.description = user.about ? user.about.substring(0, 200) + "..." : "";
-    mediaCardData.price = user.minimumPrice;
-    mediaCardData.locationName = `${user.cityName}, ${user.countyName}`;
-    mediaCardData.totalComment = user.totalComment;
-    mediaCardData.showIsOnlineBadge = false;
-    mediaCardData.showApprovedBadge = false;
-    mediaCardData.photoUrl = "/images/icon-user.png";
-    mediaCardData.cardLink = "/" + user.username;
-    return { ...mediaCardData };
+  let searchData = {
+    ...searchParamsModel,
+    ...data.teacherSearchParams
   };
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  $$unsubscribe_levelsStore();
-  $$unsubscribe_countiesStore();
-  $$unsubscribe_page();
-  $$unsubscribe_citiesStore();
-  $$unsubscribe_subjectsStore();
-  $$unsubscribe_lessonTypesStore();
-  $$unsubscribe_gendersStore();
-  return `${$$result.head += `<!-- HEAD_svelte-c1dcbp_START -->${$$result.title = `<title>${escape(pageData.cityObject ? ((_a = pageData.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape(pageData.countyObject ? ((_b = pageData.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape(pageData.subjectObject ? ((_c = pageData.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape(pageData.levelObject ? ((_d = pageData.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-c1dcbp_END -->`, ""}
+  let $$settled;
+  let $$rendered;
+  do {
+    $$settled = true;
+    $$rendered = `${$$result.head += `<!-- HEAD_svelte-c1dcbp_START -->${$$result.title = `<title>${escape(pageData.cityObject ? ((_a = pageData.cityObject) == null ? void 0 : _a.title) + " " : "")}${escape(pageData.countyObject ? ((_b = pageData.countyObject) == null ? void 0 : _b.title) + " " : "")}${escape(pageData.subjectObject ? ((_c = pageData.subjectObject) == null ? void 0 : _c.title) + " " : "")}${escape(pageData.levelObject ? ((_d = pageData.levelObject) == null ? void 0 : _d.title) + " " : "")}\xD6zel Ders Veren \xD6\u011Fretmenler</title>`, ""}<meta name="${"description"}" content="${""}"><!-- HEAD_svelte-c1dcbp_END -->`, ""}
 
 ${``}
 
@@ -74,7 +55,7 @@ ${``}
 
 			<form autocomplete="${"off"}"><label for="${"default-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
 				<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
-					<input name="${"keyword"}" type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0"}" placeholder="${"Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"}"${add_attribute("value", pageData.keyword, 0)}>
+					<input name="${"keyword"}" type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0"}" placeholder="${"Arad\u0131\u011F\u0131n\u0131z \xF6zel ders nedir?"}"${add_attribute("value", searchData.keyword, 0)}>
 
 					${`<button type="${"submit"}" class="${"text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2"}">ARA</button>`}</div></form>
 
@@ -114,21 +95,36 @@ ${``}
 
 ${`<div class="${"py-4 text-sm"}">Arama sonu\xE7lar\u0131na uygun <strong>${escape(data.users.total)}</strong> e\u011Fitmen bulundu.</div>`}
 
-<div class="${"grid grid-cols-1 gap-4"}">${`${each(data.users.items, (user) => {
-    return `<div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(MediaCardContainer, "MediaCardContainer").$$render(
-      $$result,
-      {
-        data: convertUserDataToMediaCardData(user)
-      },
-      {},
-      {}
-    )}
+<div class="${"grid grid-cols-1 gap-4"}">${`${((_s = data.users) == null ? void 0 : _s.items) ? `${each(data.users.items, (user) => {
+      return `<div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(MediaCardContainer, "MediaCardContainer").$$render(
+        $$result,
+        {
+          user: {
+            ...user,
+            showApprovedBadge: true,
+            showIsOnlineBadge: true,
+            showRequest: true,
+            truncateAbout: true
+          }
+        },
+        {},
+        {}
+      )}
 		</div>`;
-  })}`}</div>
+    })}` : ``}`}</div>
 
 ${data.users.total > 0 && !loading ? `${`<div class="${"pt-4 text-sm text-center"}"><button class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
 		Daha fazla \xF6\u011Fretmen
 	</button></div>`}` : ``}`;
+  } while (!$$settled);
+  $$unsubscribe_levelsStore();
+  $$unsubscribe_countiesStore();
+  $$unsubscribe_page();
+  $$unsubscribe_subjectsStore();
+  $$unsubscribe_citiesStore();
+  $$unsubscribe_lessonTypesStore();
+  $$unsubscribe_gendersStore();
+  return $$rendered;
 });
 export {
   Page as default
