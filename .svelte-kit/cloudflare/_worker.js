@@ -18577,7 +18577,7 @@ var Server = class {
       app_template,
       app_template_contains_nonce: false,
       error_template,
-      version: "1675642759792"
+      version: "1675643972344"
     };
   }
   async init({ env }) {
@@ -18609,7 +18609,7 @@ var Server = class {
 var manifest = {
   appDir: "_app",
   appPath: "_app",
-  assets: /* @__PURE__ */ new Set([".DS_Store", "profile.png", "profile2.jpeg", "watermark.png"]),
+  assets: /* @__PURE__ */ new Set([".DS_Store", "_redirects", "profile.png", "profile2.jpeg", "watermark.png"]),
   mimeTypes: { ".png": "image/png", ".jpeg": "image/jpeg" },
   _: {
     entry: { "file": "_app/immutable/start-6ef47c10.js", "imports": ["_app/immutable/start-6ef47c10.js", "_app/immutable/chunks/index-a92439aa.js", "_app/immutable/chunks/singletons-f9f2b139.js", "_app/immutable/chunks/parse-c28c2630.js"], "stylesheets": [], "fonts": [] },

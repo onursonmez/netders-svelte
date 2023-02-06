@@ -1,7 +1,7 @@
 export const manifest = {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set([".DS_Store","profile.png","profile2.jpeg","watermark.png"]),
+	assets: new Set([".DS_Store","_redirects","profile.png","profile2.jpeg","watermark.png"]),
 	mimeTypes: {".png":"image/png",".jpeg":"image/jpeg"},
 	_: {
 		entry: {"file":"_app/immutable/start-6ef47c10.js","imports":["_app/immutable/start-6ef47c10.js","_app/immutable/chunks/index-a92439aa.js","_app/immutable/chunks/singletons-f9f2b139.js","_app/immutable/chunks/parse-c28c2630.js"],"stylesheets":[],"fonts":[]},
