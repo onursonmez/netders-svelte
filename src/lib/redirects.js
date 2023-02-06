@@ -299,4 +299,5 @@ export const redirects = {
     "arapca-ogrenmenin-en-kolay-yolu-14127": "/ozel-ders/arapca-ogrenmenin-en-kolay-yolu-14127",
     "arapca-ozel-ders-30455": "/ozel-ders/arapca-ozel-ders-30455",
     "arapca-sarf-nahiv-mufredatini-evinize-tasiyabilirsiniz-15889": "/ozel-ders/arapca-sarf-nahiv-mufredatini-evinize-tasiyabilirsiniz-15889",
+    "contact": "iletisim",
 }
