@@ -1,6 +1,7 @@
 <script>
 	import '/src/routes/styles.css'
 	import '/src/app.css'
+	import Analytics from '/src/lib/analytics.svelte'
 	import Header from '/src/components/Header.svelte'
 
 	import { navigating } from '$app/stores';
@@ -57,6 +58,8 @@
 		</section>
 	</footer>
 </div>
+
+<Analytics />
 
 <style>
 
