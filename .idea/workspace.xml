@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="title flag" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="ozel ders page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,11 +59,11 @@
       <recent name="$PROJECT_DIR$/src/routes/iletisim" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/ozel-ders-[slug]" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/.svelte-kit/cloudflare" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/routes/ozel-ders/[slug]" />
-      <recent name="$PROJECT_DIR$/src/routes/[slug]-ozel-ders-[id]" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -120,14 +120,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="58883000" />
-    </task>
-    <task id="LOCAL-00059" summary="code refactored">
-      <created>1673303184551</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1673303184552</updated>
+      <workItem from="1675498520090" duration="59298000" />
     </task>
     <task id="LOCAL-00060" summary="student">
       <created>1673305315460</created>
@@ -465,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675757584585</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="ozel ders page">
+      <created>1675758119496</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1675758119496</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +484,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="request new teacher photo url" />
     <MESSAGE value="help page" />
     <MESSAGE value="contact page" />
     <MESSAGE value="how is works page" />
@@ -509,7 +508,8 @@
     <MESSAGE value="redirects" />
     <MESSAGE value="favicon" />
     <MESSAGE value="title flag" />
-    <option name="LAST_COMMIT_MESSAGE" value="title flag" />
+    <MESSAGE value="ozel ders page" />
+    <option name="LAST_COMMIT_MESSAGE" value="ozel ders page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

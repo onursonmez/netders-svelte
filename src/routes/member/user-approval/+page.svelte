@@ -34,7 +34,7 @@
                 <tbody>
                 {#each data.approvalUserPrices.items as price}
                     <tr class="border-t border-gray-200">
-                        <td class="py-2">{#if (price.slug)}<a href="/ozel-ders/{price.slug}" target="_blank" rel="noreferrer">{price.subject.title} - {price.level.title}</a>{:else}{price.subject.title} - {price.level.title}{/if}</td>
+                        <td class="py-2">{#if (price.slug)}<a href="/ozel-ders-{price.slug}" target="_blank" rel="noreferrer">{price.subject.title} - {price.level.title}</a>{:else}{price.subject.title} - {price.level.title}{/if}</td>
                         <td align="right">{#if (price.pricePrivate > 0)}{price.pricePrivate}<span class="text-xs">₺</span>{:else}-{/if}</td>
                         <td align="right">{#if (price.priceLive > 0)}{price.priceLive}<span class="text-xs">₺</span>{:else}-{/if}</td>
                     </tr>
