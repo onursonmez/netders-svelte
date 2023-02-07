@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="favicon">
-      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
-    </list>
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="title flag" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,14 +120,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="58418000" />
-    </task>
-    <task id="LOCAL-00058" summary="price, location, preference modules">
-      <created>1673278609716</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1673278609716</updated>
+      <workItem from="1675498520090" duration="58883000" />
     </task>
     <task id="LOCAL-00059" summary="code refactored">
       <created>1673303184551</created>
@@ -467,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675710945315</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="title flag">
+      <created>1675757584584</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1675757584585</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +484,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="photo" />
     <MESSAGE value="request new teacher photo url" />
     <MESSAGE value="help page" />
     <MESSAGE value="contact page" />
@@ -511,7 +508,8 @@
     <MESSAGE value="request empty teacher error fix" />
     <MESSAGE value="redirects" />
     <MESSAGE value="favicon" />
-    <option name="LAST_COMMIT_MESSAGE" value="favicon" />
+    <MESSAGE value="title flag" />
+    <option name="LAST_COMMIT_MESSAGE" value="title flag" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

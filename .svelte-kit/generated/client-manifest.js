@@ -54,7 +54,7 @@ export const dictionary = {
 	"/ogretmen-ol": [~23],
 	"/ozel-ders-ilanlari-verenler/[...catchall]": [~25],
 	"/ozel-ders-talebi-olustur/[...catchall]": [~26],
-	"/ozel-ders/[slug]": [~24],
+	"/ozel-ders-[slug]": [~24],
 	"/yardim": [27],
 	"/[slug]": [~4]
 };
