@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="request empty teacher error fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/redirects.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/redirects.js" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="favicon">
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,21 +122,7 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="57617000" />
-    </task>
-    <task id="LOCAL-00056" summary="detail page problem">
-      <created>1672269269138</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1672269269138</updated>
-    </task>
-    <task id="LOCAL-00057" summary="requests module">
-      <created>1672908588388</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1672908588388</updated>
+      <workItem from="1675498520090" duration="58418000" />
     </task>
     <task id="LOCAL-00058" summary="price, location, preference modules">
       <created>1673278609716</created>
@@ -468,7 +453,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675708807301</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="redirects">
+      <created>1675710794437</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1675710794437</updated>
+    </task>
+    <task id="LOCAL-00106" summary="favicon">
+      <created>1675710945313</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1675710945315</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +486,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="photo upload" />
     <MESSAGE value="photo" />
     <MESSAGE value="request new teacher photo url" />
     <MESSAGE value="help page" />
@@ -507,12 +505,13 @@
     <MESSAGE value="headers" />
     <MESSAGE value="301" />
     <MESSAGE value="robots.txt" />
-    <MESSAGE value="redirects" />
     <MESSAGE value="detail error" />
     <MESSAGE value="analytics" />
     <MESSAGE value="earthquake" />
     <MESSAGE value="request empty teacher error fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="request empty teacher error fix" />
+    <MESSAGE value="redirects" />
+    <MESSAGE value="favicon" />
+    <option name="LAST_COMMIT_MESSAGE" value="favicon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
