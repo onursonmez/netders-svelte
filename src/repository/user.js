@@ -25,6 +25,7 @@ export async function getUsers(params = {})
                 'countyId' : searchParams?.countyObject?.id,
                 'subjectId' : searchParams?.subjectObject?.id,
                 'levelId' : searchParams?.levelObject?.id,
+                'categoryId': searchParams?.categoryObject?.id,
                 'lessonTypeId' : searchParams?.lessonTypeObject?.id,
                 'genderId' : searchParams?.genderObject?.id,
             })

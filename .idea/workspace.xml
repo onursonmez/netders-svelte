@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="ozel ders page" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="ozel ders urls">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/searchModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/searchModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.svelte" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,14 +127,10 @@
       <workItem from="1675245586223" duration="597000" />
       <workItem from="1675275015794" duration="47577000" />
       <workItem from="1675464856695" duration="133000" />
-      <workItem from="1675498520090" duration="59298000" />
-    </task>
-    <task id="LOCAL-00060" summary="student">
-      <created>1673305315460</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1673305315460</updated>
+      <workItem from="1675498520090" duration="62609000" />
+      <workItem from="1675947438432" duration="3181000" />
+      <workItem from="1676143103019" duration="598000" />
+      <workItem from="1676483187176" duration="2590000" />
     </task>
     <task id="LOCAL-00061" summary="teacher registration">
       <created>1675366858388</created>
@@ -465,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675758119496</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="ozel ders urls">
+      <created>1675759142278</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1675759142278</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="help page" />
     <MESSAGE value="contact page" />
     <MESSAGE value="how is works page" />
     <MESSAGE value="pages" />
@@ -509,7 +518,8 @@
     <MESSAGE value="favicon" />
     <MESSAGE value="title flag" />
     <MESSAGE value="ozel ders page" />
-    <option name="LAST_COMMIT_MESSAGE" value="ozel ders page" />
+    <MESSAGE value="ozel ders urls" />
+    <option name="LAST_COMMIT_MESSAGE" value="ozel ders urls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

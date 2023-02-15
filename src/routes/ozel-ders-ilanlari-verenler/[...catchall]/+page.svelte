@@ -95,8 +95,15 @@
 </script>
 
 <svelte:head>
-	<title>{pageData.cityObject ? pageData.cityObject?.title + ' ' : ''}{pageData.countyObject ? pageData.countyObject?.title + ' ' : ''}{pageData.subjectObject ? pageData.subjectObject?.title + ' ' : ''}{pageData.levelObject ? pageData.levelObject?.title + ' ' : ''}Özel Ders Veren Öğretmenler</title>
-	<meta name="description" content="" />
+	{#if pageData.categoryObject?.id}
+	<title>
+		{pageData.categoryObject.title} Özel Ders Verenler İle {pageData.categoryObject.title} Özel Ders Ücretleri
+	</title>
+	{:else}
+		<title>{pageData.cityObject ? pageData.cityObject?.title + ' ' : ''}{pageData.countyObject ? pageData.countyObject?.title + ' ' : ''}{pageData.subjectObject ? pageData.subjectObject?.title + ' ' : ''}{pageData.levelObject ? pageData.levelObject?.title + ' ' : ''}Özel Ders Veren Öğretmenler</title>
+	{/if}
+
+	<meta name="description" content="{pageData.categoryObject.description ?? ''}" />
 </svelte:head>
 
 {#if showSearchModal}
@@ -168,8 +175,17 @@
 <section class="dark:bg-gray-900 text-center">
 	<div class="flex py-6">
 		<div class="mx-auto">
-			<h1 class="mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white">{pageData.cityObject ? pageData.cityObject?.title : ''} {pageData.countyObject ? pageData.countyObject?.title : ''} {pageData.subjectObject ? pageData.subjectObject?.title : ''} {pageData.levelObject ? pageData.levelObject?.title : ''} <span class="text-gray-800">Özel Ders Veren Öğretmenler</span></h1>
-			<p class="mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{pageData.cityObject ? pageData.cityObject?.title : ''} {pageData.countyObject ? pageData.countyObject?.title : ''} özel ders veren öğretmenler tarafından oluşturulan {pageData.subjectObject ? pageData.subjectObject?.title : ''} {pageData.levelObject ? pageData.levelObject?.title : ''} özel ders ilanları.</p>
+			{#if pageData.categoryObject?.id}
+				<h1 class="mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white">{pageData.categoryObject.title} Özel Ders <span class="text-gray-800">Veren Öğretmenler</span></h1>
+			{:else}
+				<h1 class="mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white">{pageData.cityObject ? pageData.cityObject?.title : ''} {pageData.countyObject ? pageData.countyObject?.title : ''} {pageData.subjectObject ? pageData.subjectObject?.title : ''} {pageData.levelObject ? pageData.levelObject?.title : ''} <span class="text-gray-800">Özel Ders Veren Öğretmenler</span></h1>
+			{/if}
+
+			{#if pageData.categoryObject?.id}
+				<p class="mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{pageData.categoryObject.description}</p>
+			{:else}
+				<p class="mb-6 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{pageData.cityObject ? pageData.cityObject?.title : ''} {pageData.countyObject ? pageData.countyObject?.title : ''} özel ders veren öğretmenler tarafından oluşturulan {pageData.subjectObject ? pageData.subjectObject?.title : ''} {pageData.levelObject ? pageData.levelObject?.title : ''} özel ders ilanları.</p>
+			{/if}
 
 			<form on:submit|preventDefault={onSearch} autocomplete="off">
 				<label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Arama</label>
@@ -177,7 +193,7 @@
 					<div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
 						<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
 					</div>
-					<input name="keyword" bind:value={searchData.keyword} type="text" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0" placeholder="Aradığınız özel ders nedir?">
+					<input name="keyword" bind:value={searchData.keyword} type="text" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 shadow-md rounded-lg border-0" placeholder="Aradığın özel ders nedir?">
 
 					{#if (loading)}
 						<div role="status" class="absolute right-2.5 bottom-2.5">

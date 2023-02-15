@@ -9,6 +9,7 @@ export const searchParamsModel = {
     'countyObject': null,
     'subjectObject': null,
     'levelObject': null,
+    'categoryObject': null,
     'lessonTypeObject': null,
     'genderObject': null,
 }

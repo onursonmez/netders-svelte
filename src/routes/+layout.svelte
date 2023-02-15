@@ -8,6 +8,10 @@
 	import PreloadingIndicator from '/src/components/PreloadingIndicator.svelte';
 </script>
 
+<svelte:head>
+	<link rel="canonical" href="{import.meta.env.VITE_BASE_URL}" />
+</svelte:head>
+
 {#if $navigating}
 	<PreloadingIndicator />
 {/if}
