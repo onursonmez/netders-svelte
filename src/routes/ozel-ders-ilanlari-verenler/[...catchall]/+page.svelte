@@ -103,7 +103,9 @@
 		<title>{pageData.cityObject ? pageData.cityObject?.title + ' ' : ''}{pageData.countyObject ? pageData.countyObject?.title + ' ' : ''}{pageData.subjectObject ? pageData.subjectObject?.title + ' ' : ''}{pageData.levelObject ? pageData.levelObject?.title + ' ' : ''}Özel Ders Veren Öğretmenler</title>
 	{/if}
 
-	<meta name="description" content="{pageData.categoryObject.description ?? ''}" />
+	{#if pageData.categoryObject?.id}
+	<meta name="description" content="{pageData.categoryObject?.description ?? ''}" />
+	{/if}
 </svelte:head>
 
 {#if showSearchModal}
