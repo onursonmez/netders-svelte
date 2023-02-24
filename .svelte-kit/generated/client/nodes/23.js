@@ -1,0 +1,1 @@
+export { default as component } from "../../../../src/routes/mesafeli-satis-sozlesmesi/+page.svelte";

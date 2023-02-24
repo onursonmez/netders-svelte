@@ -1,14 +1,64 @@
 <script>
 	import '/src/routes/styles.css'
 	import '/src/app.css'
-	import Analytics from '/src/lib/analytics.svelte'
 	import Header from '/src/components/Header.svelte'
+	import { navigating } from '$app/stores'
+	import PreloadingIndicator from '/src/components/PreloadingIndicator.svelte'
+	import { onMount } from 'svelte'
+	import { partytownSnippet } from '@builder.io/partytown/integration'
 
-	import { navigating } from '$app/stores';
-	import PreloadingIndicator from '/src/components/PreloadingIndicator.svelte';
+	let scriptEl
+	onMount(
+			() => {
+				if (scriptEl) {
+					scriptEl.textContent = partytownSnippet()
+				}
+			}
+	)
 </script>
 
 <svelte:head>
+	<script>
+		partytown = {
+			forward: ['dataLayer.push'],
+			resolveUrl: (url) => {
+				const siteUrl = 'https://monogram.io/proxytown'
+
+				if (url.hostname === 'www.googletagmanager.com') {
+					const proxyUrl = new URL(`${siteUrl}/gtm`)
+
+					const gtmId = new URL(url).searchParams.get('id')
+					gtmId && proxyUrl.searchParams.append('id', gtmId)
+
+					return proxyUrl
+				} else if (url.hostname === 'www.google-analytics.com') {
+					const proxyUrl = new URL(`${siteUrl}/ga`)
+
+					return proxyUrl
+				}
+
+				return url
+			}
+		}
+	</script>
+
+	<script bind:this={scriptEl}></script>
+	<!-- GTM script + config -->
+	<script
+			type="text/partytown"
+			src="https://www.googletagmanager.com/gtag/js?id=G-N12QC6M7CQ"></script>
+	<script type="text/partytown">
+		window.dataLayer = window.dataLayer || []
+
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+
+		gtag('js', new Date())
+		gtag('config', 'G-N12QC6M7CQ', {
+			page_path: window.location.pathname
+		})
+	</script>
 	<link rel="canonical" href="{import.meta.env.VITE_BASE_URL}" />
 </svelte:head>
 
@@ -62,8 +112,6 @@
 		</section>
 	</footer>
 </div>
-
-<Analytics />
 
 <style>
 
