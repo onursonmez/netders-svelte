@@ -22,7 +22,7 @@
 		partytown = {
 			forward: ['dataLayer.push'],
 			resolveUrl: (url) => {
-				const siteUrl = import.meta.env.VITE_BASE_URL + '/proxytown'
+				const siteUrl = 'https://netders.com/proxytown'
 
 				if (url.hostname === 'www.googletagmanager.com') {
 					const proxyUrl = new URL(`${siteUrl}/gtm`)
