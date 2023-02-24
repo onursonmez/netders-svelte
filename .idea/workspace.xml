@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="category insecure api problem">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="route problem fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,14 +127,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="45230000" />
-    </task>
-    <task id="LOCAL-00065" summary="comment problem">
-      <created>1675379487322</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1675379487322</updated>
+      <workItem from="1676571763767" duration="46298000" />
     </task>
     <task id="LOCAL-00066" summary="hook">
       <created>1675383954381</created>
@@ -473,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677267003274</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="route problem fixed">
+      <created>1677269355118</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1677269355118</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,7 +491,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="auth problems" />
     <MESSAGE value="substring" />
     <MESSAGE value="home categories and how it works" />
     <MESSAGE value="photo approval" />
@@ -517,7 +515,8 @@
     <MESSAGE value="bug fix" />
     <MESSAGE value="search model changed" />
     <MESSAGE value="category insecure api problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="category insecure api problem" />
+    <MESSAGE value="route problem fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="route problem fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
