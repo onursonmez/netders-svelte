@@ -1,13 +1,15 @@
-import { i as invalid } from "../../../../chunks/index2.js";
+import { f as fail } from "../../../../chunks/index.js";
 import { g as get, p as post } from "../../../../chunks/api.js";
 async function load({ locals, params }) {
-  var _a;
-  const teacher = await get("user/detail?username=" + params.catchall, (_a = locals.auth) == null ? void 0 : _a.token);
-  return { teacher: teacher.result };
+  let teacherResponse = {};
+  if (params.catchall) {
+    let teacher = await get("user/detail?username=" + params.catchall, locals.auth?.token);
+    teacherResponse = teacher.result;
+  }
+  return { teacher: teacherResponse };
 }
 const actions = {
   save: async ({ locals, request }) => {
-    var _a;
     const data = await request.formData();
     const formData = {
       teacherUuid: data.get("teacherUuid"),
@@ -26,9 +28,9 @@ const actions = {
       budgetSecret: data.get("budgetSecret") === "true",
       budget: data.get("budget")
     };
-    const body = await post("request/new", formData, (_a = locals.auth) == null ? void 0 : _a.token);
+    const body = await post("request/new", formData, locals.auth?.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body.errors);
+      return fail(body.code, body.errors);
     return body.result;
   }
 };

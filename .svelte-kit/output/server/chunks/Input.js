@@ -1,4 +1,4 @@
-import { c as create_ssr_component, j as createEventDispatcher, h as add_attribute, e as escape } from "./index.js";
+import { c as create_ssr_component, h as createEventDispatcher, d as add_attribute, e as escape } from "./index3.js";
 const Input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   createEventDispatcher();
   let { label } = $$props;

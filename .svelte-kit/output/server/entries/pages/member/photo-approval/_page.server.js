@@ -1,4 +1,4 @@
-import { r as redirect, i as invalid } from "../../../../chunks/index2.js";
+import { r as redirect, f as fail } from "../../../../chunks/index.js";
 import { a as put } from "../../../../chunks/api.js";
 async function load({ locals }) {
   if (!locals.auth)
@@ -16,7 +16,7 @@ const actions = {
     };
     const body = await put("member/photo/approve", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body.errors);
+      return fail(body.code, body.errors);
     return body.result;
   },
   decline: async ({ locals, request }) => {
@@ -28,7 +28,7 @@ const actions = {
     };
     const body = await put("member/photo/decline", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body.errors);
+      return fail(body.code, body.errors);
     return body.result;
   }
 };

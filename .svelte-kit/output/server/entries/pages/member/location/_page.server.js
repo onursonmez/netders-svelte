@@ -1,4 +1,4 @@
-import { r as redirect, e as error, i as invalid } from "../../../../chunks/index2.js";
+import { r as redirect, e as error, f as fail } from "../../../../chunks/index.js";
 import { g as get, p as post, d as del } from "../../../../chunks/api.js";
 async function load({ locals }) {
   if (!locals.auth)
@@ -20,14 +20,14 @@ const actions = {
       countyIds: data.get("countyIds")
     };
     if (data.get("cityId") === "undefined") {
-      return invalid(400, { "errors": { "badRequest": "\u015Eehir alan\u0131 bo\u015F b\u0131rak\u0131lamaz!" } });
+      return fail(400, { "errors": { "badRequest": "Şehir alanı boş bırakılamaz!" } });
     }
     if (!data.get("countyIds")) {
-      return invalid(400, { "errors": { "badRequest": "\u0130l\xE7e alan\u0131 bo\u015F b\u0131rak\u0131lamaz!" } });
+      return fail(400, { "errors": { "badRequest": "İlçe alanı boş bırakılamaz!" } });
     }
     const body = await post("member/location/new", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   },
   delete: async ({ cookies, locals, request }) => {
@@ -36,7 +36,7 @@ const actions = {
     const data = await request.formData();
     let body = await del("member/location/delete/" + data.get("id"), locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   }
 };

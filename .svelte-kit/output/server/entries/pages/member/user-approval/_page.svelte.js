@@ -1,32 +1,31 @@
-import { c as create_ssr_component, b as subscribe, v as validate_component, f as each, e as escape } from "../../../../chunks/index.js";
+import { c as create_ssr_component, a as subscribe, v as validate_component, f as each, e as escape } from "../../../../chunks/index3.js";
 import { M as MediaCardContainer } from "../../../../chunks/MediaCardContainer.js";
 import "devalue";
 import "toastify-js";
 import { p as page } from "../../../../chunks/stores.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  var _a, _b;
   let $$unsubscribe_page;
   $$unsubscribe_page = subscribe(page, (value) => value);
   let { data } = $$props;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
   $$unsubscribe_page();
-  return `${$$result.head += `<!-- HEAD_svelte-1j9q2vi_START -->${$$result.title = `<title>Hesab\u0131m \u2022 \xD6\u011Fretmen Onay\u0131</title>`, ""}<!-- HEAD_svelte-1j9q2vi_END -->`, ""}
+  return `${$$result.head += `<!-- HEAD_svelte-1j9q2vi_START -->${$$result.title = `<title>Hesabım • Öğretmen Onayı</title>`, ""}<!-- HEAD_svelte-1j9q2vi_END -->`, ""}
 
 <div class="${"lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4"}">${validate_component(MediaCardContainer, "MediaCardContainer").$$render($$result, { user: { ...data.approvalUser } }, {}, {})}</div>
 
-${((_a = data.approvalUserPrices) == null ? void 0 : _a.items) !== null ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Ders \xDCcretleri</div>
-        <div class="${"p-6"}"><table class="${"table-fixed w-full text-left text-sm lg:text-base"}"><thead><tr><th class="${"pb-2 font-semibold"}">Ders Ad\u0131</th>
-                    <th align="${"right"}" class="${"font-semibold"}">Y\xFCz Y\xFCze</th>
+${data.approvalUserPrices?.items !== null ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Ders Ücretleri</div>
+        <div class="${"p-6"}"><table class="${"table-fixed w-full text-left text-sm lg:text-base"}"><thead><tr><th class="${"pb-2 font-semibold"}">Ders Adı</th>
+                    <th align="${"right"}" class="${"font-semibold"}">Yüz Yüze</th>
                     <th align="${"right"}" class="${"font-semibold"}">Uzaktan (Webcam)</th></tr></thead>
                 <tbody>${each(data.approvalUserPrices.items, (price) => {
-    return `<tr class="${"border-t border-gray-200"}"><td class="${"py-2"}">${price.slug ? `<a href="${"/ozel-ders/" + escape(price.slug, true)}" target="${"_blank"}" rel="${"noreferrer"}">${escape(price.subject.title)} - ${escape(price.level.title)}</a>` : `${escape(price.subject.title)} - ${escape(price.level.title)}`}</td>
-                        <td align="${"right"}">${price.pricePrivate > 0 ? `${escape(price.pricePrivate)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
-                        <td align="${"right"}">${price.priceLive > 0 ? `${escape(price.priceLive)}<span class="${"text-xs"}">\u20BA</span>` : `-`}</td>
+    return `<tr class="${"border-t border-gray-200"}"><td class="${"py-2"}">${price.slug ? `<a href="${"/ozel-ders-" + escape(price.slug, true)}" target="${"_blank"}" rel="${"noreferrer"}">${escape(price.subject.title)} - ${escape(price.level.title)}</a>` : `${escape(price.subject.title)} - ${escape(price.level.title)}`}</td>
+                        <td align="${"right"}">${price.pricePrivate > 0 ? `${escape(price.pricePrivate)}<span class="${"text-xs"}">₺</span>` : `-`}</td>
+                        <td align="${"right"}">${price.priceLive > 0 ? `${escape(price.priceLive)}<span class="${"text-xs"}">₺</span>` : `-`}</td>
                     </tr>`;
   })}</tbody></table></div></div>` : ``}
 
-${((_b = data.approvalUserLocations) == null ? void 0 : _b.items) !== null ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Y\xFCz Y\xFCze Ders Verdi\u011Fi Lokasyonlar</div>
+${data.approvalUserLocations?.items !== null ? `<div class="${"bg-white rounded-lg shadow-md mt-4"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Yüz Yüze Ders Verdiği Lokasyonlar</div>
         <div class="${"flex flex-col gap-4 p-6"}">${each(data.approvalUserLocations.items, (location) => {
     return `<div><span class="${"font-semibold"}">${escape(location.city.title)}</span>
                     <ul class="${"grid grid-cols-1 md:grid-cols-3"}">${each(location.counties, (county) => {

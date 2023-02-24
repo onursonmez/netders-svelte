@@ -1,4 +1,4 @@
-import { c as create_ssr_component, i as compute_rest_props, s as setContext, k as spread, o as escape_object, l as escape_attribute_value, h as add_attribute, q as is_void, n as noop, r as get_current_component, v as validate_component, t as globals } from "./index.js";
+import { c as create_ssr_component, g as compute_rest_props, s as setContext, i as spread, k as escape_object, j as escape_attribute_value, d as add_attribute, t as is_void, n as noop, u as get_current_component, v as validate_component, r as globals } from "./index3.js";
 import { createPopper } from "@popperjs/core";
 import classNames from "classnames";
 const Frame = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -208,7 +208,7 @@ const Popper = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 ${open && triggerEl ? `${validate_component(Frame, "Frame").$$render(
     $$result,
-    Object_1.assign({ use: init }, { options: triggerEl }, { role: "tooltip" }, { tabIndex: activeContent ? -1 : void 0 }, $$restProps, {
+    Object_1.assign({}, { use: init }, { options: triggerEl }, { role: "tooltip" }, { tabIndex: activeContent ? -1 : void 0 }, $$restProps, {
       class: classNames("z-10 outline-none", $$props.class)
     }),
     {},
@@ -244,7 +244,7 @@ const Tooltip = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       toolTipClass = classNames("tooltip", defaultClass, styles[style], $$props.class);
     }
   }
-  return `${validate_component(Popper, "Popper").$$render($$result, Object.assign({ "data-tooltip": true }, { rounded: true }, { border: true }, { shadow: true }, $$restProps, { class: toolTipClass }), {}, {
+  return `${validate_component(Popper, "Popper").$$render($$result, Object.assign({}, { "data-tooltip": true }, { rounded: true }, { border: true }, { shadow: true }, $$restProps, { class: toolTipClass }), {}, {
     default: () => {
       return `${slots.default ? slots.default({}) : ``}`;
     }

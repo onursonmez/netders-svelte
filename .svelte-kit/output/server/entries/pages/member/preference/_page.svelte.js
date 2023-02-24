@@ -1,4 +1,4 @@
-import { c as create_ssr_component, i as compute_rest_props, k as spread, o as escape_object, l as escape_attribute_value, h as add_attribute, g as getContext, v as validate_component, y as compute_slots } from "../../../../chunks/index.js";
+import { c as create_ssr_component, g as compute_rest_props, i as spread, k as escape_object, j as escape_attribute_value, d as add_attribute, q as getContext, v as validate_component, y as compute_slots } from "../../../../chunks/index3.js";
 import classNames from "classnames";
 /* empty css                                                          */import { t as toast } from "../../../../chunks/toast.js";
 import "devalue";
@@ -23,8 +23,7 @@ const Label = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.show(show);
   {
     {
-      const control = node == null ? void 0 : node.control;
-      color = (control == null ? void 0 : control.disabled) ? "disabled" : color;
+      color = color;
     }
   }
   labelClass2 = classNames(defaultClass, colorClasses2[color], $$props.class);
@@ -148,7 +147,7 @@ const Toggle = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     );
     $$rendered = `${validate_component(Checkbox, "Checkbox").$$render(
       $$result,
-      Object.assign({ custom: true }, $$restProps, { class: $$props.class }, { value }, { checked }, { group }),
+      Object.assign({}, { custom: true }, $$restProps, { class: $$props.class }, { value }, { checked }, { group }),
       {
         checked: ($$value) => {
           checked = $$value;
@@ -170,7 +169,6 @@ const Toggle = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return $$rendered;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  var _a;
   let { data } = $$props;
   let { form } = $$props;
   let pageData = [];
@@ -180,23 +178,23 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.form === void 0 && $$bindings.form && form !== void 0)
     $$bindings.form(form);
   {
-    if (form == null ? void 0 : form.errors) {
-      Object.entries(form == null ? void 0 : form.errors).forEach((i) => {
+    if (form?.errors) {
+      Object.entries(form?.errors).forEach((i) => {
         toast(i[1], "warning");
       });
     }
   }
-  return `${$$result.head += `<!-- HEAD_svelte-1w1zlx9_START -->${$$result.title = `<title>Hesab\u0131m \u2022 Hakk\u0131nda</title>`, ""}<!-- HEAD_svelte-1w1zlx9_END -->`, ""}
+  return `${$$result.head += `<!-- HEAD_svelte-1w1zlx9_START -->${$$result.title = `<title>Hesabım • Hakkında</title>`, ""}<!-- HEAD_svelte-1w1zlx9_END -->`, ""}
 
 <div><div class="${"grow bg-white rounded-lg shadow-md"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Tercihler</div>
 
-        <form><div class="${"p-6"}"><div class="${"grid grid-cols-2 gap-4"}"><div>Soyad\u0131m\u0131 G\xF6ster
+        <form><div class="${"p-6"}"><div class="${"grid grid-cols-2 gap-4"}"><div>Soyadımı Göster
                     </div>
                     <div>${validate_component(Toggle, "Toggle").$$render(
     $$result,
     {
       value: "1",
-      checked: ((_a = pageData.privacyLastName) == null ? void 0 : _a.id) === 1
+      checked: pageData.privacyLastName?.id === 1
     },
     {},
     {}

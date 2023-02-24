@@ -5,12 +5,13 @@ const searchParamsModel = {
   "order": "desc",
   "keyword": "",
   "budget": "",
-  "cityObject": null,
-  "countyObject": null,
-  "subjectObject": null,
-  "levelObject": null,
-  "lessonTypeObject": null,
-  "genderObject": null
+  "city": null,
+  "county": null,
+  "subject": null,
+  "level": null,
+  "category": null,
+  "lessonType": null,
+  "gender": null
 };
 export {
   searchParamsModel as s

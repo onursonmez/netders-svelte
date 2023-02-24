@@ -1,0 +1,1 @@
+import{t as s}from"./toast.672a6db8.mjs";import"./index.c4ca6160.mjs";function l(e){var r;if(Object.entries(e).length>0)if(Object.entries(e.errors).length>0)Object.values(e.errors).forEach(t=>{s(t,"danger")});else return(r=e.result)!=null&&r.items?e.result.items:e.result}export{l as r};

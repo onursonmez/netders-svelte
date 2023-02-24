@@ -1,4 +1,4 @@
-import { c as create_ssr_component, j as createEventDispatcher, u as onDestroy, h as add_attribute, e as escape, v as validate_component } from "../../../../chunks/index.js";
+import { c as create_ssr_component, h as createEventDispatcher, o as onDestroy, d as add_attribute, e as escape, v as validate_component } from "../../../../chunks/index3.js";
 import { R as RangeSlider } from "../../../../chunks/RangeSlider.js";
 import "devalue";
 import "toastify-js";
@@ -141,7 +141,6 @@ const Cropper = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 </div>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  var _a, _b;
   let image;
   let { data } = $$props;
   let crop = { x: 0, y: 0, width: 300, height: 300 };
@@ -162,9 +161,9 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     }
     data.photoApproval.id;
     image = "https://d1ql1h7f6x0zr6.cloudfront.net/" + data.photoApproval.url;
-    $$rendered = `${$$result.head += `<!-- HEAD_svelte-2o0478_START -->${$$result.title = `<title>Hesab\u0131m \u2022 Foto\u011Fraf Onay\u0131</title>`, ""}<!-- HEAD_svelte-2o0478_END -->`, ""}
+    $$rendered = `${$$result.head += `<!-- HEAD_svelte-2o0478_START -->${$$result.title = `<title>Hesabım • Fotoğraf Onayı</title>`, ""}<!-- HEAD_svelte-2o0478_END -->`, ""}
 
-<div><div class="${"grow bg-white rounded-lg shadow-md"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Foto\u011Fraf Onay\u0131</div>
+<div><div class="${"grow bg-white rounded-lg shadow-md"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}">Fotoğraf Onayı</div>
         <div class="${"flex flex-col gap-4 p-6 text-center"}"><div class="${"w-[300px] h-[300px] bg-black relative mx-auto"}">${validate_component(Cropper, "Cropper").$$render(
       $$result,
       { image, crop, zoom, cropSize },
@@ -200,9 +199,9 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       },
       {}
     )}</div>
-            <div>${escape(pixels == null ? void 0 : pixels.width)} x ${escape(pixels == null ? void 0 : pixels.height)}</div>
-            <div class="${"font-semibold text-blue-700"}">${escape((_a = data.photoApproval) == null ? void 0 : _a.fullName)}</div>
-            <div>${escape((_b = data.photoApproval) == null ? void 0 : _b.genderName)}</div>
+            <div>${escape(pixels?.width)} x ${escape(pixels?.height)}</div>
+            <div class="${"font-semibold text-blue-700"}">${escape(data.photoApproval?.fullName)}</div>
+            <div>${escape(data.photoApproval?.genderName)}</div>
             <div class="${"flex gap-4 justify-center"}"><button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M4.5 12.75l6 6 9-13.5"}"></path></svg>
                     Onayla
                 </button>

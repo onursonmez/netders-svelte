@@ -1,4 +1,4 @@
-import { r as redirect, i as invalid } from "../../../../chunks/index2.js";
+import { r as redirect, f as fail } from "../../../../chunks/index.js";
 import { g as get, p as post } from "../../../../chunks/api.js";
 async function load({ locals }) {
   if (!locals.auth)
@@ -19,7 +19,7 @@ const actions = {
     };
     const body = await post("member/request", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   },
   save: async ({ cookies, locals, request }) => {
@@ -34,7 +34,7 @@ const actions = {
     };
     const body = await post("member/request/new", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   }
 };

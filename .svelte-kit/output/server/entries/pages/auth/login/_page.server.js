@@ -1,4 +1,4 @@
-import { r as redirect, i as invalid } from "../../../../chunks/index2.js";
+import { r as redirect, f as fail } from "../../../../chunks/index.js";
 import { p as post } from "../../../../chunks/api.js";
 async function load({ locals }) {
   if (locals.auth)
@@ -14,7 +14,7 @@ const actions = {
       rememberMe: data.get("rememberMe")
     });
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
     cookies.set("jwt", value, { path: "/" });
     throw redirect(307, to);

@@ -1,4 +1,4 @@
-import { r as redirect, i as invalid } from "../../../../../chunks/index2.js";
+import { r as redirect, f as fail } from "../../../../../chunks/index.js";
 import { g as get, a as put, p as post } from "../../../../../chunks/api.js";
 async function load({ locals, params }) {
   if (!locals.auth)
@@ -20,7 +20,7 @@ const actions = {
     };
     const body = await put("member/request/update", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   },
   invite: async ({ cookies, locals, request }) => {
@@ -33,7 +33,7 @@ const actions = {
     };
     const body = await post("member/request_invite/new", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   },
   acceptable: async ({ cookies, locals, request }) => {
@@ -47,7 +47,7 @@ const actions = {
     };
     const body = await put("member/request_invite/update", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   },
   update: async ({ cookies, locals, request }) => {
@@ -65,7 +65,7 @@ const actions = {
     }
     const body = await put("member/request/update", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   },
   showPhone: async ({ cookies, locals, request }) => {
@@ -77,7 +77,7 @@ const actions = {
     };
     const body = await get("member/request/show_phone?" + new URLSearchParams(formData).toString(), locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   },
   selectTeacher: async ({ cookies, locals, request }) => {
@@ -91,7 +91,7 @@ const actions = {
     };
     const body = await put("member/request_teacher/update", formData, locals.auth.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     return body.result;
   }
 };

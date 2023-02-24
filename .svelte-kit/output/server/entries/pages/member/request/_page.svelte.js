@@ -1,15 +1,14 @@
-import { c as create_ssr_component, f as each, e as escape, h as add_attribute, v as validate_component } from "../../../../chunks/index.js";
+import { c as create_ssr_component, f as each, e as escape, d as add_attribute, v as validate_component } from "../../../../chunks/index3.js";
 import "classnames";
 /* empty css                                                          */import { T as Tooltip } from "../../../../chunks/Tooltip.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  var _a;
   let { data } = $$props;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `${$$result.head += `<!-- HEAD_svelte-1cnadp8_START -->${$$result.title = `<title>Hesab\u0131m \u2022 Ders Talepleri</title>`, ""}<!-- HEAD_svelte-1cnadp8_END -->`, ""}
+  return `${$$result.head += `<!-- HEAD_svelte-1cnadp8_START -->${$$result.title = `<title>Hesabım • Ders Talepleri</title>`, ""}<!-- HEAD_svelte-1cnadp8_END -->`, ""}
 
-<div class="${"w-full flex flex-col gap-4"}">${((_a = data.request) == null ? void 0 : _a.total) > 0 ? `${each(data.request.items, (request) => {
-    return `<div class="${"bg-white rounded-lg shadow-md"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg font-semibold text-lg"}"><a href="${"/member/request/" + escape(request.uuid, true)}"><h1 class="${"text-lg font-semibold text-blue-700 leading-none my-2"}">${escape(request.subjectTitle)} \u2192 ${escape(request.levelTitle)}</h1>
+<div class="${"w-full flex flex-col gap-4"}">${data.request?.total > 0 ? `${each(data.request.items, (request) => {
+    return `<div class="${"bg-white rounded-lg shadow-md"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg font-semibold text-lg"}"><a href="${"/member/request/" + escape(request.uuid, true)}"><h1 class="${"text-lg font-semibold text-blue-700 leading-none my-2"}">${escape(request.subjectTitle)} → ${escape(request.levelTitle)}</h1>
                 </a></div>
             <div class="${"p-6"}"><div class="${"lg:flex lg:flex-row gap-6"}"><div class="${"basis-3/12 xl:basis-2/12 hidden lg:block"}"><a href="${"/member/request/" + escape(request.uuid, true)}"><img src="${escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + escape(request.subjectImageUrl, true)}"${add_attribute("alt", request.subjectTitle, 0)}>
                             </a></div>
@@ -38,7 +37,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       {},
       {
         default: () => {
-          return `Bulundu\u011Fu Lokasyon`;
+          return `Bulunduğu Lokasyon`;
         }
       }
     )}
@@ -53,11 +52,11 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       {},
       {
         default: () => {
-          return `\u0130stedi\u011Fi \xD6\u011Fretmen`;
+          return `İstediği Öğretmen`;
         }
       }
     )}
-                                ${request.genderTitle ? `${escape(request.genderTitle)} \xF6\u011Fretmen` : `Kad\u0131n veya Erkek \xF6\u011Fretmen`}</div>
+                                ${request.genderTitle ? `${escape(request.genderTitle)} öğretmen` : `Kadın veya Erkek öğretmen`}</div>
                             <div class="${"mt-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"}"></path></svg>
                                 ${validate_component(Tooltip, "Tooltip").$$render(
       $$result,
@@ -68,11 +67,11 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       {},
       {
         default: () => {
-          return `B\xFCt\xE7e`;
+          return `Bütçe`;
         }
       }
     )}
-                                ${request.budgetMin && request.budgetMax ? `${escape(request.budgetMin)}\u20BA - ${escape(request.budgetMax)}\u20BA` : `B\xFCt\xE7e belirtilmemi\u015F`}</div>
+                                ${request.budgetMin && request.budgetMax ? `${escape(request.budgetMin)}₺ - ${escape(request.budgetMax)}₺` : `Bütçe belirtilmemiş`}</div>
                             <div class="${"mt-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"}"></path></svg>
                                 ${validate_component(Tooltip, "Tooltip").$$render(
       $$result,
@@ -83,13 +82,13 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       {},
       {
         default: () => {
-          return `Ders Almak \u0130stedi\u011Fi Yer`;
+          return `Ders Almak İstediği Yer`;
         }
       }
     )}
-                                ${request.placeOwn ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}">\xD6\u011Frenci evinde
+                                ${request.placeOwn ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}">Öğrenci evinde
                                     </span>` : ``}
-                                ${request.placeTeacher ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}">\xD6\u011Fretmen evinde
+                                ${request.placeTeacher ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}">Öğretmen evinde
                                     </span>` : ``}
                                 ${request.placeRemote ? `<span class="${"bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300"}">Uzaktan <span class="${"hidden md:block"}">(webcam) ile</span>
                                     </span>` : ``}</div>
@@ -103,7 +102,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       {},
       {
         default: () => {
-          return `Talep sahibi mesaj\u0131`;
+          return `Talep sahibi mesajı`;
         }
       }
     )}
@@ -111,10 +110,10 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
                             </div></div>
                     </div></div>
             ${request.hasOwnProperty("isSelectedTeacher") && request.isSelectedTeacher !== null ? `<div class="${"bg-[#fbfcff] border-t border-gray-100 p-6 rounded-b-lg"}"><div class="${"flex gap-4 justify-between"}">${request.isSelectedTeacher ? `<div><span class="${"flex justify-center w-full gap-2 text-green-500 items-center"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2.5"}" stroke="${"currentColor"}" class="${"w-5 h-5"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-                            \xD6\u011Frenci senden ders almay\u0131 kabul etti
+                            Öğrenci senden ders almayı kabul etti
                         </span>
                     </div>` : `<div><span class="${"flex justify-center w-full gap-2 text-red-700 items-center"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2.5"}" stroke="${"currentColor"}" class="${"w-5 h-5"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"}"></path></svg>
-                            Maalesef \xF6\u011Frenci ba\u015Fka bir \xF6\u011Fretmen ile anla\u015Fma sa\u011Flad\u0131
+                            Maalesef öğrenci başka bir öğretmen ile anlaşma sağladı
                         </span>
                     </div>`}</div>
             </div>` : ``}
@@ -122,7 +121,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}` : `<div class="${"bg-white rounded-lg shadow-md"}"><div class="${"bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold"}"><div class="${"flex gap-2 items-center"}">Ders Talepleri
                 </div></div>
             <div class="${"flex flex-col gap-4 items-center p-6"}"><div><img src="${escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + "not-found.png"}"></div>
-                <div>T\xFCh! Hen\xFCz herhangi bir ders talebin bulunmuyor.
+                <div>Tüh! Henüz herhangi bir ders talebin bulunmuyor.
                 </div></div></div>`}</div>`;
 });
 export {

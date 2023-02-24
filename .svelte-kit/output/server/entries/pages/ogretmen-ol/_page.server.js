@@ -1,4 +1,4 @@
-import { r as redirect, i as invalid } from "../../../chunks/index2.js";
+import { r as redirect, f as fail } from "../../../chunks/index.js";
 import { p as post } from "../../../chunks/api.js";
 async function load({ locals }) {
   if (locals.auth)
@@ -6,7 +6,6 @@ async function load({ locals }) {
 }
 const actions = {
   default: async ({ cookies, locals, request, url }) => {
-    var _a;
     if (locals.auth)
       throw redirect(307, "/");
     const to = url.searchParams.get("to") ? url.searchParams.get("to") : "/member/account";
@@ -27,9 +26,9 @@ const actions = {
       username: data.get("username"),
       statusId: 2
     };
-    const body = await post("user/new_teacher", formData, (_a = locals.auth) == null ? void 0 : _a.token);
+    const body = await post("user/new_teacher", formData, locals.auth?.token);
     if (Object.entries(body.errors).length)
-      return invalid(body.code, body);
+      return fail(body.code, body);
     const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
     cookies.set("jwt", value, { path: "/" });
     throw redirect(307, to);

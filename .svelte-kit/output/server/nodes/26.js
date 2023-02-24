@@ -1,9 +1,10 @@
-import * as server from '../entries/pages/ozel-ders-talebi-olustur/_...catchall_/_page.server.js';
+import * as server from '../entries/pages/ozel-ders-_slug_/_page.server.js';
 
 export const index = 26;
-export const component = async () => (await import('../entries/pages/ozel-ders-talebi-olustur/_...catchall_/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/ozel-ders-talebi-olustur/_...catchall_/_page.svelte-fac42e9c.js';
+export const component = async () => (await import('../entries/pages/ozel-ders-_slug_/_page.svelte.js')).default;
+export const file = '_app/immutable/entry/ozel-ders-_slug_-page.svelte.ed4ad4ba.mjs';
 export { server };
-export const imports = ["_app/immutable/components/pages/ozel-ders-talebi-olustur/_...catchall_/_page.svelte-fac42e9c.js","_app/immutable/chunks/index-a92439aa.js","_app/immutable/chunks/lesson-829e5140.js","_app/immutable/chunks/singletons-f9f2b139.js","_app/immutable/chunks/responseService-43341243.js","_app/immutable/chunks/toast-641a2893.js","_app/immutable/chunks/toastify-de695de9.js","_app/immutable/chunks/location-ebd1ae38.js","_app/immutable/chunks/RangeSlider-acb2c791.js","_app/immutable/chunks/forms-c2af5638.js","_app/immutable/chunks/parse-c28c2630.js","_app/immutable/chunks/navigation-f3377072.js"];
-export const stylesheets = ["_app/immutable/assets/RangeSlider-3b636b73.css"];
+export const server_id = "src/routes/ozel-ders-[slug]/+page.server.js";
+export const imports = ["_app/immutable/entry/ozel-ders-_slug_-page.svelte.ed4ad4ba.mjs","_app/immutable/chunks/index.ec65748e.mjs","_app/immutable/chunks/MediaCardContainer.de93f239.mjs","_app/immutable/chunks/Indicator.svelte_svelte_type_style_lang.7adfd83d.mjs","_app/immutable/chunks/Tooltip.b04083bc.mjs","_app/immutable/chunks/Modal.72863941.mjs","_app/immutable/chunks/toastify.bcaefc03.mjs","_app/immutable/chunks/dayJsStore.e11889e9.mjs"];
+export const stylesheets = ["_app/immutable/assets/MediaCardContainer.36e8d268.css","_app/immutable/assets/Indicator.1d121e74.css","_app/immutable/assets/Modal.1c541f78.css"];
 export const fonts = [];

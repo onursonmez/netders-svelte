@@ -1,4 +1,4 @@
-import { e as error } from "./index2.js";
+import { e as error } from "./index.js";
 const base = "http://api.nd.io";
 async function send({ method, path, data, token }) {
   const opts = { method, headers: {} };

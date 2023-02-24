@@ -1,6 +1,14 @@
 import require$$0 from "imask";
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
-var svelteImask = { exports: {} };
+var svelteImaskExports = {};
+var svelteImask = {
+  get exports() {
+    return svelteImaskExports;
+  },
+  set exports(v) {
+    svelteImaskExports = v;
+  }
+};
 (function(module, exports) {
   (function(global2, factory) {
     factory(exports, require$$0);
@@ -51,4 +59,4 @@ var svelteImask = { exports: {} };
     exports2.imask = IMaskAction;
     Object.defineProperty(exports2, "__esModule", { value: true });
   });
-})(svelteImask, svelteImask.exports);
+})(svelteImask, svelteImaskExports);

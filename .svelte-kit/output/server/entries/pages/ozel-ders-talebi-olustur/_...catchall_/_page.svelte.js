@@ -1,5 +1,6 @@
-import { c as create_ssr_component, e as escape, h as add_attribute, f as each, v as validate_component } from "../../../../chunks/index.js";
+import { c as create_ssr_component, e as escape, d as add_attribute, f as each, v as validate_component } from "../../../../chunks/index3.js";
 import { t as toast } from "../../../../chunks/toast.js";
+import "../../../../chunks/index.js";
 import { R as RangeSlider } from "../../../../chunks/RangeSlider.js";
 import "toastify-js";
 import "devalue";
@@ -26,7 +27,6 @@ const requestModel = {
   isAgreementChecked: false
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  var _a, _b, _c;
   let { data } = $$props;
   let { form } = $$props;
   data.teacher;
@@ -43,8 +43,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   do {
     $$settled = true;
     {
-      if (form == null ? void 0 : form.errors) {
-        Object.entries(form == null ? void 0 : form.errors).forEach((i) => {
+      if (form?.errors) {
+        Object.entries(form?.errors).forEach((i) => {
           toast(i[1], "warning");
         });
       }
@@ -59,9 +59,9 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         lessons = { items: [], total: 0 };
       }
     }
-    $$rendered = `${$$result.head += `<!-- HEAD_svelte-juqmny_START -->${$$result.title = `<title>\xD6zel Ders Talebi Olu\u015Ftur</title>`, ""}<!-- HEAD_svelte-juqmny_END -->`, ""}
+    $$rendered = `${$$result.head += `<!-- HEAD_svelte-juqmny_START -->${$$result.title = `<title>Özel Ders Talebi Oluştur</title>`, ""}<!-- HEAD_svelte-juqmny_END -->`, ""}
 
-<div class="${["max-w-2xl w-full mx-auto mt-8 mb-4", "hidden"].join(" ").trim()}"><h2 class="${"sr-only"}">Ad\u0131mlar</h2>
+<div class="${["max-w-2xl w-full mx-auto mt-8 mb-4", "hidden"].join(" ").trim()}"><h2 class="${"sr-only"}">Adımlar</h2>
 	<div><div class="${"overflow-hidden rounded-full bg-white"}"><div class="${"h-2 rounded-full bg-blue-500 " + escape(
       "w-0",
       true
@@ -100,30 +100,30 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 					${data.teacher.title ? `<div class="${"mt-1 text-gray-800"}">${escape(data.teacher.title)}</div>` : ``}
 
 					<div class="${"mt-2 text-gray-500 text-sm"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-4 h-4 inline-block mr-1"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"}"></path><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"}"></path></svg>
-						${data.teacher.city && data.teacher.county ? `${escape((_a = data.teacher.county) == null ? void 0 : _a.title)}, ${escape((_b = data.teacher.city) == null ? void 0 : _b.title)}` : `${escape((_c = data.teacher.country) == null ? void 0 : _c.title)}`}</div></div>` : `<img src="${escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + "student2.png"}" alt="${""}">`}</div>
-		<div class="${"md:col-span-3"}"><h5 class="${"font-semibold text-2xl"}">Ders talebi olu\u015Ftur</h5>
-			<p>Almak istedi\u011Fin \xF6zel dersle ilgili do\u011Fru \xF6\u011Fretmeni bulam\u0131yor veya buldu\u011Fun \xF6\u011Fretmenlerden emin olam\u0131yorsan, \xF6zel ders talebi b\u0131rakarak kriterlerine en uygun \xF6\u011Fretmenlerin sana ula\u015Fmas\u0131n\u0131 sa\u011Flayabilirsin.</p>
-			<p class="${"font-semibold mt-4"}">Ders talebi b\u0131rakman\u0131n avantajlar\u0131</p>
-			<ul class="${"list-none"}"><li>\u2B50 \xDCcretsizdir. Ders talebi b\u0131rakmak i\xE7in herhangi bir \xFCcret \xF6demezsin.</li>
-				<li>\u2B50 Kolayd\u0131r. Sen \xF6\u011Fretmen aramazs\u0131n, \xF6\u011Fretmen sana ula\u015F\u0131r.</li>
-				<li>\u2B50 Se\xE7me hakk\u0131n olur. Yaln\u0131zca be\u011Fendi\u011Fin \xF6\u011Fretmenle devam edersin.</li>
-				<li>\u2B50 H\u0131zl\u0131d\u0131r. Genellikle g\xFCn i\xE7inde arad\u0131\u011F\u0131n \xF6\u011Fretmeni bulursun.</li></ul>
+						${data.teacher.city && data.teacher.county ? `${escape(data.teacher.county?.title)}, ${escape(data.teacher.city?.title)}` : `${escape(data.teacher.country?.title)}`}</div></div>` : `<img src="${escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + "student2.png"}" alt="${""}">`}</div>
+		<div class="${"md:col-span-3"}"><h5 class="${"font-semibold text-2xl"}">Ders talebi oluştur</h5>
+			<p>Almak istediğin özel dersle ilgili doğru öğretmeni bulamıyor veya bulduğun öğretmenlerden emin olamıyorsan, özel ders talebi bırakarak kriterlerine en uygun öğretmenlerin sana ulaşmasını sağlayabilirsin.</p>
+			<p class="${"font-semibold mt-4"}">Ders talebi bırakmanın avantajları</p>
+			<ul class="${"list-none"}"><li>⭐ Ücretsizdir. Ders talebi bırakmak için herhangi bir ücret ödemezsin.</li>
+				<li>⭐ Kolaydır. Sen öğretmen aramazsın, öğretmen sana ulaşır.</li>
+				<li>⭐ Seçme hakkın olur. Yalnızca beğendiğin öğretmenle devam edersin.</li>
+				<li>⭐ Hızlıdır. Genellikle gün içinde aradığın öğretmeni bulursun.</li></ul>
 
 			<button type="${"button"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-6 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6v12m6-6H6"}"></path></svg>
-				Ders Talebi Olu\u015Ftur
+				Ders Talebi Oluştur
 			</button></div></div></div>
 
-<form method="${"POST"}" action="${"?/save"}"><div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg mb-4"}">Almak istedi\u011Fin \xF6zel ders nedir?</div>
+<form method="${"POST"}" action="${"?/save"}"><div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg mb-4"}">Almak istediğin özel ders nedir?</div>
 		<label for="${"default-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
 		<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
-			<input autocomplete="${"off"}" type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Buraya almak istedi\u011Fin \xF6zel dersin ad\u0131n\u0131 yaz"}"${add_attribute("value", formData.keywordLesson, 0)}></div></div>
+			<input autocomplete="${"off"}" type="${"text"}" id="${"default-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Buraya almak istediğin özel dersin adını yaz"}"${add_attribute("value", formData.keywordLesson, 0)}></div></div>
 
-	${formData.keywordLesson.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center mt-2"}">&quot;<span class="${"font-semibold"}">${escape(formData.keywordLesson)}</span>&quot; aramas\u0131na uygun <span class="${"font-semibold"}">${escape(lessons.total)}</span> sonu\xE7 bulundu.
+	${formData.keywordLesson.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center mt-2"}">&quot;<span class="${"font-semibold"}">${escape(formData.keywordLesson)}</span>&quot; aramasına uygun <span class="${"font-semibold"}">${escape(lessons.total)}</span> sonuç bulundu.
 		</div>
 		${lessons.items.length > 0 ? `${each(lessons.items, (lesson) => {
       return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-500"}">${escape(lesson.subjectTitle)}</div>
 					<div>${escape(lesson.title)}</div>
-					<div class="${"mt-2 text-blue-700 text-sm inline-block mx-auto text-right justify-end border border-blue-700 focus:ring-0 focus:outline-none focus:ring-blue-300 rounded-full px-4 py-1"}">Se\xE7</div>
+					<div class="${"mt-2 text-blue-700 text-sm inline-block mx-auto text-right justify-end border border-blue-700 focus:ring-0 focus:outline-none focus:ring-blue-300 rounded-full px-4 py-1"}">Seç</div>
 				</div>`;
     })}` : ``}</div>
 
@@ -131,19 +131,19 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 			Daha fazla ders
 		</button></div>` : ``}</div>
 
-<div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg mb-4"}">Nerede ya\u015F\u0131yorsun?</div>
+<div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg mb-4"}">Nerede yaşıyorsun?</div>
 		<label for="${"location-search"}" class="${"mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"}">Arama</label>
 		<div class="${"relative"}"><div class="${"flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"}"><svg aria-hidden="${"true"}" class="${"w-5 h-5 text-gray-500 dark:text-gray-400"}" fill="${"none"}" stroke="${"currentColor"}" viewBox="${"0 0 24 24"}" xmlns="${"http://www.w3.org/2000/svg"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}"></path></svg></div>
-			<input autocomplete="${"off"}" type="${"text"}" id="${"location-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Hangi " + escape("il\xE7edesin", true) + "?"}"${add_attribute("value", formData.keywordLocation, 0)}></div>
-		<p class="${"mt-4 text-sm"}"><label><input type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", formData.outsideTurkey, 1)}> T\xFCrkiye&#39;de ya\u015Fam\u0131yorum
+			<input autocomplete="${"off"}" type="${"text"}" id="${"location-search"}" class="${"block p-4 pl-10 w-full text-sm text-gray-900 border border-gray-300 shadow-md rounded-lg border-0"}" placeholder="${"Hangi " + escape("ilçedesin", true) + "?"}"${add_attribute("value", formData.keywordLocation, 0)}></div>
+		<p class="${"mt-4 text-sm"}"><label><input type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", formData.outsideTurkey, 1)}> Türkiye&#39;de yaşamıyorum
 			</label></p></div>
 
-	${locations.items.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape(formData.keywordLocation)}</span>&quot; arama sonucuna uygun <span class="${"font-semibold"}">${escape(locations.total)}</span> sonu\xE7 bulundu.
+	${locations.items.length > 0 ? `<div class="${"grid grid-cols-2 lg:grid-cols-3 gap-4 px-6 pb-6"}"><div class="${"col-span-2 lg:col-span-3 text-center"}">&quot;<span class="${"font-semibold"}">${escape(formData.keywordLocation)}</span>&quot; arama sonucuna uygun <span class="${"font-semibold"}">${escape(locations.total)}</span> sonuç bulundu.
 		</div>
 		${each(locations.items, (location) => {
-      return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-400"}">${escape("\u015Eehir")}</div>
+      return `<div class="${"p-4 border rounded-md hover:border-blue-700 cursor-pointer"}"><div class="${"text-sm text-gray-400"}">${escape("Şehir")}</div>
 				<div>${escape(location.title)}</div>
-				<div class="${"mt-2 text-blue-700 text-sm inline-block mx-auto text-right justify-end border border-blue-700 focus:ring-0 focus:outline-none focus:ring-blue-300 rounded-full px-4 py-1"}">Se\xE7</div>
+				<div class="${"mt-2 text-blue-700 text-sm inline-block mx-auto text-right justify-end border border-blue-700 focus:ring-0 focus:outline-none focus:ring-blue-300 rounded-full px-4 py-1"}">Seç</div>
 			</div>`;
     })}</div>
 	<div class="${"text-sm text-center"}" id="${"moreLocationArea"}"><button type="${"button"}" class="${"text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
@@ -151,33 +151,33 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 		</button></div>` : ``}</div>
 
 <div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Nerede ders almak istersin?</div>
-		<p class="${"text-xs text-gray-400"}">Birden fazla se\xE7im yapabilirsin.</p>
+		<p class="${"text-xs text-gray-400"}">Birden fazla seçim yapabilirsin.</p>
 		<div class="${"grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 mt-2"}"><div><input name="${"placeOwn"}" type="${"checkbox"}" id="${"location-own"}" class="${"hidden peer"}"${add_attribute("checked", formData.placeOwn, 1)}>
 				<label for="${"location-own"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Kendi evimde</div></label></div>
 
 			<div><input name="${"placeTeacher"}" type="${"checkbox"}" id="${"location-teacher"}" class="${"hidden peer"}"${add_attribute("checked", formData.placeTeacher, 1)}>
-				<label for="${"location-teacher"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">\xD6\u011Fretmen evinde</div></label></div>
+				<label for="${"location-teacher"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Öğretmen evinde</div></label></div>
 
 			<div><input name="${"placeRemote"}" type="${"checkbox"}" id="${"location-online"}" class="${"hidden peer"}"${add_attribute("checked", formData.placeRemote, 1)}>
 				<label for="${"location-online"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Uzaktan, webcam ile</div></label></div></div>
 
-		<div class="${"mt-4 text-gray-400"}">-\u2022-</div>
+		<div class="${"mt-4 text-gray-400"}">-•-</div>
 
 		<div class="${"font-semibold text-lg mt-2"}">Kimden ders almak istersin?</div>
-		<p class="${"text-xs text-gray-400"}">Yaln\u0131zca bir se\xE7im yapabilirsin.</p>
+		<p class="${"text-xs text-gray-400"}">Yalnızca bir seçim yapabilirsin.</p>
 		<div class="${"grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 mt-2"}"><div><input name="${"genderId"}" type="${"radio"}" id="${"teacher-gender-male"}" value="${"1"}" class="${"hidden peer"}" required${""}>
-				<label for="${"teacher-gender-male"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Erkek \xD6\u011Fretmen</div></label></div>
+				<label for="${"teacher-gender-male"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Erkek Öğretmen</div></label></div>
 
 			<div><input name="${"genderId"}" type="${"radio"}" id="${"teacher-gender-female"}" value="${"2"}" class="${"hidden peer"}" required${""}>
-				<label for="${"teacher-gender-female"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Kad\u0131n \xD6\u011Fretmen</div></label></div>
+				<label for="${"teacher-gender-female"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Kadın Öğretmen</div></label></div>
 
 			<div><input name="${"genderId"}" type="${"radio"}" id="${"teacher-gender-none"}" value="${"3"}" class="${"hidden peer"}" required${""}>
 				<label for="${"teacher-gender-none"}" class="${"inline-flex justify-between items-center py-4 w-full bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"}"><div class="${"w-full"}">Farketmez</div></label></div></div>
 
-		<div class="${"mt-4 text-gray-400"}">-\u2022-</div>
+		<div class="${"mt-4 text-gray-400"}">-•-</div>
 
-		<div class="${"font-semibold text-lg mt-2"}">Bir ders i\xE7in b\xFCt\xE7en nedir?</div>
-		<p class="${"text-xs text-gray-400"}">B\xFCt\xE7enin aral\u0131\u011F\u0131n\u0131 se\xE7 veya \xF6\u011Fretmene belirt.</p>
+		<div class="${"font-semibold text-lg mt-2"}">Bir ders için bütçen nedir?</div>
+		<p class="${"text-xs text-gray-400"}">Bütçenin aralığını seç veya öğretmene belirt.</p>
 		${`${validate_component(RangeSlider, "RangeSlider").$$render(
       $$result,
       {
@@ -195,31 +195,31 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       },
       {}
     )}
-			<div class="${"font-semibold"}">${escape(formData.budget[0])} - ${escape(formData.budget[1])} \u20BA</div>`}
+			<div class="${"font-semibold"}">${escape(formData.budget[0])} - ${escape(formData.budget[1])} ₺</div>`}
 
-		<label class="${"mt-2 block text-sm"}"><input name="${"budgetSecret"}" type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", formData.budgetSecret, 1)}> B\xFCt\xE7emi \xF6\u011Fretmene belirtmek istiyorum
+		<label class="${"mt-2 block text-sm"}"><input name="${"budgetSecret"}" type="${"checkbox"}" class="${"border-gray-500 mr-1 rounded-sm ring-0 outline-none"}"${add_attribute("checked", formData.budgetSecret, 1)}> Bütçemi öğretmene belirtmek istiyorum
 		</label>
 
 		<button type="${"button"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-6 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
 			Devam et
 		</button></div></div>
 
-<div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Son olarak seni biraz tan\u0131yabilir miyim?</div>
+<div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">Son olarak seni biraz tanıyabilir miyim?</div>
 
-		<div class="${"grid grid-cols-2 gap-4 mt-4"}"><div><span class="${"text-sm mb-1 block text-gray-500"}">Ad\u0131n</span>
+		<div class="${"grid grid-cols-2 gap-4 mt-4"}"><div><span class="${"text-sm mb-1 block text-gray-500"}">Adın</span>
 				<input name="${"firstName"}" type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", formData.firstName, 0)}></div>
-			<div><span class="${"text-sm mb-1 block text-gray-500"}">Soyad\u0131n</span>
+			<div><span class="${"text-sm mb-1 block text-gray-500"}">Soyadın</span>
 				<input name="${"lastName"}" type="${"text"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", formData.lastName, 0)}></div>
 			<div><span class="${"text-sm mb-1 block text-gray-500"}">E-posta adresin</span>
 				<input name="${"email"}" type="${"email"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", formData.email, 0)}></div>
 			<div><span class="${"text-sm mb-1 block text-gray-500"}">Telefon numaran</span>
 				<input name="${"phone"}" type="${"number"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}"${add_attribute("value", formData.phone, 0)}></div>
-			<div class="${"col-span-2"}"><span class="${"text-sm mb-1 block text-gray-500"}">Almak istedi\u011Fin \xF6zel ders ile ilgili mevcut seviyeni, beklentilerini, derse ne zaman ba\u015Flamak istedi\u011Fini, okula gidiyorsan ka\xE7\u0131nc\u0131 s\u0131n\u0131fa gitti\u011Fini yazabilir misin? Bunlar\u0131n d\u0131\u015F\u0131nda ne kadar detay verirsen o kadar do\u011Fru \xF6\u011Fretmenle e\u015Fle\u015Firsin.</span>
+			<div class="${"col-span-2"}"><span class="${"text-sm mb-1 block text-gray-500"}">Almak istediğin özel ders ile ilgili mevcut seviyeni, beklentilerini, derse ne zaman başlamak istediğini, okula gidiyorsan kaçıncı sınıfa gittiğini yazabilir misin? Bunların dışında ne kadar detay verirsen o kadar doğru öğretmenle eşleşirsin.</span>
 				<textarea name="${"message"}" minlength="${"10"}" maxlength="${"500"}" rows="${"5"}" class="${"w-full rounded-md border border-gray-300 hover:border-gray-400 focus:border-blue-600 focus:ring-0"}">${""}</textarea>
-				<span class="${"text-xs text-gray-400"}">Minimum 10 karakter yazmal\u0131s\u0131n.</span></div></div>
+				<span class="${"text-xs text-gray-400"}">Minimum 10 karakter yazmalısın.</span></div></div>
 
 		<button type="${"button"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
-			G\xF6nder
+			Gönder
 		</button></div></div>
 	<input type="${"submit"}" class="${"hidden"}"${add_attribute("this", submitButton, 0)}></form>
 
@@ -228,10 +228,10 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 
 
-<div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">\u0130\u015Fte bu kadar! \xD6zel ders talebin ba\u015Far\u0131yla al\u0131nd\u0131.</div>
+<div class="${["bg-white rounded-lg shadow-md p-4", "hidden"].join(" ").trim()}"><div class="${"max-w-2xl text-center mx-auto"}"><div class="${"font-semibold text-lg"}">İşte bu kadar! Özel ders talebin başarıyla alındı.</div>
 		<svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-64 h-64 mx-auto animate-pulse text-green-500"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"}"></path></svg>
-		<p>Talebin edit\xF6rlerimiz taraf\u0131ndan incelenme a\u015Famas\u0131ndad\u0131r.</p>
-		<p class="${"text-gray-400 text-sm"}">En k\u0131sa s\xFCre i\xE7erisinde bizden haber alacaks\u0131n \u{1F603}</p>
+		<p>Talebin editörlerimiz tarafından incelenme aşamasındadır.</p>
+		<p class="${"text-gray-400 text-sm"}">En kısa süre içerisinde bizden haber alacaksın 😃</p>
 
 		<a href="${"/"}" class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white mt-4 block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"}"></path></svg>
 

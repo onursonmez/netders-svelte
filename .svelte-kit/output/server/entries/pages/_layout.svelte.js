@@ -1,13 +1,13 @@
-import { c as create_ssr_component, b as subscribe, e as escape, d as add_classes, v as validate_component } from "../../chunks/index.js";
+import { c as create_ssr_component, a as subscribe, e as escape, b as add_classes, d as add_attribute, v as validate_component } from "../../chunks/index3.js";
 /* empty css                */import "devalue";
 import { p as page, n as navigating } from "../../chunks/stores.js";
+import "@builder.io/partytown/integration";
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  var _a, _b, _c, _d;
   let $page, $$unsubscribe_page;
   $$unsubscribe_page = subscribe(page, (value) => $page = value);
-  let photoUrl = ((_b = (_a = $page.data.auth) == null ? void 0 : _a.photo) == null ? void 0 : _b.url) ? "https://d1ql1h7f6x0zr6.cloudfront.net/" + $page.data.auth.photo.url : "https://d1ql1h7f6x0zr6.cloudfront.net/icon-user.png";
+  let photoUrl = $page.data.auth?.photo?.url ? "https://d1ql1h7f6x0zr6.cloudfront.net/" + $page.data.auth.photo.url : "https://d1ql1h7f6x0zr6.cloudfront.net/icon-user.png";
   {
-    if ((_d = (_c = $page.data.auth) == null ? void 0 : _c.photo) == null ? void 0 : _d.url) {
+    if ($page.data.auth?.photo?.url) {
       photoUrl = "https://d1ql1h7f6x0zr6.cloudfront.net/" + $page.data.auth.photo.url;
     }
   }
@@ -19,19 +19,19 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
 						<svg class="${["h-6 w-6", "hidden"].join(" ").trim()}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M6 18L18 6M6 6l12 12"}"></path></svg></button></div>
 				<div class="${"flex flex-1 items-center justify-center lg:items-stretch lg:justify-start"}"><div class="${"flex flex-shrink-0 items-center"}"><a href="${"/"}"><img class="${"h-8 w-auto"}" src="${escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + "netders-logo-blue.svg"}" alt="${"Netders.com"}"></a></div>
-					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders-ilanlari-verenler"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
-							\xD6\u011Fretmen Ara
+					<div class="${"flex space-x-4 hidden lg:ml-6 lg:block w-full text-center"}"><a href="${"/ozel-ders"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"}"></path></svg>
+							Öğretmen Ara
 						</a>
 
 						<a href="${"/ozel-ders-talebi-olustur"}" class="${"hidden px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"2"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"}"></path></svg>
 							Ders Talepleri
 						</a>
 
-						<a href="${"/nasil-calisir"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a>
+						<a href="${"/nasil-calisir"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Nasıl Çalışır?</a>
 
-						<a href="${"/yardim"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yard\u0131m</a>
+						<a href="${"/yardim"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">Yardım</a>
 
-						<a href="${"/iletisim"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">\u0130leti\u015Fim</a></div></div>
+						<a href="${"/iletisim"}" class="${"px-3 py-2 rounded-md text-sm font-medium hover:text-blue-700"}" aria-current="${"page"}">İletişim</a></div></div>
 				<div class="${"absolute inset-y-0 right-0 flex items-center lg:static lg:inset-auto lg:ml-6 lg:pr-0"}"><button type="${"button"}" class="${"hidden rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"}"><span class="${"sr-only"}">View notifications</span>
 						
 						<svg class="${"h-6 w-6"}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" aria-hidden="${"true"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"}"></path></svg></button>
@@ -40,17 +40,17 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 					<div class="${"relative ml-3"}"><div>${$page.data.auth ? `<button type="${"button"}" class="${"flex rounded-full text-sm"}" id="${"user-menu-button"}" aria-expanded="${"false"}" aria-haspopup="${"true"}"><span class="${"sr-only"}">Open user menu</span>
 									<span class="${"h-8 w-8 bg-cover rounded-full border border-gray-200"}" style="${"background-image: url(" + escape(photoUrl, true) + ")"}"></span></button>` : `<button class="${"bg-blue-700 px-6 py-2 rounded-full justify-center text-sm text-white"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"}"></path></svg>
 
-									Giri\u015F
+									Giriş
 								</button>`}</div>
 						${$page.data.auth ? `<div class="${[
     "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
     "hidden"
-  ].join(" ").trim()}" role="${"menu"}" aria-orientation="${"vertical"}" aria-labelledby="${"user-menu-button"}" tabindex="${"-1"}"><a href="${"/member/account"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Hesab\u0131m</a>
-								<form method="${"POST"}" action="${"/?/logout"}"><button class="${"block px-4 py-2 text-sm text-gray-700"}">G\xFCvenli \xC7\u0131k\u0131\u015F</button></form></div>` : ``}</div></div></div></div>
+  ].join(" ").trim()}" role="${"menu"}" aria-orientation="${"vertical"}" aria-labelledby="${"user-menu-button"}" tabindex="${"-1"}"><a href="${"/member/account"}" class="${"block px-4 py-2 text-sm text-gray-700"}" role="${"menuitem"}" tabindex="${"-1"}" id="${"user-menu-item-0"}">Hesabım</a>
+								<form method="${"POST"}" action="${"/?/logout"}"><button class="${"block px-4 py-2 text-sm text-gray-700"}">Güvenli Çıkış</button></form></div>` : ``}</div></div></div></div>
 
 		
-		<div id="${"mobile-menu"}"${add_classes("hidden".trim())}><div class="${"space-y-1 px-2 pt-2 pb-3"}"><a href="${"/member/account"}" class="${"hover:text-blue-700 block px-3 py-2 rounded-md text-base"}">Hesab\u0131m</a>
-				<form method="${"POST"}" action="${"/?/logout"}"><button class="${"hover:text-blue-700 block px-3 py-2 rounded-md text-base"}">G\xFCvenli \xC7\u0131k\u0131\u015F</button></form></div></div></nav>
+		<div id="${"mobile-menu"}"${add_classes("hidden".trim())}><div class="${"space-y-1 px-2 pt-2 pb-3"}"><a href="${"/member/account"}" class="${"hover:text-blue-700 block px-3 py-2 rounded-md text-base"}">Hesabım</a>
+				<form method="${"POST"}" action="${"/?/logout"}"><button class="${"hover:text-blue-700 block px-3 py-2 rounded-md text-base"}">Güvenli Çıkış</button></form></div></div></nav>
 </header>`;
 });
 const PreloadingIndicator_svelte_svelte_type_style_lang = "";
@@ -72,32 +72,51 @@ const css = {
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $navigating, $$unsubscribe_navigating;
   $$unsubscribe_navigating = subscribe(navigating, (value) => $navigating = value);
+  let scriptEl;
   $$result.css.add(css);
   $$unsubscribe_navigating();
-  return `${$navigating ? `${validate_component(PreloadingIndicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}` : ``}
+  return `${$$result.head += `<!-- HEAD_svelte-msp1d8_START --><script>partytown = {
+			forward: ['dataLayer.push'],
+			resolveUrl: (url) => {
+				return url
+			}
+		}
+	<\/script><script${add_attribute("this", scriptEl, 0)}><\/script><script type="${"text/partytown"}" src="${"https://www.googletagmanager.com/gtag/js?id=G-N12QC6M7CQ"}"><\/script><script type="${"text/partytown"}">window.dataLayer = window.dataLayer || []
+
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+
+		gtag('js', new Date())
+		gtag('config', 'G-N12QC6M7CQ', {
+			page_path: window.location.pathname
+		})
+	<\/script><link rel="${"canonical"}"${add_attribute("href", "https://netders.com", 0)}><!-- HEAD_svelte-msp1d8_END -->`, ""}
+
+${$navigating ? `${validate_component(PreloadingIndicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}` : ``}
 
 <div class="${"app svelte-95lviu"}">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
 
 	<main class="${"svelte-95lviu"}">${slots.default ? slots.default({}) : ``}</main>
 
-	<footer class="${"svelte-95lviu"}"><div class="${"hidden bg-white rounded-lg shadow-md mt-4 p-4 lg:p-8 invite-friend-background lg:text-xl flex flex-col lg:flex-row items-center gap-4 text-center lg:text-left lg:justify-between svelte-95lviu"}"><div>Arkada\u015F\u0131n\u0131 davet et <span class="${"font-bold text-lg lg:text-2xl animate-pulse"}">50\u20BA</span> indirim kazan.
+	<footer class="${"svelte-95lviu"}"><div class="${"hidden bg-white rounded-lg shadow-md mt-4 p-4 lg:p-8 invite-friend-background lg:text-xl flex flex-col lg:flex-row items-center gap-4 text-center lg:text-left lg:justify-between svelte-95lviu"}"><div>Arkadaşını davet et <span class="${"font-bold text-lg lg:text-2xl animate-pulse"}">50₺</span> indirim kazan.
 				<br>
-				<span class="${"text-xs"}">Arkada\u015F\u0131n\u0131n \xFCye olup, ilk ge\xE7erli sipari\u015Finde indirim kuponu hesab\u0131na tan\u0131mlan\u0131r.</span></div>
+				<span class="${"text-xs"}">Arkadaşının üye olup, ilk geçerli siparişinde indirim kuponu hesabına tanımlanır.</span></div>
 			<div><button class="${"bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-5 h-5 mr-1 inline-block"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"}"></path></svg>
 					Hemen davet Et
 				</button></div></div>
 
-		<section class="${"shadow-md rounded-t-lg bg-white text-center text-base my-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright \xA9 2013 - 2023 Netders.com
+		<section class="${"shadow-md rounded-t-lg bg-white text-center text-base my-4"}"><div class="${"p-6 text-gray-500 text-sm"}">Copyright © 2013 - 2023 Netders.com
 			</div>
 			<div class="${"shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain"}" style="${"background-image:url('" + escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + "colored-bar.jpeg')"}"><ul class="${"lg:flex justify-center mt-4 text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/"}" class="${""}">Ana Sayfa</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/ozel-ders-ilanlari-verenler"}">\xD6\u011Fretmen Ara</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/nasil-calisir"}">Nas\u0131l \xC7al\u0131\u015F\u0131r?</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/yardim"}">Yard\u0131m</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/iletisim"}">\u0130leti\u015Fim</a></li></ul>
-				<p class="${"pt-4 text-sm"}">Netders.com&#39;a \xFCye olarak <a href="${"/"}" class="${"text-blue-300 hover:text-white"}">Kullan\u0131m Ko\u015Fullar\u0131</a>&#39;n\u0131 kabul etmi\u015F say\u0131l\u0131rs\u0131n.</p>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/ozel-ders"}">Öğretmen Ara</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/nasil-calisir"}">Nasıl Çalışır?</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/yardim"}">Yardım</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/iletisim"}">İletişim</a></li></ul>
+				<p class="${"pt-4 text-sm"}">Netders.com&#39;a üye olarak <a href="${"/"}" class="${"text-blue-300 hover:text-white"}">Kullanım Koşulları</a>&#39;nı kabul etmiş sayılırsın.</p>
 				<img src="${escape("https://d1ql1h7f6x0zr6.cloudfront.net/", true) + "turkiye-white.svg"}" class="${"w-36 mx-auto py-4"}" alt="${""}">
-				<ul class="${"flex justify-center text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/kullanim-kosullari"}">Kullan\u0131m Ko\u015Fullar\u0131</a></li>
-					<li class="${"mx-2 hover:text-white"}"><a href="${"/gizlilik-ilkeleri"}">Gizlilik \u0130lkeleri</a></li></ul></div></section></footer>
+				<ul class="${"flex justify-center text-blue-300"}"><li class="${"mx-2 hover:text-white"}"><a href="${"/kullanim-kosullari"}">Kullanım Koşulları</a></li>
+					<li class="${"mx-2 hover:text-white"}"><a href="${"/gizlilik-ilkeleri"}">Gizlilik İlkeleri</a></li></ul></div></section></footer>
 </div>`;
 });
 export {
