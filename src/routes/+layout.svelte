@@ -22,21 +22,6 @@
 		partytown = {
 			forward: ['dataLayer.push'],
 			resolveUrl: (url) => {
-				const siteUrl = 'https://netders.com/proxytown'
-
-				if (url.hostname === 'www.googletagmanager.com') {
-					const proxyUrl = new URL(`${siteUrl}/gtm`)
-
-					const gtmId = new URL(url).searchParams.get('id')
-					gtmId && proxyUrl.searchParams.append('id', gtmId)
-
-					return proxyUrl
-				} else if (url.hostname === 'www.google-analytics.com') {
-					const proxyUrl = new URL(`${siteUrl}/ga`)
-
-					return proxyUrl
-				}
-
 				return url
 			}
 		}
