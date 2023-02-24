@@ -1,4 +1,4 @@
-import { invalid, redirect, error } from '@sveltejs/kit';
+import { fail, redirect, error } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
@@ -28,15 +28,15 @@ export const actions = {
         };
 
         if(!data.get('levelIds')){
-            return invalid(400, {'errors': {'badRequest': 'Ders seçilmedi!'}});
+            return fail(400, {'errors': {'badRequest': 'Ders seçilmedi!'}});
         }
 
         if(!data.get('pricePrivate') && !data.get('priceLive')){
-            return invalid(400, {'errors': {'badRequest': 'Ders ücreti belirlenmedi!'}});
+            return fail(400, {'errors': {'badRequest': 'Ders ücreti belirlenmedi!'}});
         }
 
         const body = await api.post('member/price/new', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         const user = await api.get('member/user/verify', locals.auth.token);
         locals.auth = user.result
@@ -52,7 +52,7 @@ export const actions = {
         if(data.get('delete')){
             let id = parseInt(data.get('delete'))
             let body = await api.del('member/price/delete/' + id, locals.auth.token);
-            if (Object.entries(body.errors).length) return invalid(body.code, body);
+            if (Object.entries(body.errors).length) return fail(body.code, body);
             return body.result
         }
 
@@ -75,7 +75,7 @@ export const actions = {
 
         let body = await api.put('member/price/update', priceData, locals.auth.token);
 
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -95,7 +95,7 @@ export const actions = {
 
         let body = await api.put('member/price/update', formData, locals.auth.token);
 
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },

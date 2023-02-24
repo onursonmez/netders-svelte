@@ -1,4 +1,4 @@
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
@@ -15,7 +15,7 @@ export const actions = {
             login: data.get('login'),
         });
 
-        if (Object.entries(body.errors).length) return invalid(body.code, body)
+        if (Object.entries(body.errors).length) return fail(body.code, body)
 
         throw redirect(307, '/auth/forgot_finish');
     }

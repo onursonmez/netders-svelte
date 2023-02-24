@@ -1,4 +1,4 @@
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
@@ -23,7 +23,7 @@ export const actions = {
         };
 
         const body = await api.post('member/request', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -40,7 +40,7 @@ export const actions = {
         };
 
         const body = await api.post('member/request/new', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },

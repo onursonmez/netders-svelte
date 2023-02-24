@@ -1,4 +1,4 @@
-import { invalid, redirect, error } from '@sveltejs/kit';
+import { fail, redirect, error } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
@@ -25,15 +25,15 @@ export const actions = {
         };
 
         if(data.get('cityId') === 'undefined'){
-            return invalid(400, {'errors': {'badRequest': 'Şehir alanı boş bırakılamaz!'}});
+            return fail(400, {'errors': {'badRequest': 'Şehir alanı boş bırakılamaz!'}});
         }
 
         if(!data.get('countyIds')){
-            return invalid(400, {'errors': {'badRequest': 'İlçe alanı boş bırakılamaz!'}});
+            return fail(400, {'errors': {'badRequest': 'İlçe alanı boş bırakılamaz!'}});
         }
 
         const body = await api.post('member/location/new', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -45,7 +45,7 @@ export const actions = {
 
         let body = await api.del('member/location/delete/' + data.get('id'), locals.auth.token);
 
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },

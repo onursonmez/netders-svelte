@@ -1,4 +1,4 @@
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
@@ -18,7 +18,7 @@ export const actions = {
             rememberMe: data.get('rememberMe')
         });
 
-        if (Object.entries(body.errors).length) return invalid(body.code, body)
+        if (Object.entries(body.errors).length) return fail(body.code, body)
 
         const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
 

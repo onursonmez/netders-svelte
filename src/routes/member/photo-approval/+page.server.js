@@ -1,5 +1,5 @@
 
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
@@ -20,7 +20,7 @@ export const actions = {
         };
 
         const body = await api.put('member/photo/approve', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body.errors);
+        if (Object.entries(body.errors).length) return fail(body.code, body.errors);
 
         return body.result
     },
@@ -34,7 +34,7 @@ export const actions = {
         };
 
         const body = await api.put('member/photo/decline', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body.errors);
+        if (Object.entries(body.errors).length) return fail(body.code, body.errors);
 
         return body.result
     },

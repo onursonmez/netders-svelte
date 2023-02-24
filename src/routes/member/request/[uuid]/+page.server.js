@@ -1,4 +1,4 @@
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
@@ -25,7 +25,7 @@ export const actions = {
         };
 
         const body = await api.put('member/request/update', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -41,7 +41,7 @@ export const actions = {
         };
 
         const body = await api.post('member/request_invite/new', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -58,7 +58,7 @@ export const actions = {
         };
 
         const body = await api.put('member/request_invite/update', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -81,7 +81,7 @@ export const actions = {
         }
 
         const body = await api.put('member/request/update', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -96,7 +96,7 @@ export const actions = {
         };
 
         const body = await api.get('member/request/show_phone?' + (new URLSearchParams(formData).toString()), locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },
@@ -113,7 +113,7 @@ export const actions = {
         };
 
         const body = await api.put('member/request_teacher/update', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         return body.result
     },

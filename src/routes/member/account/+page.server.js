@@ -1,4 +1,4 @@
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
@@ -29,7 +29,7 @@ export const actions = {
         };
 
         const body = await api.put('member/user/update', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         cookies.delete('jwt', {path: '/'});
         const value = btoa(JSON.stringify(body.result));
@@ -51,7 +51,7 @@ export const actions = {
         };
 
         const body = await api.post('member/photo/upload', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         locals.auth.photo.url = body.result
 
@@ -70,7 +70,7 @@ export const actions = {
         };
 
         const body = await api.put('member/user/update_password', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
     },
 
     updateEmail: async ({ cookies, locals, request }) => {
@@ -84,7 +84,7 @@ export const actions = {
         };
 
         const body = await api.put('member/user/update_email', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         cookies.delete('jwt', {path: '/'});
         const value = btoa(JSON.stringify(body.result));
@@ -106,7 +106,7 @@ export const actions = {
             cookies.set('jwt', value, { path: '/' });
         }
 
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
     },
 
     verifyEmail: async ({ cookies, locals, request }) => {
@@ -121,7 +121,7 @@ export const actions = {
 
         const body = await api.put('member/user/verify_email', formData, locals.auth.token);
 
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         cookies.delete('jwt', {path: '/'});
         const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
@@ -143,7 +143,7 @@ export const actions = {
         };
 
         const body = await api.put('member/user/cancel', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body);
+        if (Object.entries(body.errors).length) return fail(body.code, body);
 
         cookies.delete('jwt', {path: '/'});
         throw redirect(302, '/auth/login');

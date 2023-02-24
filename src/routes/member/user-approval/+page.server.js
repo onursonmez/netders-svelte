@@ -1,4 +1,4 @@
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
@@ -19,7 +19,7 @@ export const actions = {
         };
 
         const body = await api.put('member/user/approve', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body.errors);
+        if (Object.entries(body.errors).length) return fail(body.code, body.errors);
 
         if(body.result?.uuid){
             const approvalUser = await api.get('user/detail?uuid=' + body.result?.uuid, locals.auth?.token)
@@ -45,7 +45,7 @@ export const actions = {
         };
 
         const body = await api.put('member/user/decline', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return invalid(body.code, body.errors);
+        if (Object.entries(body.errors).length) return fail(body.code, body.errors);
 
         if(body.result?.uuid){
             const approvalUser = await api.get('user/detail?uuid=' + body.result?.uuid, locals.auth?.token)

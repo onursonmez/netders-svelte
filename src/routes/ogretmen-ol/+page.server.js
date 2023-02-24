@@ -1,4 +1,4 @@
-import { invalid, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 export async function load({ locals }) {
@@ -32,7 +32,7 @@ export const actions = {
 
 		const body = await api.post('user/new_teacher', formData, locals.auth?.token);
 
-		if (Object.entries(body.errors).length) return invalid(body.code, body);
+		if (Object.entries(body.errors).length) return fail(body.code, body);
 
 		const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
 
