@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="route problem fixed">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="noindex added for page query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Categories.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Categories.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,21 +128,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="46298000" />
-    </task>
-    <task id="LOCAL-00066" summary="hook">
-      <created>1675383954381</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1675383954381</updated>
-    </task>
-    <task id="LOCAL-00067" summary="price update">
-      <created>1675418488110</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1675418488110</updated>
+      <workItem from="1676571763767" duration="47843000" />
     </task>
     <task id="LOCAL-00068" summary="auth">
       <created>1675423743458</created>
@@ -472,7 +459,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677269355118</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="noindex added for page query">
+      <created>1677270249323</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1677270249324</updated>
+    </task>
+    <task id="LOCAL-00116" summary="noindex added for page query">
+      <created>1677270431704</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1677270431704</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="substring" />
     <MESSAGE value="home categories and how it works" />
     <MESSAGE value="photo approval" />
     <MESSAGE value="member photo" />
@@ -516,7 +516,8 @@
     <MESSAGE value="search model changed" />
     <MESSAGE value="category insecure api problem" />
     <MESSAGE value="route problem fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="route problem fixed" />
+    <MESSAGE value="noindex added for page query" />
+    <option name="LAST_COMMIT_MESSAGE" value="noindex added for page query" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
