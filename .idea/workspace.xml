@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="noindex added for page query">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Categories.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Categories.svelte" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="home category broken links fixed">
+      <change beforePath="$PROJECT_DIR$/src/components/MemberHorizontalNavigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MemberHorizontalNavigation.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,14 +127,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="47843000" />
-    </task>
-    <task id="LOCAL-00068" summary="auth">
-      <created>1675423743458</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1675423743458</updated>
+      <workItem from="1676571763767" duration="48514000" />
     </task>
     <task id="LOCAL-00069" summary="detail 404">
       <created>1675424901954</created>
@@ -473,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677270431704</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="home category broken links fixed">
+      <created>1677272226184</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1677272226184</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,7 +491,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="home categories and how it works" />
     <MESSAGE value="photo approval" />
     <MESSAGE value="member photo" />
     <MESSAGE value="user approval" />
@@ -517,7 +515,8 @@
     <MESSAGE value="category insecure api problem" />
     <MESSAGE value="route problem fixed" />
     <MESSAGE value="noindex added for page query" />
-    <option name="LAST_COMMIT_MESSAGE" value="noindex added for page query" />
+    <MESSAGE value="home category broken links fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="home category broken links fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
