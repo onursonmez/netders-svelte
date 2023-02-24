@@ -37,7 +37,7 @@ export async function getLevels(params = [])
 
 export async function getCategories()
 {
-    const response = await fetch(import.meta.env.VITE_API_URL + '/category/list/',
+    const response = await fetch(import.meta.env.VITE_API_URL + '/category/list',
         {
             headers:{
                 'Content-Type': 'application/json',
