@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="search model changed" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="category insecure api problem">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,14 +128,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="43834000" />
-    </task>
-    <task id="LOCAL-00064" summary="home meta">
-      <created>1675379263183</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1675379263184</updated>
+      <workItem from="1676571763767" duration="45230000" />
     </task>
     <task id="LOCAL-00065" summary="comment problem">
       <created>1675379487322</created>
@@ -470,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677266729073</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="category insecure api problem">
+      <created>1677267003274</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1677267003274</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="location page" />
     <MESSAGE value="auth problems" />
     <MESSAGE value="substring" />
     <MESSAGE value="home categories and how it works" />
@@ -514,7 +516,8 @@
     <MESSAGE value="seo" />
     <MESSAGE value="bug fix" />
     <MESSAGE value="search model changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="search model changed" />
+    <MESSAGE value="category insecure api problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="category insecure api problem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

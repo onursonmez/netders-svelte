@@ -76,8 +76,8 @@
 </script>
 
 <svelte:head>
-	<title>{pageData.county?.title ? pageData.county.city.title + ' ' + pageData.county.title + ' ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : ''}Özel Ders Veren Öğretmenler - {data.users.total} Öğretmen - Ortalama fiyat {data.users.minimumPrice}₺</title>
-	<meta name="description" content="{pageData.county?.title ? pageData.county.city.title + ' ili, ' + pageData.county.title + ' ilçesinde ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' konusunda ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : ''}özel ders veren {data.users.total} öğretmen.{pageData.category?.title ? ' ' + pageData.category.title + ' özel ders ortalama ' + data.users.minimumPrice + '₺ fiyatlarla.' : ' Ortalama ' + data.users.minimumPrice + '₺ fiyatlarla.'}" />
+	<title>{pageData.county?.title ? pageData.county.city.title + ' ' + pageData.county.title + ' ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : (pageData.level?.title ? pageData.level.title + ' ' : '')}Özel Ders Veren Öğretmenler - {data.users.total} Öğretmen - Ortalama fiyat {data.users.minimumPrice}₺</title>
+	<meta name="description" content="{pageData.county?.title ? pageData.county.city.title + ' ili, ' + pageData.county.title + ' ilçesinde ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' konusunda ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : (pageData.level?.title ? pageData.level.title + ' ' : '')}özel ders veren {data.users.total} öğretmen.{pageData.category?.title ? ' ' + pageData.category.title + ' özel ders ortalama ' + data.users.minimumPrice + '₺ fiyatlarla.' : ' Ortalama ' + data.users.minimumPrice + '₺ fiyatlarla.'}" />
 </svelte:head>
 
 {#if showSearchModal}
@@ -138,8 +138,8 @@
 
 <section class="dark:bg-gray-900 text-center">
 	<div class="mx-auto w-auto py-6 max-w-4xl">
-			<h1 class="mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white">{pageData.county?.title ? pageData.county.city.title + ' ' + pageData.county.title + ' ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : ''}Özel Ders</h1>
-			<h3 class="mb-4 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{pageData.county?.title ? pageData.county.city.title + ' ' + pageData.county.title + ' ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : ''}Özel Ders Veren {data.users.total} Öğretmen. {pageData.category?.title ? pageData.category.title + ' Özel Ders ' : ''} Ortalama {data.users.minimumPrice}₺ Fiyatlarla.</h3>
+			<h1 class="mb-4 text-3xl font-bold text-blue-700 tracking-tight leading-none xl:text-4xl dark:text-white">{pageData.county?.title ? pageData.county.city.title + ' ' + pageData.county.title + ' ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : (pageData.level?.title ? pageData.level.title + ' ' : '')}Özel Ders</h1>
+			<h3 class="mb-4 font-light text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{pageData.county?.title ? pageData.county.city.title + ' ' + pageData.county.title + ' ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : (pageData.level?.title ? pageData.level.title + ' ' : '')}Özel Ders Veren {data.users.total} Öğretmen. {pageData.category?.title ? pageData.category.title + ' Özel Ders ' : ''} Ortalama {data.users.minimumPrice}₺ Fiyatlarla.</h3>
 
 			<div class="grid grid-cols-3 gap-4 text-left">
 				<div>
