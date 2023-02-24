@@ -17,11 +17,6 @@
 {/if}
 
 <div class="app">
-	<div class="bg-black text-white text-center py-4 flex items-center justify-center gap-4">
-        <img src="{import.meta.env.VITE_CDN_URL}black-ribbon.png" width="20" height="20" />
-		<span>Ülkemize yaşanan depremde hayatını kaybedenlere Allah'tan rahmet, yaralılara acil şifalar dileriz.</span>
-		<img src="{import.meta.env.VITE_CDN_URL}black-ribbon.png" width="20" height="20" />
-	</div>
 	<Header />
 
 	<main>
@@ -52,7 +47,7 @@
 			<div class="shadow-md rounded-b-lg bg-blue-700 p-6 text-white bg-top bg-no-repeat bg-contain" style="background-image:url('{import.meta.env.VITE_CDN_URL}colored-bar.jpeg')">
 				<ul class="lg:flex justify-center mt-4 text-blue-300">
 					<li class="mx-2 hover:text-white"><a href="/" class="">Ana Sayfa</a></li>
-					<li class="mx-2 hover:text-white"><a href="/ozel-ders-ilanlari-verenler">Öğretmen Ara</a></li>
+					<li class="mx-2 hover:text-white"><a href="/ozel-ders">Öğretmen Ara</a></li>
 					<li class="mx-2 hover:text-white"><a href="/nasil-calisir">Nasıl Çalışır?</a></li>
 					<li class="mx-2 hover:text-white"><a href="/yardim">Yardım</a></li>
 					<li class="mx-2 hover:text-white"><a href="/iletisim">İletişim</a></li>

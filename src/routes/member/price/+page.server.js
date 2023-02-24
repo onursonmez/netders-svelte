@@ -5,10 +5,12 @@ export async function load({ locals }) {
     if (!locals.auth) throw redirect(302, '/auth/login');
 
     const subjects = await api.get('lesson/subjects', locals.auth.token)
+    const categories = await api.get('category/list', locals.auth.token)
     const prices = await api.get('price/' + locals.auth.uuid, locals.auth.token)
     return {
         prices : prices.result,
-        subjects: subjects.result
+        subjects: subjects.result,
+        categories: categories.result,
     }
 }
 
@@ -20,22 +22,17 @@ export const actions = {
         const data = await request.formData();
 
         const formData = {
-            subjectId: data.get('subjectId'),
             levelIds: data.get('levelIds'),
             pricePrivate: parseFloat(data.get('pricePrivate')),
             priceLive: parseFloat(data.get('priceLive')),
         };
 
-        if(data.get('subjectId') === 'undefined'){
-            return invalid(400, {'errors': {'badRequest': 'Ders konusu alanı boş bırakılamaz!'}});
-        }
-
         if(!data.get('levelIds')){
-            return invalid(400, {'errors': {'badRequest': 'Ders adı alanı boş bırakılamaz!'}});
+            return invalid(400, {'errors': {'badRequest': 'Ders seçilmedi!'}});
         }
 
         if(!data.get('pricePrivate') && !data.get('priceLive')){
-            return invalid(400, {'errors': {'badRequest': 'Ders ücreti boş bırakılamaz!'}});
+            return invalid(400, {'errors': {'badRequest': 'Ders ücreti belirlenmedi!'}});
         }
 
         const body = await api.post('member/price/new', formData, locals.auth.token);

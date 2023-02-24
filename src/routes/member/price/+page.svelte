@@ -1,6 +1,6 @@
 <script>
     import Modal from '/src/components/Modal.svelte'
-    import { getLevels } from '/src/repository/lesson'
+    import { getLevels, getLevelsByCategory } from '/src/repository/lesson'
     import { toast } from '/src/functions/toast'
     import Select from 'svelte-select';
     import { itemFilter } from '/src/utils/selectUtil'
@@ -27,11 +27,16 @@
         })
     }
 
-    const updateLevels = async () => {
+    const loadLevelsBySubject = async () => {
         pageData.levels = null
-        if(pageData.subject?.id){
-            pageData.levels = await getLevels({subjectId: pageData.subject.id})
-        }
+        pageData.category = null
+        pageData.levels = await getLevels({subjectId: pageData.subject.id})
+    }
+
+    const loadLevelsByCategory = async () => {
+        pageData.levels = null
+        pageData.subject = null
+        pageData.levels = await getLevelsByCategory({categoryId: pageData.category.id})
     }
 </script>
 
@@ -94,7 +99,6 @@
 
         <form use:enhance={({ data }) => {
 
-            data.set("subjectId", pageData.subject?.id)
             data.set("levelIds", levels)
 
             return ({ update, result }) => {
@@ -117,11 +121,19 @@
 
             <div class="p-6">
                 <div class="flex flex-col gap-4">
-                    <p>Verdiğin derslerin ücretlerini bu sayfadan belirleyebilirsin. Ders ücreti belirlemek için konu seçimi, ders seçimi ve ücret bilgisi girişini yaparak Ekle tuşuna basmalısın.</p>
+                    <p>Verdiğin derslerin ücretlerini bu sayfadan belirleyebilirsin.</p>
+                    <p class="text-sm">Ders ücreti belirlemek için konu ile ara veya ders adı ile ara kısımlarından birini kullanarak ders seçimi yapmalısın. Ardından ücret bilgisi girişini yaparak Ekle tuşuna basmalısın.</p>
 
-                    <div>
-                        <span class="text-sm mb-1 block text-gray-500">Konu</span>
-                        <Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." bind:value={pageData.subject} items="{data.subjects.items}" optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={updateLevels} />
+                    <div class="grid lg:grid-cols-2 gap-4">
+                        <div>
+                            <span class="text-sm mb-1 block text-gray-500">Konu ile ara</span>
+                            <Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." bind:value={pageData.subject} items="{data.subjects.items}" optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={loadLevelsBySubject} />
+                        </div>
+
+                        <div>
+                            <span class="text-sm mb-1 block text-gray-500">Ders adı ile ara</span>
+                            <Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." bind:value={pageData.category} items="{data.categories.items}" optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={loadLevelsByCategory} />
+                        </div>
                     </div>
 
                     {#if pageData.levels && pageData.levels.length > 0}
@@ -131,7 +143,11 @@
                             {#each pageData.levels as level}
                                 <div>
                                     <input type="checkbox" bind:group={levels} name="level" id="level_{level.id}" value="{level.id}" />
-                                    <label for="level_{level.id}">{level.title}</label>
+                                    {#if pageData.category?.id}
+                                        <label for="level_{level.id}">{level.subject.title} &bull; {level.title}</label>
+                                    {:else}
+                                        <label for="level_{level.id}">{level.title}</label>
+                                    {/if}
                                 </div>
                             {/each}
                         </div>

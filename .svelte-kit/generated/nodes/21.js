@@ -1,1 +1,2 @@
-export { default as component } from "../../../src/routes/mesafeli-satis-sozlesmesi/+page.svelte";
+export { default as component } from "../../../src/routes/member/requirement/+page.svelte";
+export const server = true;

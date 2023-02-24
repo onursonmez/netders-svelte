@@ -11,28 +11,32 @@ export function changeSearchPageStateFunction(pageData, page)
         page.url.searchParams.delete('budget')
     }
 
-    if(pageData.lessonTypeObject)
-        page.url.searchParams.set('lesson_type', pageData.lessonTypeObject.id)
+    if(pageData.lessonType)
+        page.url.searchParams.set('lesson_type', pageData.lessonType.id)
     else
         page.url.searchParams.delete('lesson_type')
 
-    if(pageData.genderObject)
-        page.url.searchParams.set('gender', pageData.genderObject.id)
+    if(pageData.gender)
+        page.url.searchParams.set('gender', pageData.gender.id)
     else
         page.url.searchParams.delete('gender')
 
     let finalState = []
     let queryParams = Array.from(page.url.searchParams).length > 0 ? '?' + page.url.searchParams.toString() : ''
 
-    if(pageData.cityObject?.slug || pageData.countyObject?.slug)
-        finalState.push(pageData.countyObject?.slug ? pageData.countyObject?.slug : pageData.cityObject?.slug)
+    if(pageData.city?.slug || pageData.county?.slug)
+        finalState.push(pageData.county?.slug ? pageData.county?.slug : pageData.city?.slug)
 
-    if(pageData.subjectObject?.slug || pageData.levelObject?.slug)
-        finalState.push(pageData.levelObject?.slug ? pageData.levelObject?.slug : pageData.subjectObject?.slug)
+    if(pageData.category?.slug){
+        finalState.push(pageData.category?.slug)
+    } else {
+        if(pageData.subject?.slug || pageData.level?.slug)
+            finalState.push(pageData.level?.slug ? pageData.level?.slug : pageData.subject?.slug)
+    }
 
     if(finalState.length > 0){
-        window.history.pushState('', '', '/ozel-ders-ilanlari-verenler/' + finalState.join('/') + queryParams);
+        window.history.pushState('', '', finalState.join('-') + '-ozel-ders' + queryParams);
     } else {
-        window.history.pushState('', '', '/ozel-ders-ilanlari-verenler' + queryParams);
+        window.history.pushState('', '', 'ozel-ders' + queryParams);
     }
 }

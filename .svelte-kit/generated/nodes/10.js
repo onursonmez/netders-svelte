@@ -1,1 +1,1 @@
-export { default as component } from "../../../src/routes/kullanim-kosullari/+page.svelte";
+export { default as component } from "../../../src/routes/gizlilik-ilkeleri/+page.svelte";

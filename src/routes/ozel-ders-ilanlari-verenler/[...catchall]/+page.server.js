@@ -1,15 +1,19 @@
-import { getUsers, getTeacherSearchStoreParamsBySearchParams } from '/src/repository/user'
+import {redirect} from "@sveltejs/kit";
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params, url })
 {
-    const teacherSearchParams = await getTeacherSearchStoreParamsBySearchParams({'query': params?.catchall + '?' + url.searchParams.toString()})
-    console.log(teacherSearchParams)
+    let uri = '/'
 
-    const users = await getUsers(teacherSearchParams)
-
-    return {
-        teacherSearchParams: teacherSearchParams,
-        users: users
+    if(params.catchall){
+        uri = uri + params.catchall.replace('/', '-') + '-ozel-ders'
+    } else {
+        uri = uri + 'ozel-ders'
     }
+
+    if(url.searchParams.toString()){
+        uri = uri + '?' + url.searchParams.toString()
+    }
+
+    throw redirect(301, uri);
 }

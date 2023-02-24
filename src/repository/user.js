@@ -7,6 +7,7 @@ import { responseService } from '/src/utils/responseService'
 export async function getUsers(params = {})
 {
     let searchParams = {...searchParamsModel, ...params}
+
     const result = await fetch(import.meta.env.VITE_API_URL + '/user/search',
         {
             headers:{
@@ -21,13 +22,13 @@ export async function getUsers(params = {})
                 'order': searchParams?.order,
                 'keyword' : searchParams?.keyword,
                 'budget' : parseInt(searchParams?.budget),
-                'cityId' : searchParams?.cityObject?.id,
-                'countyId' : searchParams?.countyObject?.id,
-                'subjectId' : searchParams?.subjectObject?.id,
-                'levelId' : searchParams?.levelObject?.id,
-                'categoryId': searchParams?.categoryObject?.id,
-                'lessonTypeId' : searchParams?.lessonTypeObject?.id,
-                'genderId' : searchParams?.genderObject?.id,
+                'cityId' : searchParams?.city?.id,
+                'countyId' : searchParams?.county?.id,
+                'subjectId' : searchParams?.subject?.id,
+                'levelId' : searchParams?.level?.id,
+                'categoryId': searchParams?.category?.id,
+                'lessonTypeId' : searchParams?.lessonType?.id,
+                'genderId' : searchParams?.gender?.id,
             })
         },
     );
