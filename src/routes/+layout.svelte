@@ -22,7 +22,7 @@
 		partytown = {
 			forward: ['dataLayer.push'],
 			resolveUrl: (url) => {
-				const siteUrl = 'https://monogram.io/proxytown'
+				const siteUrl = import.meta.env.VITE_BASE_URL + '/proxytown'
 
 				if (url.hostname === 'www.googletagmanager.com') {
 					const proxyUrl = new URL(`${siteUrl}/gtm`)

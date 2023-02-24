@@ -11,7 +11,7 @@
     let crop = { x: 0, y: 0, width: 300, height: 300 }
     let cropSize = { width: 300, height: 300 }
     let zoom = 1
-    let watermark = 'http://localhost:5173/watermark.png'
+    let watermark = import.meta.env.VITE_BASE_URL + '/watermark.png'
     let percent, pixels, croppedImage, submitButton
     let rangeSlider = [1]
     let mimeType = 'image/jpeg'

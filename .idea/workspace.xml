@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="partytown" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="invalid to fail" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,14 +125,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="55050000" />
-    </task>
-    <task id="LOCAL-00072" summary="photo">
-      <created>1675428720205</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1675428720205</updated>
+      <workItem from="1676571763767" duration="55540000" />
     </task>
     <task id="LOCAL-00073" summary="request new teacher photo url">
       <created>1675428927780</created>
@@ -470,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677281023936</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="invalid to fail">
+      <created>1677281512409</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1677281512409</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +489,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="user cancel" />
     <MESSAGE value="build" />
     <MESSAGE value="redirects code added" />
     <MESSAGE value="headers" />
@@ -514,7 +513,8 @@
     <MESSAGE value="mobile member role icons" />
     <MESSAGE value="webp" />
     <MESSAGE value="partytown" />
-    <option name="LAST_COMMIT_MESSAGE" value="partytown" />
+    <MESSAGE value="invalid to fail" />
+    <option name="LAST_COMMIT_MESSAGE" value="invalid to fail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
