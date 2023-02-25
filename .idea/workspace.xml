@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="image upload">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ozel-ders-ilanlari-verenler/[...catchall]/+page.server.js" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="old page rules">
+      <change beforePath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,14 +130,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="82265000" />
-    </task>
-    <task id="LOCAL-00093" summary="redirects code added">
-      <created>1675681091802</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1675681091802</updated>
+      <workItem from="1676571763767" duration="82581000" />
     </task>
     <task id="LOCAL-00094" summary="headers">
       <created>1675681541902</created>
@@ -476,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677367694110</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="old page rules">
+      <created>1677369264310</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1677369264311</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ozel ders urls" />
     <MESSAGE value="seo" />
     <MESSAGE value="bug fix" />
     <MESSAGE value="search model changed" />
@@ -520,7 +518,8 @@
     <MESSAGE value="photo upload test" />
     <MESSAGE value="noindex" />
     <MESSAGE value="image upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="image upload" />
+    <MESSAGE value="old page rules" />
+    <option name="LAST_COMMIT_MESSAGE" value="old page rules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

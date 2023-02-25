@@ -78,7 +78,7 @@
 <svelte:head>
 	<title>{pageData.county?.title ? pageData.county.city.title + ' ' + pageData.county.title + ' ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : (pageData.level?.title ? pageData.level.title + ' ' : '')}Özel Ders Veren Öğretmenler - {data.users.total} Öğretmen - Ortalama fiyat {data.users.minimumPrice}₺</title>
 	<meta name="description" content="{pageData.county?.title ? pageData.county.city.title + ' ili, ' + pageData.county.title + ' ilçesinde ' : (pageData.city?.title ? pageData.city.title + ' ' : '')}{pageData.subject?.title ? pageData.subject.title + ' konusunda ' : ''}{pageData.category?.title ? pageData.category.title + ' ' : (pageData.level?.title ? pageData.level.title + ' ' : '')}özel ders veren {data.users.total} öğretmen.{pageData.category?.title ? ' ' + pageData.category.title + ' özel ders ortalama ' + data.users.minimumPrice + '₺ fiyatlarla.' : ' Ortalama ' + data.users.minimumPrice + '₺ fiyatlarla.'}" />
-	{#if pageData.level?.title || $page.url.searchParams.get('page') || $page.url.searchParams.get('amp') || $page.url.searchParams.get('sort_point') || $page.url.searchParams.get('sort_price') || $page.url.searchParams.get('keyword') || $page.url.searchParams.get('budget') || $page.url.searchParams.get('lesson_type') || $page.url.searchParams.get('gender')}
+	{#if $page.url.searchParams.toString()}
 		<meta name="robots" content="noindex">
 	{/if}
 </svelte:head>
