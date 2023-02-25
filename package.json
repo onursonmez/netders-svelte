@@ -31,6 +31,8 @@
 	"dependencies": {
 		"@builder.io/partytown": "^0.7.5",
 		"@imask/svelte": "^6.4.3",
+		"@sentry/svelte": "^7.38.0",
+		"@sentry/tracing": "^7.38.0",
 		"@splidejs/svelte-splide": "^0.2.9",
 		"dayjs": "^1.11.6",
 		"imask": "^6.4.3",
