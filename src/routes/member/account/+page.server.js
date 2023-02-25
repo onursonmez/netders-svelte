@@ -40,24 +40,6 @@ export const actions = {
         return body.result
     },
 
-    upload: async ({ cookies, locals, request }) => {
-        if (!locals.auth) throw error(401);
-
-        const data = await request.formData();
-
-        const formData = {
-            photo: data.get('photo'),
-            photoType: data.get('photoType'),
-        };
-
-        const body = await api.post('member/photo/upload', formData, locals.auth.token);
-        if (Object.entries(body.errors).length) return fail(body.code, body);
-
-        locals.auth.photo.url = body.result
-
-        return body.result;
-    },
-
     updatePassword: async ({ cookies, locals, request }) => {
         if (!locals.auth) throw error(401);
 

@@ -51,7 +51,7 @@
 			    }
                 update({ reset: false });
             };
-        }} method="POST" action="?/upload">
+        }} method="POST" action="/?/upload">
     <button type="submit" bind:this={submitButton} class="hidden">Yükle</button>
 </form>
 
