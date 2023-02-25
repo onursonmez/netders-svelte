@@ -32,7 +32,7 @@ export const actions = {
         if (Object.entries(body.errors).length) return fail(body.code, body);
 
         cookies.delete('jwt', {path: '/'});
-        const value = btoa(JSON.stringify(body.result));
+        const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
         cookies.set('jwt', value, { path: '/' });
 
         locals.auth = body.user;
@@ -87,7 +87,7 @@ export const actions = {
         if (Object.entries(body.errors).length) return fail(body.code, body);
 
         cookies.delete('jwt', {path: '/'});
-        const value = btoa(JSON.stringify(body.result));
+        const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
         cookies.set('jwt', value, { path: '/' });
 
         locals.auth = body.user;
@@ -102,7 +102,7 @@ export const actions = {
         if(body.code === 409){
             locals.auth.emailVerified = true
             cookies.delete('jwt', {path: '/'});
-            const value = btoa(JSON.stringify(locals.auth));
+            const value = btoa(encodeURIComponent(JSON.stringify(body.result)));
             cookies.set('jwt', value, { path: '/' });
         }
 

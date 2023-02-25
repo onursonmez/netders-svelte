@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="purgecss">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="user status">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[slug]/+page.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,14 +127,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="60918000" />
-    </task>
-    <task id="LOCAL-00080" summary="substring">
-      <created>1675461069513</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1675461069513</updated>
+      <workItem from="1676571763767" duration="62067000" />
     </task>
     <task id="LOCAL-00081" summary="home categories and how it works">
       <created>1675500762389</created>
@@ -474,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677285584731</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="user status">
+      <created>1677287516762</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1677287516762</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +491,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="headers" />
     <MESSAGE value="301" />
     <MESSAGE value="robots.txt" />
     <MESSAGE value="detail error" />
@@ -518,7 +515,8 @@
     <MESSAGE value="partytown" />
     <MESSAGE value="link rel" />
     <MESSAGE value="purgecss" />
-    <option name="LAST_COMMIT_MESSAGE" value="purgecss" />
+    <MESSAGE value="user status" />
+    <option name="LAST_COMMIT_MESSAGE" value="user status" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
