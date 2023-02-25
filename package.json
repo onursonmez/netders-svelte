@@ -34,6 +34,7 @@
 		"@splidejs/svelte-splide": "^0.2.9",
 		"dayjs": "^1.11.6",
 		"imask": "^6.4.3",
+		"path": "^0.12.7",
 		"svelte-easy-crop": "^2.0.1",
 		"svelte-select": "^4.4.7",
 		"toastify-js": "^1.12.0",
