@@ -1,10 +1,10 @@
 export const manifest = {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set([".DS_Store","_headers","android-chrome-192x192.png","android-chrome-512x512.png","apple-touch-icon.png","favicon-16x16.png","favicon-32x32.png","favicon.ico","profile.png","profile2.jpeg","robots.txt","watermark.png"]),
-	mimeTypes: {".png":"image/png",".ico":"image/vnd.microsoft.icon",".jpeg":"image/jpeg",".txt":"text/plain"},
+	assets: new Set([".DS_Store","_headers","android-chrome-192x192.png","android-chrome-512x512.png","apple-touch-icon.png","favicon-16x16.png","favicon-32x32.png","favicon.ico","profile.png","profile2.jpeg","robots.txt","watermark.png","~partytown/debug/partytown-atomics.js","~partytown/debug/partytown-media.js","~partytown/debug/partytown-sandbox-sw.js","~partytown/debug/partytown-sw.js","~partytown/debug/partytown-ww-atomics.js","~partytown/debug/partytown-ww-sw.js","~partytown/debug/partytown.js","~partytown/partytown-atomics.js","~partytown/partytown-media.js","~partytown/partytown-sw.js","~partytown/partytown.js"]),
+	mimeTypes: {".png":"image/png",".ico":"image/vnd.microsoft.icon",".jpeg":"image/jpeg",".txt":"text/plain",".js":"application/javascript"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.cd714f6d.mjs","imports":["_app/immutable/entry/start.cd714f6d.mjs","_app/immutable/chunks/index.ec65748e.mjs","_app/immutable/chunks/singletons.77e832fa.mjs","_app/immutable/chunks/paths.ae1f3146.mjs","_app/immutable/chunks/parse.d12b0d5b.mjs"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.e0535d01.mjs","imports":["_app/immutable/entry/app.e0535d01.mjs","_app/immutable/chunks/index.ec65748e.mjs"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.d727920c.mjs","imports":["_app/immutable/entry/start.d727920c.mjs","_app/immutable/chunks/index.ec65748e.mjs","_app/immutable/chunks/singletons.83648667.mjs","_app/immutable/chunks/paths.bca5757b.mjs","_app/immutable/chunks/parse.d12b0d5b.mjs"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.52edcc9e.mjs","imports":["_app/immutable/entry/app.52edcc9e.mjs","_app/immutable/chunks/index.ec65748e.mjs"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),

@@ -2,10 +2,10 @@
 	import '/src/routes/styles.css'
 	import '/src/app.css'
 	import Header from '/src/components/Header.svelte'
-	import { navigating } from '$app/stores'
+	import {navigating} from '$app/stores'
 	import PreloadingIndicator from '/src/components/PreloadingIndicator.svelte'
-	import { onMount } from 'svelte'
-	import { partytownSnippet } from '@builder.io/partytown/integration'
+	import {onMount} from 'svelte'
+	import {partytownSnippet} from '@builder.io/partytown/integration'
 
 	let scriptEl
 	onMount(

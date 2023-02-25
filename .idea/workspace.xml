@@ -2,7 +2,260 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="partytown">
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/0.135cd7cd.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/1.6a66bb9f.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/11.b82b7e8c.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/13.8cd3e667.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/14.757f8781.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/15.0715729b.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/16.55d8a27d.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/17.6dc0ebee.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/18.812201ab.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/19.f990de42.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/2.615ac87a.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/20.c5c41076.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/22.9db6cc8c.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/25.bb961c8a.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/28.6c902554.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/4.19779585.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/5.40dbd533.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/7.6d8cf4f5.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/8.6761a0d8.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/9.376e7239.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/RangeSlider.ab9c6b86.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/forms.1a74e437.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/lesson.c0eb7719.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/location.078ad47b.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/paths.bca5757b.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/singletons.83648667.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/stores.c188bae6.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/userStore.739d3d8d.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/__slug__ozel-ders-page.svelte.82316040.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/_error.svelte.bc1fa502.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/_layout.svelte.6cbe4df3.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/_slug_-page.svelte.e24e133f.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/app.52edcc9e.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/auth-forgot-page.svelte.1d6455bf.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/auth-forgot_finish-page.svelte.11369847.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/auth-login-page.svelte.d2647f69.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/iletisim-page.svelte.4d405803.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-about-page.svelte.a65fbdaa.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-account-page.svelte.05a70789.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-layout.svelte.fcc65ffb.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-location-page.svelte.e4eccf50.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-photo-approval-page.svelte.b6602c33.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-preference-page.svelte.3e8cf8d7.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-price-page.svelte.07e645ec.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-request-_uuid_-page.svelte.55b02184.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-request-page.svelte.3ba90e48.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-user-approval-page.svelte.14210cf3.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/ogretmen-ol-page.svelte.71faffc6.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/ozel-ders-talebi-olustur-_...catchall_-page.svelte.cc3b8c0d.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/start.d727920c.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/debug/partytown-atomics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/debug/partytown-media.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/debug/partytown-sandbox-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/debug/partytown-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/debug/partytown-ww-atomics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/debug/partytown-ww-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/debug/partytown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/partytown-atomics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/partytown-media.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/partytown-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/~partytown/partytown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/0.135cd7cd.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/1.6a66bb9f.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/11.b82b7e8c.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/13.8cd3e667.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/14.757f8781.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/15.0715729b.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/16.55d8a27d.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/17.6dc0ebee.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/18.812201ab.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/19.f990de42.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/2.615ac87a.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/20.c5c41076.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/22.9db6cc8c.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/25.bb961c8a.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/28.6c902554.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/4.19779585.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/5.40dbd533.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/7.6d8cf4f5.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/8.6761a0d8.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/9.376e7239.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/RangeSlider.ab9c6b86.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/forms.1a74e437.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/lesson.c0eb7719.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/location.078ad47b.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/paths.bca5757b.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/singletons.83648667.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/stores.c188bae6.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/userStore.739d3d8d.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/__slug__ozel-ders-page.svelte.82316040.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/_error.svelte.bc1fa502.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/_layout.svelte.6cbe4df3.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/_slug_-page.svelte.e24e133f.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/app.52edcc9e.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/auth-forgot-page.svelte.1d6455bf.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/auth-forgot_finish-page.svelte.11369847.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/auth-login-page.svelte.d2647f69.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/iletisim-page.svelte.4d405803.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-about-page.svelte.a65fbdaa.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-account-page.svelte.05a70789.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-layout.svelte.fcc65ffb.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-location-page.svelte.e4eccf50.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-photo-approval-page.svelte.b6602c33.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-preference-page.svelte.3e8cf8d7.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-price-page.svelte.07e645ec.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-request-_uuid_-page.svelte.55b02184.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-request-page.svelte.3ba90e48.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-user-approval-page.svelte.14210cf3.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/ogretmen-ol-page.svelte.71faffc6.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/ozel-ders-talebi-olustur-_...catchall_-page.svelte.cc3b8c0d.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/start.d727920c.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/debug/partytown-atomics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/debug/partytown-media.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/debug/partytown-sandbox-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/debug/partytown-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/debug/partytown-ww-atomics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/debug/partytown-ww-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/debug/partytown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/partytown-atomics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/partytown-media.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/partytown-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.svelte-kit/output/client/~partytown/partytown.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare-tmp/manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare-tmp/manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/0.6be9efcb.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/1.7a0c69f1.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/11.852f116f.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/13.9dcab596.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/14.28bc9df7.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/15.d1fb6540.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/16.6aedd669.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/17.4c4ea5b8.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/18.ac7311cb.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/19.1ba78bea.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/2.98d8ed09.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/20.758a14e3.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/22.7c42b153.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/25.880f6e71.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/28.7e511f9c.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/4.6ff6d892.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/5.e35a8574.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/7.afcde2d1.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/8.86675996.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/9.198fc6da.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/RangeSlider.7f172ae2.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/forms.8c0a0790.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/lesson.7dddea87.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/location.297934a3.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/paths.ae1f3146.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/singletons.77e832fa.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/stores.a680ab15.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/chunks/userStore.fcd99096.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/__slug__ozel-ders-page.svelte.dd905c48.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/_error.svelte.1dceccc0.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/_layout.svelte.46d1e5b6.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/_slug_-page.svelte.74a81851.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/app.e0535d01.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/auth-forgot-page.svelte.88b0017b.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/auth-forgot_finish-page.svelte.aab92c89.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/auth-login-page.svelte.97d1cf6a.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/iletisim-page.svelte.6e7b4c86.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-about-page.svelte.c25903a9.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-account-page.svelte.804ea201.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-layout.svelte.65b67107.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-location-page.svelte.d5af9d34.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-photo-approval-page.svelte.c905da29.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-preference-page.svelte.d69928a3.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-price-page.svelte.a012f1e7.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-request-_uuid_-page.svelte.e1bc56b9.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-request-page.svelte.437bcc50.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/member-user-approval-page.svelte.ae121d89.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/ogretmen-ol-page.svelte.a3a6eba5.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/ozel-ders-talebi-olustur-_...catchall_-page.svelte.924fac5a.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/immutable/entry/start.cd714f6d.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/version.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_app/version.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/cloudflare/_worker.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/cloudflare/_worker.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/0.6be9efcb.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/1.7a0c69f1.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/11.852f116f.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/13.9dcab596.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/14.28bc9df7.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/15.d1fb6540.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/16.6aedd669.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/17.4c4ea5b8.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/18.ac7311cb.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/19.1ba78bea.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/2.98d8ed09.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/20.758a14e3.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/22.7c42b153.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/25.880f6e71.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/28.7e511f9c.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/4.6ff6d892.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/5.e35a8574.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/7.afcde2d1.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/8.86675996.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/9.198fc6da.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/RangeSlider.7f172ae2.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/forms.8c0a0790.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/lesson.7dddea87.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/location.297934a3.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/paths.ae1f3146.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/singletons.77e832fa.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/stores.a680ab15.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/chunks/userStore.fcd99096.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/__slug__ozel-ders-page.svelte.dd905c48.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/_error.svelte.1dceccc0.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/_layout.svelte.46d1e5b6.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/_slug_-page.svelte.74a81851.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/app.e0535d01.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/auth-forgot-page.svelte.88b0017b.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/auth-forgot_finish-page.svelte.aab92c89.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/auth-login-page.svelte.97d1cf6a.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/iletisim-page.svelte.6e7b4c86.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-about-page.svelte.c25903a9.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-account-page.svelte.804ea201.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-layout.svelte.65b67107.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-location-page.svelte.d5af9d34.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-photo-approval-page.svelte.c905da29.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-preference-page.svelte.d69928a3.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-price-page.svelte.a012f1e7.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-request-_uuid_-page.svelte.e1bc56b9.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-request-page.svelte.437bcc50.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/member-user-approval-page.svelte.ae121d89.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/ogretmen-ol-page.svelte.a3a6eba5.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/ozel-ders-talebi-olustur-_...catchall_-page.svelte.924fac5a.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/immutable/entry/start.cd714f6d.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/client/_app/version.json" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/client/_app/version.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/chunks/internal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/manifest-full.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/manifest-full.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/11.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/13.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/13.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/14.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/14.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/15.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/15.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/16.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/16.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/17.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/17.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/18.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/18.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/19.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/19.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/20.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/20.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/22.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/22.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/25.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/25.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/28.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/28.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/8.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/output/server/nodes/9.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,14 +380,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="56832000" />
-    </task>
-    <task id="LOCAL-00076" summary="how is works page">
-      <created>1675455434985</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1675455434985</updated>
+      <workItem from="1676571763767" duration="57423000" />
     </task>
     <task id="LOCAL-00077" summary="pages">
       <created>1675456985190</created>
@@ -472,7 +718,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677282365543</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="partytown">
+      <created>1677283146937</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1677283146937</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
