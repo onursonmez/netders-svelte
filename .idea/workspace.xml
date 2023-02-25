@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="price">
-      <change afterPath="$PROJECT_DIR$/src/routes/sitemap[[slug]].xml/+server.js" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="sitemap">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/[slug]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[slug]/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,14 +128,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="71593000" />
-    </task>
-    <task id="LOCAL-00084" summary="user approval">
-      <created>1675629500391</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1675629500391</updated>
+      <workItem from="1676571763767" duration="72511000" />
     </task>
     <task id="LOCAL-00085" summary="user cancel">
       <created>1675636555913</created>
@@ -475,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677317276543</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="sitemap">
+      <created>1677337884901</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1677337884902</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="analytics" />
     <MESSAGE value="earthquake" />
     <MESSAGE value="request empty teacher error fix" />
     <MESSAGE value="redirects" />
@@ -519,7 +516,8 @@
     <MESSAGE value="btoa" />
     <MESSAGE value="form method post enhance" />
     <MESSAGE value="price" />
-    <option name="LAST_COMMIT_MESSAGE" value="price" />
+    <MESSAGE value="sitemap" />
+    <option name="LAST_COMMIT_MESSAGE" value="sitemap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

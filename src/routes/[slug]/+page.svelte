@@ -7,6 +7,7 @@
 
 <svelte:head>
     <title>{data.user.firstName} {data.user.lastName} Özel Ders Profil Sayfası {data.user.city?.title ?? data.user.country?.title}</title>
+    <meta name="description" content="{data.user.firstName} {data.user.lastName} özel ders profil sayfası.{data.user.country?.title ? ' ' + data.user.country.title + ' bölgesinde ikamet eden ' : (data.user.county?.title ? ' ' + data.user.city?.title + ', ' + data.user.county?.title + ' bölgesinde ikamet eden ' : '')}öğretmen toplam {data.prices?.items?.length ?? 0} adet özel ders veriyor. Özel ders fiyatları {data.user.minimumPrice ?? 0}₺ başlıyor. Öğretmen yüz yüze özel ders {data.user.isTeachPhysically ? 'veriyor' : 'vermiyor'}, uzaktan (webcam) olarak özel ders {data.user.isTeachRemotely ? 'veriyor' : 'vermiyor'}." />
 </svelte:head>
 
 <div class="lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4">
