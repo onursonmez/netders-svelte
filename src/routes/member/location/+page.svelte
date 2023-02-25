@@ -41,7 +41,7 @@
     <div class="grow bg-white rounded-lg shadow-md">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Yeni Ders Verilen Lokasyon</div>
 
-        <form use:enhance={({ data }) => {
+        <form method="POST" use:enhance={({ data }) => {
 
             data.set("cityId", pageData.city?.id)
             data.set("countyIds", pageData?.selectedCounties)
@@ -124,7 +124,7 @@
                             {location.city.title} > {location.county.title}
                         </td>
                         <td>
-                            <form use:enhance={({ data }) => {
+                            <form method="POST" use:enhance={({ data }) => {
 
                                 data.set("id", location.id)
 

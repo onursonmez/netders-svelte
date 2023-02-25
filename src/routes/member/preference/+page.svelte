@@ -39,7 +39,7 @@
     <div class="grow bg-white rounded-lg shadow-md">
         <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Tercihler</div>
 
-        <form use:enhance={({ data }) => {
+        <form method="POST" use:enhance={({ data }) => {
 
             data.set("privacyLastName", pageData.selectedPrivacyLastName)
 

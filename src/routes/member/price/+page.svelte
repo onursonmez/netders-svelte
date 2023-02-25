@@ -50,7 +50,7 @@
             <div class="bg-[#fbfcff] border-b border-gray-100 p-6 rounded-t-lg text-lg font-semibold">Ders Tanıtım Yazısı</div>
 
             <div class="p-6">
-                <form use:enhance={({ data }) => {
+                <form method="POST" use:enhance={({ data }) => {
 
                         data.set("id", priceData?.id)
                         data.set("pricePrivate", priceData?.pricePrivate)
@@ -117,6 +117,7 @@
               on:submit={() => {
                   loading = true
               }}
+              method="POST"
         >
 
             <div class="p-6">
@@ -205,6 +206,7 @@
               on:submit={() => {
                   loading = true
               }}
+              method="POST"
         >
 
             <div class="p-6">

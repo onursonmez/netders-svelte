@@ -93,6 +93,7 @@
                             };
                         }}
                       action="?/decline"
+                      method="POST"
                 >
 
                     <button class="bg-red-700 hover:bg-red-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block">
@@ -127,6 +128,7 @@
                             };
                         }}
                       action="?/approve"
+                      method="POST"
                 >
                     <button class="bg-blue-700 hover:bg-blue-900 py-2 px-4 text-sm md:text-lg md:py-3 md:px-6 text-center rounded-full justify-center text-white block md:inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1 inline-block">

@@ -47,6 +47,7 @@
             };
         }}
               on:submit={() => loading = true}
+              method="POST"
         >
 
             <div class="p-6">

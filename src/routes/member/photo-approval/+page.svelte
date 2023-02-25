@@ -73,7 +73,7 @@
                     Onayla
                 </button>
 
-                <form use:enhance={({ data }) => {
+                <form method="POST" use:enhance={({ data }) => {
 
                     data.set("id", id)
 
@@ -106,7 +106,7 @@
     </div>
 </div>
 
-<form class="hidden" use:enhance={({ data }) => {
+<form class="hidden" method="POST" use:enhance={({ data }) => {
 
             data.set("id", id)
             data.set("photo", croppedImage)
