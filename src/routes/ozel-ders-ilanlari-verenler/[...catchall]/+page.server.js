@@ -6,7 +6,11 @@ export async function load({ params, url })
     let uri = '/'
 
     if(params.catchall){
-        uri = uri + params.catchall.replace('/', '-') + '-ozel-ders'
+        if(params.catchall.indexOf("&") !== -1){
+            uri = uri + params.catchall.split("&")[0] + '-ozel-ders'
+        } else {
+            uri = uri + params.catchall.replace('/', '-') + '-ozel-ders'
+        }
     } else {
         uri = uri + 'ozel-ders'
     }
