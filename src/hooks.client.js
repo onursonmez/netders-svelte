@@ -10,3 +10,15 @@ Sentry.init({
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0,
 });
+
+/** @type {import('@sveltejs/kit').HandleClientError} */
+export function handleError({ error, event }) {
+    const errorId = crypto.randomUUID();
+    // example integration with https://sentry.io/
+    Sentry.captureException(error, { event, errorId });
+
+    return {
+        message: 'Whoops!',
+        errorId
+    };
+}

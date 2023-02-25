@@ -11,6 +11,18 @@ Sentry.init({
     tracesSampleRate: 1.0,
 });
 
+/** @type {import('@sveltejs/kit').HandleServerError} */
+export function handleError({ error, event }) {
+    const errorId = crypto.randomUUID();
+    // example integration with https://sentry.io/
+    Sentry.captureException(error, { event, errorId });
+
+    return {
+        message: 'Whoops!',
+        errorId
+    };
+}
+
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
     const jwt = event.cookies.get('jwt');
