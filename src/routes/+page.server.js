@@ -23,11 +23,9 @@ export const actions = {
             photoType: data.get('photoType'),
         };
 
-        console.log(formData)
-
         const body = await api.post('member/photo/upload', formData, locals.auth.token);
-        console.log(body)
-        if (Object.entries(body.errors).length) return fail(body.code, body);
+
+        if (Object.entries(body.errors).length) return fail(body.code, body.errors);
 
         locals.auth.photo.url = body.result
 
