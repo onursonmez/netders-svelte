@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="btoa">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="form method post enhance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/member/price/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/member/price/+page.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,14 +128,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="62851000" />
-    </task>
-    <task id="LOCAL-00082" summary="photo approval">
-      <created>1675545625590</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1675545625590</updated>
+      <workItem from="1676571763767" duration="63563000" />
     </task>
     <task id="LOCAL-00083" summary="member photo">
       <created>1675548462359</created>
@@ -472,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677289120990</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="form method post enhance">
+      <created>1677316782504</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1677316782504</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="robots.txt" />
     <MESSAGE value="detail error" />
     <MESSAGE value="analytics" />
     <MESSAGE value="earthquake" />
@@ -516,7 +516,8 @@
     <MESSAGE value="purgecss" />
     <MESSAGE value="user status" />
     <MESSAGE value="btoa" />
-    <option name="LAST_COMMIT_MESSAGE" value="btoa" />
+    <MESSAGE value="form method post enhance" />
+    <option name="LAST_COMMIT_MESSAGE" value="form method post enhance" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

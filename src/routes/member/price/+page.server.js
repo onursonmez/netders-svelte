@@ -73,7 +73,7 @@ export const actions = {
         })
 
 
-        let body = await api.put('member/price/update', priceData, locals.auth.token);
+        let body = await api.put('member/price/update_multi', priceData, locals.auth.token);
 
         if (Object.entries(body.errors).length) return fail(body.code, body);
 
