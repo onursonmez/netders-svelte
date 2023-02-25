@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="sentry">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/ambient.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks.client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks.client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="photo upload test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +31,9 @@
     <setting file="file://$PROJECT_DIR$/src/validation/newTeacherPersonalProfileValidation.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/routes/auth/login/+page.server.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/routes/ogretmen-ol/+page.server.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/hooks.server.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/routes/+error.svelte" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/routes/ogretmen-ol/+page.svelte" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2GGdUtIju8B2f2VtPTBJYQvMhTe" />
@@ -133,21 +128,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="77656000" />
-    </task>
-    <task id="LOCAL-00089" summary="redirects">
-      <created>1675643622710</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1675643622710</updated>
-    </task>
-    <task id="LOCAL-00090" summary="redirects">
-      <created>1675643948728</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1675643948728</updated>
+      <workItem from="1676571763767" duration="78017000" />
     </task>
     <task id="LOCAL-00091" summary="build">
       <created>1675644093264</created>
@@ -478,7 +459,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677346389538</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="santry removed">
+      <created>1677348218683</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1677348218683</updated>
+    </task>
+    <task id="LOCAL-00139" summary="photo upload test">
+      <created>1677348402363</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1677348402363</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,8 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="redirects" />
-    <MESSAGE value="favicon" />
     <MESSAGE value="title flag" />
     <MESSAGE value="ozel ders page" />
     <MESSAGE value="ozel ders urls" />
@@ -522,7 +515,9 @@
     <MESSAGE value="sitemap" />
     <MESSAGE value="detail page description" />
     <MESSAGE value="sentry" />
-    <option name="LAST_COMMIT_MESSAGE" value="sentry" />
+    <MESSAGE value="santry removed" />
+    <MESSAGE value="photo upload test" />
+    <option name="LAST_COMMIT_MESSAGE" value="photo upload test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
