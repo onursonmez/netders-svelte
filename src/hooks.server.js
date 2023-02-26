@@ -14,7 +14,5 @@ export function handleError({ error }) {
 export async function handle({ event, resolve }) {
     const jwt = event.cookies.get('jwt');
     event.locals.auth = jwt ? JSON.parse(decodeURIComponent(atob(jwt))) : null;
-    const response = await resolve(event);
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    return response;
+    return await resolve(event);
 }
