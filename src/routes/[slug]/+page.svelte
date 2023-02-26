@@ -8,6 +8,9 @@
 <svelte:head>
     <title>{data.user.firstName} {data.user.lastName} Özel Ders Profil Sayfası {data.user.city?.title ?? data.user.country?.title}</title>
     <meta name="description" content="{data.user.firstName} {data.user.lastName} özel ders profil sayfası.{data.user.country?.title ? ' ' + data.user.country.title + ' bölgesinde ikamet ediyor.' : (data.user.county?.title ? ' ' + data.user.city?.title + ', ' + data.user.county?.title + ' bölgesinde ikamet ediyor.' : '')} {data.user.minimumPrice ?? 0}₺ başlayan fiyatlarla{data.user.isTeachPhysically && data.user.isTeachRemotely ? ' yüz yüze ve uzaktan (webcam) ile ' : (data.user.isTeachPhysically && !data.user.isTeachRemotely ? ' yüz yüze ' : (!data.user.isTeachPhysically && data.user.isTeachRemotely ? ' uzaktan (webcam) ile ' : ''))}özel ders veriyor." />
+    {#if $page.url.searchParams.toString()}
+        <meta name="robots" content="noindex">
+    {/if}
 </svelte:head>
 
 <div class="lg:flex lg:flex-row gap-6 bg-white p-6 rounded-lg shadow-md mt-4">
