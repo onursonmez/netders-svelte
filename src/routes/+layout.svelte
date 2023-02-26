@@ -28,9 +28,6 @@
 	<script>
 		partytown = {
 			forward: ['dataLayer.push'],
-			resolveUrl: (url) => {
-				return url
-			}
 
 			resolveUrl: (url) => {
 				const siteUrl = 'https://netders.com'
