@@ -43,6 +43,7 @@
 			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 		})(window, document, "clarity", "script", "g08l2i145x");
 	</script>
+
 </svelte:head>
 
 {#if $navigating}
