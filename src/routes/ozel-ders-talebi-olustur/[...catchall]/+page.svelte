@@ -236,7 +236,7 @@
 				    formData = requestModel
 			    }
 
-				if (result.type === 'invalid') {
+				if (result.type === 'failure') {
 					Object.values(result.data).forEach(item => {
                         toast(item, 'warning')
                     })

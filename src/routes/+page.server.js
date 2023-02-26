@@ -1,5 +1,6 @@
 import * as api from '$lib/api';
-import {fail} from "@sveltejs/kit";
+import { fail } from "@sveltejs/kit";
+import { toast } from '/src/functions/toast'
 
 /** @type {import('./$types').Actions} */
 export const actions = {

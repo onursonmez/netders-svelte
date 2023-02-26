@@ -83,7 +83,7 @@
                             toast("İşlem başarıyla tamamlandı!", "success")
                         }
 
-                        if (result.type === 'invalid') {
+                        if (result.type === 'failure') {
                             Object.values(result.data).forEach(item => {
                                 toast(item, 'warning')
                             })
@@ -118,7 +118,7 @@
 				    toast("İşlem başarıyla tamamlandı!", "success")
 			    }
 
-                if (result.type === 'invalid') {
+                if (result.type === 'failure') {
 					Object.values(result.data).forEach(item => {
                         toast(item, 'warning')
                     })

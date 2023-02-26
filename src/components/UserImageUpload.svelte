@@ -49,6 +49,13 @@
                     waitingApproval = true
 				    toast("Başarılı! Fotoğrafın inceleniyor.", "success")
 			    }
+
+                if (result.type === 'failure') {
+                    waitingApproval = false
+                    avatar = import.meta.env.VITE_CDN_URL + $page.data.auth.photo.url
+				    toast("Bir hata oluştu. Lütfen daha sonra tekrar dene.", "warning")
+			    }
+
                 update({ reset: false });
             };
         }} method="POST" action="/?/upload">

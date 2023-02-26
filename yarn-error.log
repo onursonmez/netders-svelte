@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /opt/homebrew/bin/yarn remove @sentry/svelte @sentry/tracing
+  /usr/local/bin/node /opt/homebrew/bin/yarn add @sentry/node
 
 PATH: 
-  /opt/homebrew/opt/php@8.0/sbin:/opt/homebrew/opt/php@8.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/onursonmez/svelte/netders/node_modules/.bin
+  /opt/homebrew/opt/php@8.0/sbin:/opt/homebrew/opt/php@8.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
 
 Yarn version: 
   1.22.17
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/Users/onursonmez/svelte/netders/node_modules/@sveltejs/kit/node_modules/magic-string/LICENSE'
+  Error: EACCES: permission denied, unlink '/Users/onursonmez/svelte/netders/node_modules/@sveltejs/vite-plugin-svelte/node_modules/magic-string/index.d.ts'
 
 npm manifest: 
   {
