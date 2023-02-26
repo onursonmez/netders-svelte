@@ -31,6 +31,16 @@
 			resolveUrl: (url) => {
 				return url
 			}
+
+			resolveUrl: (url) => {
+				const siteUrl = 'https://netders.com'
+
+				if (url.hostname === 'www.clarity.ms') {
+					return new URL(`${siteUrl}/wwwclarityms`)
+				}
+
+				return url
+			}
 		}
 	</script>
 
