@@ -1,6 +1,7 @@
 <script>
     import UserComment from '/src/components/user/UserComment.svelte'
     import MediaCardContainer from '/src/components/MediaCardContainer.svelte'
+    import { page } from '$app/stores'
 
     export let data
 </script>
