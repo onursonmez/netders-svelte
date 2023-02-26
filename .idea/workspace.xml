@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="old page rules">
-      <change beforePath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="detail page query params noindex">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,28 +130,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="82581000" />
-    </task>
-    <task id="LOCAL-00094" summary="headers">
-      <created>1675681541902</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1675681541902</updated>
-    </task>
-    <task id="LOCAL-00095" summary="redirects">
-      <created>1675683375811</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1675683375811</updated>
-    </task>
-    <task id="LOCAL-00096" summary="redirects">
-      <created>1675683574647</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1675683574648</updated>
+      <workItem from="1676571763767" duration="83269000" />
     </task>
     <task id="LOCAL-00097" summary="301">
       <created>1675685505968</created>
@@ -475,7 +454,28 @@
       <option name="project" value="LOCAL" />
       <updated>1677369264311</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="detail page query params noindex">
+      <created>1677369524977</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1677369524977</updated>
+    </task>
+    <task id="LOCAL-00144" summary="detail page query params noindex">
+      <created>1677369605401</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1677369605401</updated>
+    </task>
+    <task id="LOCAL-00145" summary="detail page query params noindex">
+      <created>1677369637026</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1677369637026</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="seo" />
     <MESSAGE value="bug fix" />
     <MESSAGE value="search model changed" />
     <MESSAGE value="category insecure api problem" />
@@ -519,7 +518,8 @@
     <MESSAGE value="noindex" />
     <MESSAGE value="image upload" />
     <MESSAGE value="old page rules" />
-    <option name="LAST_COMMIT_MESSAGE" value="old page rules" />
+    <MESSAGE value="detail page query params noindex" />
+    <option name="LAST_COMMIT_MESSAGE" value="detail page query params noindex" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
