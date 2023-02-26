@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="sentry">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="preconnect">
+      <change beforePath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/.svelte-kit/generated/server/internal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,14 +135,7 @@
       <workItem from="1676143103019" duration="598000" />
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
-      <workItem from="1676571763767" duration="90688000" />
-    </task>
-    <task id="LOCAL-00099" summary="redirects">
-      <created>1675694351194</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1675694351194</updated>
+      <workItem from="1676571763767" duration="91072000" />
     </task>
     <task id="LOCAL-00100" summary="redirects">
       <created>1675695667595</created>
@@ -479,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677403537880</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="preconnect">
+      <created>1677408075827</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1677408075827</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="search model changed" />
     <MESSAGE value="category insecure api problem" />
     <MESSAGE value="route problem fixed" />
     <MESSAGE value="noindex added for page query" />
@@ -523,7 +523,8 @@
     <MESSAGE value="detail page query params noindex" />
     <MESSAGE value="cdn" />
     <MESSAGE value="sentry" />
-    <option name="LAST_COMMIT_MESSAGE" value="sentry" />
+    <MESSAGE value="preconnect" />
+    <option name="LAST_COMMIT_MESSAGE" value="preconnect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
