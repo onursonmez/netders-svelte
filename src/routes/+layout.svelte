@@ -9,11 +9,11 @@
 
 	let scriptEl
 	onMount(
-			() => {
-				if (scriptEl) {
-					scriptEl.textContent = partytownSnippet()
-				}
+		() => {
+			if (scriptEl) {
+				scriptEl.textContent = partytownSnippet()
 			}
+		}
 	)
 </script>
 
