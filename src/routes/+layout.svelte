@@ -6,6 +6,7 @@
 	import PreloadingIndicator from '/src/components/PreloadingIndicator.svelte'
 	import {onMount} from 'svelte'
 	import {partytownSnippet} from '@builder.io/partytown/integration'
+	import { page } from '$app/stores'
 
 	let scriptEl
 	onMount(
@@ -18,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<link rel="canonical" href="{import.meta.env.VITE_BASE_URL}" />
+	<link rel="canonical" href="{import.meta.env.VITE_BASE_URL + $page.url.pathname}" />
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" />
 	<link rel="dns-prefetch" href="https://cdn.netders.com" />
