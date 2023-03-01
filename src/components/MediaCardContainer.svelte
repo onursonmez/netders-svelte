@@ -9,7 +9,11 @@
 
 <div class="lg:basis-9/12 xl:basis-10/12 hidden lg:block">
     <a href="/{user.username}" target="_blank" rel="noreferrer">
-        <h1 class="mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl">{user.firstName} {user.lastName}</h1>
+        {#if user.searchPage == true}
+            <h3 class="mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl">{user.firstName} {user.lastName}</h3>
+        {:else}
+            <h1 class="mb-2 text-2xl font-bold text-blue-700 tracking-tight leading-none xl:text-3xl">{user.firstName} {user.lastName}</h1>
+        {/if}
     </a>
     <p class="mb-2 font-semibold text-gray-800 lg:text-base xl:text-lg dark:text-gray-400">{user.title}</p>
 
