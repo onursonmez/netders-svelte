@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="header">
+    <list default="true" id="0bc478b2-e0d2-49d7-8956-680d4b5e4439" name="Changes" comment="h1 h3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MediaCardContainer.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MediaCardContainer.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/[[slug]]ozel-ders/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,14 +135,7 @@
       <workItem from="1676483187176" duration="4229000" />
       <workItem from="1676532931148" duration="606000" />
       <workItem from="1676571763767" duration="99726000" />
-      <workItem from="1677445778144" duration="2800000" />
-    </task>
-    <task id="LOCAL-00116" summary="noindex added for page query">
-      <created>1677270431704</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1677270431704</updated>
+      <workItem from="1677445778144" duration="4739000" />
     </task>
     <task id="LOCAL-00117" summary="home category broken links fixed">
       <created>1677272226184</created>
@@ -482,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677616829948</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="h1 h3">
+      <created>1677677495278</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1677677495278</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="invalid to fail" />
     <MESSAGE value="partytown" />
     <MESSAGE value="link rel" />
     <MESSAGE value="purgecss" />
@@ -526,7 +523,8 @@
     <MESSAGE value="lang" />
     <MESSAGE value="canonical" />
     <MESSAGE value="header" />
-    <option name="LAST_COMMIT_MESSAGE" value="header" />
+    <MESSAGE value="h1 h3" />
+    <option name="LAST_COMMIT_MESSAGE" value="h1 h3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

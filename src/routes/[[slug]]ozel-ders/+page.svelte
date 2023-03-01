@@ -101,12 +101,12 @@
 
 					<div>
 						<span class="text-sm mb-1 block text-gray-500">Konu</span>
-						<Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." items="{$subjectsStore}" bind:value={searchData.subject} optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={updateLevels} />
+						<Select placeholder="Ara" noOptionsMessage="Sonuç bulunamadı..." items="{$subjectsStore}" bind:value={searchData.subject} optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={updateLevels} />
 					</div>
 
 					<div>
 						<span class="text-sm mb-1 block text-gray-500">Ders</span>
-						<Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." items="{$levelsStore}" bind:value={searchData.level} optionIdentifier="id" labelIdentifier="title" {itemFilter} />
+						<Select placeholder="Ara" noOptionsMessage="Sonuç bulunamadı..." items="{$levelsStore}" bind:value={searchData.level} optionIdentifier="id" labelIdentifier="title" {itemFilter} />
 					</div>
 
 					<div>
@@ -147,17 +147,17 @@
 			<div class="grid grid-cols-3 gap-4 text-left">
 				<div>
 					<span class="text-sm mb-1 block text-gray-500">Şehir</span>
-					<Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." items="{$citiesStore}" bind:value={searchData.city} optionIdentifier="id" labelIdentifier="title" isClearable="false" {itemFilter} on:select={() => {updateCounties(); onSearch();}} on:clear={updateCounties} />
+					<Select placeholder="Ara" noOptionsMessage="Sonuç bulunamadı..." items="{$citiesStore}" bind:value={searchData.city} optionIdentifier="id" labelIdentifier="title" isClearable="false" {itemFilter} on:select={() => {updateCounties(); onSearch();}} on:clear={updateCounties} />
 				</div>
 
 				<div>
 					<span class="text-sm mb-1 block text-gray-500">İlçe</span>
-					<Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." items="{$countiesStore}" bind:value={searchData.county} optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={onSearch} on:clear={onSearch} />
+					<Select placeholder="Ara" noOptionsMessage="Sonuç bulunamadı..." items="{$countiesStore}" bind:value={searchData.county} optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={onSearch} on:clear={onSearch} />
 				</div>
 
 				<div>
 					<span class="text-sm mb-1 block text-gray-500">Ders</span>
-					<Select placeholder="Seç" noOptionsMessage="Sonuç bulunamadı..." items="{$categoriesStore}" bind:value={searchData.category} optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={() => {searchData.subject = null; searchData.level = null; onSearch();}} on:clear={onSearch} />
+					<Select placeholder="Ara" noOptionsMessage="Sonuç bulunamadı..." items="{$categoriesStore}" bind:value={searchData.category} optionIdentifier="id" labelIdentifier="title" {itemFilter} on:select={() => {searchData.subject = null; searchData.level = null; onSearch();}} on:clear={onSearch} />
 				</div>
 			</div>
 
