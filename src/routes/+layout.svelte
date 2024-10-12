@@ -108,6 +108,7 @@
 					<li class="mx-2 hover:text-white"><a href="/kullanim-kosullari">Kullanım Koşulları</a></li>
 					<li class="mx-2 hover:text-white"><a href="/gizlilik-ilkeleri">Gizlilik İlkeleri</a></li>
 					<li class="mx-2 hover:text-white"><a href="https://fegge.com">Fegge</a></li>
+					<li class="mx-2 hover:text-white"><a href="https://hemenservis.com.tr/hizmetler/kombi-petek-temizligi.html">Kombi Petek Temizliği</a></li>
 				</ul>
 			</div>
 		</section>
